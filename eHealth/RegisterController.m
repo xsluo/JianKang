@@ -84,12 +84,12 @@
     if(section==3&&row==0){
         self.cellMale.accessoryType = UITableViewCellAccessoryCheckmark;
         self.cellFamale.accessoryType = UITableViewCellAccessoryNone;
-        self.gender = @"0";
+        self.gender = @"1";
     }
     if(section==3&&row==1){
         self.cellMale.accessoryType = UITableViewCellAccessoryNone;
         self.cellFamale.accessoryType = UITableViewCellAccessoryCheckmark;
-        self.gender = @"1";
+        self.gender = @"0";
     }
     
 }

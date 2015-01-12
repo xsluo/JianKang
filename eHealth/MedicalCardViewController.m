@@ -15,9 +15,13 @@
 #define kUserName @"username"
 
 @interface MedicalCardViewController ()
+
 @property (nonatomic,retain)NSMutableArray *medicalCardList;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,retain)   NSMutableData *responseData;
+
+@property (nonatomic,strong) NSIndexPath *lastIndexPath;
+
 @end
 
 @implementation MedicalCardViewController
@@ -27,7 +31,9 @@
     // Do any additional setup after loading the view.
 //    self.tableView.delegate = self;
 //    self.tableView.dataSource = self;
-    self.medicalCardList = [[NSMutableArray alloc]init];
+//    self.medicalCardList = [[NSMutableArray alloc]init];
+    self.medicalCardList = nil;
+    self.lastIndexPath = nil;
     [self setRequest];
 }
 
@@ -146,14 +152,27 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     NSInteger row = [indexPath row];
-    if([self.medicalCardList count]>0){
-        NSDictionary *cardDictionary = [self.medicalCardList objectAtIndex:row];
-        NSString *owner = [cardDictionary objectForKey:@"Owner"];
-        NSString *cardType = [cardDictionary objectForKey:@"MedicalCardTypeName"];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@<%@>",owner,cardType];
-//        cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",cardType];
-    }
+    NSInteger oldRow = [self.lastIndexPath row];
+    cell.accessoryType = (row==oldRow&&self.lastIndexPath!=nil)?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
+    NSDictionary *cardDictionary = [self.medicalCardList objectAtIndex:row];
+    NSString *owner = [cardDictionary objectForKey:@"Owner"];
+    NSString *cardType = [cardDictionary objectForKey:@"MedicalCardTypeName"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@<%@>",owner,cardType];
+    
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger newRow = [indexPath row];
+    NSInteger oldRow = (self.lastIndexPath!=nil)?[self.lastIndexPath row]:-1;
+    if(newRow!=oldRow||self.lastIndexPath ==0){
+        UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+        newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:self.lastIndexPath];
+        oldCell.accessoryType = UITableViewCellAccessoryNone;
+        self.lastIndexPath = indexPath;
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
