@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MedicalCard;
 
 @interface MedicalCardViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
 
 
 @end

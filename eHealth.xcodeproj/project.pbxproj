@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		060D11431A4C049E00EB201C /* NewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060D11421A4C049E00EB201C /* NewsTableViewController.m */; };
 		0650F38E1A51275300B26F39 /* EmptyParkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650F38D1A51275300B26F39 /* EmptyParkTableViewController.m */; };
+		0683B0961A638EB800033285 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0683B0951A638EB800033285 /* CardViewController.m */; };
+		0683B09D1A63957A00033285 /* MedicalCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0683B09C1A63957A00033285 /* MedicalCard.m */; };
+		0683B0A01A63B95300033285 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0683B09E1A63B95300033285 /* Main.storyboard */; };
 		13064BCC1A400EBA001E9263 /* DepartmentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */; };
 		132142FA1A3F1B0600290746 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F11A3F1B0600290746 /* 1.png */; };
 		132142FB1A3F1B0600290746 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F21A3F1B0600290746 /* 2.png */; };
@@ -32,7 +35,6 @@
 		13CAAE6E1A3C92EA009C420E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13CAAE6D1A3C92EA009C420E /* Images.xcassets */; };
 		13CAAE711A3C92EA009C420E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13CAAE6F1A3C92EA009C420E /* LaunchScreen.xib */; };
 		13CAAE7D1A3C92EA009C420E /* eHealthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAAE7C1A3C92EA009C420E /* eHealthTests.m */; };
-		13E0ADBD1A58225E00E09CE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13E0ADBB1A58225E00E09CE1 /* Main.storyboard */; };
 		13E0ADC31A583B9E00E09CE1 /* AfterLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E0ADC21A583B9E00E09CE1 /* AfterLoginTableViewController.m */; };
 		13E0ADC61A583D1D00E09CE1 /* LoginningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E0ADC51A583D1D00E09CE1 /* LoginningViewController.m */; };
 /* End PBXBuildFile section */
@@ -52,6 +54,11 @@
 		060D11421A4C049E00EB201C /* NewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsTableViewController.m; path = DigitalHostpital/News/NewsTableViewController.m; sourceTree = "<group>"; };
 		0650F38C1A51275300B26F39 /* EmptyParkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyParkTableViewController.h; path = DigitalHostpital/EmptyPark/EmptyParkTableViewController.h; sourceTree = "<group>"; };
 		0650F38D1A51275300B26F39 /* EmptyParkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyParkTableViewController.m; path = DigitalHostpital/EmptyPark/EmptyParkTableViewController.m; sourceTree = "<group>"; };
+		0683B0941A638EB800033285 /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
+		0683B0951A638EB800033285 /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
+		0683B09B1A63957A00033285 /* MedicalCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicalCard.h; sourceTree = "<group>"; };
+		0683B09C1A63957A00033285 /* MedicalCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicalCard.m; sourceTree = "<group>"; };
+		0683B09F1A63B95300033285 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13064BCA1A400EBA001E9263 /* DepartmentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepartmentTableViewController.h; path = DigitalHostpital/Departmet/DepartmentTableViewController.h; sourceTree = "<group>"; };
 		13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepartmentTableViewController.m; path = DigitalHostpital/Departmet/DepartmentTableViewController.m; sourceTree = "<group>"; };
 		132142F11A3F1B0600290746 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1.png; path = images/1.png; sourceTree = "<group>"; };
@@ -89,7 +96,6 @@
 		13CAAE761A3C92EA009C420E /* eHealthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eHealthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CAAE7B1A3C92EA009C420E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13CAAE7C1A3C92EA009C420E /* eHealthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eHealthTests.m; sourceTree = "<group>"; };
-		13E0ADBC1A58225E00E09CE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13E0ADC11A583B9E00E09CE1 /* AfterLoginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AfterLoginTableViewController.h; sourceTree = "<group>"; };
 		13E0ADC21A583B9E00E09CE1 /* AfterLoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AfterLoginTableViewController.m; sourceTree = "<group>"; };
 		13E0ADC41A583D1D00E09CE1 /* LoginningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginningViewController.h; sourceTree = "<group>"; };
@@ -132,6 +138,19 @@
 			name = EmptyPark;
 			sourceTree = "<group>";
 		};
+		0683B0971A638EEB00033285 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				1332676D1A5B83C00095D462 /* MedicalCardViewController.h */,
+				1332676E1A5B83C00095D462 /* MedicalCardViewController.m */,
+				0683B0941A638EB800033285 /* CardViewController.h */,
+				0683B0951A638EB800033285 /* CardViewController.m */,
+				0683B09B1A63957A00033285 /* MedicalCard.h */,
+				0683B09C1A63957A00033285 /* MedicalCard.m */,
+			);
+			name = Card;
+			sourceTree = "<group>";
+		};
 		132142F01A3F1AC500290746 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,15 +174,6 @@
 				133267641A5ADCF80095D462 /* RegisterController.m */,
 			);
 			name = Register;
-			sourceTree = "<group>";
-		};
-		1332676C1A5B83180095D462 /* MedicalCard */ = {
-			isa = PBXGroup;
-			children = (
-				1332676D1A5B83C00095D462 /* MedicalCardViewController.h */,
-				1332676E1A5B83C00095D462 /* MedicalCardViewController.m */,
-			);
-			name = MedicalCard;
 			sourceTree = "<group>";
 		};
 		134C4FC21A3D82D200CDDA3E /* DigitalHospital */ = {
@@ -235,7 +245,7 @@
 		13CAAE5F1A3C92E9009C420E /* eHealth */ = {
 			isa = PBXGroup;
 			children = (
-				13E0ADBB1A58225E00E09CE1 /* Main.storyboard */,
+				0683B09E1A63B95300033285 /* Main.storyboard */,
 				1344E8D41A580FE300733189 /* HomeViewController.h */,
 				1344E8D51A580FE300733189 /* HomeViewController.m */,
 				13CAAE641A3C92E9009C420E /* AppDelegate.h */,
@@ -244,6 +254,7 @@
 				13CAAE6F1A3C92EA009C420E /* LaunchScreen.xib */,
 				133267621A5ADC970095D462 /* Register */,
 				13E0ADBE1A58390F00E09CE1 /* Login */,
+				0683B0971A638EEB00033285 /* Card */,
 				134C4FC21A3D82D200CDDA3E /* DigitalHospital */,
 				13CAAE601A3C92E9009C420E /* Supporting Files */,
 			);
@@ -305,7 +316,6 @@
 				13E0ADC21A583B9E00E09CE1 /* AfterLoginTableViewController.m */,
 				133267691A5AF0970095D462 /* ChangePWDController.h */,
 				1332676A1A5AF0970095D462 /* ChangePWDController.m */,
-				1332676C1A5B83180095D462 /* MedicalCard */,
 			);
 			name = AfterLogin;
 			sourceTree = "<group>";
@@ -393,7 +403,7 @@
 				132143011A3F1B0600290746 /* 8.png in Resources */,
 				132142FD1A3F1B0600290746 /* 4.png in Resources */,
 				132142FA1A3F1B0600290746 /* 1.png in Resources */,
-				13E0ADBD1A58225E00E09CE1 /* Main.storyboard in Resources */,
+				0683B0A01A63B95300033285 /* Main.storyboard in Resources */,
 				132142FF1A3F1B0600290746 /* 6.png in Resources */,
 				132142FB1A3F1B0600290746 /* 2.png in Resources */,
 				132142FC1A3F1B0600290746 /* 3.png in Resources */,
@@ -427,6 +437,8 @@
 				1332676F1A5B83C00095D462 /* MedicalCardViewController.m in Sources */,
 				13064BCC1A400EBA001E9263 /* DepartmentTableViewController.m in Sources */,
 				139512A51A5808870067810D /* DutyRosterViewController.m in Sources */,
+				0683B0961A638EB800033285 /* CardViewController.m in Sources */,
+				0683B09D1A63957A00033285 /* MedicalCard.m in Sources */,
 				13E0ADC31A583B9E00E09CE1 /* AfterLoginTableViewController.m in Sources */,
 				13CAAE631A3C92E9009C420E /* main.m in Sources */,
 				133267651A5ADCF80095D462 /* RegisterController.m in Sources */,
@@ -456,20 +468,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0683B09E1A63B95300033285 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0683B09F1A63B95300033285 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		13CAAE6F1A3C92EA009C420E /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				13CAAE701A3C92EA009C420E /* Base */,
 			);
 			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-		13E0ADBB1A58225E00E09CE1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13E0ADBC1A58225E00E09CE1 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

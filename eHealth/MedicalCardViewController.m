@@ -7,6 +7,8 @@
 //
 
 #import "MedicalCardViewController.h"
+#import "MedicalCard.h"
+#import "CardViewController.h"
 
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetMedicalCardList"
@@ -19,8 +21,10 @@
 @property (nonatomic,retain)NSMutableArray *medicalCardList;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,retain)   NSMutableData *responseData;
-
 @property (nonatomic,strong) NSIndexPath *lastIndexPath;
+
+@property (nonatomic,retain) NSMutableArray *cards;
+@property (strong,nonatomic) MedicalCard *selectedCard;
 
 @end
 
@@ -34,6 +38,7 @@
 //    self.medicalCardList = [[NSMutableArray alloc]init];
     self.medicalCardList = nil;
     self.lastIndexPath = nil;
+    self.cards = [[NSMutableArray alloc] init];
     [self setRequest];
 }
 
@@ -155,9 +160,24 @@
     NSInteger oldRow = [self.lastIndexPath row];
     cell.accessoryType = (row==oldRow&&self.lastIndexPath!=nil)?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
     NSDictionary *cardDictionary = [self.medicalCardList objectAtIndex:row];
-    NSString *owner = [cardDictionary objectForKey:@"Owner"];
-    NSString *cardType = [cardDictionary objectForKey:@"MedicalCardTypeName"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@<%@>",owner,cardType];
+    
+    MedicalCard *card = [[MedicalCard alloc] init];
+    card.medicalCardID = [cardDictionary objectForKey:@"MedicalCardID"];
+    card.medicalCardTypeID = [cardDictionary objectForKey:@"MedicalCardTypeID"];
+    card.medicalCardTypeName = [cardDictionary objectForKey:@"MedicalCardTypeName"];
+    card.medicalCardCode = [cardDictionary objectForKey:@"MedicalCardCode"];
+    card.owner = [cardDictionary objectForKey:@"Owner"];
+    card.ownerSex = [cardDictionary objectForKey:@"OwnerSex"];
+    card.ownerAge = [cardDictionary objectForKey:@"OwnerAge"];
+    card.ownerPhone = [cardDictionary objectForKey:@"OwnerPhone"];
+    card.ownerTel = [cardDictionary objectForKey:@"OwnerTel"];
+    card.ownerIDCard = [cardDictionary objectForKey:@"OwnerIDCard"];
+    card.ownerEmail = [cardDictionary objectForKey:@"OwnerEmail"];
+    card.ownerAdress = [cardDictionary objectForKey:@"OwnerAdress"];
+    
+    [self.cards addObject:card];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@<%@>",[card owner],[card medicalCardTypeName]];
     
     return cell;
 }
@@ -171,11 +191,22 @@
         UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:self.lastIndexPath];
         oldCell.accessoryType = UITableViewCellAccessoryNone;
         self.lastIndexPath = indexPath;
-    }
+    };
+    self.selectedCard = [self.cards objectAtIndex:newRow];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+     CardViewController *detail =  segue.destinationViewController ;
+            detail.medicalCard = [self selectedCard];
+}
 
+//-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+//    if([identifier isEqualToString:@"showCardDetail"] &&(self.lastIndexPath !=nil))
+//            return  YES;
+//        else
+//            return NO;
+//    }
 @end
 
 
