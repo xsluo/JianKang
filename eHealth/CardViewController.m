@@ -27,6 +27,7 @@
     self.labelName.text = self.medicalCard.owner;
     self.labelCardType.text = self.medicalCard.medicalCardTypeName;
     self.labelCardNumber.text = self.medicalCard.medicalCardCode;
+//    NSLog(@"MdedicalCardID is:%@",self.medicalCard.medicalCardID);
 
 }
 

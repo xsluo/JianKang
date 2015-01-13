@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MedicalCard;
 
 @interface AddMedicalCardController : UITableViewController
 @property (copy, nonatomic) NSString *userName;
+@property(nonatomic,retain) MedicalCard *medicalCard;
 
 @end

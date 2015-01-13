@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -814,6 +814,11 @@
                             <outlet property="delegate" destination="dHt-OE-BQP" id="tn8-PQ-tje"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="labelUserName" destination="MAl-pm-XWE" id="B8D-jf-Qfm"/>
+                        <outlet property="textMedcalCardCode" destination="LH8-bD-KvM" id="3dn-fG-0gv"/>
+                        <outlet property="textMedicalCardType" destination="nIi-gz-qk5" id="vlf-BF-vM0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WR8-FA-Plp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

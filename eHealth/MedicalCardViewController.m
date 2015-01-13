@@ -116,15 +116,17 @@
     if([_responseData length]==0)
         return;
     
-    NSError *error = nil;
-    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:_responseData options:kNilOptions error:&error];
-    if (jsonDictionary == nil) {
-        NSLog(@"json parse failed");
-        return;
-    }
-    self.medicalCardList =[jsonDictionary objectForKey:@"MedicalCardList"];
-    if(self.medicalCardList!=(id)[NSNull null])
-        [self.tableView reloadData];
+//    if([connection.currentRequest.URL.  isEqualToString:URL]){
+        NSError *error = nil;
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:_responseData options:kNilOptions error:&error];
+        if (jsonDictionary == nil) {
+            NSLog(@"json parse failed");
+            return;
+        }
+        self.medicalCardList =[jsonDictionary objectForKey:@"MedicalCardList"];
+        if(self.medicalCardList!=(id)[NSNull null])
+            [self.tableView reloadData];
+//    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -203,10 +205,10 @@
         detail.medicalCard = [self selectedCard];
     }
     if([[segue identifier] isEqualToString:@"addCard"]){
-        AddMedicalCardController *add = segue.destinationViewController;
+        AddMedicalCardController *addCard = segue.destinationViewController;
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSString *userName =[userDefaults objectForKey:kUserName];
-        add.userName.text =userName;
+        addCard.userName =userName;
     }
 }
 
