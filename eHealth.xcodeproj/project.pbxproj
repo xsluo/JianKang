@@ -13,6 +13,7 @@
 		0683B09D1A63957A00033285 /* MedicalCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0683B09C1A63957A00033285 /* MedicalCard.m */; };
 		0683B0A01A63B95300033285 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0683B09E1A63B95300033285 /* Main.storyboard */; };
 		13064BCC1A400EBA001E9263 /* DepartmentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */; };
+		13084C2A1A64165D00A978D8 /* AddMedicalCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13084C291A64165D00A978D8 /* AddMedicalCardController.m */; };
 		132142FA1A3F1B0600290746 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F11A3F1B0600290746 /* 1.png */; };
 		132142FB1A3F1B0600290746 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F21A3F1B0600290746 /* 2.png */; };
 		132142FC1A3F1B0600290746 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F31A3F1B0600290746 /* 3.png */; };
@@ -61,6 +62,8 @@
 		0683B09F1A63B95300033285 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13064BCA1A400EBA001E9263 /* DepartmentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepartmentTableViewController.h; path = DigitalHostpital/Departmet/DepartmentTableViewController.h; sourceTree = "<group>"; };
 		13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepartmentTableViewController.m; path = DigitalHostpital/Departmet/DepartmentTableViewController.m; sourceTree = "<group>"; };
+		13084C281A64165D00A978D8 /* AddMedicalCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMedicalCardController.h; sourceTree = "<group>"; };
+		13084C291A64165D00A978D8 /* AddMedicalCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMedicalCardController.m; sourceTree = "<group>"; };
 		132142F11A3F1B0600290746 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1.png; path = images/1.png; sourceTree = "<group>"; };
 		132142F21A3F1B0600290746 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 2.png; path = images/2.png; sourceTree = "<group>"; };
 		132142F31A3F1B0600290746 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3.png; path = images/3.png; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 				0683B0951A638EB800033285 /* CardViewController.m */,
 				0683B09B1A63957A00033285 /* MedicalCard.h */,
 				0683B09C1A63957A00033285 /* MedicalCard.m */,
+				13084C281A64165D00A978D8 /* AddMedicalCardController.h */,
+				13084C291A64165D00A978D8 /* AddMedicalCardController.m */,
 			);
 			name = Card;
 			sourceTree = "<group>";
@@ -446,6 +451,7 @@
 				1332676B1A5AF0970095D462 /* ChangePWDController.m in Sources */,
 				13E0ADC61A583D1D00E09CE1 /* LoginningViewController.m in Sources */,
 				1344E8D61A580FE300733189 /* HomeViewController.m in Sources */,
+				13084C2A1A64165D00A978D8 /* AddMedicalCardController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

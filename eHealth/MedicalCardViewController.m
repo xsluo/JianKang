@@ -9,6 +9,7 @@
 #import "MedicalCardViewController.h"
 #import "MedicalCard.h"
 #import "CardViewController.h"
+#import "AddMedicalCardController.h"
 
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetMedicalCardList"
@@ -33,9 +34,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.tableView.delegate = self;
-//    self.tableView.dataSource = self;
-//    self.medicalCardList = [[NSMutableArray alloc]init];
+    //    self.tableView.delegate = self;
+    //    self.tableView.dataSource = self;
+    //    self.medicalCardList = [[NSMutableArray alloc]init];
     self.medicalCardList = nil;
     self.lastIndexPath = nil;
     self.cards = [[NSMutableArray alloc] init];
@@ -48,14 +49,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 -(void)setRequest{
     
@@ -197,19 +197,24 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-     CardViewController *detail =  segue.destinationViewController ;
-            detail.medicalCard = [self selectedCard];
+//    if([[segue destinationViewController] isEqualToString:@"showCardDetail"]){
+    if([[segue identifier] isEqualToString:@"showCardDetail"]){
+        CardViewController *detail =  segue.destinationViewController ;
+        detail.medicalCard = [self selectedCard];
+    }
+    if([[segue identifier] isEqualToString:@"addCard"]){
+        AddMedicalCardController *add = segue.destinationViewController;
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *userName =[userDefaults objectForKey:kUserName];
+        add.userName.text =userName;
+    }
 }
 
-//-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-//    if([identifier isEqualToString:@"showCardDetail"] &&(self.lastIndexPath !=nil))
-//            return  YES;
-//        else
-//            return NO;
-//    }
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    if([identifier isEqualToString:@"showCardDetail"] &&(self.lastIndexPath !=nil))
+        return  YES;
+    if([identifier isEqualToString:@"addCard"])
+        return YES;
+    return NO;
+    }
 @end
-
-
-
-
-

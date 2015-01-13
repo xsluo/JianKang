@@ -11,6 +11,7 @@
 @class MedicalCard;
 
 @interface CardViewController : UITableViewController
+
 @property(strong,nonatomic) MedicalCard *medicalCard;
 @property (weak, nonatomic) IBOutlet UILabel *labelName;
 @property (weak, nonatomic) IBOutlet UILabel *labelCardType;
