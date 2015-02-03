@@ -124,8 +124,7 @@
             return;
         }
         self.medicalCardList =[jsonDictionary objectForKey:@"MedicalCardList"];
-        if(self.medicalCardList!=(id)[NSNull null])
-            [self.tableView reloadData];
+        [self.tableView reloadData];
 //    }
 }
 
@@ -146,7 +145,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     //    // Return the number of rows in the section.
-    return [self.medicalCardList count];
+    if(self.medicalCardList!=(id)[NSNull null])
+        return [self.medicalCardList count];
+    else
+        return 0;
 }
 
 
@@ -199,6 +201,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"prepareForSegue!");
 //    if([[segue destinationViewController] isEqualToString:@"showCardDetail"]){
     if([[segue identifier] isEqualToString:@"showCardDetail"]){
         CardViewController *detail =  segue.destinationViewController ;

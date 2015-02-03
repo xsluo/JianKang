@@ -95,8 +95,8 @@
         return;
     }
     self.parkFieldList =[jsonDictionary objectForKey:@"ParkList"];
-    if(self.parkFieldList!=(id)[NSNull null])
-        [self.tableView reloadData];
+
+    [self.tableView reloadData];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -116,11 +116,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete method implementation.
 //    // Return the number of rows in the section.
-    return [self.parkFieldList count];
+    if(self.parkFieldList!=(id)[NSNull null])
+        return [self.parkFieldList count];
+    else
+        return 0;
 }
-
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString* reuseIndentifier =@"parkCell";

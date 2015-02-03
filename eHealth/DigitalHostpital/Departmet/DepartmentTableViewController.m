@@ -104,8 +104,8 @@
         return;
     }
     self.departmentList =[jsonDictionary objectForKey:@"DepartmentList"];
-    if(self.departmentList!=(id)[NSNull null])
-        [self.tableView reloadData];
+
+    [self.tableView reloadData];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -121,7 +121,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.departmentList count];
+    if(self.departmentList!=(id)[NSNull null])
+        return [self.departmentList count];
+    else
+        return 0;
 }
 
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

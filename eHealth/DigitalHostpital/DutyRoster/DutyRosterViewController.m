@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.weekDay = @"0";
+    self.weekDay = @"1";
     
     self.dutyRosterList = [[NSMutableArray alloc]init];
     [self linkTheNet];
@@ -113,8 +113,7 @@
         return;
     }
     self.dutyRosterList =[jsonDictionary objectForKey:@"DutyRosterList"];
-     if(self.dutyRosterList!=(id)[NSNull null])
-         [self.tableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -130,7 +129,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.dutyRosterList count];
+    if(self.dutyRosterList == (id)[NSNull null])
+        return 0;
+    else
+        return [self.dutyRosterList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -153,7 +155,6 @@
     return cell;
 }
 
-
 /*
 #pragma mark - Navigation
 
@@ -165,10 +166,9 @@
 */
 
 - (IBAction)weedayChanged:(id)sender {
-    NSInteger day =[(UISegmentedControl*)sender selectedSegmentIndex];
+    NSInteger day =[(UISegmentedControl*)sender selectedSegmentIndex]+1;
     self.weekDay = [NSString stringWithFormat:@"%lo",day];
     [self linkTheNet];
-    if(self.description!=(id)[NSNull null])
-        [self.tableView reloadData];
+    [self.tableView reloadData];
 }
 @end

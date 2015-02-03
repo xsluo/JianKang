@@ -1,62 +1,38 @@
 //
-//  NewsTableViewController.m
+//  GetAreaTableViewController.m
 //  eHealth
 //
-//  Created by nh neusoft on 14-12-25.
-//  Copyright (c) 2014年 PanGu. All rights reserved.
+//  Created by Bagu on 15/2/2.
+//  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
-#import "NewsTableViewController.h"
-
+#import "GetAreaTableViewController.h"
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
-#define Method @"GetNews"
+#define Method @"GetAreaList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
-#define Type @"0"
-#define HospitalID @"440604001"
-#define NewsCategoryID @“1”
-@interface NewsTableViewController ()
+#define kArea @"Area"
+#define kAreaID  @"AreaID"
 
+
+@interface GetAreaTableViewController ()
 @property (nonatomic,retain) NSMutableData * responseData;
 
 @end
 
-@implementation NewsTableViewController
+@implementation GetAreaTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDictionary *dictionary=[[NSDictionary alloc]initWithObjectsAndKeys:AppKey,@"AppKey",AppSecret,@"AppSecret",Type,@"Type", nil];
-    NSError *error=nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
-    if(error){
-        NSLog(@"error:%@",error);
-    }
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.areaList = [[NSMutableArray alloc]init];
+    [self getAreaList];
     
-    NSString *postString = [NSString stringWithFormat:@"method=%@&jsonBody=%@",Method,jsonString];
-    
-    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:URL]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:postData];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    [connection start];
-    
-//    NSData *receivedData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-//    if([receivedData length]==0)
-//        return;
-//
-//    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:receivedData options:kNilOptions error:&error];
-//    if (jsonDictionary == nil) {
-//        NSLog(@"json parse failed");
-//        return;
-//    }
-//    self.newsList =[jsonDictionary objectForKey:@"NewsList"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,7 +40,39 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)getAreaList {
+    //    if([self.textName.text isEqual:@"1"])
+    //        [self.navigationController popToRootViewControllerAnimated:self];
+    //self.departmentList = [[NSMutableArray alloc]init];
+    
+    NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:4];
+    [dictionary setObject:AppKey forKey:@"AppKey"];
+    [dictionary setObject:AppSecret forKey:@"AppSecret"];
+    [dictionary setObject:@"6" forKey:@"Type"];
+    [dictionary setObject:@"440600" forKey:@"AreaID"];
+    
+    NSError *error=nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
+    if(error){
+        NSLog(@"error:%@",error);
+    }
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *postString = [NSString stringWithFormat:@"method=%@&jsonBody=%@",Method,jsonString];
+    
+    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    //    [request setURL:[NSURL URLWithString:URL]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [connection start];
+}
 
+#pragma mark
 #pragma mark NSURLConnection Delegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -91,16 +99,15 @@
     // You can parse the stuff in your instance variable now
     
     if([_responseData length]==0)
-            return;
+        return;
     
     NSError *error = nil;
     NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:_responseData options:kNilOptions error:&error];
     if (jsonDictionary == nil) {
         NSLog(@"json parse failed");
         return;
-        }
-    self.newsList =[jsonDictionary objectForKey:@"NewsList"];
-
+    }
+    self.areaList =[jsonDictionary objectForKey:@"AreaList"];
     [self.tableView reloadData];
 }
 
@@ -114,36 +121,50 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//#warning Potentially incomplete method implementation.
+    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.newsList!=(id)[NSNull null])
-        return [self.newsList count];
+//#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+//    return 0;
+    if(self.areaList!=(id)[NSNull null])
+        return [self.areaList count];
     else
         return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Configure the cell...
-    static NSString* reuseIndentifier =@"newsCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
     
+    // Configure the cell...
     if (cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"reuseIndentifier"];
     }
     NSInteger row = [indexPath row];
     
-    NSDictionary *newsDictionary = [self.newsList objectAtIndex:row];
-    NSString *newsTitle = [newsDictionary objectForKey:@"NewsTitle"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",newsTitle];
-    NSString *newsContent = [newsDictionary objectForKey:@"NewsContent"];
-    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",newsContent];
-
+    NSDictionary *newsDictionary = [self.areaList objectAtIndex:row];
+    NSString *areaName = [newsDictionary objectForKey:@"AreaName"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",areaName];
+    NSString *areaID = [newsDictionary objectForKey:@"AreaID"];
+    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",areaID];
+    
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[cell.textLabel text] forKey:kArea];
+    [userDefaults setObject:[cell.detailTextLabel text] forKey:kAreaID];
+    [userDefaults synchronize];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 /*

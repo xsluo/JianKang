@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Introduction View Controller-->
+        <!--医院介绍-->
         <scene sceneID="OMd-w7-1bt">
             <objects>
-                <viewController id="Jbz-Jp-NHe" customClass="IntroductionViewController" sceneMemberID="viewController">
+                <viewController title="医院介绍" id="Jbz-Jp-NHe" customClass="IntroductionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N9R-Av-zOy"/>
                         <viewControllerLayoutGuide type="bottom" id="Eve-WU-5XO"/>
@@ -77,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NIc-SE-17d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6314" y="1045"/>
+            <point key="canvasLocation" x="-5502" y="1045"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="TJX-OE-25e">
@@ -135,7 +135,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXj-cd-I19" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7436" y="1685"/>
+            <point key="canvasLocation" x="-6624" y="1685"/>
         </scene>
         <!--修改用户名-->
         <scene sceneID="fy6-p2-lrW">
@@ -440,7 +440,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="dHt-OE-BQP" kind="show" identifier="addCard" id="3dR-Oy-BY4"/>
+                                    <segue destination="dHt-OE-BQP" kind="show" identifier="addCard" id="NMS-dw-sdo"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="52" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="wWA-hp-6NF">
@@ -822,7 +822,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WR8-FA-Plp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8058" y="-5989"/>
+            <point key="canvasLocation" x="-8186" y="-6081"/>
         </scene>
         <!--健康卡详情-->
         <scene sceneID="A6k-c6-xvT">
@@ -1448,10 +1448,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="XPF-7M-ReJ" kind="relationship" relationship="viewControllers" id="1kC-0P-bjq"/>
-                        <segue destination="RzP-tj-2tx" kind="relationship" relationship="viewControllers" id="IND-om-z7z"/>
                         <segue destination="exf-xa-YvR" kind="show" identifier="setting" id="rBN-i7-EVN"/>
                         <segue destination="Bs1-xJ-X2k" kind="show" identifier="personal" id="dZd-8u-RvG"/>
+                        <segue destination="RzP-tj-2tx" kind="relationship" relationship="viewControllers" id="IND-om-z7z"/>
+                        <segue destination="XPF-7M-ReJ" kind="relationship" relationship="viewControllers" id="1kC-0P-bjq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ugd-Mj-Qmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1461,7 +1461,7 @@
         <!--数字医院-->
         <scene sceneID="Ufk-Gb-hwV">
             <objects>
-                <viewController id="RzP-tj-2tx" sceneMemberID="viewController">
+                <viewController title="数字医院" id="RzP-tj-2tx" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OXR-8u-AFU"/>
                         <viewControllerLayoutGuide type="bottom" id="awp-gn-7eV"/>
@@ -1727,6 +1727,9 @@
                                         <state key="normal" image="4.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="4gA-ex-PnV" kind="show" id="8RN-7H-CrL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1817,6 +1820,156 @@
             </objects>
             <point key="canvasLocation" x="-10151" y="190"/>
         </scene>
+        <!--医院列表-->
+        <scene sceneID="EwN-yL-dwd">
+            <objects>
+                <tableViewController title="医院列表" id="ckS-YP-OBV" customClass="GetHospitalTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="X0L-3C-euQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="hospital" id="cHU-IZ-b5W">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cHU-IZ-b5W" id="AIO-V3-Vkf">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ckS-YP-OBV" id="L31-Sa-pAI"/>
+                            <outlet property="delegate" destination="ckS-YP-OBV" id="5qk-hl-700"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="选择医院" id="3OB-uM-19x">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="Vx6-fi-MRj">
+                            <connections>
+                                <segue destination="kfp-g7-uuF" kind="unwind" unwindAction="unwindSelectHospital:" id="CgW-zJ-lFh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="确定" id="LVN-E6-fE6">
+                            <connections>
+                                <segue destination="kfp-g7-uuF" kind="unwind" unwindAction="unwindSelectHospital:" id="jR2-W1-3a2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VVN-zl-el0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="kfp-g7-uuF" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-11051" y="1023"/>
+        </scene>
+        <!--预约挂号-->
+        <scene sceneID="5dD-hi-3Dn">
+            <objects>
+                <viewController title="预约挂号" id="4gA-ex-PnV" customClass="BookViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qqc-el-ehQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="YQu-nu-Tk8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pb4-U3-Wah">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="top" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="x35-Yh-4T7">
+                                <rect key="frame" x="0.0" y="64" width="600" height="241"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="JAC-gH-hUb">
+                                    <rect key="frame" x="0.0" y="135" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="4gA-ex-PnV" id="Rf5-zv-gag"/>
+                                    </connections>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bookCell" id="S0e-Q3-57g">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S0e-Q3-57g" id="DiR-La-n6Y">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="4gA-ex-PnV" id="EIw-ON-8LI"/>
+                                    <outlet property="delegate" destination="4gA-ex-PnV" id="XFs-lM-paa"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="预约挂号" id="2Zn-gD-ajY">
+                        <barButtonItem key="rightBarButtonItem" title="选择地区" id="V6a-Mf-Wde">
+                            <connections>
+                                <segue destination="aVw-GD-L1u" kind="show" id="f9i-Jc-8ff"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="areaItem" destination="V6a-Mf-Wde" id="gmE-Ah-Ab4"/>
+                        <outlet property="searchDisplayController" destination="NrM-vH-BWI" id="Y4g-6Z-csx"/>
+                        <outlet property="tableView" destination="x35-Yh-4T7" id="R15-et-YT6"/>
+                        <segue destination="ckS-YP-OBV" kind="show" identifier="selectHospital" id="w8e-qe-PO9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r3m-so-lao" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="NrM-vH-BWI">
+                    <connections>
+                        <outlet property="delegate" destination="4gA-ex-PnV" id="hLj-d0-HqC"/>
+                        <outlet property="searchBar" destination="JAC-gH-hUb" id="Qcl-tg-OMF"/>
+                        <outlet property="searchContentsController" destination="4gA-ex-PnV" id="35K-U9-tSZ"/>
+                        <outlet property="searchResultsDataSource" destination="4gA-ex-PnV" id="gn1-YR-gda"/>
+                        <outlet property="searchResultsDelegate" destination="4gA-ex-PnV" id="yfH-rj-ANk"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="-10255" y="1034"/>
+        </scene>
+        <!--区域列表-->
+        <scene sceneID="XGb-H1-M4m">
+            <objects>
+                <tableViewController title="区域列表" id="aVw-GD-L1u" customClass="GetAreaTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hI6-my-6Q7">
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="IgG-06-JK5" detailTextLabel="pBf-fI-J3a" style="IBUITableViewCellStyleValue2" id="Lbl-AQ-Pew">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lbl-AQ-Pew" id="wlH-tt-bhe">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IgG-06-JK5">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pBf-fI-J3a">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aVw-GD-L1u" id="SDc-e7-hEd"/>
+                            <outlet property="delegate" destination="aVw-GD-L1u" id="bW1-sY-Ihy"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="7Rb-Kx-b5A"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VPc-nu-kB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-9471" y="1034"/>
+        </scene>
         <!--停车空位信息-->
         <scene sceneID="bGO-0N-lsR">
             <objects>
@@ -1861,7 +2014,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJD-tG-SEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8863" y="1241"/>
+            <point key="canvasLocation" x="-8051" y="1241"/>
         </scene>
         <!--医院资讯-->
         <scene sceneID="kyD-hJ-qLX">
@@ -2066,7 +2219,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="J5O-7h-WfC">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="J5O-7h-WfC">
                                 <rect key="frame" x="16" y="72" width="568" height="29"/>
                                 <segments>
                                     <segment title="周一"/>
@@ -2118,8 +2271,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="J5O-7h-WfC" firstAttribute="leading" secondItem="Ye2-AL-b1g" secondAttribute="leadingMargin" id="7Ig-M7-eU5"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="TND-kW-ugf" secondAttribute="bottom" constant="20" id="IvP-D8-mhC"/>
                             <constraint firstItem="TND-kW-ugf" firstAttribute="leading" secondItem="Ye2-AL-b1g" secondAttribute="leading" constant="16" id="mnY-bV-6eV"/>
                             <constraint firstAttribute="trailing" secondItem="TND-kW-ugf" secondAttribute="trailing" constant="16" id="pfD-ui-HFy"/>
+                            <constraint firstItem="J5O-7h-WfC" firstAttribute="trailing" secondItem="Ye2-AL-b1g" secondAttribute="trailingMargin" id="ppe-jm-xeV"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2128,7 +2284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LdP-6U-cZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7441" y="664"/>
+            <point key="canvasLocation" x="-6629" y="664"/>
         </scene>
         <!--佛山健康E园-->
         <scene sceneID="Yso-uv-fZi">
