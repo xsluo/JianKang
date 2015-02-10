@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Hospital;
 @interface GetHospitalTableViewController : UITableViewController
 @property (strong,nonatomic) NSMutableArray *hospitalList;
 @property (strong,nonatomic) NSString *AreaID;
+@property (strong,nonatomic) Hospital *hospital;
+
+- (IBAction)cancel:(id)sender;
+
 @end

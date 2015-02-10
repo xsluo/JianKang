@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1845,7 +1845,7 @@
                     <navigationItem key="navigationItem" title="选择医院" id="3OB-uM-19x">
                         <barButtonItem key="leftBarButtonItem" title="取消" id="Vx6-fi-MRj">
                             <connections>
-                                <segue destination="kfp-g7-uuF" kind="unwind" unwindAction="unwindSelectHospital:" id="CgW-zJ-lFh"/>
+                                <action selector="cancel:" destination="ckS-YP-OBV" id="r19-56-PJ5"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="确定" id="LVN-E6-fE6">
@@ -1860,6 +1860,47 @@
                 <exit id="kfp-g7-uuF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-11051" y="1023"/>
+        </scene>
+        <!--科室列表-->
+        <scene sceneID="ZFj-pU-Dyh">
+            <objects>
+                <tableViewController title="科室列表" id="JNu-eR-5ej" customClass="GetDepartmentTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tc2-c3-Ggm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="department" id="8n4-ZF-fcq">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8n4-ZF-fcq" id="FsQ-fE-LKl">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JNu-eR-5ej" id="KLc-cE-YLb"/>
+                            <outlet property="delegate" destination="JNu-eR-5ej" id="voN-cq-AOp"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="选择科室" id="Qq1-4t-3Jb">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="IaQ-r7-Ics">
+                            <connections>
+                                <action selector="cancel:" destination="JNu-eR-5ej" id="yDy-8D-Ay0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="确定" id="5Yj-zK-9mA">
+                            <connections>
+                                <segue destination="w8N-qc-bGv" kind="unwind" unwindAction="unwindSelectDepartment:" id="EVL-DQ-eOo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gHE-rw-Dhl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="w8N-qc-bGv" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-11021" y="1772"/>
         </scene>
         <!--预约挂号-->
         <scene sceneID="5dD-hi-3Dn">
@@ -1905,7 +1946,7 @@
                     <navigationItem key="navigationItem" title="预约挂号" id="2Zn-gD-ajY">
                         <barButtonItem key="rightBarButtonItem" title="选择地区" id="V6a-Mf-Wde">
                             <connections>
-                                <segue destination="aVw-GD-L1u" kind="show" id="f9i-Jc-8ff"/>
+                                <segue destination="aVw-GD-L1u" kind="show" identifier="selectArea" id="f9i-Jc-8ff"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1914,6 +1955,8 @@
                         <outlet property="searchDisplayController" destination="NrM-vH-BWI" id="Y4g-6Z-csx"/>
                         <outlet property="tableView" destination="x35-Yh-4T7" id="R15-et-YT6"/>
                         <segue destination="ckS-YP-OBV" kind="show" identifier="selectHospital" id="w8e-qe-PO9"/>
+                        <segue destination="JNu-eR-5ej" kind="show" identifier="selectDepartment" id="hrQ-qE-K9B"/>
+                        <segue destination="nuI-cX-XtB" kind="show" identifier="selectDoctor" id="Fwl-qH-RyY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3m-so-lao" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1927,7 +1970,62 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-10255" y="1034"/>
+            <point key="canvasLocation" x="-10260" y="1272"/>
+        </scene>
+        <!--选择医生-->
+        <scene sceneID="6eE-DD-9dJ">
+            <objects>
+                <tableViewController id="nuI-cX-XtB" customClass="GetDoctorTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="anH-LI-dxf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="doctorCell" textLabel="NCe-IS-uJH" detailTextLabel="Ekp-TQ-8ih" style="IBUITableViewCellStyleValue1" id="UnU-FZ-uPF">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UnU-FZ-uPF" id="YXs-ur-lH0">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NCe-IS-uJH">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ekp-TQ-8ih">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nuI-cX-XtB" id="OwU-6t-k9A"/>
+                            <outlet property="delegate" destination="nuI-cX-XtB" id="3m8-Z0-EIn"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="选择医生" id="WXi-JG-Tme">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="yfA-rl-NVc">
+                            <connections>
+                                <action selector="cancel:" destination="nuI-cX-XtB" id="d6M-wI-IWK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="确定" id="P36-9j-fTW">
+                            <connections>
+                                <segue destination="drS-OT-U1o" kind="unwind" unwindAction="unwindSelectDoctor:" id="HHT-EZ-eh5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uQk-gb-UlD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="drS-OT-U1o" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-10131" y="2054"/>
         </scene>
         <!--区域列表-->
         <scene sceneID="XGb-H1-M4m">
@@ -1938,7 +2036,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="IgG-06-JK5" detailTextLabel="pBf-fI-J3a" style="IBUITableViewCellStyleValue2" id="Lbl-AQ-Pew">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="areaIdentifier" textLabel="IgG-06-JK5" detailTextLabel="pBf-fI-J3a" style="IBUITableViewCellStyleValue2" id="Lbl-AQ-Pew">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lbl-AQ-Pew" id="wlH-tt-bhe">
                                     <autoresizingMask key="autoresizingMask"/>

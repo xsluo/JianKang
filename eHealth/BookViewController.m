@@ -7,31 +7,43 @@
 //
 
 #import "BookViewController.h"
+#import "Area.h"
+#import "Hospital.h"
+#import "Department.h"
+#import "Doctor.h"
 #import "GetHospitalTableViewController.h"
-#define kArea @"Area"
+#import "GetDepartmentTableViewController.h"
+#import "GetDoctorTableViewController.h"
+
+#define kAreaName @"AreaName"
 #define kAreaID @"AreaID"
-#define kHospitaID @"HospitalID"
-#define kHospitalName @"HospitalName"
 
 @interface BookViewController ()
--(IBAction)unwindSelectHospital:(UIStoryboardSegue *)segue;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong,nonatomic) Hospital *hospital;
+@property (strong,nonatomic) Department *department;
+@property (strong,nonatomic) Doctor *doctor;
 
+-(IBAction)unwindSelectHospital:(UIStoryboardSegue *)segue;
 @end
 
 @implementation BookViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
+    self.hospital = nil;
+    self.department = nil;
+    self.doctor = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if([userDefaults objectForKey:kArea]==nil)
+    if([userDefaults objectForKey:kAreaName]==nil)
         self.areaItem.title = @"选择地区";
     else{
-        self.areaItem.title = [userDefaults objectForKey:kArea];
+        self.areaItem.title = [userDefaults objectForKey:kAreaName];
     }
 }
 
@@ -41,8 +53,30 @@
 }
 
 -(IBAction)unwindSelectHospital:(UIStoryboardSegue *)segue{
+
+    Hospital *hspt= [segue.sourceViewController hospital];
+    self.hospital = hspt;
+    self.department = nil;
+    self.doctor = nil;
+    
     [self.tableView reloadData];
 }
+
+-(IBAction)unwindSelectDepartment:(UIStoryboardSegue *)segue{
+    
+    Department *dpt= [segue.sourceViewController department];
+    self.department = dpt;
+    self.doctor = nil;
+    [self.tableView reloadData];
+}
+
+-(IBAction)unwindSelectDoctor:(UIStoryboardSegue *)segue{
+    
+    Doctor *dct= [segue.sourceViewController doctor];
+    self.doctor = dct;
+    [self.tableView reloadData];
+}
+
 
 #pragma mark
 #pragma mark - Table view data source
@@ -52,8 +86,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bokCell"];
-    // Configure the cell...
+
     static NSString* reuseIndentifier =@"bookCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
     if (cell==nil) {
@@ -62,20 +95,26 @@
     NSInteger row = [indexPath row];
     switch (row) {
         case 0:{
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            NSString *hospitalName = [userDefaults objectForKey:kHospitalName];
-            if(hospitalName==nil)
+            if(self.hospital == nil)
                  cell.textLabel.text = @"请选择医院";
             else
-                cell.textLabel.text = hospitalName;
+                cell.textLabel.text = [self.hospital hospitalName];
             break;
         }
-        case 1:
-            cell.textLabel.text = @"请选择科室";
+        case 1:{
+            if(self.department ==nil)
+                cell.textLabel.text = @"请选择科室";
+            else
+                cell.textLabel.text = [self.department  departmentName];
             break;
-        case 2:
-            cell.textLabel.text = @"请选择医生";
+        }
+        case 2:{
+            if(self.doctor ==nil)
+                cell.textLabel.text = @"请选择医生";
+            else
+                cell.textLabel.text = [self.doctor  doctorName];
             break;
+        }
         default:
             break;
     }
@@ -83,14 +122,31 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if([indexPath row]==0){
-        [self performSegueWithIdentifier:@"selectHospital" sender:self];
+
+    switch ([indexPath row]) {
+        case 0:
+            [self performSegueWithIdentifier:@"selectHospital" sender:self];
+            break;
+        case 1:
+            [self performSegueWithIdentifier:@"selectDepartment" sender:self];
+            break;
+        case 2:
+            [self performSegueWithIdentifier:@"selectDoctor" sender:self];
+            break;
+        default:
+            break;
     }
 }
 
+
+#pragma mark - Navigation
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([[segue identifier] isEqualToString:@"selectHospital"]){
+    if ([[segue identifier] isEqualToString:@"selectArea"]) {
+        self.hospital=nil;
+        self.department = nil;
+        [self.tableView reloadData];
+    }
+    else if([[segue identifier] isEqualToString:@"selectHospital"]){
         GetHospitalTableViewController *hpvController = (GetHospitalTableViewController *)segue.destinationViewController;
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSString *areaID = [userDefaults objectForKey:kAreaID];
@@ -99,16 +155,26 @@
         else
             hpvController.AreaID = @"440604";
     }
+    else if([[segue identifier] isEqualToString:@"selectDepartment"]){
+        GetDepartmentTableViewController *dpvController = (GetDepartmentTableViewController *)segue.destinationViewController;
+        Hospital *hpt = [[Hospital alloc]init];
+        if (self.hospital==nil) {
+            hpt.hospitalID = @"440604001";
+        }
+        else
+            hpt= [self hospital];
+        dpvController.hospital = hpt;
+    }
+    else if([[segue identifier] isEqualToString:@"selectDoctor"]){
+        GetDoctorTableViewController *dctvController = (GetDoctorTableViewController *)segue.destinationViewController;
+        Department *dpt = [[Department alloc]init];
+        if (self.department==nil) {
+            dpt.departmentID = @"200000568";
+        }
+        else
+            dpt= [self department];
+        dctvController.department = dpt;
+    }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

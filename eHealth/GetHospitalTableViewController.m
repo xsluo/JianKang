@@ -7,14 +7,12 @@
 //
 
 #import "GetHospitalTableViewController.h"
+#import "Hospital.h"
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetHospitalList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
 #define kArea @"Area"
-//#define kAreaID @"AreaID"
-#define kHospitalID @"HospitalID"
-#define kHospitalNmae @"HospitalName"
 
 @interface GetHospitalTableViewController ()
 @property (nonatomic,retain) NSMutableData * responseData;
@@ -31,11 +29,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.hospitalList = [[NSMutableArray alloc]init];
+    self.hospital = [[Hospital alloc]init];
+    
     [self getHospitalList];
 }
 
 -(void)getHospitalList{
-    
 //    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
     NSString *areaID =[self AreaID];
     
@@ -44,7 +43,6 @@
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
     [dictionary setObject:@"1" forKey:@"Type"];
     [dictionary setObject:areaID forKey:@"AreaID"];
-//    [dictionary setObject:areaID forKey:@"AreaID"];
     
     NSError *error=nil;
     
@@ -108,8 +106,7 @@
         return;
     }
     self.hospitalList =[jsonDictionary objectForKey:@"HospitalList"];
-
-        [self.tableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -118,6 +115,7 @@
     NSLog(@"%@",[error localizedDescription]);
 }
 
+#pragma mark
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -137,19 +135,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hospital" forIndexPath:indexPath];
+    
+    static NSString *reuseIndentifier = @"hospital";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"hospital"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
     }
     NSInteger row = [indexPath row];
     
-    NSDictionary *newsDictionary = [self.hospitalList objectAtIndex:row];
-    NSString *hospitalName = [newsDictionary objectForKey:@"HospitalName"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",hospitalName];
-    NSString *hospitalID = [newsDictionary objectForKey:@"HospitalID"];
-    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",hospitalID];
+    NSDictionary *hosptialDictionary = [self.hospitalList objectAtIndex:row];
+    NSString *name = [hosptialDictionary objectForKey:@"HospitalName"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",name];
+    NSString *ID = [hosptialDictionary objectForKey:@"HospitalID"];
+    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",ID];
     
     return cell;
 }
@@ -158,58 +158,22 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    NSString *areaID =[cell.detailTextLabel text];
-    [userDefaults setObject:areaID forKey:kHospitalID];
-    NSString *hospitalName = [cell.textLabel text];
-    [userDefaults setObject:hospitalName forKey:kHospitalNmae];
-    [userDefaults synchronize];
-//    [self.navigationController popViewControllerAnimated:YES];
+    
+    NSDictionary *aHospital = [self.hospitalList objectAtIndex:[indexPath row]];
+    Hospital *hspt = [[Hospital alloc] init];
+    hspt.hospitalID =[aHospital objectForKey:@"HospitalID"];
+    hspt.hospitalName = [aHospital objectForKey:@"HospitalName"];
+  
+    self.hospital = hspt;
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryNone;
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (IBAction)cancel:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

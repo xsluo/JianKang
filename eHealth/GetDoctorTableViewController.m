@@ -1,26 +1,27 @@
 //
-//  GetAreaTableViewController.m
+//  GetDoctorTableViewController.m
 //  eHealth
 //
-//  Created by Bagu on 15/2/2.
+//  Created by Bagu on 15/2/10.
 //  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
-#import "GetAreaTableViewController.h"
+#import "GetDoctorTableViewController.h"
+#import "Hospital.h"
+#import "Department.h"
+#import "Doctor.h"
+
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
-#define Method @"GetAreaList"
+#define Method @"GetDoctorList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
-#define kAreaName @"AreaName"
-#define kAreaID  @"AreaID"
 
-
-@interface GetAreaTableViewController ()
+@interface GetDoctorTableViewController ()
 @property (nonatomic,retain) NSMutableData * responseData;
 
 @end
 
-@implementation GetAreaTableViewController
+@implementation GetDoctorTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,26 +31,25 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.areaList = [[NSMutableArray alloc]init];
-    [self getAreaList];
     
+    self.doctorList = [[NSMutableArray alloc]init];
+    self.doctor = [[Doctor alloc]init];
+    [self getDoctorList];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-- (void)getAreaList {
-    //    if([self.textName.text isEqual:@"1"])
-    //        [self.navigationController popToRootViewControllerAnimated:self];
-    //self.departmentList = [[NSMutableArray alloc]init];
+-(void)getDoctorList{
     
-    NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:4];
+    NSString *dptid =[self.department departmentID];
+    
+    
+    
+    NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:5];
     [dictionary setObject:AppKey forKey:@"AppKey"];
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
-    [dictionary setObject:@"6" forKey:@"Type"];
-    [dictionary setObject:@"440600" forKey:@"AreaID"];
+    [dictionary setObject:@"2" forKey:@"Type"];
+    [dictionary setObject:dptid forKey:@"DepartmentID"];
+    [dictionary setValue:[NSNumber numberWithBool:YES] forKey:@"IsGetSchedule"];
     
     NSError *error=nil;
     
@@ -62,14 +62,17 @@
     
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
-    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    //    [request setURL:[NSURL URLWithString:URL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark
@@ -107,7 +110,7 @@
         NSLog(@"json parse failed");
         return;
     }
-    self.areaList =[jsonDictionary objectForKey:@"AreaList"];
+    self.doctorList =[jsonDictionary objectForKey:@"DoctorList"];
     [self.tableView reloadData];
 }
 
@@ -118,100 +121,64 @@
 }
 
 
+#pragma mark
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
+    //#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
+    //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-//    return 0;
-    if(self.areaList!=(id)[NSNull null])
-        return [self.areaList count];
+    //    return 0;
+    if(self.doctorList!=(id)[NSNull null])
+        return [self.doctorList count];
     else
         return 0;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellIdentifier = @"areaIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    static NSString *reuseIdentifier = @"doctorCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
     NSInteger row = [indexPath row];
     
-    NSDictionary *newsDictionary = [self.areaList objectAtIndex:row];
-    NSString *areaName = [newsDictionary objectForKey:@"AreaName"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",areaName];
-    NSString *areaID = [newsDictionary objectForKey:@"AreaID"];
-    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",areaID];
+    NSDictionary *departmentDictionary = [self.doctorList objectAtIndex:row];
+    NSString *name = [departmentDictionary objectForKey:@"DoctorName"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",name];
+    NSString *intruduction = [departmentDictionary objectForKey:@"Introduction"];
+   
+    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",intruduction];
     
+    cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+    NSDictionary *aDoctor = [self.doctorList objectAtIndex:[indexPath row]];
+    Doctor *dct = [[Doctor alloc]init];
     
-    [userDefaults setObject:[cell.textLabel text] forKey:kAreaName];
-    [userDefaults setObject:[cell.detailTextLabel text] forKey:kAreaID];
-    [userDefaults synchronize];
-    
+    dct.doctorID =[aDoctor objectForKey:@"DoctorID"];
+    dct.doctorName = [aDoctor objectForKey:@"DoctorName"];
+    self.doctor = dct;
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+}
+- (IBAction)cancel:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
