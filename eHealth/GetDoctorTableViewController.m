@@ -33,7 +33,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.doctorList = [[NSMutableArray alloc]init];
-    self.doctor = [[Doctor alloc]init];
+    self.doctor = nil;
     [self getDoctorList];
 }
 
@@ -151,10 +151,10 @@
     }
     NSInteger row = [indexPath row];
     
-    NSDictionary *departmentDictionary = [self.doctorList objectAtIndex:row];
-    NSString *name = [departmentDictionary objectForKey:@"DoctorName"];
+    NSDictionary *doctorDictionary = [self.doctorList objectAtIndex:row];
+    NSString *name = [doctorDictionary objectForKey:@"DoctorName"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",name];
-    NSString *intruduction = [departmentDictionary objectForKey:@"Introduction"];
+    NSString *intruduction = [doctorDictionary objectForKey:@"Introduction"];
    
     cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",intruduction];
     
@@ -171,6 +171,10 @@
     
     dct.doctorID =[aDoctor objectForKey:@"DoctorID"];
     dct.doctorName = [aDoctor objectForKey:@"DoctorName"];
+    dct.avatarUrl = [aDoctor objectForKey:@"AvatarUrl"];
+    dct.hospitalID = [aDoctor objectForKey:@"HospitalID"];
+    dct.hospitalName = [aDoctor objectForKey:@"HospitalName"];
+    dct.introduction = [aDoctor objectForKey:@"Introduction"];
     self.doctor = dct;
 }
 
@@ -182,3 +186,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end
+
+
+
+
+

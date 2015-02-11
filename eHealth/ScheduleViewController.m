@@ -1,48 +1,44 @@
 //
-//  GetHospitalTableViewController.m
+//  ScheduleViewController.m
 //  eHealth
 //
-//  Created by Bagu on 15/2/2.
+//  Created by Bagu on 15/2/10.
 //  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
-#import "GetHospitalTableViewController.h"
-#import "Hospital.h"
+#import "ScheduleViewController.h"
+#import "Doctor.h"
+
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
-#define Method @"GetHospitalList"
+#define Method @"GetScheduleList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
-#define kArea @"Area"
 
-@interface GetHospitalTableViewController ()
+@interface ScheduleViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,retain) NSMutableData * responseData;
 @end
 
-@implementation GetHospitalTableViewController
+@implementation ScheduleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.hospitalList = [[NSMutableArray alloc]init];
-    self.hospital = nil;
-    
-    [self getHospitalList];
+    // Do any additional setup after loading the view.
+    self.scheduleList = [[NSMutableArray alloc]init];
+    [self getScheduleList];
 }
 
--(void)getHospitalList{
-//    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    NSString *areaID =[self AreaID];
+-(void)getScheduleList{
     
-    NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:4];
+    NSString *dctid =[self.doctor doctorID];
+    NSString *hptid = [self.doctor hospitalID];
+    
+    NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:5];
     [dictionary setObject:AppKey forKey:@"AppKey"];
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
-    [dictionary setObject:@"1" forKey:@"Type"];
-    [dictionary setObject:areaID forKey:@"AreaID"];
+    [dictionary setObject:@"3" forKey:@"Type"];
+    [dictionary setObject:hptid forKey:@"HospitalID"];
+    [dictionary setObject:dctid forKey:@"DoctorID"];
     
     NSError *error=nil;
     
@@ -55,16 +51,14 @@
     
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
-    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    //    [request setURL:[NSURL URLWithString:URL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
-    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -73,6 +67,7 @@
 
 #pragma mark
 #pragma mark NSURLConnection Delegate Methods
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     // A response has been received, this is where we initialize the instance var you created
     // so that we can append data to it in the didReceiveData method
@@ -105,7 +100,7 @@
         NSLog(@"json parse failed");
         return;
     }
-    self.hospitalList =[jsonDictionary objectForKey:@"HospitalList"];
+    self.scheduleList =[jsonDictionary objectForKey:@"ScheduleList"];
     [self.tableView reloadData];
 }
 
@@ -119,60 +114,76 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
+    //#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
+    //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-//    return 0;
-    if(self.hospitalList!=(id)[NSNull null])
-        return [self.hospitalList count];
+    //    return 0;
+    if(self.scheduleList!=(id)[NSNull null])
+        return [self.scheduleList count];
     else
         return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *reuseIndentifier = @"hospital";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
+    static NSString *reuseIdentifier = @"scheduleCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
     NSInteger row = [indexPath row];
     
-    NSDictionary *hosptialDictionary = [self.hospitalList objectAtIndex:row];
-    NSString *name = [hosptialDictionary objectForKey:@"HospitalName"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",name];
-    NSString *ID = [hosptialDictionary objectForKey:@"HospitalID"];
-    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",ID];
+    NSDictionary *scheduleDictionary = [self.scheduleList objectAtIndex:row];
     
+    NSString *ausDate = [scheduleDictionary objectForKey:@"AuscultationDate"];
+    UILabel *labelDate = (UILabel*)[cell.contentView viewWithTag:1];
+    labelDate.text = ausDate;
+    
+    NSString *beginTm = [scheduleDictionary objectForKey:@"BeginTime"];
+    UILabel *labelBegin = (UILabel*)[cell.contentView viewWithTag:2];
+    labelBegin.text = beginTm;
+
+    NSString *endTm = [scheduleDictionary objectForKey:@"EndTime"];
+    UILabel *labelEnd = (UILabel*)[cell.contentView viewWithTag:3];
+    labelEnd.text = endTm;
+
+    NSString *available = [scheduleDictionary objectForKey:@"AvailableBookingNumber"];
+    UILabel *labelAvailable = (UILabel*)[cell.contentView viewWithTag:4];
+    labelAvailable.text = available;
+
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-    
-    NSDictionary *aHospital = [self.hospitalList objectAtIndex:[indexPath row]];
-    Hospital *hspt = [[Hospital alloc] init];
-    hspt.hospitalID =[aHospital objectForKey:@"HospitalID"];
-    hspt.hospitalName = [aHospital objectForKey:@"HospitalName"];
-  
-    self.hospital = hspt;
+//    NSDictionary *aDoctor = [self.doctorList objectAtIndex:[indexPath row]];
+//    Doctor *dct = [[Doctor alloc]init];
+//    
+//    dct.doctorID =[aDoctor objectForKey:@"DoctorID"];
+//    dct.doctorName = [aDoctor objectForKey:@"DoctorName"];
+//    dct.avatarUrl = [aDoctor objectForKey:@"AvatarUrl"];
+//    dct.hospitalID = [aDoctor objectForKey:@"HospitalID"];
+//    dct.hospitalName = [aDoctor objectForKey:@"HospitalName"];
+//    dct.introduction = [aDoctor objectForKey:@"Introduction"];
+//    self.doctor = dct;
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-}
+/*
+#pragma mark - Navigation
 
-- (IBAction)cancel:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
+
 @end

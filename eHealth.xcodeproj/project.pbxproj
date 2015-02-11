@@ -36,6 +36,8 @@
 		13A815581A88DC8200BCCBCE /* Area.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A815571A88DC8200BCCBCE /* Area.m */; };
 		13A8155B1A890D2A00BCCBCE /* Doctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A8155A1A890D2A00BCCBCE /* Doctor.m */; };
 		13A8155E1A89128000BCCBCE /* GetDoctorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A8155D1A89128000BCCBCE /* GetDoctorTableViewController.m */; };
+		13A815611A89B3D700BCCBCE /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A815601A89B3D700BCCBCE /* Schedule.m */; };
+		13A815641A89C11400BCCBCE /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A815631A89C11400BCCBCE /* ScheduleViewController.m */; };
 		13C2714B1A7E6487002DAB60 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C2714A1A7E6487002DAB60 /* BookViewController.m */; };
 		13C2714E1A7F5818002DAB60 /* GetAreaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C2714D1A7F5818002DAB60 /* GetAreaTableViewController.m */; };
 		13C271511A7FA045002DAB60 /* GetHospitalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C271501A7FA045002DAB60 /* GetHospitalTableViewController.m */; };
@@ -109,6 +111,10 @@
 		13A8155A1A890D2A00BCCBCE /* Doctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Doctor.m; path = Object/Doctor.m; sourceTree = "<group>"; };
 		13A8155C1A89128000BCCBCE /* GetDoctorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetDoctorTableViewController.h; sourceTree = "<group>"; };
 		13A8155D1A89128000BCCBCE /* GetDoctorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetDoctorTableViewController.m; sourceTree = "<group>"; };
+		13A8155F1A89B3D700BCCBCE /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Schedule.h; path = Object/Schedule.h; sourceTree = "<group>"; };
+		13A815601A89B3D700BCCBCE /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = Object/Schedule.m; sourceTree = "<group>"; };
+		13A815621A89C11400BCCBCE /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		13A815631A89C11400BCCBCE /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		13C271491A7E6487002DAB60 /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
 		13C2714A1A7E6487002DAB60 /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
 		13C2714C1A7F5817002DAB60 /* GetAreaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAreaTableViewController.h; sourceTree = "<group>"; };
@@ -267,6 +273,8 @@
 				13A815541A88DBC400BCCBCE /* GetDepartmentTableViewController.m */,
 				13A8155C1A89128000BCCBCE /* GetDoctorTableViewController.h */,
 				13A8155D1A89128000BCCBCE /* GetDoctorTableViewController.m */,
+				13A815621A89C11400BCCBCE /* ScheduleViewController.h */,
+				13A815631A89C11400BCCBCE /* ScheduleViewController.m */,
 			);
 			name = Book;
 			sourceTree = "<group>";
@@ -284,6 +292,8 @@
 				13A815511A88D9A200BCCBCE /* Department.m */,
 				13A815591A890D2A00BCCBCE /* Doctor.h */,
 				13A8155A1A890D2A00BCCBCE /* Doctor.m */,
+				13A8155F1A89B3D700BCCBCE /* Schedule.h */,
+				13A815601A89B3D700BCCBCE /* Schedule.m */,
 			);
 			name = Object;
 			sourceTree = "<group>";
@@ -495,8 +505,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13A815641A89C11400BCCBCE /* ScheduleViewController.m in Sources */,
 				060D11431A4C049E00EB201C /* NewsTableViewController.m in Sources */,
 				1344E8DC1A581AFE00733189 /* UnLoginTableViewController.m in Sources */,
+				13A815611A89B3D700BCCBCE /* Schedule.m in Sources */,
 				0650F38E1A51275300B26F39 /* EmptyParkTableViewController.m in Sources */,
 				13CAAE661A3C92E9009C420E /* AppDelegate.m in Sources */,
 				13A8155B1A890D2A00BCCBCE /* Doctor.m in Sources */,

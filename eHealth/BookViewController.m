@@ -14,6 +14,7 @@
 #import "GetHospitalTableViewController.h"
 #import "GetDepartmentTableViewController.h"
 #import "GetDoctorTableViewController.h"
+#import "ScheduleViewController.h"
 
 #define kAreaName @"AreaName"
 #define kAreaID @"AreaID"
@@ -23,8 +24,11 @@
 @property (strong,nonatomic) Hospital *hospital;
 @property (strong,nonatomic) Department *department;
 @property (strong,nonatomic) Doctor *doctor;
+@property (strong,nonatomic) UIView *panelView;
 
 -(IBAction)unwindSelectHospital:(UIStoryboardSegue *)segue;
+-(IBAction)unwindSelectDepartment:(UIStoryboardSegue *)segue;
+-(IBAction)unwindSelectDoctor:(UIStoryboardSegue *)segue;
 @end
 
 @implementation BookViewController
@@ -36,6 +40,8 @@
     self.hospital = nil;
     self.department = nil;
     self.doctor = nil;
+    self.panelView = [self.view viewWithTag:999];
+    [self.panelView setHidden:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -53,27 +59,51 @@
 }
 
 -(IBAction)unwindSelectHospital:(UIStoryboardSegue *)segue{
-
     Hospital *hspt= [segue.sourceViewController hospital];
     self.hospital = hspt;
     self.department = nil;
     self.doctor = nil;
-    
+    [self.panelView setHidden:YES];
+
     [self.tableView reloadData];
 }
 
 -(IBAction)unwindSelectDepartment:(UIStoryboardSegue *)segue{
-    
     Department *dpt= [segue.sourceViewController department];
     self.department = dpt;
     self.doctor = nil;
+    [self.panelView setHidden:YES];
     [self.tableView reloadData];
 }
 
 -(IBAction)unwindSelectDoctor:(UIStoryboardSegue *)segue{
-    
     Doctor *dct= [segue.sourceViewController doctor];
     self.doctor = dct;
+    
+    if(self.doctor){
+//        UIView *panelView = [self.view viewWithTag:999];
+        
+        UIImageView *imageAvatar = (UIImageView *)[_panelView viewWithTag:11];
+        UILabel *labelDoctorName = (UILabel *) [_panelView viewWithTag:12];
+        UILabel *labelHospitalName = (UILabel *)[_panelView viewWithTag:13];
+        UILabel *labelIntroduction = (UILabel *)[_panelView viewWithTag:14];
+        
+        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[dct avatarUrl]]];
+        UIImage *img= [UIImage imageWithData:data];
+        if(!img)
+            img = [UIImage imageNamed:@"1.png"];
+        imageAvatar.image = img;
+        
+        labelDoctorName.text = dct.doctorName;
+        labelHospitalName.text = dct.hospitalName;
+        if([dct.introduction isEqual:[NSNull null]])
+            labelIntroduction.text = nil;
+        else
+            labelIntroduction.text = dct.introduction;
+        
+        [self.panelView setHidden:NO];
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -86,7 +116,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     static NSString* reuseIndentifier =@"bookCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
     if (cell==nil) {
@@ -95,21 +125,21 @@
     NSInteger row = [indexPath row];
     switch (row) {
         case 0:{
-            if(self.hospital == nil)
-                 cell.textLabel.text = @"请选择医院";
+            if(!self.hospital)
+                cell.textLabel.text = @"请选择医院";
             else
                 cell.textLabel.text = [self.hospital hospitalName];
             break;
         }
         case 1:{
-            if(self.department ==nil)
+            if(!self.department)
                 cell.textLabel.text = @"请选择科室";
             else
                 cell.textLabel.text = [self.department  departmentName];
             break;
         }
         case 2:{
-            if(self.doctor ==nil)
+            if(!self.doctor)
                 cell.textLabel.text = @"请选择医生";
             else
                 cell.textLabel.text = [self.doctor  doctorName];
@@ -122,28 +152,40 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
     switch ([indexPath row]) {
-        case 0:
-            [self performSegueWithIdentifier:@"selectHospital" sender:self];
+        case 0:{
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            if([userDefaults objectForKey:kAreaName]!=nil)
+                [self performSegueWithIdentifier:@"selectHospital" sender:self];
             break;
-        case 1:
-            [self performSegueWithIdentifier:@"selectDepartment" sender:self];
+        }
+
+        case 1:{
+            if(self.hospital)
+                [self performSegueWithIdentifier:@"selectDepartment" sender:self];
             break;
-        case 2:
-            [self performSegueWithIdentifier:@"selectDoctor" sender:self];
+        }
+            
+        case 2:{
+            if(self.department)
+                [self performSegueWithIdentifier:@"selectDoctor" sender:self];
             break;
+        }
         default:
             break;
     }
 }
 
-
 #pragma mark - Navigation
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"selectArea"]) {
-        self.hospital=nil;
+        self.hospital=nil;     //重选地区后，清空医院、科室和医生值
         self.department = nil;
+        self.doctor=nil;
+        
+        UIView *panelView = [self.view viewWithTag:999];
+        [panelView setHidden:YES];
+        
         [self.tableView reloadData];
     }
     else if([[segue identifier] isEqualToString:@"selectHospital"]){
@@ -152,29 +194,32 @@
         NSString *areaID = [userDefaults objectForKey:kAreaID];
         if(areaID)
             hpvController.AreaID = areaID;
-        else
-            hpvController.AreaID = @"440604";
     }
     else if([[segue identifier] isEqualToString:@"selectDepartment"]){
         GetDepartmentTableViewController *dpvController = (GetDepartmentTableViewController *)segue.destinationViewController;
         Hospital *hpt = [[Hospital alloc]init];
-        if (self.hospital==nil) {
-            hpt.hospitalID = @"440604001";
-        }
-        else
+        if (self.hospital)
             hpt= [self hospital];
         dpvController.hospital = hpt;
     }
     else if([[segue identifier] isEqualToString:@"selectDoctor"]){
         GetDoctorTableViewController *dctvController = (GetDoctorTableViewController *)segue.destinationViewController;
-        Department *dpt = [[Department alloc]init];
-        if (self.department==nil) {
-            dpt.departmentID = @"200000568";
-        }
-        else
+        Department *dpt;
+        if (self.department)
             dpt= [self department];
         dctvController.department = dpt;
     }
+    else if([[segue identifier] isEqualToString:@"getSchedule"]){
+        ScheduleViewController *schdvController = (ScheduleViewController *)segue.destinationViewController;
+        Doctor *dct;
+        if (self.doctor)
+            dct= [self doctor];
+        schdvController.doctor = dct;
+    }
 }
 
+
+
 @end
+
+
