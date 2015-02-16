@@ -8,6 +8,7 @@
 
 #import "ScheduleViewController.h"
 #import "Doctor.h"
+#import "ConfirmScheduleTableViewController.h"
 
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetScheduleList"
@@ -54,6 +55,19 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
+    
+    
+    //------------------------------
+    NSURLCache *urlCache = [NSURLCache sharedURLCache];
+    /* 设置缓存的大小为1M*/
+    [urlCache setMemoryCapacity:1*1024*1024];
+    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
+    //判断是否有缓存
+    if (response != nil){
+        NSLog(@"如果有缓存输出，从缓存中获取数据");
+        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+    }
+    //-----------------------------
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
@@ -138,7 +152,6 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
     NSInteger row = [indexPath row];
-    
     NSDictionary *scheduleDictionary = [self.scheduleList objectAtIndex:row];
     
     NSString *ausDate = [scheduleDictionary objectForKey:@"AuscultationDate"];
@@ -161,7 +174,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  
+//    NSInteger row = [indexPath row];
+//    NSDictionary *scheduleDictionary = [self.scheduleList objectAtIndex:row];
+//    
+    
 //    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
 //    NSDictionary *aDoctor = [self.doctorList objectAtIndex:[indexPath row]];
@@ -174,6 +191,18 @@
 //    dct.hospitalName = [aDoctor objectForKey:@"HospitalName"];
 //    dct.introduction = [aDoctor objectForKey:@"Introduction"];
 //    self.doctor = dct;
+}
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"confirm"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSDictionary *scheduleDictionary = [self.scheduleList objectAtIndex:indexPath.row];
+        
+    [[segue destinationViewController] setSchedule:scheduleDictionary];
+   
+    }
 }
 
 /*

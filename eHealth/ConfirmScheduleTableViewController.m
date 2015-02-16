@@ -1,19 +1,21 @@
 //
-//  CardViewController.m
+//  ConfirmScheduleTableViewController.m
 //  eHealth
 //
-//  Created by nh neusoft on 15-1-12.
+//  Created by Bagu on 15/2/13.
 //  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
-#import "CardViewController.h"
-#import "MedicalCard.h"
+#import "ConfirmScheduleTableViewController.h"
 
-@interface CardViewController ()
+@interface ConfirmScheduleTableViewController ()
+
+@property (strong,nonatomic) NSArray *fieldLabels;
+@property (strong,nonatomic) NSMutableArray *fieldValues;
 
 @end
 
-@implementation CardViewController
+@implementation ConfirmScheduleTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,12 +25,13 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
- 
-    self.labelName.text = self.medicalCard.owner;
-    self.labelCardType.text = self.medicalCard.medicalCardTypeName;
-    self.labelCardNumber.text = self.medicalCard.medicalCardCode;
-//    NSLog(@"MdedicalCardID is:%@",self.medicalCard.medicalCardID);
+    NSArray *array = [[NSArray alloc]initWithObjects:@"姓名",@"健康卡号", @"预约医院",@"预约科室",@"预约医生",@"预约日期",@"预约时间",@"取号地点",@"支付方式",nil];
+    self.fieldLabels = array;
+    self.fieldValues = [[NSMutableArray alloc]init];
+}
 
+-(void)viewDidAppear:(BOOL)animated{
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,8 +39,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-//#pragma mark - Table view data source
-//
+#pragma mark - Table view data source
+
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Potentially incomplete method implementation.
 //    // Return the number of sections.
@@ -49,6 +52,39 @@
 //    // Return the number of rows in the section.
 //    return 0;
 //}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"scheduleCell"];
+    if([indexPath section]== 0){
+        switch ([indexPath row]) {
+            case 0:
+                cell.detailTextLabel.text = @"卡持有者姓名";break;
+            case 1:
+                cell.detailTextLabel.text = @"健康卡号";break;
+            case 2:
+                cell.detailTextLabel.text = [[self schedule] objectForKey:@"HospitalName"];break;
+            case 3:
+                cell.detailTextLabel.text = [[self schedule] objectForKey:@"DepartmentName"];break;
+            case 4:
+                cell.detailTextLabel.text = [[self schedule] objectForKey:@"DoctorName"];break;
+            case 5:
+                cell.detailTextLabel.text = [[self schedule] objectForKey:@"AuscultationDate"];break;
+            case 6:{
+                NSString *tmFromTo = [NSString stringWithFormat:@"%@ - %@",[[self schedule] objectForKey:@"BeginTime"],[[self schedule] objectForKey:@"EndTime"]];
+                cell.detailTextLabel.text = tmFromTo;}break;
+            case 7:
+                cell.detailTextLabel.text = @"取号地点";break;
+            case 8:
+                cell.detailTextLabel.text = @"支付方式";break;
+            default:break;
+        }
+        cell.textLabel.text = [[self fieldLabels] objectAtIndex:[indexPath row]];
+    }
+    return cell;
+}
+
+
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

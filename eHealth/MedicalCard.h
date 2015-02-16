@@ -21,5 +21,4 @@
 @property (nonatomic,retain) NSString *ownerIDCard;
 @property (nonatomic,retain) NSString *ownerEmail;
 @property (nonatomic,retain) NSString *ownerAdress;
-
 @end
