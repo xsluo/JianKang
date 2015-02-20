@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MedicalCard : NSObject
+@interface MedicalCard : NSObject<NSCoding>
 @property (nonatomic,retain) NSString *medicalCardID;
 @property (nonatomic,retain) NSString *medicalCardTypeID;
 @property (nonatomic,retain) NSString *medicalCardTypeName;

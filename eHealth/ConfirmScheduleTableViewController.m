@@ -7,11 +7,16 @@
 //
 
 #import "ConfirmScheduleTableViewController.h"
+#import "MedicalCard.h"
+
+#define kDataFile @"dataCard"
+#define kDataKey  @"defaultCard"
 
 @interface ConfirmScheduleTableViewController ()
 
 @property (strong,nonatomic) NSArray *fieldLabels;
 @property (strong,nonatomic) NSMutableArray *fieldValues;
+@property (strong,nonatomic) MedicalCard *defaultCard;
 
 @end
 
@@ -28,6 +33,19 @@
     NSArray *array = [[NSArray alloc]initWithObjects:@"姓名",@"健康卡号", @"预约医院",@"预约科室",@"预约医生",@"预约日期",@"预约时间",@"取号地点",@"支付方式",nil];
     self.fieldLabels = array;
     self.fieldValues = [[NSMutableArray alloc]init];
+    NSString *filePath = [self dataFilePath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
+        NSKeyedUnarchiver *unarchiver =[[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        self.defaultCard = [unarchiver decodeObjectForKey:kDataKey];
+    }
+}
+
+-(NSString *)dataFilePath{
+    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSLog(@"%@",documentsDirectory);
+    return [documentsDirectory stringByAppendingPathComponent:kDataFile];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -59,7 +77,7 @@
     if([indexPath section]== 0){
         switch ([indexPath row]) {
             case 0:
-                cell.detailTextLabel.text = @"卡持有者姓名";break;
+                cell.detailTextLabel.text = [[self defaultCard] owner];break;
             case 1:
                 cell.detailTextLabel.text = @"健康卡号";break;
             case 2:

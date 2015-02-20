@@ -17,13 +17,16 @@
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
 #define kUserName @"username"
 
+#define kDataFile @"dataCard"
+#define kDataKey  @"defaultCard"
+
 @interface CardManageTableViewController ()
-@property (nonatomic,retain)NSMutableArray *medicalCardList;
-//@property (retain, nonatomic) IBOutlet UITableView *tableView;
-@property(nonatomic,retain)   NSMutableData *responseData;
+@property (nonatomic,retain) NSMutableArray *medicalCardList;
+@property (nonatomic,retain) NSMutableData *responseData;
 @property (nonatomic,strong) NSIndexPath *lastIndexPath;
 @property (nonatomic,retain) NSMutableArray *cards;
-@property (strong,nonatomic) MedicalCard *selectedCard;
+@property (nonatomic,retain) MedicalCard *detailCard;
+@property (strong,nonatomic) MedicalCard *defaultCard;
 @end
 
 @implementation CardManageTableViewController
@@ -36,19 +39,34 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.detailCard = nil;
     self.medicalCardList = nil;
     self.lastIndexPath = nil;
     self.cards = [[NSMutableArray alloc] init];
+    
+    NSString *filePath = [self dataFilePath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
+        NSKeyedUnarchiver *unarchiver =[[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        self.defaultCard = [unarchiver decodeObjectForKey:kDataKey];
+    }
     [self setRequest];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
     // Dispose of any resources that can be recreated.
 }
 
+-(NSString *)dataFilePath{
+    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSLog(@"%@",documentsDirectory);
+    return [documentsDirectory stringByAppendingPathComponent:kDataFile];
+}
+
 -(void)setRequest{
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *userName =[userDefaults objectForKey:kUserName];
     
@@ -62,11 +80,8 @@
     if(error){
         NSLog(@"error:%@",error);
     }
-    
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
     NSString *postString = [NSString stringWithFormat:@"method=%@&jsonBody=%@",Method,jsonString];
-    
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -77,7 +92,6 @@
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
 }
-
 
 #pragma mark NSURLConnection Delegate Methods
 
@@ -137,10 +151,10 @@
     //#warning Incomplete method implementation.
     //    // Return the number of rows in the section.
     if(section ==0){
-    if(self.medicalCardList!=(id)[NSNull null])
-        return [self.medicalCardList count];
-    else
-        return 0;
+        if(self.medicalCardList!=(id)[NSNull null])
+            return [self.medicalCardList count];
+        else
+            return 0;
     }
     else
         return 1;
@@ -157,9 +171,6 @@
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
         
         NSInteger row = [indexPath row];
-        NSInteger oldRow = [self.lastIndexPath row];
-        
-        cell.detailTextLabel.text = (row==oldRow&&self.lastIndexPath!=nil)?@"默认":@"";
         NSDictionary *cardDictionary = [self.medicalCardList objectAtIndex:row];
         
         MedicalCard *card = [[MedicalCard alloc] init];
@@ -179,6 +190,12 @@
         [self.cards addObject:card];
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@<%@>",[card owner],[card medicalCardTypeName]];
+        if([[[self defaultCard] medicalCardID] isEqualToString:[card medicalCardID]]){
+            cell.detailTextLabel.text =@"默认";
+            self.lastIndexPath = indexPath;
+        }
+        else
+            cell.detailTextLabel.text = nil;
         cell.detailTextLabel.textColor = [UIColor redColor];
         return cell;
     }
@@ -193,23 +210,31 @@
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.text = @"添加健康卡";
         cell.textLabel.backgroundColor = [UIColor blueColor];
+        
         return cell;
     }
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if([indexPath section]==0){
         NSInteger newRow = [indexPath row];
         NSInteger oldRow = (self.lastIndexPath!=nil)?[self.lastIndexPath row]:-1;
-        if(newRow!=oldRow||self.lastIndexPath ==0){
+        if(newRow!=oldRow){
             UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
             newCell.detailTextLabel.text = @"默认";
+            
+            NSMutableData *data = [[NSMutableData alloc] init];
+            NSKeyedArchiver *archiver =[[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+            self.defaultCard = [self.cards objectAtIndex:newRow];
+            [archiver encodeObject:[self defaultCard] forKey:kDataKey];
+            [archiver finishEncoding];
+            NSString *filePath = [self dataFilePath];
+            [data writeToFile:filePath atomically:YES];
+            
             UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:self.lastIndexPath];
-            oldCell.detailTextLabel.text = @"";
+            oldCell.detailTextLabel.text = nil;
             self.lastIndexPath = indexPath;
         };
-        self.selectedCard = [self.cards objectAtIndex:newRow];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     else
@@ -217,7 +242,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-    self.selectedCard = [self.cards objectAtIndex:[indexPath row]];
+    self.detailCard = [self.cards objectAtIndex:[indexPath row]];
     [self performSegueWithIdentifier:@"showCardDetail" sender:[tableView cellForRowAtIndexPath: indexPath]];
 }
 
@@ -230,15 +255,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"showCardDetail"]){
         CardDetailViewController *detail =  segue.destinationViewController ;
-        detail.medicalCard = [self selectedCard];
+        detail.medicalCard = [self detailCard];
     }
-//    if([[segue identifier] isEqualToString:@"addCard"]){
-//        AddMedicalCardController *addCard = segue.destinationViewController;
-//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//        NSString *userName =[userDefaults objectForKey:kUserName];
-//        addCard.userName =userName;
-//    }
-
 }
 @end
 

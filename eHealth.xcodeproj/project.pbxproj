@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		060D11431A4C049E00EB201C /* NewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060D11421A4C049E00EB201C /* NewsTableViewController.m */; };
 		0650F38E1A51275300B26F39 /* EmptyParkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650F38D1A51275300B26F39 /* EmptyParkTableViewController.m */; };
-		0683B09D1A63957A00033285 /* MedicalCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0683B09C1A63957A00033285 /* MedicalCard.m */; };
 		13064BCC1A400EBA001E9263 /* DepartmentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */; };
 		13084C2A1A64165D00A978D8 /* AddMedicalCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13084C291A64165D00A978D8 /* AddMedicalCardController.m */; };
 		130DAB741A8D073F0007C819 /* ConfirmScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 130DAB731A8D073F0007C819 /* ConfirmScheduleTableViewController.m */; };
@@ -30,6 +29,7 @@
 		1344E8D61A580FE300733189 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1344E8D51A580FE300733189 /* HomeViewController.m */; };
 		1344E8DC1A581AFE00733189 /* UnLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1344E8DB1A581AFE00733189 /* UnLoginTableViewController.m */; };
 		134C4FC71A3D867000CDDA3E /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 134C4FC61A3D867000CDDA3E /* IntroductionViewController.m */; };
+		137C900F1A949EB00085AF90 /* MedicalCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 137C900D1A949EB00085AF90 /* MedicalCard.m */; };
 		139512A51A5808870067810D /* DutyRosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139512A41A5808870067810D /* DutyRosterViewController.m */; };
 		13A8154F1A88B97000BCCBCE /* Hospital.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A8154E1A88B97000BCCBCE /* Hospital.m */; };
 		13A815521A88D9A200BCCBCE /* Department.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A815511A88D9A200BCCBCE /* Department.m */; };
@@ -67,8 +67,6 @@
 		060D11421A4C049E00EB201C /* NewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsTableViewController.m; path = DigitalHostpital/News/NewsTableViewController.m; sourceTree = "<group>"; };
 		0650F38C1A51275300B26F39 /* EmptyParkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyParkTableViewController.h; path = DigitalHostpital/EmptyPark/EmptyParkTableViewController.h; sourceTree = "<group>"; };
 		0650F38D1A51275300B26F39 /* EmptyParkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyParkTableViewController.m; path = DigitalHostpital/EmptyPark/EmptyParkTableViewController.m; sourceTree = "<group>"; };
-		0683B09B1A63957A00033285 /* MedicalCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicalCard.h; sourceTree = "<group>"; };
-		0683B09C1A63957A00033285 /* MedicalCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicalCard.m; sourceTree = "<group>"; };
 		13064BCA1A400EBA001E9263 /* DepartmentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepartmentTableViewController.h; path = DigitalHostpital/Departmet/DepartmentTableViewController.h; sourceTree = "<group>"; };
 		13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepartmentTableViewController.m; path = DigitalHostpital/Departmet/DepartmentTableViewController.m; sourceTree = "<group>"; };
 		13084C281A64165D00A978D8 /* AddMedicalCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMedicalCardController.h; sourceTree = "<group>"; };
@@ -100,6 +98,8 @@
 		1344E8DB1A581AFE00733189 /* UnLoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnLoginTableViewController.m; sourceTree = "<group>"; };
 		134C4FC51A3D867000CDDA3E /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntroductionViewController.h; path = DigitalHostpital/Introduction/IntroductionViewController.h; sourceTree = "<group>"; };
 		134C4FC61A3D867000CDDA3E /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntroductionViewController.m; path = DigitalHostpital/Introduction/IntroductionViewController.m; sourceTree = "<group>"; };
+		137C900D1A949EB00085AF90 /* MedicalCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MedicalCard.m; path = Object/MedicalCard.m; sourceTree = "<group>"; };
+		137C900E1A949EB00085AF90 /* MedicalCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MedicalCard.h; path = Object/MedicalCard.h; sourceTree = "<group>"; };
 		139512A31A5808870067810D /* DutyRosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DutyRosterViewController.h; path = DigitalHostpital/DutyRoster/DutyRosterViewController.h; sourceTree = "<group>"; };
 		139512A41A5808870067810D /* DutyRosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DutyRosterViewController.m; path = DigitalHostpital/DutyRoster/DutyRosterViewController.m; sourceTree = "<group>"; };
 		13A8154D1A88B97000BCCBCE /* Hospital.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hospital.h; path = Object/Hospital.h; sourceTree = "<group>"; };
@@ -287,8 +287,8 @@
 		13C271521A8118E4002DAB60 /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				0683B09B1A63957A00033285 /* MedicalCard.h */,
-				0683B09C1A63957A00033285 /* MedicalCard.m */,
+				137C900D1A949EB00085AF90 /* MedicalCard.m */,
+				137C900E1A949EB00085AF90 /* MedicalCard.h */,
 				13A815561A88DC8200BCCBCE /* Area.h */,
 				13A815571A88DC8200BCCBCE /* Area.m */,
 				13A8154D1A88B97000BCCBCE /* Hospital.h */,
@@ -523,9 +523,9 @@
 				133267A81A5C2F1E0095D462 /* ChangeUsernameController.m in Sources */,
 				13064BCC1A400EBA001E9263 /* DepartmentTableViewController.m in Sources */,
 				13A8155E1A89128000BCCBCE /* GetDoctorTableViewController.m in Sources */,
+				137C900F1A949EB00085AF90 /* MedicalCard.m in Sources */,
 				13A815551A88DBC400BCCBCE /* GetDepartmentTableViewController.m in Sources */,
 				139512A51A5808870067810D /* DutyRosterViewController.m in Sources */,
-				0683B09D1A63957A00033285 /* MedicalCard.m in Sources */,
 				13A8154F1A88B97000BCCBCE /* Hospital.m in Sources */,
 				13E0ADC31A583B9E00E09CE1 /* AfterLoginTableViewController.m in Sources */,
 				13CAAE631A3C92E9009C420E /* main.m in Sources */,
