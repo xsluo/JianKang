@@ -100,7 +100,6 @@
             labelIntroduction.text = nil;
         else
             labelIntroduction.text = dct.introduction;
-        
         [self.panelView setHidden:NO];
     }
     
@@ -112,7 +111,11 @@
 #pragma mark - Table view data source
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    if ([tableView isEqual:self.tableView]) {
+        return 3;
+    }
+    else
+        return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -125,28 +128,40 @@
     NSInteger row = [indexPath row];
     switch (row) {
         case 0:{
-            if(!self.hospital)
+            if(!self.hospital){
                 cell.textLabel.text = @"请选择医院";
-            else
+                cell.textLabel.textColor = [UIColor blueColor];
+            }
+            else{
                 cell.textLabel.text = [self.hospital hospitalName];
-            break;
-        }
+                cell.textLabel.textColor = [UIColor blackColor];
+                break;
+            }
         case 1:{
-            if(!self.department)
+            if(!self.department){
                 cell.textLabel.text = @"请选择科室";
-            else
+                cell.textLabel.textColor = [UIColor blueColor];
+            }
+            else{
                 cell.textLabel.text = [self.department  departmentName];
+                cell.textLabel.textColor = [UIColor blackColor];
+            }
             break;
         }
         case 2:{
-            if(!self.doctor)
+            if(!self.doctor){
                 cell.textLabel.text = @"请选择医生";
-            else
+                cell.textLabel.textColor = [UIColor blueColor];
+            }
+            else{
                 cell.textLabel.text = [self.doctor  doctorName];
+                cell.textLabel.textColor = [UIColor blackColor];
+            }
             break;
         }
         default:
             break;
+        }
     }
     return cell;
 }
@@ -218,8 +233,4 @@
     }
 }
 
-
-
 @end
-
-

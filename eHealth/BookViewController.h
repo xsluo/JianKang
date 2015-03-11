@@ -15,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelDoctorName;
 @property (weak, nonatomic) IBOutlet UILabel *labelHospitalName;
 @property (weak, nonatomic) IBOutlet UILabel *labelIntroduction;
+
 @end

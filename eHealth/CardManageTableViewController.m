@@ -258,5 +258,6 @@
         detail.medicalCard = [self detailCard];
     }
 }
+
 @end
 

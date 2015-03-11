@@ -39,6 +39,7 @@
 		13A8155E1A89128000BCCBCE /* GetDoctorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A8155D1A89128000BCCBCE /* GetDoctorTableViewController.m */; };
 		13A815611A89B3D700BCCBCE /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A815601A89B3D700BCCBCE /* Schedule.m */; };
 		13A815641A89C11400BCCBCE /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A815631A89C11400BCCBCE /* ScheduleViewController.m */; };
+		13B21ABA1AADDB27006CB401 /* ExamListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B21AB91AADDB27006CB401 /* ExamListViewController.m */; };
 		13C2714B1A7E6487002DAB60 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C2714A1A7E6487002DAB60 /* BookViewController.m */; };
 		13C2714E1A7F5818002DAB60 /* GetAreaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C2714D1A7F5818002DAB60 /* GetAreaTableViewController.m */; };
 		13C271511A7FA045002DAB60 /* GetHospitalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C271501A7FA045002DAB60 /* GetHospitalTableViewController.m */; };
@@ -118,6 +119,8 @@
 		13A815601A89B3D700BCCBCE /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = Object/Schedule.m; sourceTree = "<group>"; };
 		13A815621A89C11400BCCBCE /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		13A815631A89C11400BCCBCE /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		13B21AB81AADDB27006CB401 /* ExamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExamListViewController.h; path = Exam/ExamListViewController.h; sourceTree = "<group>"; };
+		13B21AB91AADDB27006CB401 /* ExamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExamListViewController.m; path = Exam/ExamListViewController.m; sourceTree = "<group>"; };
 		13C271491A7E6487002DAB60 /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
 		13C2714A1A7E6487002DAB60 /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
 		13C2714C1A7F5817002DAB60 /* GetAreaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAreaTableViewController.h; sourceTree = "<group>"; };
@@ -218,6 +221,7 @@
 		134C4FC21A3D82D200CDDA3E /* DigitalHospital */ = {
 			isa = PBXGroup;
 			children = (
+				13B21AB71AADDA92006CB401 /* Exam */,
 				13C271481A7E642D002DAB60 /* Book */,
 				060D113D1A4BFF8400EB201C /* News */,
 				060D11441A4C45C300EB201C /* EmptyPark */,
@@ -261,6 +265,15 @@
 				139512A41A5808870067810D /* DutyRosterViewController.m */,
 			);
 			name = DutyRoster;
+			sourceTree = "<group>";
+		};
+		13B21AB71AADDA92006CB401 /* Exam */ = {
+			isa = PBXGroup;
+			children = (
+				13B21AB81AADDB27006CB401 /* ExamListViewController.h */,
+				13B21AB91AADDB27006CB401 /* ExamListViewController.m */,
+			);
+			name = Exam;
 			sourceTree = "<group>";
 		};
 		13C271481A7E642D002DAB60 /* Book */ = {
@@ -524,6 +537,7 @@
 				13064BCC1A400EBA001E9263 /* DepartmentTableViewController.m in Sources */,
 				13A8155E1A89128000BCCBCE /* GetDoctorTableViewController.m in Sources */,
 				137C900F1A949EB00085AF90 /* MedicalCard.m in Sources */,
+				13B21ABA1AADDB27006CB401 /* ExamListViewController.m in Sources */,
 				13A815551A88DBC400BCCBCE /* GetDepartmentTableViewController.m in Sources */,
 				139512A51A5808870067810D /* DutyRosterViewController.m in Sources */,
 				13A8154F1A88B97000BCCBCE /* Hospital.m in Sources */,
