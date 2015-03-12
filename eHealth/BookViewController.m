@@ -135,8 +135,9 @@
             else{
                 cell.textLabel.text = [self.hospital hospitalName];
                 cell.textLabel.textColor = [UIColor blackColor];
-                break;
             }
+            break;
+        }
         case 1:{
             if(!self.department){
                 cell.textLabel.text = @"请选择科室";
@@ -162,7 +163,6 @@
         default:
             break;
         }
-    }
     return cell;
 }
 
