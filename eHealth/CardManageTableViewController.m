@@ -43,6 +43,15 @@
     self.medicalCardList = nil;
     self.lastIndexPath = nil;
     self.cards = [[NSMutableArray alloc] init];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+    // Load resources for iOS 6.1 or earlier
+        self.navigationController.navigationBar.tintColor = [UIColor brownColor];
+    } else {
+    // Load resources for iOS 7 or later
+        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
+    }
     
     NSString *filePath = [self dataFilePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -128,7 +137,10 @@
         NSLog(@"json parse failed");
         return;
     }
-    self.medicalCardList =[jsonDictionary objectForKey:@"MedicalCardList"];
+//    self.medicalCardList =[jsonDictionary objectForKey:@"MedicalCardList"];
+    NSMutableArray *arrayM =[[NSMutableArray alloc]initWithArray:[jsonDictionary objectForKey:@"MedicalCardList"]];
+    self.medicalCardList = arrayM;
+    
     [self.tableView reloadData];
     //    }
 }
@@ -244,6 +256,24 @@
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     self.detailCard = [self.cards objectAtIndex:[indexPath row]];
     [self performSegueWithIdentifier:@"showCardDetail" sender:[tableView cellForRowAtIndexPath: indexPath]];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    if([indexPath section]==0)
+        return YES;
+    else
+        return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        [self.objects removeObjectAtIndex:indexPath.row];
+        [self.medicalCardList removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    }
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
