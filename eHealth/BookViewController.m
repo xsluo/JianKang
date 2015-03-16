@@ -14,7 +14,7 @@
 #import "GetHospitalTableViewController.h"
 #import "GetDepartmentTableViewController.h"
 #import "GetDoctorTableViewController.h"
-#import "ScheduleViewController.h"
+#import "ScheduleTableViewController.h"
 
 #define kAreaName @"AreaName"
 #define kAreaID @"AreaID"
@@ -130,6 +130,8 @@
         case 0:{
             if(!self.hospital){
                 cell.textLabel.text = @"请选择医院";
+                UIImage *img0 = [UIImage imageNamed:@"house.png"];
+                cell.imageView.image = img0;
                 cell.textLabel.textColor = [UIColor blueColor];
             }
             else{
@@ -141,6 +143,8 @@
         case 1:{
             if(!self.department){
                 cell.textLabel.text = @"请选择科室";
+                UIImage *img1 = [UIImage imageNamed:@"layer.png"];
+                cell.imageView.image = img1;
                 cell.textLabel.textColor = [UIColor blueColor];
             }
             else{
@@ -152,6 +156,8 @@
         case 2:{
             if(!self.doctor){
                 cell.textLabel.text = @"请选择医生";
+                UIImage *img2 = [UIImage imageNamed:@"man.png"];
+                cell.imageView.image = img2;
                 cell.textLabel.textColor = [UIColor blueColor];
             }
             else{
@@ -225,7 +231,7 @@
         dctvController.department = dpt;
     }
     else if([[segue identifier] isEqualToString:@"getSchedule"]){
-        ScheduleViewController *schdvController = (ScheduleViewController *)segue.destinationViewController;
+        ScheduleTableViewController *schdvController = (ScheduleTableViewController *)segue.destinationViewController;
         Doctor *dct;
         if (self.doctor)
             dct= [self doctor];

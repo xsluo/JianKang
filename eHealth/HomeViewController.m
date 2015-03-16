@@ -19,6 +19,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        // Load resources for iOS 6.1 or earlier
+        self.navigationController.navigationBar.tintColor = [UIColor brownColor];
+    } else {
+        // Load resources for iOS 7 or later
+        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
+    }
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.translucent = NO;
+    
+    UIViewController *vct0 = [[self viewControllers] objectAtIndex:0];
+    vct0.tabBarItem.image = [UIImage imageNamed:@"home-7.png"];
+    
+    UIViewController *vct1 = [[self viewControllers] objectAtIndex:1];
+    vct1.tabBarItem.image = [UIImage imageNamed:@"heart-7.png"];
+    
 }
 
 - (void)didReceiveMemoryWarning {

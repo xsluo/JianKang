@@ -133,11 +133,18 @@
     
     NSDictionary *parkDictionary = [self.parkFieldList objectAtIndex:row];
     NSString *area = [parkDictionary objectForKey:@"ParkAera"];
-    NSString *totalPark = [parkDictionary objectForKey:@"TotalPark"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@,共有车位%@",area,totalPark];
-    NSString *remainPark = [parkDictionary objectForKey:@"RemainPark"];
-    cell.detailTextLabel.text =[NSString stringWithFormat:@"剩余车位：%@",remainPark];
+    UILabel *labelArea = (UILabel *)[cell.contentView viewWithTag:1];
+    labelArea.text = area;
+
+    NSString *totalParks = [NSString stringWithFormat:@"共有车位：%@",[parkDictionary objectForKey:@"TotalPark"]];
+    UILabel *labelTotalParks = (UILabel *)[cell.contentView viewWithTag:2];
+    labelTotalParks.text = totalParks;
     
+    NSString *remainParks = [NSString stringWithFormat:@"剩余车位：%@",[parkDictionary objectForKey:@"RemainPark"]];
+    UILabel *labelRemainParks = (UILabel *)[cell.contentView viewWithTag:3];
+    labelRemainParks.textColor =[UIColor redColor];
+    labelRemainParks.text = remainParks;
+
     return cell;
 }
 

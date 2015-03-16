@@ -74,6 +74,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell *cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"scheduleCell"];
+    UITableViewCell *cell1 =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"confirmCell"];
     if([indexPath section]== 0){
         switch ([indexPath row]) {
             case 0:
@@ -98,8 +99,17 @@
             default:break;
         }
         cell.textLabel.text = [[self fieldLabels] objectAtIndex:[indexPath row]];
+        return cell;
     }
-    return cell;
+    else{
+        cell1.contentView.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
+        cell1.textLabel.contentMode = UIViewContentModeCenter;
+        cell1.textLabel.text = @"确认预约";
+        cell1.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell1.textLabel.textColor = [UIColor whiteColor];
+        return cell1;
+    }
+ 
 }
 
 

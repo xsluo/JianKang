@@ -30,8 +30,11 @@ static NSString * const reuseIdentifier = @"CollectionCell";
     
     // Do any additional setup after loading the view.
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    
     self.imageName = [NSArray arrayWithObjects:@"1.png",@"2.png",@"3.png",@"4.png",@"5.png",@"6.png",@"7.png",@"8.png",@"9.png", nil];
     self.labelText =[NSArray arrayWithObjects:@"医院简介",@"医院资讯",@"当日出诊",@"预约挂号",@"候诊",@"咨询",@"停车指南",@"检验检查报告",@"满意度调查", nil];
+    
+    self.tabBarItem.title = @"数字医院";
     
   }
 

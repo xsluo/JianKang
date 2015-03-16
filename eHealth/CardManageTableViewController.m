@@ -45,14 +45,6 @@
     self.cards = [[NSMutableArray alloc] init];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-    // Load resources for iOS 6.1 or earlier
-        self.navigationController.navigationBar.tintColor = [UIColor brownColor];
-    } else {
-    // Load resources for iOS 7 or later
-        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
-    }
-    
     NSString *filePath = [self dataFilePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
@@ -156,24 +148,20 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //#warning Potentially incomplete method implementation.
     //    // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     //    // Return the number of rows in the section.
-    if(section ==0){
-        if(self.medicalCardList!=(id)[NSNull null])
+     if(self.medicalCardList!=(id)[NSNull null])
             return [self.medicalCardList count];
         else
             return 0;
-    }
-    else
-        return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if([indexPath section]==0){
+//    if([indexPath section]==0){
         static NSString* reuseIndentifier =@"cardCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
         
@@ -210,21 +198,21 @@
             cell.detailTextLabel.text = nil;
         cell.detailTextLabel.textColor = [UIColor redColor];
         return cell;
-    }
-    else{
-        static NSString* reuseIndentifier =@"button";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
-        
-        if (cell==nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
-        }
-        cell.textLabel.textColor = [UIColor yellowColor];
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.textLabel.text = @"添加健康卡";
-        cell.textLabel.backgroundColor = [UIColor blueColor];
-        
-        return cell;
-    }
+//    }
+//    else{
+//        static NSString* reuseIndentifier =@"button";
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
+//        
+//        if (cell==nil) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
+//        }
+//        cell.textLabel.textColor = [UIColor whiteColor];
+//        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+//        cell.textLabel.text = @"添加健康卡";
+//        cell.textLabel.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
+//        cell.contentView.backgroundColor =[UIColor colorWithRed:235.0/255 green:235.0/255 blue:242.0/255 alpha:1.0];
+//        return cell;
+//    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -277,11 +265,12 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section==0&&![self.medicalCardList  isEqual:[NSNull null]])
+//    if(section==0&&![self.medicalCardList  isEqual:[NSNull null]])
         return @"点击行选择默认健康卡，点击右边图标查看卡片详细信息";
-    else
-        return @"添加健康卡";
+//    else
+//        return @"添加健康卡";
 }
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"showCardDetail"]){
         CardDetailViewController *detail =  segue.destinationViewController ;
