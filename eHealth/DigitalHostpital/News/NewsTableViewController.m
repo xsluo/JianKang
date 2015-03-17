@@ -154,6 +154,10 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.selectedNews = [self.newsList objectAtIndex:[indexPath row]];
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -193,7 +197,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NewsViewController *newsController = (NewsViewController *)segue.destinationViewController;
-    News *aNews = newsController.aNews;
+    News *aNews = [[News alloc]init];
     if(self.selectedNews){
         aNews.newsID = [self.selectedNews objectForKey:@"NewsID"];
         aNews.hospitalID = [self.selectedNews objectForKey:@"HospitalID"];
@@ -205,6 +209,7 @@
         aNews.thumbnailUrl = [self.selectedNews objectForKey:@"ThumbnailUrl"];
         aNews.creatTime = [self.selectedNews objectForKey:@"CreateTime"];
     }
+    newsController.aNews= aNews;
 }
 
 @end
