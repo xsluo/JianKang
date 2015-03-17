@@ -11,6 +11,7 @@
 		0650F38E1A51275300B26F39 /* EmptyParkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650F38D1A51275300B26F39 /* EmptyParkTableViewController.m */; };
 		13064BCC1A400EBA001E9263 /* DepartmentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */; };
 		13084C2A1A64165D00A978D8 /* AddMedicalCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13084C291A64165D00A978D8 /* AddMedicalCardController.m */; };
+		130D1D221AB6B9FF003357FF /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 130D1D211AB6B9FF003357FF /* News.m */; };
 		130DAB741A8D073F0007C819 /* ConfirmScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 130DAB731A8D073F0007C819 /* ConfirmScheduleTableViewController.m */; };
 		132142FA1A3F1B0600290746 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F11A3F1B0600290746 /* 1.png */; };
 		132142FB1A3F1B0600290746 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F21A3F1B0600290746 /* 2.png */; };
@@ -336,6 +337,7 @@
 		138F8B5C1AB0760900E36438 /* DigtialHospitalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 138F8B5B1AB0760900E36438 /* DigtialHospitalCollectionViewController.m */; };
 		139512A51A5808870067810D /* DutyRosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139512A41A5808870067810D /* DutyRosterViewController.m */; };
 		13A13E751AB591AF0023DFA4 /* ScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A13E741AB591AF0023DFA4 /* ScheduleTableViewController.m */; };
+		13A739931AB71D3C00649744 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739921AB71D3C00649744 /* NewsViewController.m */; };
 		13A8154F1A88B97000BCCBCE /* Hospital.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A8154E1A88B97000BCCBCE /* Hospital.m */; };
 		13A815521A88D9A200BCCBCE /* Department.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A815511A88D9A200BCCBCE /* Department.m */; };
 		13A815551A88DBC400BCCBCE /* GetDepartmentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A815541A88DBC400BCCBCE /* GetDepartmentTableViewController.m */; };
@@ -376,6 +378,8 @@
 		13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepartmentTableViewController.m; path = DigitalHostpital/Departmet/DepartmentTableViewController.m; sourceTree = "<group>"; };
 		13084C281A64165D00A978D8 /* AddMedicalCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMedicalCardController.h; sourceTree = "<group>"; };
 		13084C291A64165D00A978D8 /* AddMedicalCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMedicalCardController.m; sourceTree = "<group>"; };
+		130D1D201AB6B9FF003357FF /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = Object/News.h; sourceTree = "<group>"; };
+		130D1D211AB6B9FF003357FF /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = News.m; path = Object/News.m; sourceTree = "<group>"; };
 		130DAB721A8D073F0007C819 /* ConfirmScheduleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmScheduleTableViewController.h; sourceTree = "<group>"; };
 		130DAB731A8D073F0007C819 /* ConfirmScheduleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmScheduleTableViewController.m; sourceTree = "<group>"; };
 		132142F11A3F1B0600290746 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1.png; path = images/1.png; sourceTree = "<group>"; };
@@ -715,6 +719,8 @@
 		139512A41A5808870067810D /* DutyRosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DutyRosterViewController.m; path = DigitalHostpital/DutyRoster/DutyRosterViewController.m; sourceTree = "<group>"; };
 		13A13E731AB591AF0023DFA4 /* ScheduleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleTableViewController.h; sourceTree = "<group>"; };
 		13A13E741AB591AF0023DFA4 /* ScheduleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleTableViewController.m; sourceTree = "<group>"; };
+		13A739911AB71D3C00649744 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		13A739921AB71D3C00649744 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		13A8154D1A88B97000BCCBCE /* Hospital.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hospital.h; path = Object/Hospital.h; sourceTree = "<group>"; };
 		13A8154E1A88B97000BCCBCE /* Hospital.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hospital.m; path = Object/Hospital.m; sourceTree = "<group>"; };
 		13A815501A88D9A200BCCBCE /* Department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Department.h; path = Object/Department.h; sourceTree = "<group>"; };
@@ -777,6 +783,8 @@
 			children = (
 				060D11411A4C049E00EB201C /* NewsTableViewController.h */,
 				060D11421A4C049E00EB201C /* NewsTableViewController.m */,
+				13A739911AB71D3C00649744 /* NewsViewController.h */,
+				13A739921AB71D3C00649744 /* NewsViewController.m */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -1244,6 +1252,8 @@
 				13A8155A1A890D2A00BCCBCE /* Doctor.m */,
 				13A8155F1A89B3D700BCCBCE /* Schedule.h */,
 				13A815601A89B3D700BCCBCE /* Schedule.m */,
+				130D1D201AB6B9FF003357FF /* News.h */,
+				130D1D211AB6B9FF003357FF /* News.m */,
 			);
 			name = Object;
 			sourceTree = "<group>";
@@ -1777,12 +1787,14 @@
 				13A8154F1A88B97000BCCBCE /* Hospital.m in Sources */,
 				13E0ADC31A583B9E00E09CE1 /* AfterLoginTableViewController.m in Sources */,
 				13CAAE631A3C92E9009C420E /* main.m in Sources */,
+				130D1D221AB6B9FF003357FF /* News.m in Sources */,
 				13A815581A88DC8200BCCBCE /* Area.m in Sources */,
 				13A13E751AB591AF0023DFA4 /* ScheduleTableViewController.m in Sources */,
 				133FACCF1A90D04B00BA1324 /* CardManageTableViewController.m in Sources */,
 				133267651A5ADCF80095D462 /* RegisterController.m in Sources */,
 				134C4FC71A3D867000CDDA3E /* IntroductionViewController.m in Sources */,
 				13A815521A88D9A200BCCBCE /* Department.m in Sources */,
+				13A739931AB71D3C00649744 /* NewsViewController.m in Sources */,
 				138F8B5C1AB0760900E36438 /* DigtialHospitalCollectionViewController.m in Sources */,
 				13C2714E1A7F5818002DAB60 /* GetAreaTableViewController.m in Sources */,
 				1332676B1A5AF0970095D462 /* ChangePWDController.m in Sources */,

@@ -7,6 +7,8 @@
 //
 
 #import "NewsTableViewController.h"
+#import "News.h"
+#import "NewsViewController.h"
 
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetNews"
@@ -18,6 +20,7 @@
 @interface NewsTableViewController ()
 
 @property (nonatomic,retain) NSMutableData * responseData;
+@property(nonatomic,retain) NSDictionary *selectedNews;
 
 @end
 
@@ -46,17 +49,6 @@
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
-    
-//    NSData *receivedData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-//    if([receivedData length]==0)
-//        return;
-//
-//    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:receivedData options:kNilOptions error:&error];
-//    if (jsonDictionary == nil) {
-//        NSLog(@"json parse failed");
-//        return;
-//    }
-//    self.newsList =[jsonDictionary objectForKey:@"NewsList"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,15 +128,31 @@
     NSInteger row = [indexPath row];
     
     NSDictionary *newsDictionary = [self.newsList objectAtIndex:row];
+    self.selectedNews = newsDictionary;
+    
+    NSString *url = [newsDictionary objectForKey:@"ThumbnailUrl"];
+    UIImageView *imgv = (UIImageView *)[cell.contentView viewWithTag:4];
+    imgv.contentMode = UIViewContentModeScaleAspectFit;
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    UIImage *img = [UIImage imageWithData:data];
+    [imgv setImage:img];
+    
     NSString *newsTitle = [newsDictionary objectForKey:@"NewsTitle"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",newsTitle];
+    UILabel *labelTitle = (UILabel *)[cell.contentView viewWithTag:1];
+    labelTitle.text = newsTitle;
+    
     NSString *newsContent = [newsDictionary objectForKey:@"NewsContent"];
-    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",newsContent];
-
+    UILabel *labelContent = (UILabel *)[cell.contentView viewWithTag:2];
+    labelContent.text = newsContent;
+    
+    NSString *newsCategory = [newsDictionary objectForKey:@"NewsCategoryName"];
+    UILabel *labelCategory = (UILabel *)[cell.contentView viewWithTag:3];
+    labelCategory.backgroundColor = [UIColor brownColor];
+    labelCategory.textColor = [UIColor whiteColor];
+    labelCategory.text = newsCategory;
+    
     return cell;
 }
-
-
 
 /*
 // Override to support conditional editing of the table view.
@@ -180,14 +188,23 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NewsViewController *newsController = (NewsViewController *)segue.destinationViewController;
+    News *aNews = newsController.aNews;
+    if(self.selectedNews){
+        aNews.newsID = [self.selectedNews objectForKey:@"NewsID"];
+        aNews.hospitalID = [self.selectedNews objectForKey:@"HospitalID"];
+        aNews.newsCategoryID = [self.selectedNews objectForKey:@"NewsCategoryID"];
+        aNews.newsCategoryName = [self.selectedNews objectForKey:@"NewsCategoryName"];
+        aNews.newsTitle =[self.selectedNews objectForKey:@"NewsTitle"];
+        aNews.summary = [self.selectedNews objectForKey:@"Summary"];
+        aNews.newsContent = [self.selectedNews objectForKey:@"NewsContent"];
+        aNews.thumbnailUrl = [self.selectedNews objectForKey:@"ThumbnailUrl"];
+        aNews.creatTime = [self.selectedNews objectForKey:@"CreateTime"];
+    }
 }
-*/
 
 @end
