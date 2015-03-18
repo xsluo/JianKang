@@ -168,9 +168,10 @@
     NSString *name = [doctorDictionary objectForKey:@"DoctorName"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",name];
     NSString *intruduction = [doctorDictionary objectForKey:@"Introduction"];
-   
-    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",intruduction];
-    
+    if([intruduction isEqual:[NSNull null]])
+        cell.detailTextLabel.text = @"";
+    else
+         cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",intruduction];
     cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
 }

@@ -1,40 +1,58 @@
 //
-//  DutyRosterViewController.m
+//  TodayDutyViewController.m
 //  eHealth
 //
-//  Created by Bagu on 14/12/30.
-//  Copyright (c) 2014年 PanGu. All rights reserved.
+//  Created by Bagu on 15/3/17.
+//  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
-#import "DutyRosterViewController.h"
+#import "TodayDutyViewController.h"
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetDutyRosterList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
-#define Status @"0"
+//#define Status
 #define HospitalID @"440604001"
 
-@interface DutyRosterViewController ()
+@interface TodayDutyViewController ()
+@property(nonatomic,retain)  NSMutableData *responseData;
+@property (nonatomic,retain)  NSString *status;
 @property (nonatomic,retain) NSString *weekDay;
 @end
 
-@implementation DutyRosterViewController
+@implementation TodayDutyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.weekDay = @"1";
-    self.dutyRosterList = [[NSMutableArray alloc]init];
+    
+//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+//    NSDate *now = [[NSDate alloc] init];
+   
+    NSDate *now = [NSDate date];
+    NSDateFormatter *nowDateFormatter = [[NSDateFormatter alloc] init];
+    NSArray *daysOfWeek = @[@"",@"7",@"1",@"2",@"3",@"4",@"5",@"6"];
+    [nowDateFormatter setDateFormat:@"e"];
+    NSInteger weekdayNumber = (NSInteger)[[nowDateFormatter stringFromDate:now] integerValue];
+//    NSLog(@"Day of Week: %@",[daysOfWeek objectAtIndex:weekdayNumber]);
+    self.weekDay =[NSString stringWithFormat:@"%@",[daysOfWeek objectAtIndex:weekdayNumber]];
+    
+    self.status = @"1";
+    self.todayDutyList= [[NSMutableArray alloc]init];
     [self linkTheNet];
-    }
+}
 
-
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 - (void)linkTheNet{
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:4];
     [dictionary setObject:AppKey forKey:@"AppKey"];
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
-    [dictionary setObject:Status forKey:@"Status"];
+    [dictionary setObject:self.status forKey:@"Status"];
     [dictionary setObject:HospitalID forKey:@"HospitalID"];
     [dictionary setObject:self.weekDay forKey:@"Week"];
     
@@ -56,27 +74,23 @@
     [request setHTTPBody:postData];
     
     //------------------------------
-    NSURLCache *urlCache = [NSURLCache sharedURLCache];
-    /* 设置缓存的大小为1M*/
-    [urlCache setMemoryCapacity:1*1024*1024];
-    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
-    //判断是否有缓存
-    if (response != nil){
-        NSLog(@"如果有缓存输出，从缓存中获取数据");
-        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
-    }
+//    NSURLCache *urlCache = [NSURLCache sharedURLCache];
+//    /* 设置缓存的大小为1M*/
+//    [urlCache setMemoryCapacity:1*1024*1024];
+//    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
+//    //判断是否有缓存
+//    if (response != nil){
+//        NSLog(@"如果有缓存输出，从缓存中获取数据");
+//        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+//    }
     //-----------------------------
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-#pragma mark NSURLConnection Delegate Methods
 
+#pragma mark NSURLConnection Delegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     // A response has been received, this is where we initialize the instance var you created
@@ -94,7 +108,7 @@
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
-//    return nil;
+    //    return nil;
     return cachedResponse;
 }
 
@@ -110,7 +124,7 @@
         NSLog(@"json parse failed \r\n");
         return;
     }
-    self.dutyRosterList =[jsonDictionary objectForKey:@"DutyRosterList"];
+    self.todayDutyList =[jsonDictionary objectForKey:@"DutyRosterList"];
     [self.tableView reloadData];
 }
 
@@ -127,14 +141,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.dutyRosterList == (id)[NSNull null])
+    if(self.todayDutyList == (id)[NSNull null])
         return 0;
     else
-        return [self.dutyRosterList count];
+        return [self.todayDutyList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString* reuseIndentifier =@"dutyCell";
+    static NSString* reuseIndentifier =@"todayDutyCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
     
     if (cell==nil) {
@@ -142,31 +156,33 @@
     }
     NSInteger row = [indexPath row];
     
-    NSDictionary *dutyRoster = [self.dutyRosterList objectAtIndex:row];
+    NSDictionary *todayDuty = [self.todayDutyList objectAtIndex:row];
     
-    NSString *doctorName = [dutyRoster objectForKey:@"DoctorName"];
+//    NSString *phaseName = [todayDuty objectForKey:@"PhaseName"];
+    
+    NSString *doctorName = [todayDuty objectForKey:@"DoctorName"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",doctorName];
     
-//    NSString *auscultationDate = [dutyRoster objectForKey:@"AuscultationDate"];
-    NSString *subjectName = [dutyRoster objectForKey:@"SubjectName"];
+    NSString *subjectName = [todayDuty objectForKey:@"SubjectName"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",subjectName];
     return cell;
 }
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)weedayChanged:(id)sender {
-    NSInteger day =[(UISegmentedControl*)sender selectedSegmentIndex]+1;
-    self.weekDay = [NSString stringWithFormat:@"%lo",day];
+- (IBAction)dutyChanged:(id)sender {
+    NSInteger index =[(UISegmentedControl*)sender selectedSegmentIndex];
+    self.status = [NSString stringWithFormat:@"%lo",index+1];
     [self linkTheNet];
     [self.tableView reloadData];
 }
 @end
+
