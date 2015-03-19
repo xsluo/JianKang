@@ -154,9 +154,12 @@
     return cell;
 }
 
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.selectedNews = [self.newsList objectAtIndex:[indexPath row]];
+    [self performSegueWithIdentifier:@"showNews" sender:self];
 }
+
 
 /*
 // Override to support conditional editing of the table view.

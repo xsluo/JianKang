@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DigtialHospitalCollectionViewController : UICollectionViewController
+//@interface DigtialHospitalCollectionViewController : UICollectionViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 @end

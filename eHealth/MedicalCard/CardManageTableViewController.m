@@ -44,6 +44,7 @@
     self.lastIndexPath = nil;
     self.cards = [[NSMutableArray alloc] init];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    self.editButtonItem.title = @"编辑";
     
     NSString *filePath = [self dataFilePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -189,30 +190,15 @@
         
         [self.cards addObject:card];
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@<%@>",[card owner],[card medicalCardTypeName]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",[card owner]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[card medicalCardTypeName]];
         if([[[self defaultCard] medicalCardID] isEqualToString:[card medicalCardID]]){
-            cell.detailTextLabel.text =@"默认";
+            cell.imageView.image = [UIImage imageNamed:@"love.png"];
             self.lastIndexPath = indexPath;
         }
         else
-            cell.detailTextLabel.text = nil;
-        cell.detailTextLabel.textColor = [UIColor redColor];
+            cell.imageView.image = [UIImage imageNamed:@"heart-7.png"];
         return cell;
-//    }
-//    else{
-//        static NSString* reuseIndentifier =@"button";
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
-//        
-//        if (cell==nil) {
-//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
-//        }
-//        cell.textLabel.textColor = [UIColor whiteColor];
-//        cell.textLabel.textAlignment = NSTextAlignmentCenter;
-//        cell.textLabel.text = @"添加健康卡";
-//        cell.textLabel.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
-//        cell.contentView.backgroundColor =[UIColor colorWithRed:235.0/255 green:235.0/255 blue:242.0/255 alpha:1.0];
-//        return cell;
-//    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -221,7 +207,9 @@
         NSInteger oldRow = (self.lastIndexPath!=nil)?[self.lastIndexPath row]:-1;
         if(newRow!=oldRow){
             UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
-            newCell.detailTextLabel.text = @"默认";
+//            newCell.detailTextLabel.text = @"默认";
+            UIImage *img = [UIImage imageNamed:@"love.png"];
+            newCell.imageView.image = img;
             
             NSMutableData *data = [[NSMutableData alloc] init];
             NSKeyedArchiver *archiver =[[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
@@ -232,13 +220,21 @@
             [data writeToFile:filePath atomically:YES];
             
             UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:self.lastIndexPath];
-            oldCell.detailTextLabel.text = nil;
+//            oldCell.detailTextLabel.text = nil;
+            oldCell.imageView.image = [UIImage imageNamed:@"heart-7.png"];
             self.lastIndexPath = indexPath;
         };
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     else
         [self performSegueWithIdentifier:@"addCard" sender:self];
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.imageView.image = [UIImage imageNamed:@"heart-7.png"];
+//    [self.tableView setNeedsDisplay];
+    [self.tableView reloadData];
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
@@ -248,20 +244,24 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    if([indexPath section]==0)
+    if([indexPath section]==0){
+//        self.editButtonItem.title = @"完成";
         return YES;
+    }
     else
         return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
 //        [self.objects removeObjectAtIndex:indexPath.row];
         [self.medicalCardList removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
+//    self.navigationItem.rightBarButtonItem.title =@"完成";
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
