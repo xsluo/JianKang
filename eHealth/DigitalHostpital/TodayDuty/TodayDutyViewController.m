@@ -39,6 +39,9 @@
 //    NSLog(@"Day of Week: %@",[daysOfWeek objectAtIndex:weekdayNumber]);
     self.weekDay =[NSString stringWithFormat:@"%@",[daysOfWeek objectAtIndex:weekdayNumber]];
     
+    UIApplication* app = [ UIApplication  sharedApplication ];
+    app.networkActivityIndicatorVisible = YES;
+    
     self.status = @"1";
     self.todayDutyList= [[NSMutableArray alloc]init];
     [self linkTheNet];
@@ -68,7 +71,7 @@
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
     //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
     //    [request setURL:[NSURL URLWithString:URL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
@@ -126,12 +129,21 @@
     }
     self.todayDutyList =[jsonDictionary objectForKey:@"DutyRosterList"];
     [self.tableView reloadData];
+    
+    UIApplication* app = [ UIApplication  sharedApplication ];
+    app.networkActivityIndicatorVisible = NO;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    
+    UIApplication* app = [ UIApplication  sharedApplication ];
+    app.networkActivityIndicatorVisible = NO;
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"网络无法连接" delegate:self cancelButtonTitle:@"确定"otherButtonTitles:nil, nil];
+    [alert show];
+    
 }
 
 #pragma mark - Table view data source

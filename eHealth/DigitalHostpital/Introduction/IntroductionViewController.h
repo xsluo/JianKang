@@ -10,6 +10,9 @@
 
 @interface IntroductionViewController : UIViewController
 
-@property (strong,nonatomic) IBOutlet UIWebView* webcontent;
-
+@property (weak, nonatomic) IBOutlet UILabel *introduction;
+@property (weak, nonatomic) IBOutlet UILabel *address;
+@property (weak, nonatomic) IBOutlet UILabel *telephone;
+@property (weak, nonatomic) IBOutlet UILabel *zipCode;
+@property (weak, nonatomic) IBOutlet UILabel *bookEarlyDays;
 @end
