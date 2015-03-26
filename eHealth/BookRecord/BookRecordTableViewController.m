@@ -1,65 +1,39 @@
 //
-//  NewsTableViewController.m
+//  BookRecordTableViewController.m
 //  eHealth
 //
-//  Created by nh neusoft on 14-12-25.
-//  Copyright (c) 2014年 PanGu. All rights reserved.
+//  Created by Bagu on 15/3/26.
+//  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
-#import "NewsTableViewController.h"
-#import "News.h"
-#import "NewsViewController.h"
+#import "BookRecordTableViewController.h"
+#import "BookRecordCell.h"
 
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
-#define Method @"GetNews"
+#define Method @"GetBookingRecordList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
 #define Type @"0"
-#define HospitalID @"440604001"
-#define NewsCategoryID @“1”
-@interface NewsTableViewController ()
 
-@property (nonatomic,retain) NSMutableData * responseData;
-@property(nonatomic,retain) NSDictionary *selectedNews;
+#define kUserName @"username"
+
+@interface BookRecordTableViewController ()
+@property (nonatomic,retain) NSMutableArray *bookRecordList;
+@property (nonatomic,retain) NSMutableData *responseData;
 
 @end
 
-@implementation NewsTableViewController
+@implementation BookRecordTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDictionary *dictionary=[[NSDictionary alloc]initWithObjectsAndKeys:AppKey,@"AppKey",AppSecret,@"AppSecret",Type,@"Type", nil];
-    NSError *error=nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
-    if(error){
-        NSLog(@"error:%@",error);
-    }
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    NSString *postString = [NSString stringWithFormat:@"method=%@&jsonBody=%@",Method,jsonString];
-    
-    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:URL]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:postData];
-    
-    //------------------------------
-    NSURLCache *urlCache = [NSURLCache sharedURLCache];
-    // 设置缓存的大小为1M
-    [urlCache setMemoryCapacity:1*1024*1024];
-    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
-    //判断是否有缓存
-    if (response != nil){
-        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
-    }
-    //-----------------------------
-    
-    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    [connection start];
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setRequest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,6 +41,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setRequest{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *userName =[userDefaults objectForKey:kUserName];
+    
+    NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:3];
+    
+    [dictionary setObject:AppKey forKey:@"AppKey"];
+    [dictionary setObject:AppSecret forKey:@"AppSecret"];
+    [dictionary setObject:Type forKey:@"Type"];
+    [dictionary setObject:userName forKey:@"UserName"];
+    [dictionary setObject:@"2013-01-01" forKey:@"BeginDate"];
+    [dictionary setObject:@"2035-05-01" forKey:@"EndDate"];
+    
+    NSError *error=nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
+    if(error){
+        NSLog(@"error:%@",error);
+    }
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *postString = [NSString stringWithFormat:@"method=%@&jsonBody=%@",Method,jsonString];
+
+    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:URL]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [connection start];
+}
 
 #pragma mark NSURLConnection Delegate Methods
 
@@ -94,17 +99,21 @@
     // You can parse the stuff in your instance variable now
     
     if([_responseData length]==0)
-            return;
+        return;
     
+    //    if([connection.currentRequest.URL.  isEqualToString:URL]){
     NSError *error = nil;
     NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:_responseData options:kNilOptions error:&error];
     if (jsonDictionary == nil) {
         NSLog(@"json parse failed");
         return;
-        }
-    self.newsList =[jsonDictionary objectForKey:@"NewsList"];
-
+    }
+    //    self.medicalCardList =[jsonDictionary objectForKey:@"MedicalCardList"];
+    NSMutableArray *arrayM =[[NSMutableArray alloc]initWithArray:[jsonDictionary objectForKey:@"BookingRecordList"]];
+    self.bookRecordList = arrayM;
+    
     [self.tableView reloadData];
+    //    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -117,59 +126,44 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//#warning Potentially incomplete method implementation.
+    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.newsList!=(id)[NSNull null])
-        return [self.newsList count];
+//#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    if(self.bookRecordList!=(id)[NSNull null])
+        return [self.bookRecordList count];
     else
         return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Configure the cell...
-    static NSString* reuseIndentifier =@"newsCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
+    static NSString *reuseIdentifier = @"bookRecordCell";
+    BookRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     if (cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
+        cell = [[BookRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
+//    cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    
     NSInteger row = [indexPath row];
+    NSDictionary *recordDictionary = [self.bookRecordList objectAtIndex:row];
     
-    NSDictionary *newsDictionary = [self.newsList objectAtIndex:row];
-    self.selectedNews = newsDictionary;
-    
-    NSString *url = [newsDictionary objectForKey:@"ThumbnailUrl"];
-    UIImageView *imgv = (UIImageView *)[cell.contentView viewWithTag:4];
-    imgv.contentMode = UIViewContentModeScaleAspectFit;
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-    UIImage *img = [UIImage imageWithData:data];
-    [imgv setImage:img];
-    
-    NSString *newsTitle = [newsDictionary objectForKey:@"NewsTitle"];
-    UILabel *labelTitle = (UILabel *)[cell.contentView viewWithTag:1];
-    labelTitle.text = newsTitle;
-    
-    NSString *newsContent = [newsDictionary objectForKey:@"NewsContent"];
-    UILabel *labelContent = (UILabel *)[cell.contentView viewWithTag:2];
-    labelContent.text = newsContent;
-    
-    NSString *newsCategory = [newsDictionary objectForKey:@"NewsCategoryName"];
-    UILabel *labelCategory = (UILabel *)[cell.contentView viewWithTag:3];
-  
-    labelCategory.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
-    labelCategory.textColor = [UIColor whiteColor];
-    labelCategory.text = newsCategory;
+    cell.hospitalName.text = [recordDictionary objectForKey:@"HospitalName"];
+    cell.doctorName.text = [recordDictionary objectForKey:@"DoctorName"];
+    cell.departmentName.text =[recordDictionary objectForKey:@"DepartmentName"];
+    cell.medicalCardCode.text =[recordDictionary objectForKey:@"MedicalCardCode"];
+    cell.medicalCardOwner.text =[recordDictionary objectForKey:@"MedicalCardOwner"];
+    cell.medicalCardTypeName.text =[recordDictionary objectForKey:@"MedicalCardTypeName"];
+    cell.auscultationDate.text =[recordDictionary objectForKey:@"AuscultationDate"];
+    cell.signInStatusName.text =[recordDictionary objectForKey:@"SignInStatusName"];
     
     return cell;
-}
 
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.selectedNews = [self.newsList objectAtIndex:[indexPath row]];
-    [self performSegueWithIdentifier:@"showNews" sender:self];
 }
 
 
@@ -207,24 +201,14 @@
 }
 */
 
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NewsViewController *newsController = (NewsViewController *)segue.destinationViewController;
-    News *aNews = [[News alloc]init];
-    if(self.selectedNews){
-        aNews.newsID = [self.selectedNews objectForKey:@"NewsID"];
-        aNews.hospitalID = [self.selectedNews objectForKey:@"HospitalID"];
-        aNews.newsCategoryID = [self.selectedNews objectForKey:@"NewsCategoryID"];
-        aNews.newsCategoryName = [self.selectedNews objectForKey:@"NewsCategoryName"];
-        aNews.newsTitle =[self.selectedNews objectForKey:@"NewsTitle"];
-        aNews.summary = [self.selectedNews objectForKey:@"Summary"];
-        aNews.newsContent = [self.selectedNews objectForKey:@"NewsContent"];
-        aNews.thumbnailUrl = [self.selectedNews objectForKey:@"ThumbnailUrl"];
-        aNews.creatTime = [self.selectedNews objectForKey:@"CreateTime"];
-    }
-    newsController.aNews= aNews;
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
 
 @end

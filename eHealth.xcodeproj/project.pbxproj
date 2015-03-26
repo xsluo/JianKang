@@ -11,6 +11,7 @@
 		0650F38E1A51275300B26F39 /* EmptyParkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650F38D1A51275300B26F39 /* EmptyParkTableViewController.m */; };
 		13064BCC1A400EBA001E9263 /* DepartmentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */; };
 		130D1D221AB6B9FF003357FF /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 130D1D211AB6B9FF003357FF /* News.m */; };
+		131C4C461AC3AA1600365BC1 /* DepartmentIntroduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 131C4C451AC3AA1600365BC1 /* DepartmentIntroduction.m */; };
 		132142FA1A3F1B0600290746 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F11A3F1B0600290746 /* 1.png */; };
 		132142FB1A3F1B0600290746 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F21A3F1B0600290746 /* 2.png */; };
 		132142FC1A3F1B0600290746 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F31A3F1B0600290746 /* 3.png */; };
@@ -175,6 +176,8 @@
 		13CAAE711A3C92EA009C420E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13CAAE6F1A3C92EA009C420E /* LaunchScreen.xib */; };
 		13CAAE7D1A3C92EA009C420E /* eHealthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAAE7C1A3C92EA009C420E /* eHealthTests.m */; };
 		13F0333A1A7797930012BB02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F033381A7797930012BB02 /* Main.storyboard */; };
+		13F1BF4E1AC43F7E0010087D /* BookRecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F1BF4D1AC43F7E0010087D /* BookRecordTableViewController.m */; };
+		13F1BF511AC43FC90010087D /* BookRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F1BF501AC43FC90010087D /* BookRecordCell.m */; };
 		13F901241AB976A9009662F9 /* DigitHospitalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F901231AB976A9009662F9 /* DigitHospitalViewController.m */; };
 		13F901261AB9AB96009662F9 /* fsdyrm.png in Resources */ = {isa = PBXBuildFile; fileRef = 13F901251AB9AB96009662F9 /* fsdyrm.png */; };
 /* End PBXBuildFile section */
@@ -198,6 +201,8 @@
 		13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepartmentTableViewController.m; path = DigitalHostpital/Departmet/DepartmentTableViewController.m; sourceTree = "<group>"; };
 		130D1D201AB6B9FF003357FF /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = Object/News.h; sourceTree = "<group>"; };
 		130D1D211AB6B9FF003357FF /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = News.m; path = Object/News.m; sourceTree = "<group>"; };
+		131C4C441AC3AA1600365BC1 /* DepartmentIntroduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepartmentIntroduction.h; path = DigitalHostpital/Departmet/DepartmentIntroduction.h; sourceTree = "<group>"; };
+		131C4C451AC3AA1600365BC1 /* DepartmentIntroduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DepartmentIntroduction.m; path = DigitalHostpital/Departmet/DepartmentIntroduction.m; sourceTree = "<group>"; };
 		132142F11A3F1B0600290746 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1.png; path = images/1.png; sourceTree = "<group>"; };
 		132142F21A3F1B0600290746 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 2.png; path = images/2.png; sourceTree = "<group>"; };
 		132142F31A3F1B0600290746 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3.png; path = images/3.png; sourceTree = "<group>"; };
@@ -398,6 +403,10 @@
 		13CAAE7B1A3C92EA009C420E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13CAAE7C1A3C92EA009C420E /* eHealthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eHealthTests.m; sourceTree = "<group>"; };
 		13F033391A7797930012BB02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		13F1BF4C1AC43F7E0010087D /* BookRecordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookRecordTableViewController.h; path = BookRecord/BookRecordTableViewController.h; sourceTree = "<group>"; };
+		13F1BF4D1AC43F7E0010087D /* BookRecordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookRecordTableViewController.m; path = BookRecord/BookRecordTableViewController.m; sourceTree = "<group>"; };
+		13F1BF4F1AC43FC90010087D /* BookRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookRecordCell.h; path = BookRecord/BookRecordCell.h; sourceTree = "<group>"; };
+		13F1BF501AC43FC90010087D /* BookRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookRecordCell.m; path = BookRecord/BookRecordCell.m; sourceTree = "<group>"; };
 		13F901221AB976A9009662F9 /* DigitHospitalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DigitHospitalViewController.h; path = DigitalHostpital/DigitHospitalViewController.h; sourceTree = "<group>"; };
 		13F901231AB976A9009662F9 /* DigitHospitalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DigitHospitalViewController.m; path = DigitalHostpital/DigitHospitalViewController.m; sourceTree = "<group>"; };
 		13F901251AB9AB96009662F9 /* fsdyrm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fsdyrm.png; path = images/fsdyrm.png; sourceTree = "<group>"; };
@@ -627,18 +636,18 @@
 			children = (
 				138C29441A52549900CDB267 /* DutyRoster */,
 				134C4FC81A3DBCFA00CDDA3E /* Department */,
-				134C4FC41A3D83C900CDDA3E /* introduction */,
+				134C4FC41A3D83C900CDDA3E /* Introduction */,
 			);
 			name = HospitalSummary;
 			sourceTree = "<group>";
 		};
-		134C4FC41A3D83C900CDDA3E /* introduction */ = {
+		134C4FC41A3D83C900CDDA3E /* Introduction */ = {
 			isa = PBXGroup;
 			children = (
 				134C4FC51A3D867000CDDA3E /* IntroductionViewController.h */,
 				134C4FC61A3D867000CDDA3E /* IntroductionViewController.m */,
 			);
-			name = introduction;
+			name = Introduction;
 			sourceTree = "<group>";
 		};
 		134C4FC81A3DBCFA00CDDA3E /* Department */ = {
@@ -646,6 +655,8 @@
 			children = (
 				13064BCA1A400EBA001E9263 /* DepartmentTableViewController.h */,
 				13064BCB1A400EBA001E9263 /* DepartmentTableViewController.m */,
+				131C4C441AC3AA1600365BC1 /* DepartmentIntroduction.h */,
+				131C4C451AC3AA1600365BC1 /* DepartmentIntroduction.m */,
 			);
 			name = Department;
 			sourceTree = "<group>";
@@ -807,6 +818,7 @@
 		13E0ADBE1A58390F00E09CE1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				13F1BF4B1AC43EE40010087D /* BookRecord */,
 				13E0ADC01A583B3000E09CE1 /* AfterLogin */,
 				13E0ADBF1A583AFD00E09CE1 /* BeforeLogin */,
 			);
@@ -835,6 +847,17 @@
 				13A739C21AB85FEE00649744 /* ChangeUsernameController.m */,
 			);
 			name = AfterLogin;
+			sourceTree = "<group>";
+		};
+		13F1BF4B1AC43EE40010087D /* BookRecord */ = {
+			isa = PBXGroup;
+			children = (
+				13F1BF4C1AC43F7E0010087D /* BookRecordTableViewController.h */,
+				13F1BF4D1AC43F7E0010087D /* BookRecordTableViewController.m */,
+				13F1BF4F1AC43FC90010087D /* BookRecordCell.h */,
+				13F1BF501AC43FC90010087D /* BookRecordCell.m */,
+			);
+			name = BookRecord;
 			sourceTree = "<group>";
 		};
 		13F901211AB97656009662F9 /* Newtest */ = {
@@ -1077,6 +1100,8 @@
 				13A739D71AB8640500649744 /* RegisterController.m in Sources */,
 				138F8B591AB075A300E36438 /* DigitaHospitalCollectionViewCell.m in Sources */,
 				060D11431A4C049E00EB201C /* NewsTableViewController.m in Sources */,
+				13F1BF4E1AC43F7E0010087D /* BookRecordTableViewController.m in Sources */,
+				131C4C461AC3AA1600365BC1 /* DepartmentIntroduction.m in Sources */,
 				13A739B71AB85F3400649744 /* ConfirmScheduleTableViewController.m in Sources */,
 				13A815611A89B3D700BCCBCE /* Schedule.m in Sources */,
 				0650F38E1A51275300B26F39 /* EmptyParkTableViewController.m in Sources */,
@@ -1111,6 +1136,7 @@
 				13A739DA1AB8644500649744 /* NewsViewController.m in Sources */,
 				13A739CB1AB8605100649744 /* UnLoginTableViewController.m in Sources */,
 				13F901241AB976A9009662F9 /* DigitHospitalViewController.m in Sources */,
+				13F1BF511AC43FC90010087D /* BookRecordCell.m in Sources */,
 				13A739C51AB85FEE00649744 /* ChangeUsernameController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

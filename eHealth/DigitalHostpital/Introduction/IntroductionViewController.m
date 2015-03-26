@@ -58,12 +58,11 @@
     
     //------------------------------
     NSURLCache *urlCache = [NSURLCache sharedURLCache];
-    /* 设置缓存的大小为1M*/
+    // 设置缓存的大小为1M
     [urlCache setMemoryCapacity:1*1024*1024];
     NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
     //判断是否有缓存
     if (response != nil){
-        NSLog(@"如果有缓存输出，从缓存中获取数据");
         [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
     }
     //-----------------------------

@@ -7,6 +7,8 @@
 //
 
 #import "DepartmentTableViewController.h"
+#import "DepartmentIntroduction.h"
+#import "Department.h"
 
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetDepartmentList"
@@ -54,20 +56,18 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
+    //------------------------------
+    NSURLCache *urlCache = [NSURLCache sharedURLCache];
+    // 设置缓存的大小为1M
+    [urlCache setMemoryCapacity:1*1024*1024];
+    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
+    //判断是否有缓存
+    if (response != nil){
+        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+    }
+    
      NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
-    
-//    NSData *receivedData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-//    
-//    if([receivedData length]==0)
-//        return;
-//    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:receivedData  options:NSJSONReadingMutableContainers  error:&error];
-//    if (jsonDictionary == nil) {
-//        NSLog(@"json parse failed \r\n");
-//        return;
-//    }
-//    self.departmentList =[jsonDictionary objectForKey:@"DepartmentList"];
-    
 }
 
 #pragma mark NSURLConnection Delegate Methods
@@ -145,48 +145,26 @@
  }
 
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
  #pragma mark - Navigation
  
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    NSDictionary *departmentInfo = [self.departmentList objectAtIndex:indexPath.row];
+    
+    Department *dpt = [[Department alloc] init];
+    DepartmentIntroduction *DepartmentDetail = segue.destinationViewController;
+    if (![[departmentInfo objectForKey:@"DepartmentName"] isEqual:[NSNull null]]) {
+        dpt.departmentName = [departmentInfo objectForKey:@"DepartmentName"];
+    }
+    if (![[departmentInfo objectForKey:@"Introduction"] isEqual:[NSNull null]]) {
+        dpt.introduction = [departmentInfo objectForKey:@"Introduction"];
+    }
+    
+    DepartmentDetail.department = dpt;
+    NSLog(@"break");
+}
 
 @end
