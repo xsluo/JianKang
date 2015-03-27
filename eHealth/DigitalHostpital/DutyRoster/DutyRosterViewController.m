@@ -7,6 +7,9 @@
 //
 
 #import "DutyRosterViewController.h"
+#import "ScheduleTableViewController.h"
+#import "Doctor.h"
+
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetDutyRosterList"
 #define AppKey @"JianKangEYuanIOS"
@@ -153,15 +156,25 @@
     return cell;
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//   
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+//    NSDictionary *dicDoctor = [self.dutyRosterList objectAtIndex:[indexPath row]];
+//    Doctor *selectedDoctor = [[Doctor alloc] init];
+//    
+//    selectedDoctor.hospitalName = [dicDoctor objectForKey:@"HospitalName"];
+//    selectedDoctor.departmentName = [dicDoctor objectForKey:@"DepartmentName"];
+//    selectedDoctor.doctorName = [dicDoctor objectForKey:@"DoctorName"];
+//    selectedDoctor.avatarUrl = [dicDoctor objectForKey:@"AvantarUrl"];
+//    selectedDoctor.scheduleList = [dicDoctor objectForKey:@"ScheduleList"];
+//    
+//    ScheduleTableViewController *scheduleController = (ScheduleTableViewController *)segue.destinationViewController;
+//    scheduleController.doctor = selectedDoctor;
+//}
+
 
 - (IBAction)weedayChanged:(id)sender {
     NSInteger day =[(UISegmentedControl*)sender selectedSegmentIndex]+1;

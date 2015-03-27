@@ -12,6 +12,11 @@
 #define kDataFile @"dataCard"
 #define kDataKey  @"defaultCard"
 
+#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#define Method @"OrderBookingRecord"
+#define AppKey @"JianKangEYuanIOS"
+#define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
+
 @interface ConfirmScheduleTableViewController ()
 
 @property (strong,nonatomic) NSArray *fieldLabels;
@@ -102,18 +107,70 @@
         return cell;
     }
     else{
-        cell1.contentView.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
-        cell1.textLabel.contentMode = UIViewContentModeCenter;
-        cell1.textLabel.text = @"确认预约";
-        cell1.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell1.textLabel.textColor = [UIColor whiteColor];
+//        cell1.contentView.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
+//        cell1.textLabel.contentMode = UIViewContentModeCenter;
+//        cell1.textLabel.text = @"确认预约";
+//        cell1.textLabel.textAlignment = NSTextAlignmentCenter;
+//        cell1.textLabel.textColor = [UIColor whiteColor];
+        UIButton *confirmButton = [[UIButton alloc] initWithFrame:cell1.frame];
+        confirmButton.backgroundColor= [UIColor redColor];
+        [confirmButton setTitle:@"确认预约" forState:UIControlStateNormal];
+        confirmButton.titleLabel.textColor = [UIColor brownColor];
+        [cell1.contentView addSubview:confirmButton];
+        [confirmButton addTarget:self action:@selector(confirm:) forControlEvents:UIControlEventTouchDown];
         return cell1;
     }
- 
 }
 
+-(void)confirm:(id)sender{
+    NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:3];
+    [dictionary setObject:AppKey forKey:@"AppKey"];
+    [dictionary setObject:AppSecret forKey:@"AppSecret"];
+    
+    [dictionary setObject:self.defaultCard.medicalCardTypeID forKey:@"MedicalCardTypeID"];
+    [dictionary setObject:self.defaultCard.medicalCardCode forKey:@"MedicalCardCode"];
+    [dictionary setObject:[self.schedule objectForKey:@"ScheduleID"] forKey:@"ScheduleID"];
+    [dictionary setObject:[self.schedule objectForKey:@"AuscultationDate"] forKey:@"AuscultationDate"];
+    [dictionary setObject:[self.schedule objectForKey:@"BeginTime"] forKey:@"BeginTime"];
+    [dictionary setObject:[self.schedule objectForKey:@"EndTime"] forKey:@"EndTime"];
+    [dictionary setObject:[self.schedule objectForKey:@"ContactNumber"] forKey:@"ContactNumber"];
+    [dictionary setObject:@"10020" forKey:@"BookWayID"];
+    
+   
+    
+    NSError *error=nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
+    if(error){
+        NSLog(@"error:%@",error);
+    }
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *postString = [NSString stringWithFormat:@"method=%@&jsonBody=%@",Method,jsonString];
+    
+    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    
+    //------------------------------
+    NSURLCache *urlCache = [NSURLCache sharedURLCache];
+    /* 设置缓存的大小为1M*/
+    [urlCache setMemoryCapacity:1*1024*1024];
+    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
+    //判断是否有缓存
+    if (response != nil){
+        NSLog(@"如果有缓存输出，从缓存中获取数据");
+        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+    }
+    //-----------------------------
+    
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [connection start];
 
-
+    
+    
+}
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

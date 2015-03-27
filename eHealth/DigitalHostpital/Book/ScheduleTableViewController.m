@@ -36,6 +36,24 @@
     [self getScheduleList];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    UIImageView *imageAvatar = (UIImageView *)[self.resumeView viewWithTag:1];
+    UILabel *labelDoctorName = (UILabel *) [self.resumeView viewWithTag:2];
+    UILabel *labelDepartment = (UILabel *) [self.resumeView viewWithTag:3];
+    UILabel *labelHospitalName = (UILabel *)[self.resumeView viewWithTag:4];
+ 
+    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.doctor avatarUrl]]];
+    UIImage *img= [UIImage imageWithData:data];
+    if(!img)
+        img = [UIImage imageNamed:@"1.png"];
+    imageAvatar.image = img;
+  
+ 
+    labelDoctorName.text = [self.doctor doctorName ];
+    labelDepartment.text = [self.doctor departmentName];
+    labelHospitalName.text = [self.doctor hospitalName];
+}
+
 -(void)getScheduleList{
     
     NSString *dctid =[self.doctor doctorID];
@@ -165,12 +183,10 @@
     labelDate.text = ausDate;
     
     NSString *beginTm = [scheduleDictionary objectForKey:@"BeginTime"];
-    UILabel *labelBegin = (UILabel*)[cell.contentView viewWithTag:2];
-    labelBegin.text = beginTm;
-    
     NSString *endTm = [scheduleDictionary objectForKey:@"EndTime"];
-    UILabel *labelEnd = (UILabel*)[cell.contentView viewWithTag:3];
-    labelEnd.text = endTm;
+    UILabel *labelTm = (UILabel*)[cell.contentView viewWithTag:2];
+    labelTm.text = [NSString stringWithFormat:@"%@-%@",beginTm,endTm];
+    
     
     NSString *available = [scheduleDictionary objectForKey:@"AvailableBookingNumber"];
     UILabel *labelAvailable = (UILabel*)[cell.contentView viewWithTag:4];

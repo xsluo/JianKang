@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DutyRosterViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,retain) NSMutableArray *dutyRosterList;
+@property(nonatomic,retain)   NSMutableArray *dutyRosterList;
 @property(nonatomic,retain)   NSMutableData *responseData;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)weedayChanged:(id)sender;

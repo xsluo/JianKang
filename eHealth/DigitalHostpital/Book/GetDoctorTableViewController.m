@@ -42,8 +42,6 @@
     
     NSString *dptid =[self.department departmentID];
     
-    
-    
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:5];
     [dictionary setObject:AppKey forKey:@"AppKey"];
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
@@ -65,7 +63,6 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
-    
     
     //------------------------------
     NSURLCache *urlCache = [NSURLCache sharedURLCache];
@@ -188,6 +185,7 @@
     dct.avatarUrl = [aDoctor objectForKey:@"AvatarUrl"];
     dct.hospitalID = [aDoctor objectForKey:@"HospitalID"];
     dct.hospitalName = [aDoctor objectForKey:@"HospitalName"];
+    dct.departmentName = [aDoctor objectForKey:@"DepartmentName"];
     dct.introduction = [aDoctor objectForKey:@"Introduction"];
     self.doctor = dct;
 }

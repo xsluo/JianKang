@@ -12,10 +12,12 @@
 @property (strong,nonatomic)NSString *doctorID;
 @property (strong,nonatomic)NSString *hospitalID;
 @property (strong,nonatomic)NSString *hospitalName;
+@property (strong,nonatomic)NSString *departmentName;
 @property (strong,nonatomic)NSString *doctorName;
 @property (strong,nonatomic)NSString *sex;
 @property (strong,nonatomic)NSString *avatarUrl;
 @property (strong,nonatomic)NSString *introduction;
+@property (strong,nonatomic)NSString *scheduleList;
 @property (strong,nonatomic)NSString *versions;
 
 @end

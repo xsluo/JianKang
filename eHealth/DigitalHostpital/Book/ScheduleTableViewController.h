@@ -11,4 +11,5 @@
 @interface ScheduleTableViewController : UITableViewController
 @property(nonatomic,retain) Doctor *doctor;
 @property (strong,nonatomic) NSMutableArray *scheduleList;
+@property (weak, nonatomic) IBOutlet UIView *resumeView;
 @end

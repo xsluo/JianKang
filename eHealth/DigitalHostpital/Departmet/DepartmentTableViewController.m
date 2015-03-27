@@ -162,9 +162,7 @@
     if (![[departmentInfo objectForKey:@"Introduction"] isEqual:[NSNull null]]) {
         dpt.introduction = [departmentInfo objectForKey:@"Introduction"];
     }
-    
     DepartmentDetail.department = dpt;
-    NSLog(@"break");
 }
 
 @end
