@@ -260,10 +260,10 @@
         <scene sceneID="Kjy-ac-PdY">
             <objects>
                 <tableViewController title="我的预约" id="bhg-HJ-Fst" customClass="BookRecordTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="141" sectionHeaderHeight="22" sectionFooterHeight="22" id="EK4-Qg-i9h">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="EK4-Qg-i9h">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookRecordCell" rowHeight="141" id="mk6-Du-bD6" customClass="BookRecordCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -343,17 +343,25 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SignInStatusName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWi-8P-t04">
-                                            <rect key="frame" x="449" y="73" width="143" height="21"/>
+                                            <rect key="frame" x="449" y="52" width="143" height="21"/>
+                                            <color key="backgroundColor" red="0.10980392160000001" green="0.54901960780000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
+                                            <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdR-Uy-Tpl">
+                                            <rect key="frame" x="449" y="90" width="143" height="30"/>
+                                            <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="取消预约">
+                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="p9A-Es-YqX" firstAttribute="leading" secondItem="oK3-9e-8Xw" secondAttribute="leading" id="2Wd-yt-93Q"/>
                                         <constraint firstItem="BJ1-YS-2ri" firstAttribute="top" secondItem="p9A-Es-YqX" secondAttribute="bottom" constant="4" id="8Ft-tP-mxi"/>
                                         <constraint firstItem="p9A-Es-YqX" firstAttribute="centerY" secondItem="vIX-bE-Xae" secondAttribute="centerY" id="Eb7-3h-0Xz"/>
-                                        <constraint firstItem="ftq-Dd-zh6" firstAttribute="centerY" secondItem="ZWi-8P-t04" secondAttribute="centerY" id="Iur-qd-aT6"/>
                                         <constraint firstItem="ftq-Dd-zh6" firstAttribute="centerY" secondItem="oK3-9e-8Xw" secondAttribute="centerY" id="K51-fa-D0i"/>
                                         <constraint firstItem="vIX-bE-Xae" firstAttribute="leading" secondItem="0Xd-fv-PTq" secondAttribute="leadingMargin" constant="54" id="MKN-HI-DHH"/>
                                         <constraint firstItem="BJ1-YS-2ri" firstAttribute="centerY" secondItem="4Ca-YD-Ihu" secondAttribute="centerY" id="PJU-j7-AJ2"/>
@@ -366,6 +374,7 @@
                                         <constraint firstItem="QMI-ZS-K4E" firstAttribute="top" secondItem="0Xd-fv-PTq" secondAttribute="topMargin" id="f05-gt-XAS"/>
                                         <constraint firstItem="NFu-kK-Hg8" firstAttribute="leading" secondItem="QMI-ZS-K4E" secondAttribute="leading" id="f3O-AN-MPN"/>
                                         <constraint firstItem="sCN-75-S3V" firstAttribute="centerY" secondItem="Und-Bx-auF" secondAttribute="centerY" id="f75-2y-iZ9"/>
+                                        <constraint firstItem="zdR-Uy-Tpl" firstAttribute="centerY" secondItem="vIX-bE-Xae" secondAttribute="centerY" id="fLr-tk-zgX"/>
                                         <constraint firstItem="oK3-9e-8Xw" firstAttribute="leading" secondItem="Und-Bx-auF" secondAttribute="leading" id="gMC-h6-MP1"/>
                                         <constraint firstItem="4Ca-YD-Ihu" firstAttribute="leading" secondItem="BJ1-YS-2ri" secondAttribute="trailing" id="iTy-kn-hGu"/>
                                         <constraint firstItem="QMI-ZS-K4E" firstAttribute="centerY" secondItem="I0l-Pr-iH0" secondAttribute="centerY" id="k2V-if-bT3"/>
@@ -373,8 +382,11 @@
                                         <constraint firstItem="539-mD-1UD" firstAttribute="centerY" secondItem="NFu-kK-Hg8" secondAttribute="centerY" id="kgT-dq-ltF"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="I0l-Pr-iH0" secondAttribute="trailing" id="moq-mN-eTt"/>
                                         <constraint firstItem="NFu-kK-Hg8" firstAttribute="top" secondItem="QMI-ZS-K4E" secondAttribute="bottom" constant="4" id="nuD-pI-9qH"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="zdR-Uy-Tpl" secondAttribute="trailing" id="pcy-s2-5C5"/>
+                                        <constraint firstItem="zdR-Uy-Tpl" firstAttribute="width" secondItem="ZWi-8P-t04" secondAttribute="width" id="tLt-hv-sO2"/>
                                         <constraint firstItem="oK3-9e-8Xw" firstAttribute="top" secondItem="Und-Bx-auF" secondAttribute="bottom" constant="4" id="uTA-b4-eCS"/>
                                         <constraint firstItem="sCN-75-S3V" firstAttribute="leading" secondItem="Und-Bx-auF" secondAttribute="trailing" id="yT1-px-Tqi"/>
+                                        <constraint firstItem="sCN-75-S3V" firstAttribute="centerY" secondItem="ZWi-8P-t04" secondAttribute="centerY" id="z4J-P7-gkw"/>
                                         <constraint firstItem="p9A-Es-YqX" firstAttribute="top" secondItem="oK3-9e-8Xw" secondAttribute="bottom" constant="4" id="zQb-HU-NKC"/>
                                     </constraints>
                                 </tableViewCellContentView>

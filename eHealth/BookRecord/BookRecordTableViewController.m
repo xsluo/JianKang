@@ -166,6 +166,9 @@
 
 }
 
+-(double)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 144.0;
+}
 
 /*
 // Override to support conditional editing of the table view.
