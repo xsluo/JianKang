@@ -11,6 +11,7 @@
 
 #define kDataFile @"dataCard"
 #define kDataKey  @"defaultCard"
+#define kUserName @"username"
 
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"OrderBookingRecord"
@@ -22,6 +23,7 @@
 @property (strong,nonatomic) NSArray *fieldLabels;
 @property (strong,nonatomic) NSMutableArray *fieldValues;
 @property (strong,nonatomic) MedicalCard *defaultCard;
+@property (nonatomic,retain) NSMutableData * responseData;
 
 @end
 
@@ -107,11 +109,11 @@
         return cell;
     }
     else{
-//        cell1.contentView.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
-//        cell1.textLabel.contentMode = UIViewContentModeCenter;
-//        cell1.textLabel.text = @"确认预约";
-//        cell1.textLabel.textAlignment = NSTextAlignmentCenter;
-//        cell1.textLabel.textColor = [UIColor whiteColor];
+        //        cell1.contentView.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
+        //        cell1.textLabel.contentMode = UIViewContentModeCenter;
+        //        cell1.textLabel.text = @"确认预约";
+        //        cell1.textLabel.textAlignment = NSTextAlignmentCenter;
+        //        cell1.textLabel.textColor = [UIColor whiteColor];
         UIButton *confirmButton = [[UIButton alloc] initWithFrame:cell1.frame];
         confirmButton.backgroundColor= [UIColor redColor];
         [confirmButton setTitle:@"确认预约" forState:UIControlStateNormal];
@@ -124,19 +126,24 @@
 
 -(void)confirm:(id)sender{
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:3];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    ;
+
+    
     [dictionary setObject:AppKey forKey:@"AppKey"];
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
-    
+    [dictionary setObject:[userDefaults objectForKey:kUserName] forKey:@"UserName"];
     [dictionary setObject:self.defaultCard.medicalCardTypeID forKey:@"MedicalCardTypeID"];
     [dictionary setObject:self.defaultCard.medicalCardCode forKey:@"MedicalCardCode"];
     [dictionary setObject:[self.schedule objectForKey:@"ScheduleID"] forKey:@"ScheduleID"];
     [dictionary setObject:[self.schedule objectForKey:@"AuscultationDate"] forKey:@"AuscultationDate"];
     [dictionary setObject:[self.schedule objectForKey:@"BeginTime"] forKey:@"BeginTime"];
     [dictionary setObject:[self.schedule objectForKey:@"EndTime"] forKey:@"EndTime"];
-    [dictionary setObject:[self.schedule objectForKey:@"ContactNumber"] forKey:@"ContactNumber"];
+//    [dictionary setObject:[self.schedule objectForKey:@"ContactNumber"] forKey:@"ContactNumber"];
     [dictionary setObject:@"10020" forKey:@"BookWayID"];
     
-   
+    
     
     NSError *error=nil;
     
@@ -167,62 +174,107 @@
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
+}
 
+
+#pragma mark
+#pragma mark NSURLConnection Delegate Methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    // A response has been received, this is where we initialize the instance var you created
+    // so that we can append data to it in the didReceiveData method
+    // Furthermore, this method is called each time there is a redirect so reinitializing it
+    // also serves to clear it
+    _responseData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    // Append the new data to the instance variable you declared
+    [_responseData appendData:data];
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
+                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {
+    // Return nil to indicate not necessary to store a cached response for this connection
+    return nil;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    // The request is complete and data has been received
+    // You can parse the stuff in your instance variable now
     
+    if([_responseData length]==0)
+        return;
     
-}
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSError *error = nil;
+    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:_responseData options:kNilOptions error:&error];
+    if (jsonDictionary == nil) {
+        NSLog(@"json parse failed");
+        return;
+    }
     
-    // Configure the cell...
-    
-    return cell;
+    NSString *resultMsg = [jsonDictionary objectForKey:@"Message"];
+    NSLog(@"%@",resultMsg);
 }
-*/
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    // The request has failed for some reason!
+    // Check the error var
+    NSLog(@"%@",[error localizedDescription]);
+}
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+ UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+ 
+ // Configure the cell...
+ 
+ return cell;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-#pragma mark - Navigation
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

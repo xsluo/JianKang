@@ -39,7 +39,7 @@
     if (cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
     }
-    NSInteger row = [indexPath row];
+//    NSInteger row = [indexPath row];
     cell.textLabel.text = @"咨询列表";
     return cell;
 }
