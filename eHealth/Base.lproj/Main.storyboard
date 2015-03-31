@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -196,8 +196,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZ7-OH-hZM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZ7-OH-hZM">
+                                <rect key="frame" x="-16" y="0.0" width="600" height="551"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科室名称：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKf-bq-9by">
                                         <rect key="frame" x="8" y="20" width="85" height="21"/>
@@ -255,6 +255,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ddi-AX-qqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-8199" y="2390"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bw0-KE-Vhu">
+            <objects>
+                <viewController id="CXH-Db-wcL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FOH-dX-ZaG"/>
+                        <viewControllerLayoutGuide type="bottom" id="zEp-ej-lTR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8CM-9J-E2z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交通指引图" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W70-TI-hOp">
+                                <rect key="frame" x="258" y="289" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="W70-TI-hOp" secondAttribute="centerX" id="QaH-QD-xMq"/>
+                            <constraint firstAttribute="centerY" secondItem="W70-TI-hOp" secondAttribute="centerY" id="dv8-jC-zlR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iDi-EM-gWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6170" y="1346"/>
         </scene>
         <!--我的预约-->
         <scene sceneID="Kjy-ac-PdY">
@@ -343,19 +373,22 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SignInStatusName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWi-8P-t04">
-                                            <rect key="frame" x="449" y="52" width="143" height="21"/>
+                                            <rect key="frame" x="464" y="54" width="128" height="18"/>
                                             <color key="backgroundColor" red="0.10980392160000001" green="0.54901960780000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdR-Uy-Tpl">
-                                            <rect key="frame" x="449" y="90" width="143" height="30"/>
+                                            <rect key="frame" x="464" y="90" width="128" height="30"/>
                                             <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="取消预约">
                                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="bookCancel:" destination="mk6-Du-bD6" eventType="touchUpInside" id="aiX-Xe-j9Q"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -392,6 +425,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="auscultationDate" destination="I0l-Pr-iH0" id="mpo-dy-Hlm"/>
+                                    <outlet property="buttonCancel" destination="zdR-Uy-Tpl" id="ZXo-Ye-VXs"/>
                                     <outlet property="departmentName" destination="sCN-75-S3V" id="a40-yq-ElX"/>
                                     <outlet property="doctorName" destination="539-mD-1UD" id="eLd-ab-bnZ"/>
                                     <outlet property="hospitalName" destination="QMI-ZS-K4E" id="Vrb-QO-PL5"/>
@@ -1328,6 +1362,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WX6-8e-Bxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-8579" y="-3214"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ilO-53-cZZ">
+            <objects>
+                <viewController id="ECv-Nq-aKv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SBJ-pm-01s"/>
+                        <viewControllerLayoutGuide type="bottom" id="CY5-iZ-c4V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fcJ-EM-IOC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="楼群分布图" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gli-ra-w4Q">
+                                <rect key="frame" x="258" y="289" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="Gli-ra-w4Q" secondAttribute="centerY" id="BRM-g6-6l5"/>
+                            <constraint firstAttribute="centerX" secondItem="Gli-ra-w4Q" secondAttribute="centerX" id="F1A-JA-tbx"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yi4-TD-g9A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5535" y="1346"/>
         </scene>
         <!--满意度调查-->
         <scene sceneID="NlL-va-WjO">
@@ -3267,6 +3331,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="CXH-Db-wcL" kind="show" id="eZV-f8-tHH"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Yu9-G6-EVu" imageView="ti9-Vq-X9N" style="IBUITableViewCellStyleDefault" id="GQd-Pc-Kmj">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -3284,6 +3351,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ECv-Nq-aKv" kind="show" id="vKW-bi-oJY"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="GFq-uX-yST" imageView="qNj-i0-T7o" style="IBUITableViewCellStyleDefault" id="Gua-cn-ckH">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -3302,7 +3372,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="x8h-gl-pgJ" kind="show" id="FOt-70-jW2"/>
+                                            <segue destination="x8h-gl-pgJ" kind="show" id="ZWE-4i-Vwd"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="69h-QA-mgQ" imageView="i2N-ez-R7K" style="IBUITableViewCellStyleDefault" id="1Vh-wx-dzA">
@@ -3359,12 +3429,20 @@
                                     <segment title="二号楼"/>
                                 </segments>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科室分布图" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLg-fg-gwH">
+                                <rect key="frame" x="258" y="289" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="aLg-fg-gwH" secondAttribute="centerY" id="1KI-UJ-s96"/>
                             <constraint firstItem="G3x-XS-lFd" firstAttribute="top" secondItem="kGc-N4-TSR" secondAttribute="bottom" constant="8" id="CL3-sU-hHf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="G3x-XS-lFd" secondAttribute="trailing" id="Zz6-dd-Yvw"/>
                             <constraint firstItem="G3x-XS-lFd" firstAttribute="leading" secondItem="wCT-H0-0Hd" secondAttribute="leadingMargin" id="eFu-mN-CqY"/>
+                            <constraint firstAttribute="centerX" secondItem="aLg-fg-gwH" secondAttribute="centerX" id="uUj-Ir-BmA"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -3388,7 +3466,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="60"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="J5O-7h-WfC">
-                                        <rect key="frame" x="0.0" y="8" width="1200" height="45"/>
+                                        <rect key="frame" x="8" y="8" width="1200" height="45"/>
                                         <segments>
                                             <segment title="周一"/>
                                             <segment title="周二"/>
@@ -3410,9 +3488,9 @@
                                     <constraint firstAttribute="centerY" secondItem="J5O-7h-WfC" secondAttribute="centerY" id="FZ3-ah-uBY"/>
                                     <constraint firstAttribute="bottom" secondItem="J5O-7h-WfC" secondAttribute="bottom" constant="8" id="JY8-op-6NL"/>
                                     <constraint firstAttribute="width" secondItem="J5O-7h-WfC" secondAttribute="width" multiplier="0.5" id="Tiy-py-cF7"/>
-                                    <constraint firstAttribute="trailing" secondItem="J5O-7h-WfC" secondAttribute="trailing" id="W5Z-4b-lKi"/>
+                                    <constraint firstAttribute="trailing" secondItem="J5O-7h-WfC" secondAttribute="trailing" constant="8" id="W5Z-4b-lKi"/>
                                     <constraint firstItem="J5O-7h-WfC" firstAttribute="top" secondItem="sIZ-Od-7I2" secondAttribute="top" constant="8" id="n76-Dc-2IQ"/>
-                                    <constraint firstItem="J5O-7h-WfC" firstAttribute="leading" secondItem="sIZ-Od-7I2" secondAttribute="leading" id="q0i-rN-QhF"/>
+                                    <constraint firstItem="J5O-7h-WfC" firstAttribute="leading" secondItem="sIZ-Od-7I2" secondAttribute="leading" constant="8" id="q0i-rN-QhF"/>
                                 </constraints>
                             </scrollView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TND-kW-ugf">

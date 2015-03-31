@@ -115,7 +115,7 @@
         //        cell1.textLabel.textAlignment = NSTextAlignmentCenter;
         //        cell1.textLabel.textColor = [UIColor whiteColor];
         UIButton *confirmButton = [[UIButton alloc] initWithFrame:cell1.frame];
-        confirmButton.backgroundColor= [UIColor redColor];
+        confirmButton.backgroundColor= [UIColor colorWithRed:252.0/255 green:106.0/255 blue:8.0/255 alpha:1.0];
         [confirmButton setTitle:@"确认预约" forState:UIControlStateNormal];
         confirmButton.titleLabel.textColor = [UIColor brownColor];
         [cell1.contentView addSubview:confirmButton];
@@ -141,7 +141,7 @@
     [dictionary setObject:[self.schedule objectForKey:@"BeginTime"] forKey:@"BeginTime"];
     [dictionary setObject:[self.schedule objectForKey:@"EndTime"] forKey:@"EndTime"];
 //    [dictionary setObject:[self.schedule objectForKey:@"ContactNumber"] forKey:@"ContactNumber"];
-    [dictionary setObject:@"10020" forKey:@"BookWayID"];
+    [dictionary setObject:@"10020" forKey:@"BookingWayID"];
     
     
     
@@ -174,7 +174,12 @@
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
-}
+    
+   // UIAlertView *alert = [UIAlertView alloc]initWithTitle:@"预约结果" message:@"恭喜你，预约成功" delegate:self cancelButtonTitle:@"确定",
+    UIAlertView  *alert = [[UIAlertView alloc] initWithTitle:nil message:@"恭喜你，预约成功！" delegate:self  cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    [alert show];
+    [self.navigationController popViewControllerAnimated:YES];
+};
 
 
 #pragma mark

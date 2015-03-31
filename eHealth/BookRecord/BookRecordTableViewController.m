@@ -21,6 +21,7 @@
 @property (nonatomic,retain) NSMutableArray *bookRecordList;
 @property (nonatomic,retain) NSMutableData *responseData;
 
+
 @end
 
 @implementation BookRecordTableViewController
@@ -72,6 +73,9 @@
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
 }
+
+
+
 
 #pragma mark NSURLConnection Delegate Methods
 
@@ -161,6 +165,18 @@
     cell.medicalCardTypeName.text =[recordDictionary objectForKey:@"MedicalCardTypeName"];
     cell.auscultationDate.text =[recordDictionary objectForKey:@"AuscultationDate"];
     cell.signInStatusName.text =[recordDictionary objectForKey:@"SignInStatusName"];
+    cell.medicalCardTypeID = [recordDictionary objectForKey:@"MedicalCardTypeID"];
+    cell.bookingRecordID = [recordDictionary objectForKey:@"BookingRecordID"];
+    
+    if ([[recordDictionary objectForKey:@"SignInStatusName"] isEqualToString:@"未到诊"]) {
+        cell.buttonCancel.hidden = NO;
+        cell.signInStatusName.hidden = YES;
+    }
+    else{
+        cell.buttonCancel.hidden = YES;
+        cell.signInStatusName.hidden = NO;
+    }
+    
     
     return cell;
 
@@ -169,6 +185,7 @@
 -(double)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 144.0;
 }
+
 
 /*
 // Override to support conditional editing of the table view.
