@@ -21,9 +21,7 @@
 
 @interface BookViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) Hospital *hospital;
-@property (strong,nonatomic) Department *department;
-@property (strong,nonatomic) Doctor *doctor;
+
 @property (strong,nonatomic) UIView *panelView;
 
 -(IBAction)unwindSelectHospital:(UIStoryboardSegue *)segue;
@@ -37,7 +35,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    self.hospital = nil;
+//    self.hospital = nil;
     self.department = nil;
     self.doctor = nil;
     self.panelView = [self.view viewWithTag:999];
@@ -91,7 +89,7 @@
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[dct avatarUrl]]];
         UIImage *img= [UIImage imageWithData:data];
         if(!img)
-            img = [UIImage imageNamed:@"1.png"];
+            img = [UIImage imageNamed:@"man.png"];
         imageAvatar.image = img;
         
         labelDoctorName.text = dct.doctorName;

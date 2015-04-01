@@ -149,21 +149,25 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //#warning Potentially incomplete method implementation.
     //    // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //#warning Incomplete method implementation.
     //    // Return the number of rows in the section.
+    if(section ==0){
      if(self.medicalCardList!=(id)[NSNull null])
             return [self.medicalCardList count];
         else
             return 0;
+    }
+    else
+        return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if([indexPath section]==0){
-        static NSString* reuseIndentifier =@"cardCell";
+    if([indexPath section]==0){
+        static NSString* reuseIndentifier =@"plainCardCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
         
         if (cell==nil) {
@@ -200,6 +204,14 @@
             cell.imageView.image = [UIImage imageNamed:@"heart-7.png"];
         return cell;
 }
+    else
+    {
+        static NSString *identifier = @"addCardCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+        return cell;
+    }
+}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if([indexPath section]==0){
@@ -265,10 +277,10 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    if(section==0&&![self.medicalCardList  isEqual:[NSNull null]])
+    if(section==0&&![self.medicalCardList  isEqual:[NSNull null]])
         return @"点击行选择默认健康卡，点击右边图标查看卡片详细信息";
-//    else
-//        return @"添加健康卡";
+    else
+        return @"";
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

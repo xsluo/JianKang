@@ -82,62 +82,10 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    
-    //    UITableViewCell *cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"scheduleCell"];
-    //    UITableViewCell *cell1 =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"confirmCell"];
-    //    if([indexPath section]== 0){
-    //        switch ([indexPath row]) {
-    //            case 0:
-    //                cell.detailTextLabel.text = [[self defaultCard] owner];break;
-    //            case 1:
-    //                //cell.detailTextLabel.text = @"健康卡号";break;
-    //
-    //            case 2:
-    //                cell.detailTextLabel.text = [[self schedule] objectForKey:@"HospitalName"];break;
-    //            case 3:
-    //                cell.detailTextLabel.text = [[self schedule] objectForKey:@"DepartmentName"];break;
-    //            case 4:
-    //                cell.detailTextLabel.text = [[self schedule] objectForKey:@"DoctorName"];break;
-    //            case 5:
-    //                cell.detailTextLabel.text = [[self schedule] objectForKey:@"AuscultationDate"];break;
-    //            case 6:{
-    //                NSString *tmFromTo = [NSString stringWithFormat:@"%@ - %@",[[self schedule] objectForKey:@"BeginTime"],[[self schedule] objectForKey:@"EndTime"]];
-    //                cell.detailTextLabel.text = tmFromTo;}break;
-    //            case 7:
-    //                cell.detailTextLabel.text = @"取号地点";break;
-    //            case 8:
-    //                cell.detailTextLabel.text = @"支付方式";break;
-    //            default:break;
-    //        }
-    //        cell.textLabel.text = [[self fieldLabels] objectAtIndex:[indexPath row]];
-    //        return cell;
-    //    }
-    //    else{
-    //        //        cell1.contentView.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
-    //        //        cell1.textLabel.contentMode = UIViewContentModeCenter;
-    //        //        cell1.textLabel.text = @"确认预约";
-    //        //        cell1.textLabel.textAlignment = NSTextAlignmentCenter;
-    //        //        cell1.textLabel.textColor = [UIColor whiteColor];
-    //        UIButton *confirmButton = [[UIButton alloc] initWithFrame:cell1.frame];
-    //        confirmButton.backgroundColor= [UIColor colorWithRed:252.0/255 green:106.0/255 blue:8.0/255 alpha:1.0];
-    //        [confirmButton setTitle:@"确认预约" forState:UIControlStateNormal];
-    //        confirmButton.titleLabel.textColor = [UIColor brownColor];
-    //        [cell1.contentView addSubview:confirmButton];
-    //        [confirmButton addTarget:self action:@selector(confirm:) forControlEvents:UIControlEventTouchDown];
-    //        return cell1;
-    //    }
+   
     NSString *identifier = nil;
     NSInteger section = [indexPath section];
-    //  if (section==0) {
-    //       identifier = @"scheduleCell";
-    //   }
-    //   else{
-    //       identifier = @"confirmCell";
-    //  }
-    //  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    
+
     if (section==0) {
         identifier = @"scheduleCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
@@ -189,8 +137,6 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
         
         UIButton *confirmButton = [[UIButton alloc] initWithFrame:cell.contentView.frame];
-//        UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 300, 24)];
-//        confirmButton.alignmentRectInsets
         confirmButton.backgroundColor= [UIColor colorWithRed:252.0/255 green:106.0/255 blue:8.0/255 alpha:1.0];
         [confirmButton setTitle:@"确认预约" forState:UIControlStateNormal];
         confirmButton.titleLabel.textColor = [UIColor brownColor];

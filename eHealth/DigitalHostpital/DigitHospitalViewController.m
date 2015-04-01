@@ -8,6 +8,8 @@
 
 #import "DigitHospitalViewController.h"
 #import "DigitaHospitalCollectionViewCell.h"
+#import "BookViewController.h"
+#import "Hospital.h"
 
 @interface DigitHospitalViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -102,6 +104,23 @@ static NSString * const reuseIdentifier = @"CollectionCell";
     NSString *segueID = [[NSString alloc]initWithFormat:@"%ld",(long)[indexPath row]+1];
     [self performSegueWithIdentifier:segueID sender:self];
 }
+
+
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+     if ([[segue identifier] isEqual: @"4"]) {
+         BookViewController *destination = [segue destinationViewController];
+         Hospital *fsdy = [[Hospital alloc]init];
+         fsdy.hospitalID = @"440604001";
+         fsdy.hospitalName = @"佛山市区第一人民医院";
+         destination.hospital = fsdy;
+     };
+     
+ }
 
 
 

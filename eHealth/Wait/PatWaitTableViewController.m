@@ -34,7 +34,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.waitNum = [NSArray arrayWithObjects:@"等候人数",@"姓名", @"性别", @"年龄", @"就诊医生", @"就诊科室", @"就诊日期", @"就诊时间", @"就诊序号",nil];
+    self.waitNum = [NSArray arrayWithObjects:@"排在前面的有",@"姓名", @"性别", @"年龄", @"就诊医生", @"就诊科室", @"就诊日期", @"就诊时间", @"就诊序号",nil];
     
     NSString *filePath = [self dataFilePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {

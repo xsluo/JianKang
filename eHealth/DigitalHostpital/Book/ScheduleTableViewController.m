@@ -45,7 +45,7 @@
     NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.doctor avatarUrl]]];
     UIImage *img= [UIImage imageWithData:data];
     if(!img)
-        img = [UIImage imageNamed:@"1.png"];
+        img = [UIImage imageNamed:@"man.png"];
     imageAvatar.image = img;
   
  

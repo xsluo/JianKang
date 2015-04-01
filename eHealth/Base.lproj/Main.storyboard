@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -256,10 +256,10 @@
             </objects>
             <point key="canvasLocation" x="-8199" y="2390"/>
         </scene>
-        <!--View Controller-->
+        <!--交通指引-->
         <scene sceneID="bw0-KE-Vhu">
             <objects>
-                <viewController id="CXH-Db-wcL" sceneMemberID="viewController">
+                <viewController title="交通指引" id="CXH-Db-wcL" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FOH-dX-ZaG"/>
                         <viewControllerLayoutGuide type="bottom" id="zEp-ej-lTR"/>
@@ -1147,20 +1147,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9WR-lT-vmO">
-                            <rect key="frame" x="-23" y="-15" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <state key="normal" title=" 添加健康卡">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <segue destination="fP5-0p-BLr" kind="show" identifier="addMedicalCard" id="JW3-1B-r3W"/>
-                            </connections>
-                        </button>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="cardCell" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cardCell" textLabel="hgC-Xl-oNJ" detailTextLabel="Ofv-7q-PMo" style="IBUITableViewCellStyleValue1" id="xYj-fw-NlL">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="plainCardCell" textLabel="hgC-Xl-oNJ" detailTextLabel="Ofv-7q-PMo" style="IBUITableViewCellStyleValue1" id="xYj-fw-NlL">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xYj-fw-NlL" id="vEo-Y1-adw">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -1180,6 +1168,29 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="addCardCell" id="JXw-Tu-vn8">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JXw-Tu-vn8" id="9aM-9b-p6Z">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加健康卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGn-jX-cuh">
+                                            <rect key="frame" x="8" y="8" width="584" height="27"/>
+                                            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="xGn-jX-cuh" firstAttribute="top" secondItem="9aM-9b-p6Z" secondAttribute="topMargin" id="LS9-aM-L9Z"/>
+                                        <constraint firstItem="xGn-jX-cuh" firstAttribute="trailing" secondItem="9aM-9b-p6Z" secondAttribute="trailingMargin" id="P1u-LK-idD"/>
+                                        <constraint firstItem="xGn-jX-cuh" firstAttribute="leading" secondItem="9aM-9b-p6Z" secondAttribute="leadingMargin" id="Xy4-u8-Q9r"/>
+                                        <constraint firstAttribute="centerY" secondItem="xGn-jX-cuh" secondAttribute="centerY" id="ZTy-0L-tKl"/>
+                                        <constraint firstAttribute="centerX" secondItem="xGn-jX-cuh" secondAttribute="centerX" id="dSA-b8-dMf"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="xGn-jX-cuh" secondAttribute="bottom" id="jJF-fQ-BtZ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="MNY-Pz-buP" id="Lkj-7G-zHJ"/>
@@ -1188,16 +1199,17 @@
                     </tableView>
                     <connections>
                         <segue destination="DAi-pi-G6Y" kind="show" identifier="showCardDetail" id="KB8-qI-Ht9"/>
+                        <segue destination="fP5-0p-BLr" kind="show" identifier="addCard" id="Sc9-0y-3SH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLw-sb-p4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-7024" y="-5606"/>
         </scene>
-        <!--Add Medical Card View Controller-->
+        <!--添加健康卡-->
         <scene sceneID="BXh-1E-fyQ">
             <objects>
-                <viewController id="fP5-0p-BLr" customClass="AddMedicalCardViewController" sceneMemberID="viewController">
+                <viewController title="添加健康卡" id="fP5-0p-BLr" customClass="AddMedicalCardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tlU-9N-T3D"/>
                         <viewControllerLayoutGuide type="bottom" id="iyL-Ui-doU"/>
@@ -2100,17 +2112,17 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5t-n5-tTN">
-                                            <rect key="frame" x="550" y="11" width="42" height="21"/>
+                                            <rect key="frame" x="58" y="11" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="6XU-K0-o0a" secondAttribute="centerY" id="BC8-0A-nJu"/>
-                                        <constraint firstItem="6XU-K0-o0a" firstAttribute="leading" secondItem="oXV-li-QyB" secondAttribute="leadingMargin" id="Dtl-JR-lVv"/>
-                                        <constraint firstAttribute="centerY" secondItem="g5t-n5-tTN" secondAttribute="centerY" id="Rdj-oi-MoF"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="g5t-n5-tTN" secondAttribute="trailing" id="mKe-Lg-aaD"/>
+                                        <constraint firstAttribute="centerY" secondItem="g5t-n5-tTN" secondAttribute="centerY" id="02w-GZ-tux"/>
+                                        <constraint firstItem="6XU-K0-o0a" firstAttribute="leading" secondItem="oXV-li-QyB" secondAttribute="leadingMargin" id="9ue-aT-i1S"/>
+                                        <constraint firstItem="g5t-n5-tTN" firstAttribute="leading" secondItem="6XU-K0-o0a" secondAttribute="trailing" constant="8" id="Yqu-Yc-VJL"/>
+                                        <constraint firstAttribute="centerY" secondItem="6XU-K0-o0a" secondAttribute="centerY" id="cHt-jg-7oL"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -2157,8 +2169,8 @@
             <objects>
                 <tabBarController title="首页" id="w7D-hV-qQT" customClass="HomeViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="首页" id="Wqm-ot-UJF">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="gxW-ik-Bp3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sUp-fP-C4N">
+                        <barButtonItem key="rightBarButtonItem" title="个人设置" style="plain" id="gxW-ik-Bp3">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sUp-fP-C4N">
                                 <rect key="frame" x="451" y="7" width="89" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="个人设置"/>
@@ -2441,21 +2453,23 @@
                                     <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQ6-9a-rcD">
                                         <rect key="frame" x="0.0" y="8" width="135" height="123"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qN6-lk-RPq">
-                                        <rect key="frame" x="15" y="184" width="120" height="30"/>
-                                        <state key="normal" title="预约挂号">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="s7z-FE-w95" kind="show" identifier="getSchedule" id="xHu-eE-D6K"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bdZ-QA-XUc">
                                         <rect key="frame" x="276" y="84" width="284" height="233"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qN6-lk-RPq">
+                                        <rect key="frame" x="7" y="186" width="120" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="预约挂号">
+                                            <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="s7z-FE-w95" kind="show" identifier="getSchedule" id="xHu-eE-D6K"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -3051,7 +3065,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sVR-S9-CLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10308" y="-78"/>
+            <point key="canvasLocation" x="-10396" y="-78"/>
         </scene>
         <!--选择医生-->
         <scene sceneID="kZa-Te-kX9">
