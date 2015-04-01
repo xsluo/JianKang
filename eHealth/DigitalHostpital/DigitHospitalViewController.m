@@ -78,14 +78,7 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    switch ([indexPath row]) {
-        case 4:
-            return NO;
-            break;
-        default:
-            return YES;
-            break;
-    }
+    return YES;
 }
 
 #pragma mark <UICollectionViewDelegate>

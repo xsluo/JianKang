@@ -9,7 +9,7 @@
 #import "CardManageTableViewController.h"
 #import "MedicalCard.h"
 #import "CardDetailViewController.h"
-#import "AddMedicalCardController.h"
+#import "AddMedicalCardViewController.h"
 
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetMedicalCardList"
