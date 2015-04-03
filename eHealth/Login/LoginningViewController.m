@@ -39,14 +39,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 #pragma mark NSURLConnection Delegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -81,13 +81,13 @@
         return;
     }
     NSString *resultCode = [jsonDictionary objectForKeyedSubscript:@"ResultCode"];
-  
+    
     if([resultCode isEqualToString:@"0000"]){
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:self.textName.text forKey:kUserName];
         [userDefaults setObject:self.textPwd.text forKey:kPassWord] ;
         [userDefaults synchronize];
-
+        
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
@@ -99,8 +99,8 @@
 }
 
 - (IBAction)loginTapped:(id)sender {
-//    if([self.textName.text isEqual:@"1"])
-//        [self.navigationController popToRootViewControllerAnimated:self];
+    //    if([self.textName.text isEqual:@"1"])
+    //        [self.navigationController popToRootViewControllerAnimated:self];
     //self.departmentList = [[NSMutableArray alloc]init];
     
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:4];
@@ -128,6 +128,15 @@
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
+}
+
+-(BOOL) tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NO;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

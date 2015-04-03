@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CardManageTableViewController : UITableViewController
+- (IBAction)addCard:(id)sender;
 
 @end

@@ -238,8 +238,8 @@
         };
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    else
-        [self performSegueWithIdentifier:@"addCard" sender:self];
+//    else
+//        [self performSegueWithIdentifier:@"addCard" sender:self];
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -290,5 +290,8 @@
     }
 }
 
+- (IBAction)addCard:(id)sender {
+     [self performSegueWithIdentifier:@"addCard" sender:self];
+}
 @end
 

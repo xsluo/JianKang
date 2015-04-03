@@ -1,5 +1,5 @@
 //
-//  AfterLoginTableViewController.h
+//  SettingTableViewController.h
 //  eHealth
 //
 //  Created by Bagu on 15/1/3.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AfterLoginTableViewController : UITableViewController<UIActionSheetDelegate>
+@interface SettingTableViewController : UITableViewController<UIActionSheetDelegate>
 
 @end

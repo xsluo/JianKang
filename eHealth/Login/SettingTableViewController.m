@@ -1,21 +1,21 @@
 //
-//  AfterLoginTableViewController.m
+//  SettingTableViewController.m
 //  eHealth
 //
 //  Created by Bagu on 15/1/3.
 //  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
-#import "AfterLoginTableViewController.h"
+#import "SettingTableViewController.h"
 
 #define kUserName @"username"
 #define kPassWord @"password"
 
-@interface AfterLoginTableViewController ()
+@interface SettingTableViewController ()
 
 @end
 
-@implementation AfterLoginTableViewController
+@implementation SettingTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

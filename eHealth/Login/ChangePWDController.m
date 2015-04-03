@@ -113,9 +113,9 @@
     // Pass the selected object to the new view controller.
 }
 */
--(double)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 42;
-}
+//-(double)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 42;
+//}
 
 #pragma mark NSURLConnection Delegate Methods
 

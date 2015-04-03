@@ -75,9 +75,10 @@
 }
 */
 
--(double) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 48;
-}
+//-(double) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 48;
+//}
+
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];

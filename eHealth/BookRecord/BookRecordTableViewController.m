@@ -74,9 +74,6 @@
     [connection start];
 }
 
-
-
-
 #pragma mark NSURLConnection Delegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -176,15 +173,13 @@
         cell.buttonCancel.hidden = YES;
         cell.signInStatusName.hidden = NO;
     }
-    
-    
     return cell;
 
 }
 
--(double)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 144.0;
-}
+//-(double)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 144.0;
+//}
 
 
 /*

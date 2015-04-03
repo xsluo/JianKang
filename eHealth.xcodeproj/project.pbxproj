@@ -159,7 +159,7 @@
 		13A739BA1AB85F3400649744 /* GetDoctorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739B11AB85F3400649744 /* GetDoctorTableViewController.m */; };
 		13A739BB1AB85F3400649744 /* GetHospitalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739B31AB85F3400649744 /* GetHospitalTableViewController.m */; };
 		13A739BC1AB85F3400649744 /* ScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739B51AB85F3400649744 /* ScheduleTableViewController.m */; };
-		13A739C31AB85FEE00649744 /* AfterLoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739BE1AB85FEE00649744 /* AfterLoginTableViewController.m */; };
+		13A739C31AB85FEE00649744 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739BE1AB85FEE00649744 /* SettingTableViewController.m */; };
 		13A739C41AB85FEE00649744 /* ChangePWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739C01AB85FEE00649744 /* ChangePWDController.m */; };
 		13A739C51AB85FEE00649744 /* ChangeUsernameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739C21AB85FEE00649744 /* ChangeUsernameController.m */; };
 		13A739CA1AB8605100649744 /* LoginningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739C71AB8605100649744 /* LoginningViewController.m */; };
@@ -373,8 +373,8 @@
 		13A739B31AB85F3400649744 /* GetHospitalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetHospitalTableViewController.m; path = DigitalHostpital/Book/GetHospitalTableViewController.m; sourceTree = "<group>"; };
 		13A739B41AB85F3400649744 /* ScheduleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScheduleTableViewController.h; path = DigitalHostpital/Book/ScheduleTableViewController.h; sourceTree = "<group>"; };
 		13A739B51AB85F3400649744 /* ScheduleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScheduleTableViewController.m; path = DigitalHostpital/Book/ScheduleTableViewController.m; sourceTree = "<group>"; };
-		13A739BD1AB85FEE00649744 /* AfterLoginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AfterLoginTableViewController.h; path = Login/AfterLoginTableViewController.h; sourceTree = "<group>"; };
-		13A739BE1AB85FEE00649744 /* AfterLoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AfterLoginTableViewController.m; path = Login/AfterLoginTableViewController.m; sourceTree = "<group>"; };
+		13A739BD1AB85FEE00649744 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingTableViewController.h; path = Login/SettingTableViewController.h; sourceTree = "<group>"; };
+		13A739BE1AB85FEE00649744 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewController.m; path = Login/SettingTableViewController.m; sourceTree = "<group>"; };
 		13A739BF1AB85FEE00649744 /* ChangePWDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChangePWDController.h; path = Login/ChangePWDController.h; sourceTree = "<group>"; };
 		13A739C01AB85FEE00649744 /* ChangePWDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChangePWDController.m; path = Login/ChangePWDController.m; sourceTree = "<group>"; };
 		13A739C11AB85FEE00649744 /* ChangeUsernameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChangeUsernameController.h; path = Login/ChangeUsernameController.h; sourceTree = "<group>"; };
@@ -852,7 +852,7 @@
 			isa = PBXGroup;
 			children = (
 				13F1BF4B1AC43EE40010087D /* BookRecord */,
-				13E0ADC01A583B3000E09CE1 /* AfterLogin */,
+				13E0ADC01A583B3000E09CE1 /* Personal */,
 				13E0ADBF1A583AFD00E09CE1 /* BeforeLogin */,
 			);
 			name = Login;
@@ -869,17 +869,17 @@
 			name = BeforeLogin;
 			sourceTree = "<group>";
 		};
-		13E0ADC01A583B3000E09CE1 /* AfterLogin */ = {
+		13E0ADC01A583B3000E09CE1 /* Personal */ = {
 			isa = PBXGroup;
 			children = (
-				13A739BD1AB85FEE00649744 /* AfterLoginTableViewController.h */,
-				13A739BE1AB85FEE00649744 /* AfterLoginTableViewController.m */,
+				13A739BD1AB85FEE00649744 /* SettingTableViewController.h */,
+				13A739BE1AB85FEE00649744 /* SettingTableViewController.m */,
 				13A739BF1AB85FEE00649744 /* ChangePWDController.h */,
 				13A739C01AB85FEE00649744 /* ChangePWDController.m */,
 				13A739C11AB85FEE00649744 /* ChangeUsernameController.h */,
 				13A739C21AB85FEE00649744 /* ChangeUsernameController.m */,
 			);
-			name = AfterLogin;
+			name = Personal;
 			sourceTree = "<group>";
 		};
 		13F1BF4B1AC43EE40010087D /* BookRecord */ = {
@@ -949,6 +949,7 @@
 				TargetAttributes = {
 					13CAAE5C1A3C92E9009C420E = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 643APQV2FW;
 					};
 					13CAAE751A3C92EA009C420E = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -1163,7 +1164,7 @@
 				13A739D41AB863BA00649744 /* CardManageTableViewController.m in Sources */,
 				13A739A41AB85E5000649744 /* ExamListViewController.m in Sources */,
 				13A739BC1AB85F3400649744 /* ScheduleTableViewController.m in Sources */,
-				13A739C31AB85FEE00649744 /* AfterLoginTableViewController.m in Sources */,
+				13A739C31AB85FEE00649744 /* SettingTableViewController.m in Sources */,
 				13A739A11AB85E0900649744 /* GetConsultViewController.m in Sources */,
 				1344E8D61A580FE300733189 /* HomeViewController.m in Sources */,
 				13A739DA1AB8644500649744 /* NewsViewController.m in Sources */,
@@ -1294,6 +1295,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = eHealth/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1304,6 +1306,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = eHealth/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
