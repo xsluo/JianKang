@@ -12,6 +12,7 @@
 @property (strong) NSString *hospitalID;
 @property (strong) NSString *areaID;
 @property (strong) NSString *hospitalName;
+@property (strong) NSString *hospitalLevelName;
 @property (strong) NSString *bookingEarlyDays;
 @property (strong) NSString *zipCode;
 @property (strong) NSString *telephone;

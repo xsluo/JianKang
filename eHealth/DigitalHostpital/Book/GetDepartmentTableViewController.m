@@ -160,8 +160,8 @@
     NSDictionary *departmentDictionary = [self.departmentList objectAtIndex:row];
     NSString *name = [departmentDictionary objectForKey:@"DepartmentName"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",name];
-    NSString *ID = [departmentDictionary objectForKey:@"DepartmentID"];
-    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",ID];
+//    NSString *introduction = [departmentDictionary objectForKey:@"Introduction"];
+//    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",introduction];
     
     cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;

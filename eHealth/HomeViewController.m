@@ -33,10 +33,10 @@
     self.navigationController.navigationBar.translucent = NO;
     
     UIViewController *vct0 = [[self viewControllers] objectAtIndex:0];
-    vct0.tabBarItem.image = [UIImage imageNamed:@"home-7.png"];
+    vct0.tabBarItem.image = [UIImage imageNamed:@"数字医院.png"];
     
     UIViewController *vct1 = [[self viewControllers] objectAtIndex:1];
-    vct1.tabBarItem.image = [UIImage imageNamed:@"heart-7.png"];
+    vct1.tabBarItem.image = [UIImage imageNamed:@"智能健康.png"];
     
 }
 

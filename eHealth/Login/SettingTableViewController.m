@@ -7,11 +7,16 @@
 //
 
 #import "SettingTableViewController.h"
+#import "MedicalCard.h"
 
 #define kUserName @"username"
 #define kPassWord @"password"
 
+#define kDataFile @"dataCard"
+#define kDataKey  @"defaultCard"
+
 @interface SettingTableViewController ()
+@property (strong,nonatomic) MedicalCard *defaultCard;
 
 @end
 
@@ -39,6 +44,8 @@
         UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"真的注销账户吗？" delegate:self cancelButtonTitle:@"不注销" destructiveButtonTitle:@"注销" otherButtonTitles:nil];
         [actionSheet showInView:self.view];
     }
+    //Not to highlight selected cell
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 -(void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
@@ -47,8 +54,24 @@
         [userDefaults setObject:nil forKey:kUserName];
         [userDefaults setObject:nil forKey:kPassWord] ;
         [userDefaults synchronize];
+        
+        NSMutableData *data = [[NSMutableData alloc] init];
+        NSKeyedArchiver *archiver =[[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+        self.defaultCard = nil;
+        [archiver encodeObject:[self defaultCard] forKey:kDataKey];
+        [archiver finishEncoding];
+        NSString *filePath = [self dataFilePath];
+        [data writeToFile:filePath atomically:YES];
+
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+}
+
+-(NSString *)dataFilePath{
+    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSLog(@"%@",documentsDirectory);
+    return [documentsDirectory stringByAppendingPathComponent:kDataFile];
 }
 
 #pragma mark - Navigation
@@ -59,5 +82,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+//-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+//    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+//    NSString *userName = [userDefaults objectForKey:kUserName];
+//    if ([identifier  isEqual:@"manageCard"]&& userName==nil) {
+//        return NO;
+//}
+//    else
+//        return YES;
+//}
 
 @end

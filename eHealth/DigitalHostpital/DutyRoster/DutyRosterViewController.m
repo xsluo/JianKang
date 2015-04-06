@@ -178,7 +178,7 @@
 
 - (IBAction)weedayChanged:(id)sender {
     NSInteger day =[(UISegmentedControl*)sender selectedSegmentIndex]+1;
-    self.weekDay = [NSString stringWithFormat:@"%lo",day];
+    self.weekDay = [NSString stringWithFormat:@"%d",day];
     [self linkTheNet];
     [self.tableView reloadData];
 }

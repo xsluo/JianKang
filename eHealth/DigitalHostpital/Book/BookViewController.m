@@ -7,6 +7,8 @@
 //
 
 #import "BookViewController.h"
+#import "MBProgressHUDManager.h"
+
 #import "Area.h"
 #import "Hospital.h"
 #import "Department.h"
@@ -18,6 +20,7 @@
 
 #define kAreaName @"AreaName"
 #define kAreaID @"AreaID"
+#define kUserName @"username"
 
 @interface BookViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -27,6 +30,7 @@
 -(IBAction)unwindSelectHospital:(UIStoryboardSegue *)segue;
 -(IBAction)unwindSelectDepartment:(UIStoryboardSegue *)segue;
 -(IBAction)unwindSelectDoctor:(UIStoryboardSegue *)segue;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation BookViewController
@@ -40,6 +44,7 @@
     self.doctor = nil;
     self.panelView = [self.view viewWithTag:999];
     [self.panelView setHidden:YES];
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -128,14 +133,16 @@
         case 0:{
             if(!self.hospital){
                 cell.textLabel.text = @"请选择医院";
-                UIImage *img0 = [UIImage imageNamed:@"house.png"];
-                cell.imageView.image = img0;
+//                UIImage *img0 = [UIImage imageNamed:@"house.png"];
+//                cell.imageView.image = img0;
                 cell.textLabel.textColor = [UIColor blueColor];
             }
             else{
                 cell.textLabel.text = [self.hospital hospitalName];
                 cell.textLabel.textColor = [UIColor blackColor];
             }
+            UIImage *img0 = [UIImage imageNamed:@"house.png"];
+            cell.imageView.image = img0;
             break;
         }
         case 1:{
@@ -176,18 +183,22 @@
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             if([userDefaults objectForKey:kAreaName]!=nil)
                 [self performSegueWithIdentifier:@"selectHospital" sender:self];
+            else
+                [self.HUDManager showMessage:@"请先选择医院所在地区" duration:3];
             break;
         }
-
         case 1:{
             if(self.hospital)
                 [self performSegueWithIdentifier:@"selectDepartment" sender:self];
+            else
+                [self.HUDManager showMessage:@"请先选择科室所在医院" duration:3];
             break;
         }
-            
         case 2:{
             if(self.department)
                 [self performSegueWithIdentifier:@"selectDoctor" sender:self];
+            else
+                [self.HUDManager showMessage:@"请先选择医生所在科室" duration:3];
             break;
         }
         default:
@@ -235,6 +246,15 @@
             dct= [self doctor];
         schdvController.doctor = dct;
     }
+}
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if([userDefaults objectForKey:kUserName]==nil && [identifier isEqual: @"getSchedule"] ){
+        [self.HUDManager showMessage:@"请先登录帐号" duration:3];
+        return NO;
+    }
+    else
+        return YES;
 }
 
 @end

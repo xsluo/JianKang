@@ -13,25 +13,25 @@
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "eHearth80.png",
+      "filename" : "app图标80px.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "eHearth120-1.png",
+      "filename" : "app图标120px.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "eHearth120.png",
+      "filename" : "app图标120px-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "eHearth180.png",
+      "filename" : "app图标180px.png",
       "scale" : "3x"
     }
   ],

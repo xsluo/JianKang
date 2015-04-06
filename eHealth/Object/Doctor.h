@@ -14,6 +14,7 @@
 @property (strong,nonatomic)NSString *hospitalName;
 @property (strong,nonatomic)NSString *departmentName;
 @property (strong,nonatomic)NSString *doctorName;
+@property (strong,nonatomic)NSString *doctorTitle;
 @property (strong,nonatomic)NSString *sex;
 @property (strong,nonatomic)NSString *avatarUrl;
 @property (strong,nonatomic)NSString *introduction;

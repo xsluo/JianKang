@@ -24,20 +24,7 @@
 		132143011A3F1B0600290746 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F81A3F1B0600290746 /* 8.png */; };
 		132143021A3F1B0600290746 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 132142F91A3F1B0600290746 /* 9.png */; };
 		132473F81AB3256B003F0B1D /* airplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472CA1AB32569003F0B1D /* airplane.png */; };
-		132473F91AB3256B003F0B1D /* animal-footprint.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472CB1AB32569003F0B1D /* animal-footprint.png */; };
-		132473FB1AB3256B003F0B1D /* arrow-big-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472CD1AB32569003F0B1D /* arrow-big-01.png */; };
-		132473FC1AB3256B003F0B1D /* arrow-big-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472CE1AB32569003F0B1D /* arrow-big-02.png */; };
-		132473FD1AB3256B003F0B1D /* arrow-big-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472CF1AB32569003F0B1D /* arrow-big-03.png */; };
-		132473FE1AB3256B003F0B1D /* arrow-big-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472D01AB32569003F0B1D /* arrow-big-04.png */; };
-		132473FF1AB3256B003F0B1D /* arrow-big-05.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472D11AB32569003F0B1D /* arrow-big-05.png */; };
-		132474001AB3256B003F0B1D /* arrow-big-06.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472D21AB32569003F0B1D /* arrow-big-06.png */; };
-		132474011AB3256B003F0B1D /* arrow-big-07.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472D31AB32569003F0B1D /* arrow-big-07.png */; };
-		132474071AB3256B003F0B1D /* arrow-small-09.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472D91AB32569003F0B1D /* arrow-small-09.png */; };
-		132474081AB3256B003F0B1D /* arrow-small-10.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472DA1AB32569003F0B1D /* arrow-small-10.png */; };
-		132474091AB3256B003F0B1D /* arrow-small-11.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472DB1AB32569003F0B1D /* arrow-small-11.png */; };
 		132474111AB3256B003F0B1D /* awareness-ribbon.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472E31AB32569003F0B1D /* awareness-ribbon.png */; };
-		132474141AB3256B003F0B1D /* balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472E61AB32569003F0B1D /* balloon.png */; };
-		132474151AB3256B003F0B1D /* bar-chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472E71AB32569003F0B1D /* bar-chart.png */; };
 		132474161AB3256B003F0B1D /* basketball.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472E81AB32569003F0B1D /* basketball.png */; };
 		132474171AB3256B003F0B1D /* battery-full.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472E91AB32569003F0B1D /* battery-full.png */; };
 		132474181AB3256B003F0B1D /* bell.png in Resources */ = {isa = PBXBuildFile; fileRef = 132472EA1AB32569003F0B1D /* bell.png */; };
@@ -178,6 +165,33 @@
 		13CAAE6E1A3C92EA009C420E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13CAAE6D1A3C92EA009C420E /* Images.xcassets */; };
 		13CAAE711A3C92EA009C420E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13CAAE6F1A3C92EA009C420E /* LaunchScreen.xib */; };
 		13CAAE7D1A3C92EA009C420E /* eHealthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAAE7C1A3C92EA009C420E /* eHealthTests.m */; };
+		13E0929F1ACEF07F003A7F70 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E0929E1ACEF07F003A7F70 /* MBProgressHUD.m */; };
+		13E092AA1ACEF095003A7F70 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092A21ACEF095003A7F70 /* 37x-Checkmark.png */; };
+		13E092AB1ACEF095003A7F70 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092A31ACEF095003A7F70 /* 37x-Checkmark@2x.png */; };
+		13E092AC1ACEF095003A7F70 /* 37x-Error.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092A41ACEF095003A7F70 /* 37x-Error.png */; };
+		13E092AD1ACEF095003A7F70 /* 37x-Error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092A51ACEF095003A7F70 /* 37x-Error@2x.png */; };
+		13E092AE1ACEF095003A7F70 /* 37x-success.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092A61ACEF095003A7F70 /* 37x-success.png */; };
+		13E092AF1ACEF095003A7F70 /* 37x-success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092A71ACEF095003A7F70 /* 37x-success@2x.png */; };
+		13E092B01ACEF095003A7F70 /* MBProgressHUDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E092A91ACEF095003A7F70 /* MBProgressHUDManager.m */; };
+		13E092C91ACF6A46003A7F70 /* 数字医院-点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092B21ACF6A46003A7F70 /* 数字医院-点击效果.png */; };
+		13E092CA1ACF6A46003A7F70 /* 数字医院.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092B31ACF6A46003A7F70 /* 数字医院.png */; };
+		13E092CB1ACF6A46003A7F70 /* 智能健康-点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092B41ACF6A46003A7F70 /* 智能健康-点击效果.png */; };
+		13E092CC1ACF6A46003A7F70 /* 智能健康.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092B51ACF6A46003A7F70 /* 智能健康.png */; };
+		13E092CD1ACF6A46003A7F70 /* 综合服务-点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092B61ACF6A46003A7F70 /* 综合服务-点击效果.png */; };
+		13E092CE1ACF6A46003A7F70 /* 综合服务.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092B71ACF6A46003A7F70 /* 综合服务.png */; };
+		13E092CF1ACF6A46003A7F70 /* 健康卡管理图标-未选中32px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092B91ACF6A46003A7F70 /* 健康卡管理图标-未选中32px.png */; };
+		13E092D01ACF6A46003A7F70 /* 健康卡管理图标-选中32px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092BA1ACF6A46003A7F70 /* 健康卡管理图标-选中32px.png */; };
+		13E092D11ACF6A46003A7F70 /* 一周排班.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092BC1ACF6A46003A7F70 /* 一周排班.png */; };
+		13E092D21ACF6A46003A7F70 /* 交通指引.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092BD1ACF6A46003A7F70 /* 交通指引.png */; };
+		13E092D31ACF6A46003A7F70 /* 医院介绍.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092BE1ACF6A46003A7F70 /* 医院介绍.png */; };
+		13E092D41ACF6A46003A7F70 /* 楼群分布.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092BF1ACF6A46003A7F70 /* 楼群分布.png */; };
+		13E092D51ACF6A46003A7F70 /* 科室介绍.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C01ACF6A46003A7F70 /* 科室介绍.png */; };
+		13E092D61ACF6A46003A7F70 /* 科室分布.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C11ACF6A46003A7F70 /* 科室分布.png */; };
+		13E092D71ACF6A46003A7F70 /* ic_hospital_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C31ACF6A46003A7F70 /* ic_hospital_info.png */; };
+		13E092D81ACF6A46003A7F70 /* ic_hospital_intro.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C41ACF6A46003A7F70 /* ic_hospital_intro.png */; };
+		13E092D91ACF6A46003A7F70 /* app图标120px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C61ACF6A46003A7F70 /* app图标120px.png */; };
+		13E092DA1ACF6A46003A7F70 /* app图标180px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C71ACF6A46003A7F70 /* app图标180px.png */; };
+		13E092DB1ACF6A46003A7F70 /* app图标80px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C81ACF6A46003A7F70 /* app图标80px.png */; };
 		13F0333A1A7797930012BB02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F033381A7797930012BB02 /* Main.storyboard */; };
 		13F1BF4E1AC43F7E0010087D /* BookRecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F1BF4D1AC43F7E0010087D /* BookRecordTableViewController.m */; };
 		13F1BF511AC43FC90010087D /* BookRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F1BF501AC43FC90010087D /* BookRecordCell.m */; };
@@ -220,20 +234,7 @@
 		132142F81A3F1B0600290746 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 8.png; path = images/8.png; sourceTree = "<group>"; };
 		132142F91A3F1B0600290746 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 9.png; path = images/9.png; sourceTree = "<group>"; };
 		132472CA1AB32569003F0B1D /* airplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = airplane.png; path = icons/airplane.png; sourceTree = "<group>"; };
-		132472CB1AB32569003F0B1D /* animal-footprint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "animal-footprint.png"; path = "icons/animal-footprint.png"; sourceTree = "<group>"; };
-		132472CD1AB32569003F0B1D /* arrow-big-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-big-01.png"; path = "icons/arrow-big-01.png"; sourceTree = "<group>"; };
-		132472CE1AB32569003F0B1D /* arrow-big-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-big-02.png"; path = "icons/arrow-big-02.png"; sourceTree = "<group>"; };
-		132472CF1AB32569003F0B1D /* arrow-big-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-big-03.png"; path = "icons/arrow-big-03.png"; sourceTree = "<group>"; };
-		132472D01AB32569003F0B1D /* arrow-big-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-big-04.png"; path = "icons/arrow-big-04.png"; sourceTree = "<group>"; };
-		132472D11AB32569003F0B1D /* arrow-big-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-big-05.png"; path = "icons/arrow-big-05.png"; sourceTree = "<group>"; };
-		132472D21AB32569003F0B1D /* arrow-big-06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-big-06.png"; path = "icons/arrow-big-06.png"; sourceTree = "<group>"; };
-		132472D31AB32569003F0B1D /* arrow-big-07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-big-07.png"; path = "icons/arrow-big-07.png"; sourceTree = "<group>"; };
-		132472D91AB32569003F0B1D /* arrow-small-09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-small-09.png"; path = "icons/arrow-small-09.png"; sourceTree = "<group>"; };
-		132472DA1AB32569003F0B1D /* arrow-small-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-small-10.png"; path = "icons/arrow-small-10.png"; sourceTree = "<group>"; };
-		132472DB1AB32569003F0B1D /* arrow-small-11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-small-11.png"; path = "icons/arrow-small-11.png"; sourceTree = "<group>"; };
 		132472E31AB32569003F0B1D /* awareness-ribbon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "awareness-ribbon.png"; path = "icons/awareness-ribbon.png"; sourceTree = "<group>"; };
-		132472E61AB32569003F0B1D /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = balloon.png; path = icons/balloon.png; sourceTree = "<group>"; };
-		132472E71AB32569003F0B1D /* bar-chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bar-chart.png"; path = "icons/bar-chart.png"; sourceTree = "<group>"; };
 		132472E81AB32569003F0B1D /* basketball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = basketball.png; path = icons/basketball.png; sourceTree = "<group>"; };
 		132472E91AB32569003F0B1D /* battery-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery-full.png"; path = "icons/battery-full.png"; sourceTree = "<group>"; };
 		132472EA1AB32569003F0B1D /* bell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bell.png; path = icons/bell.png; sourceTree = "<group>"; };
@@ -411,6 +412,35 @@
 		13CAAE761A3C92EA009C420E /* eHealthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eHealthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CAAE7B1A3C92EA009C420E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13CAAE7C1A3C92EA009C420E /* eHealthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eHealthTests.m; sourceTree = "<group>"; };
+		13E0929D1ACEF07F003A7F70 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		13E0929E1ACEF07F003A7F70 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		13E092A21ACEF095003A7F70 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		13E092A31ACEF095003A7F70 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
+		13E092A41ACEF095003A7F70 /* 37x-Error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Error.png"; sourceTree = "<group>"; };
+		13E092A51ACEF095003A7F70 /* 37x-Error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Error@2x.png"; sourceTree = "<group>"; };
+		13E092A61ACEF095003A7F70 /* 37x-success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-success.png"; sourceTree = "<group>"; };
+		13E092A71ACEF095003A7F70 /* 37x-success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-success@2x.png"; sourceTree = "<group>"; };
+		13E092A81ACEF095003A7F70 /* MBProgressHUDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUDManager.h; sourceTree = "<group>"; };
+		13E092A91ACEF095003A7F70 /* MBProgressHUDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUDManager.m; sourceTree = "<group>"; };
+		13E092B21ACF6A46003A7F70 /* 数字医院-点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "数字医院-点击效果.png"; sourceTree = "<group>"; };
+		13E092B31ACF6A46003A7F70 /* 数字医院.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "数字医院.png"; sourceTree = "<group>"; };
+		13E092B41ACF6A46003A7F70 /* 智能健康-点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "智能健康-点击效果.png"; sourceTree = "<group>"; };
+		13E092B51ACF6A46003A7F70 /* 智能健康.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "智能健康.png"; sourceTree = "<group>"; };
+		13E092B61ACF6A46003A7F70 /* 综合服务-点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "综合服务-点击效果.png"; sourceTree = "<group>"; };
+		13E092B71ACF6A46003A7F70 /* 综合服务.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "综合服务.png"; sourceTree = "<group>"; };
+		13E092B91ACF6A46003A7F70 /* 健康卡管理图标-未选中32px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "健康卡管理图标-未选中32px.png"; sourceTree = "<group>"; };
+		13E092BA1ACF6A46003A7F70 /* 健康卡管理图标-选中32px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "健康卡管理图标-选中32px.png"; sourceTree = "<group>"; };
+		13E092BC1ACF6A46003A7F70 /* 一周排班.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "一周排班.png"; sourceTree = "<group>"; };
+		13E092BD1ACF6A46003A7F70 /* 交通指引.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "交通指引.png"; sourceTree = "<group>"; };
+		13E092BE1ACF6A46003A7F70 /* 医院介绍.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "医院介绍.png"; sourceTree = "<group>"; };
+		13E092BF1ACF6A46003A7F70 /* 楼群分布.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "楼群分布.png"; sourceTree = "<group>"; };
+		13E092C01ACF6A46003A7F70 /* 科室介绍.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "科室介绍.png"; sourceTree = "<group>"; };
+		13E092C11ACF6A46003A7F70 /* 科室分布.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "科室分布.png"; sourceTree = "<group>"; };
+		13E092C31ACF6A46003A7F70 /* ic_hospital_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_hospital_info.png; sourceTree = "<group>"; };
+		13E092C41ACF6A46003A7F70 /* ic_hospital_intro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_hospital_intro.png; sourceTree = "<group>"; };
+		13E092C61ACF6A46003A7F70 /* app图标120px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app图标120px.png"; sourceTree = "<group>"; };
+		13E092C71ACF6A46003A7F70 /* app图标180px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app图标180px.png"; sourceTree = "<group>"; };
+		13E092C81ACF6A46003A7F70 /* app图标80px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app图标80px.png"; sourceTree = "<group>"; };
 		13F033391A7797930012BB02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13F1BF4C1AC43F7E0010087D /* BookRecordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookRecordTableViewController.h; path = BookRecord/BookRecordTableViewController.h; sourceTree = "<group>"; };
 		13F1BF4D1AC43F7E0010087D /* BookRecordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookRecordTableViewController.m; path = BookRecord/BookRecordTableViewController.m; sourceTree = "<group>"; };
@@ -475,6 +505,11 @@
 		132142F01A3F1AC500290746 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				13E092B11ACF6A46003A7F70 /* 导航图标44px */,
+				13E092B81ACF6A46003A7F70 /* 健康卡管理选择图标32px */,
+				13E092BB1ACF6A46003A7F70 /* 医院简介小标32px */,
+				13E092C21ACF6A46003A7F70 /* 医院介绍小标 */,
+				13E092C51ACF6A46003A7F70 /* app图标 */,
 				132472C71AB3255A003F0B1D /* icons */,
 				132142F11A3F1B0600290746 /* 1.png */,
 				13F901251AB9AB96009662F9 /* fsdyrm.png */,
@@ -494,20 +529,7 @@
 			isa = PBXGroup;
 			children = (
 				132472CA1AB32569003F0B1D /* airplane.png */,
-				132472CB1AB32569003F0B1D /* animal-footprint.png */,
-				132472CD1AB32569003F0B1D /* arrow-big-01.png */,
-				132472CE1AB32569003F0B1D /* arrow-big-02.png */,
-				132472CF1AB32569003F0B1D /* arrow-big-03.png */,
-				132472D01AB32569003F0B1D /* arrow-big-04.png */,
-				132472D11AB32569003F0B1D /* arrow-big-05.png */,
-				132472D21AB32569003F0B1D /* arrow-big-06.png */,
-				132472D31AB32569003F0B1D /* arrow-big-07.png */,
-				132472D91AB32569003F0B1D /* arrow-small-09.png */,
-				132472DA1AB32569003F0B1D /* arrow-small-10.png */,
-				132472DB1AB32569003F0B1D /* arrow-small-11.png */,
 				132472E31AB32569003F0B1D /* awareness-ribbon.png */,
-				132472E61AB32569003F0B1D /* balloon.png */,
-				132472E71AB32569003F0B1D /* bar-chart.png */,
 				132472E81AB32569003F0B1D /* basketball.png */,
 				132472E91AB32569003F0B1D /* battery-full.png */,
 				132472EA1AB32569003F0B1D /* bell.png */,
@@ -628,12 +650,10 @@
 			isa = PBXGroup;
 			children = (
 				135AD73E1ACAF2B600B309ED /* PatWait */,
-				13F901211AB97656009662F9 /* Newtest */,
 				13A7399B1AB85B7B00649744 /* Consult */,
 				13A739941AB8024900649744 /* TodayDuty */,
 				138F8B561AB0755200E36438 /* KeyBoard */,
 				13B21AB71AADDA92006CB401 /* Exam */,
-				13C271481A7E642D002DAB60 /* Book */,
 				060D113D1A4BFF8400EB201C /* News */,
 				060D11441A4C45C300EB201C /* EmptyPark */,
 				134C4FC31A3D832C00CDDA3E /* HospitalSummary */,
@@ -786,6 +806,8 @@
 			isa = PBXGroup;
 			children = (
 				13CAAE5F1A3C92E9009C420E /* eHealth */,
+				13E0929C1ACEF07F003A7F70 /* MBProgressHUD */,
+				13E092A01ACEF095003A7F70 /* MBProgressHUDManager */,
 				132142F01A3F1AC500290746 /* Images */,
 				13CAAE791A3C92EA009C420E /* eHealthTests */,
 				13CAAE5E1A3C92E9009C420E /* Products */,
@@ -811,10 +833,11 @@
 				13CAAE651A3C92E9009C420E /* AppDelegate.m */,
 				13CAAE6D1A3C92EA009C420E /* Images.xcassets */,
 				13CAAE6F1A3C92EA009C420E /* LaunchScreen.xib */,
-				135796841ACCF0A600A6C3B2 /* Favarite */,
 				13C271521A8118E4002DAB60 /* Object */,
-				133267621A5ADC970095D462 /* Register */,
+				13C271481A7E642D002DAB60 /* Book */,
 				13E0ADBE1A58390F00E09CE1 /* Login */,
+				135796841ACCF0A600A6C3B2 /* Favarite */,
+				133267621A5ADC970095D462 /* Register */,
 				0683B0971A638EEB00033285 /* MedicalCard */,
 				134C4FC21A3D82D200CDDA3E /* DigitalHospital */,
 				13CAAE601A3C92E9009C420E /* Supporting Files */,
@@ -846,6 +869,97 @@
 				13CAAE7B1A3C92EA009C420E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13E0929C1ACEF07F003A7F70 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				13E0929D1ACEF07F003A7F70 /* MBProgressHUD.h */,
+				13E0929E1ACEF07F003A7F70 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		13E092A01ACEF095003A7F70 /* MBProgressHUDManager */ = {
+			isa = PBXGroup;
+			children = (
+				13E092A11ACEF095003A7F70 /* Images */,
+				13E092A81ACEF095003A7F70 /* MBProgressHUDManager.h */,
+				13E092A91ACEF095003A7F70 /* MBProgressHUDManager.m */,
+			);
+			path = MBProgressHUDManager;
+			sourceTree = "<group>";
+		};
+		13E092A11ACEF095003A7F70 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				13E092A21ACEF095003A7F70 /* 37x-Checkmark.png */,
+				13E092A31ACEF095003A7F70 /* 37x-Checkmark@2x.png */,
+				13E092A41ACEF095003A7F70 /* 37x-Error.png */,
+				13E092A51ACEF095003A7F70 /* 37x-Error@2x.png */,
+				13E092A61ACEF095003A7F70 /* 37x-success.png */,
+				13E092A71ACEF095003A7F70 /* 37x-success@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		13E092B11ACF6A46003A7F70 /* 导航图标44px */ = {
+			isa = PBXGroup;
+			children = (
+				13E092B21ACF6A46003A7F70 /* 数字医院-点击效果.png */,
+				13E092B31ACF6A46003A7F70 /* 数字医院.png */,
+				13E092B41ACF6A46003A7F70 /* 智能健康-点击效果.png */,
+				13E092B51ACF6A46003A7F70 /* 智能健康.png */,
+				13E092B61ACF6A46003A7F70 /* 综合服务-点击效果.png */,
+				13E092B71ACF6A46003A7F70 /* 综合服务.png */,
+			);
+			name = "导航图标44px";
+			path = "images/导航图标44px";
+			sourceTree = "<group>";
+		};
+		13E092B81ACF6A46003A7F70 /* 健康卡管理选择图标32px */ = {
+			isa = PBXGroup;
+			children = (
+				13E092B91ACF6A46003A7F70 /* 健康卡管理图标-未选中32px.png */,
+				13E092BA1ACF6A46003A7F70 /* 健康卡管理图标-选中32px.png */,
+			);
+			name = "健康卡管理选择图标32px";
+			path = "images/健康卡管理选择图标32px";
+			sourceTree = "<group>";
+		};
+		13E092BB1ACF6A46003A7F70 /* 医院简介小标32px */ = {
+			isa = PBXGroup;
+			children = (
+				13E092BC1ACF6A46003A7F70 /* 一周排班.png */,
+				13E092BD1ACF6A46003A7F70 /* 交通指引.png */,
+				13E092BE1ACF6A46003A7F70 /* 医院介绍.png */,
+				13E092BF1ACF6A46003A7F70 /* 楼群分布.png */,
+				13E092C01ACF6A46003A7F70 /* 科室介绍.png */,
+				13E092C11ACF6A46003A7F70 /* 科室分布.png */,
+			);
+			name = "医院简介小标32px";
+			path = "images/医院简介小标32px";
+			sourceTree = "<group>";
+		};
+		13E092C21ACF6A46003A7F70 /* 医院介绍小标 */ = {
+			isa = PBXGroup;
+			children = (
+				13E092C31ACF6A46003A7F70 /* ic_hospital_info.png */,
+				13E092C41ACF6A46003A7F70 /* ic_hospital_intro.png */,
+			);
+			name = "医院介绍小标";
+			path = "images/医院介绍小标";
+			sourceTree = "<group>";
+		};
+		13E092C51ACF6A46003A7F70 /* app图标 */ = {
+			isa = PBXGroup;
+			children = (
+				13E092C61ACF6A46003A7F70 /* app图标120px.png */,
+				13E092C71ACF6A46003A7F70 /* app图标180px.png */,
+				13E092C81ACF6A46003A7F70 /* app图标80px.png */,
+			);
+			name = "app图标";
+			path = "images/app图标";
 			sourceTree = "<group>";
 		};
 		13E0ADBE1A58390F00E09CE1 /* Login */ = {
@@ -891,13 +1005,6 @@
 				13F1BF501AC43FC90010087D /* BookRecordCell.m */,
 			);
 			name = BookRecord;
-			sourceTree = "<group>";
-		};
-		13F901211AB97656009662F9 /* Newtest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Newtest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -981,13 +1088,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13E092D61ACF6A46003A7F70 /* 科室分布.png in Resources */,
+				13E092D81ACF6A46003A7F70 /* ic_hospital_intro.png in Resources */,
 				1324751B1AB3256B003F0B1D /* wifi.png in Resources */,
 				132474291AB3256B003F0B1D /* button-play.png in Resources */,
+				13E092D91ACF6A46003A7F70 /* app图标120px.png in Resources */,
 				132474CA1AB3256B003F0B1D /* race-flag.png in Resources */,
 				132474881AB3256B003F0B1D /* key.png in Resources */,
 				132474171AB3256B003F0B1D /* battery-full.png in Resources */,
-				132474001AB3256B003F0B1D /* arrow-big-06.png in Resources */,
 				1324746A1AB3256B003F0B1D /* flower-pot.png in Resources */,
+				13E092AB1ACEF095003A7F70 /* 37x-Checkmark@2x.png in Resources */,
 				132474A11AB3256B003F0B1D /* multiple.png in Resources */,
 				1324743E1AB3256B003F0B1D /* circular-saw-blade.png in Resources */,
 				1324748A1AB3256B003F0B1D /* knife.png in Resources */,
@@ -999,7 +1109,7 @@
 				132474F51AB3256B003F0B1D /* storage.png in Resources */,
 				132473F81AB3256B003F0B1D /* airplane.png in Resources */,
 				132475011AB3256B003F0B1D /* text-left.png in Resources */,
-				132474151AB3256B003F0B1D /* bar-chart.png in Resources */,
+				13E092DB1ACF6A46003A7F70 /* app图标80px.png in Resources */,
 				1324742D1AB3256B003F0B1D /* button-stop.png in Resources */,
 				132474831AB3256B003F0B1D /* house.png in Resources */,
 				132474271AB3256B003F0B1D /* button-next.png in Resources */,
@@ -1008,7 +1118,7 @@
 				1324743F1AB3256B003F0B1D /* clock.png in Resources */,
 				132474181AB3256B003F0B1D /* bell.png in Resources */,
 				132474281AB3256B003F0B1D /* button-pause.png in Resources */,
-				132474091AB3256B003F0B1D /* arrow-small-11.png in Resources */,
+				13E092DA1ACF6A46003A7F70 /* app图标180px.png in Resources */,
 				132143011A3F1B0600290746 /* 8.png in Resources */,
 				132474C71AB3256B003F0B1D /* pyramid.png in Resources */,
 				132474D01AB3256B003F0B1D /* rooster.png in Resources */,
@@ -1018,12 +1128,15 @@
 				132474941AB3256B003F0B1D /* man-figure.png in Resources */,
 				132474F61AB3256B003F0B1D /* sun.png in Resources */,
 				132474341AB3256B003F0B1D /* car-side.png in Resources */,
+				13E092D01ACF6A46003A7F70 /* 健康卡管理图标-选中32px.png in Resources */,
 				132474A31AB3256B003F0B1D /* music.png in Resources */,
 				132474791AB3256B003F0B1D /* hand.png in Resources */,
 				132474731AB3256B003F0B1D /* glasses.png in Resources */,
+				13E092CC1ACF6A46003A7F70 /* 智能健康.png in Resources */,
 				132142FD1A3F1B0600290746 /* 4.png in Resources */,
 				1324746B1AB3256B003F0B1D /* flower.png in Resources */,
 				132474891AB3256B003F0B1D /* keyboard.png in Resources */,
+				13E092D11ACF6A46003A7F70 /* 一周排班.png in Resources */,
 				132475111AB3256B003F0B1D /* uptrend.png in Resources */,
 				1324746D1AB3256B003F0B1D /* forbidden.png in Resources */,
 				132474FB1AB3256B003F0B1D /* sword.png in Resources */,
@@ -1033,10 +1146,14 @@
 				1324742B1AB3256B003F0B1D /* button-previous.png in Resources */,
 				1324747B1AB3256B003F0B1D /* hat.png in Resources */,
 				1324745D1AB3256B003F0B1D /* email.png in Resources */,
+				13E092D71ACF6A46003A7F70 /* ic_hospital_info.png in Resources */,
+				13E092D21ACF6A46003A7F70 /* 交通指引.png in Resources */,
 				132474C41AB3256B003F0B1D /* printer.png in Resources */,
+				13E092AD1ACEF095003A7F70 /* 37x-Error@2x.png in Resources */,
 				132474A71AB3256B003F0B1D /* no-entry.png in Resources */,
 				132474E71AB3256B003F0B1D /* smoking.png in Resources */,
 				132474311AB3256B003F0B1D /* camera.png in Resources */,
+				13E092AA1ACEF095003A7F70 /* 37x-Checkmark.png in Resources */,
 				132474B51AB3256B003F0B1D /* phone.png in Resources */,
 				132474191AB3256B003F0B1D /* binocular.png in Resources */,
 				13F0333A1A7797930012BB02 /* Main.storyboard in Resources */,
@@ -1054,16 +1171,16 @@
 				132474BD1AB3256B003F0B1D /* plus-sign.png in Resources */,
 				1324749E1AB3256B003F0B1D /* moon.png in Resources */,
 				132474111AB3256B003F0B1D /* awareness-ribbon.png in Resources */,
-				132474011AB3256B003F0B1D /* arrow-big-07.png in Resources */,
 				132142FC1A3F1B0600290746 /* 3.png in Resources */,
+				13E092AC1ACEF095003A7F70 /* 37x-Error.png in Resources */,
 				1324748C1AB3256B003F0B1D /* layer.png in Resources */,
 				132474C61AB3256B003F0B1D /* push-pin.png in Resources */,
 				132474351AB3256B003F0B1D /* car.png in Resources */,
 				132474681AB3256B003F0B1D /* fire.png in Resources */,
-				132473FE1AB3256B003F0B1D /* arrow-big-04.png in Resources */,
-				132473FB1AB3256B003F0B1D /* arrow-big-01.png in Resources */,
+				13E092CA1ACF6A46003A7F70 /* 数字医院.png in Resources */,
 				1324749A1AB3256B003F0B1D /* microphone-handheld.png in Resources */,
 				132142FE1A3F1B0600290746 /* 5.png in Resources */,
+				13E092C91ACF6A46003A7F70 /* 数字医院-点击效果.png in Resources */,
 				132474F21AB3256B003F0B1D /* star.png in Resources */,
 				132143001A3F1B0600290746 /* 7.png in Resources */,
 				132475211AB3256B003F0B1D /* woman.png in Resources */,
@@ -1071,42 +1188,44 @@
 				132474921AB3256B003F0B1D /* love.png in Resources */,
 				132475001AB3256B003F0B1D /* tennis.png in Resources */,
 				132475061AB3256B003F0B1D /* thumb-up.png in Resources */,
-				132474081AB3256B003F0B1D /* arrow-small-10.png in Resources */,
-				132473FC1AB3256B003F0B1D /* arrow-big-02.png in Resources */,
-				132473FD1AB3256B003F0B1D /* arrow-big-03.png in Resources */,
-				132473F91AB3256B003F0B1D /* animal-footprint.png in Resources */,
 				132474451AB3256B003F0B1D /* connectivity-bar.png in Resources */,
 				132475201AB3256B003F0B1D /* woman-figure.png in Resources */,
 				132474611AB3256B003F0B1D /* facebook.png in Resources */,
+				13E092D41ACF6A46003A7F70 /* 楼群分布.png in Resources */,
 				132474771AB3256B003F0B1D /* hammer.png in Resources */,
 				132474741AB3256B003F0B1D /* graduation-cap.png in Resources */,
-				132474141AB3256B003F0B1D /* balloon.png in Resources */,
 				132474F41AB3256B003F0B1D /* stopwatch.png in Resources */,
+				13E092AF1ACEF095003A7F70 /* 37x-success@2x.png in Resources */,
 				132474E81AB3256B003F0B1D /* snow-flake.png in Resources */,
 				1324747D1AB3256B003F0B1D /* heart-7.png in Resources */,
 				132474E61AB3256B003F0B1D /* smiley-smile.png in Resources */,
-				132473FF1AB3256B003F0B1D /* arrow-big-05.png in Resources */,
+				13E092D51ACF6A46003A7F70 /* 科室介绍.png in Resources */,
 				132474FC1AB3256B003F0B1D /* table-lamp.png in Resources */,
 				132475231AB3256B003F0B1D /* write.png in Resources */,
+				13E092CE1ACF6A46003A7F70 /* 综合服务.png in Resources */,
+				13E092CD1ACF6A46003A7F70 /* 综合服务-点击效果.png in Resources */,
 				132474FF1AB3256B003F0B1D /* tea.png in Resources */,
 				132474D21AB3256B003F0B1D /* rss.png in Resources */,
 				132474761AB3256B003F0B1D /* guitar.png in Resources */,
 				132143021A3F1B0600290746 /* 9.png in Resources */,
 				132475081AB3256B003F0B1D /* tick.png in Resources */,
-				132474071AB3256B003F0B1D /* arrow-small-09.png in Resources */,
 				132474371AB3256B003F0B1D /* card-in.png in Resources */,
 				1324750A1AB3256B003F0B1D /* torch-light.png in Resources */,
 				1324750E1AB3256B003F0B1D /* trophy.png in Resources */,
 				132474B31AB3256B003F0B1D /* pet-dog.png in Resources */,
 				132474211AB3256B003F0B1D /* brightness.png in Resources */,
 				132474FE1AB3256B003F0B1D /* target.png in Resources */,
+				13E092D31ACF6A46003A7F70 /* 医院介绍.png in Resources */,
 				132474221AB3256B003F0B1D /* bug.png in Resources */,
 				13CAAE711A3C92EA009C420E /* LaunchScreen.xib in Resources */,
+				13E092CB1ACF6A46003A7F70 /* 智能健康-点击效果.png in Resources */,
 				132474821AB3256B003F0B1D /* horse.png in Resources */,
 				132474241AB3256B003F0B1D /* button-fast-forward.png in Resources */,
 				132474E21AB3256B003F0B1D /* shopping-cart.png in Resources */,
 				132474381AB3256B003F0B1D /* caution.png in Resources */,
 				1324750D1AB3256B003F0B1D /* tree.png in Resources */,
+				13E092CF1ACF6A46003A7F70 /* 健康卡管理图标-未选中32px.png in Resources */,
+				13E092AE1ACEF095003A7F70 /* 37x-success.png in Resources */,
 				132474AE1AB3256B003F0B1D /* paper-clip.png in Resources */,
 				1324749D1AB3256B003F0B1D /* monitor.png in Resources */,
 				132474CB1AB3256B003F0B1D /* radioactive.png in Resources */,
@@ -1151,8 +1270,10 @@
 				139512A51A5808870067810D /* DutyRosterViewController.m in Sources */,
 				13A739CA1AB8605100649744 /* LoginningViewController.m in Sources */,
 				13A8154F1A88B97000BCCBCE /* Hospital.m in Sources */,
+				13E0929F1ACEF07F003A7F70 /* MBProgressHUD.m in Sources */,
 				13A739BA1AB85F3400649744 /* GetDoctorTableViewController.m in Sources */,
 				13CAAE631A3C92E9009C420E /* main.m in Sources */,
+				13E092B01ACEF095003A7F70 /* MBProgressHUDManager.m in Sources */,
 				130D1D221AB6B9FF003357FF /* News.m in Sources */,
 				13A815581A88DC8200BCCBCE /* Area.m in Sources */,
 				13A739C41AB85FEE00649744 /* ChangePWDController.m in Sources */,

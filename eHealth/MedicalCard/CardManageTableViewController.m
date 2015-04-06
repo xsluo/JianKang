@@ -197,11 +197,11 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@",[card owner]];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[card medicalCardTypeName]];
         if([[[self defaultCard] medicalCardID] isEqualToString:[card medicalCardID]]){
-            cell.imageView.image = [UIImage imageNamed:@"love.png"];
+            cell.imageView.image = [UIImage imageNamed:@"健康卡管理图标-选中32px.png"];
             self.lastIndexPath = indexPath;
         }
         else
-            cell.imageView.image = [UIImage imageNamed:@"heart-7.png"];
+            cell.imageView.image = [UIImage imageNamed:@"健康卡管理图标-未选中32px.png"];
         return cell;
 }
     else
@@ -220,7 +220,7 @@
         if(newRow!=oldRow){
             UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
 //            newCell.detailTextLabel.text = @"默认";
-            UIImage *img = [UIImage imageNamed:@"love.png"];
+            UIImage *img = [UIImage imageNamed:@"健康卡管理图标-选中32px.png"];
             newCell.imageView.image = img;
             
             NSMutableData *data = [[NSMutableData alloc] init];
@@ -233,7 +233,7 @@
             
             UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:self.lastIndexPath];
 //            oldCell.detailTextLabel.text = nil;
-            oldCell.imageView.image = [UIImage imageNamed:@"heart-7.png"];
+            oldCell.imageView.image = [UIImage imageNamed:@"健康卡管理图标-未选中32px.png"];
             self.lastIndexPath = indexPath;
         };
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -244,7 +244,7 @@
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.imageView.image = [UIImage imageNamed:@"heart-7.png"];
+    cell.imageView.image = [UIImage imageNamed:@"健康卡管理图标-未选中32px.png"];
 //    [self.tableView setNeedsDisplay];
     [self.tableView reloadData];
 }

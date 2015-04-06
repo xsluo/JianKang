@@ -9,6 +9,11 @@
 #import "ScheduleTableViewController.h"
 #import "Doctor.h"
 #import "ConfirmScheduleTableViewController.h"
+#import "MBProgressHUDManager.h"
+
+#define kDataFile @"dataCard"
+#define kDataKey  @"defaultCard"
+#define kUserName @"username"
 
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetScheduleList"
@@ -18,6 +23,7 @@
 @interface ScheduleTableViewController ()
 //@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,retain) NSMutableData * responseData;
+@property (nonatomic,retain) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation ScheduleTableViewController
@@ -34,6 +40,8 @@
     // Do any additional setup after loading the view.
     self.scheduleList = [[NSMutableArray alloc]init];
     [self getScheduleList];
+    self.HUDManager= [[MBProgressHUDManager alloc] initWithView:self.view];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -195,7 +203,9 @@
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -238,4 +248,29 @@
         [[segue destinationViewController] setSchedule:scheduleDictionary];
     }
 }
+-(BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    //此段逻辑还需要厘清
+    NSString *filePath = [self dataFilePath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
+        NSKeyedUnarchiver *unarchiver =[[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        if ([unarchiver decodeObjectForKey:kDataKey]==nil){
+            [self.HUDManager showMessage:@"请设置默认健康卡" duration:3];
+            return NO;
+        }
+    }
+    else{
+        [self.HUDManager showMessage:@"请设置默认健康卡" duration:3];
+        return NO;
+    }
+    return YES;
+}
+
+-(NSString *)dataFilePath{
+    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSLog(@"%@",documentsDirectory);
+    return [documentsDirectory stringByAppendingPathComponent:kDataFile];
+}
+
 @end

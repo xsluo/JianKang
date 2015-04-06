@@ -7,6 +7,7 @@
 //
 
 #import "LoginningViewController.h"
+#import "MBProgressHUDManager.h"
 
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"LoginMember"
@@ -16,11 +17,10 @@
 #define kPassWord @"password"
 
 @interface LoginningViewController ()
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @property (weak, nonatomic) IBOutlet UITextField *textName;
 @property (weak, nonatomic) IBOutlet UITextField *textPwd;
-
 @property(nonatomic,retain)   NSMutableData *responseData;
-
 - (IBAction)loginTapped:(id)sender;
 
 @end
@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
     self.responseData = nil;
 }
 
@@ -81,15 +82,19 @@
         return;
     }
     NSString *resultCode = [jsonDictionary objectForKeyedSubscript:@"ResultCode"];
+    NSString *resultMessage = [jsonDictionary objectForKeyedSubscript:@"Message"];
     
     if([resultCode isEqualToString:@"0000"]){
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:self.textName.text forKey:kUserName];
         [userDefaults setObject:self.textPwd.text forKey:kPassWord] ;
         [userDefaults synchronize];
-        
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.HUDManager showMessage:resultMessage duration:2 complection:^{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
     }
+    else
+        [self.HUDManager showMessage:resultMessage duration:2];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

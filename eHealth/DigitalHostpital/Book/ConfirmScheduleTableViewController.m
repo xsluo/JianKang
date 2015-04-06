@@ -8,6 +8,7 @@
 
 #import "ConfirmScheduleTableViewController.h"
 #import "MedicalCard.h"
+#import "MBProgressHUDManager.h"
 
 #define kDataFile @"dataCard"
 #define kDataKey  @"defaultCard"
@@ -24,6 +25,7 @@
 @property (strong,nonatomic) NSMutableArray *fieldValues;
 @property (strong,nonatomic) MedicalCard *defaultCard;
 @property (nonatomic,retain) NSMutableData * responseData;
+@property (nonatomic,retain) MBProgressHUDManager *HUDManager;
 
 @end
 
@@ -46,6 +48,7 @@
         NSKeyedUnarchiver *unarchiver =[[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         self.defaultCard = [unarchiver decodeObjectForKey:kDataKey];
     }
+    self.HUDManager= [[MBProgressHUDManager alloc] initWithView:self.view];
 }
 
 -(NSString *)dataFilePath{
@@ -162,8 +165,6 @@
 //    [dictionary setObject:[self.schedule objectForKey:@"ContactNumber"] forKey:@"ContactNumber"];
     [dictionary setObject:@"10020" forKey:@"BookingWayID"];
     
-    
-    
     NSError *error=nil;
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
@@ -194,12 +195,11 @@
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
     
-   // UIAlertView *alert = [UIAlertView alloc]initWithTitle:@"预约结果" message:@"恭喜你，预约成功" delegate:self cancelButtonTitle:@"确定",
-    UIAlertView  *alert = [[UIAlertView alloc] initWithTitle:nil message:@"预约成功！如需取消，请到<个人设置>／<我的预约>中取消" delegate:self  cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-    [alert show];
-    [self.navigationController popViewControllerAnimated:YES];
-};
-
+//    [self.HUDManager showMessage:@"预约成功！如需取消，请到'个人设置'-'我的预约'中取消" duration:3];
+  
+//    [self.navigationController popViewControllerAnimated:YES];
+  
+}
 
 #pragma mark
 #pragma mark NSURLConnection Delegate Methods
@@ -239,6 +239,10 @@
     
     NSString *resultMsg = [jsonDictionary objectForKey:@"Message"];
     NSLog(@"%@",resultMsg);
+    
+    [self.HUDManager showMessage:@"预约成功！在'个人设置'-'我的预约'中可取消" duration:3 complection:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
