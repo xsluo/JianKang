@@ -1,11 +1,13 @@
+
 //
-//  BookRecordTableViewController.m
+//  SatisfactionTableViewController.m
 //  eHealth
 //
-//  Created by Bagu on 15/3/26.
+//  Created by Bagu on 15/4/6.
 //  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
+#import "SatisfactionTableViewController.h"
 #import "BookRecordTableViewController.h"
 #import "BookRecordCell.h"
 
@@ -14,17 +16,16 @@
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
 #define Type @"0"
-
 #define kUserName @"username"
 
-@interface BookRecordTableViewController ()
+@interface SatisfactionTableViewController ()
+
 @property (nonatomic,retain) NSMutableArray *bookRecordList;
 @property (nonatomic,retain) NSMutableData *responseData;
 
-
 @end
 
-@implementation BookRecordTableViewController
+@implementation SatisfactionTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,7 +63,7 @@
     }
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSString *postString = [NSString stringWithFormat:@"method=%@&jsonBody=%@",Method,jsonString];
-
+    
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -110,14 +111,14 @@
         return;
     }
     //    self.medicalCardList =[jsonDictionary objectForKey:@"MedicalCardList"];
-//    NSMutableArray *arrayM =[[NSMutableArray alloc]initWithArray:[jsonDictionary objectForKey:@"BookingRecordList"]];
+    //    NSMutableArray *arrayM =[[NSMutableArray alloc]initWithArray:[jsonDictionary objectForKey:@"BookingRecordList"]];
     NSMutableArray *arrayM= [jsonDictionary objectForKey:@"BookingRecordList"];
     if ([arrayM isEqual:[NSNull null]])
         self.bookRecordList = nil;
     else
         self.bookRecordList = arrayM;
     [self.tableView reloadData];
-
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -130,13 +131,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
+    //#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
+    //#warning Incomplete method implementation.
     // Return the number of rows in the section.
     if(self.bookRecordList!=(id)[NSNull null])
         return [self.bookRecordList count];
@@ -145,87 +146,42 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *reuseIdentifier = @"bookRecordCell";
-    BookRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
+    static NSString *reuseIdentifier = @"bookedCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     if (cell==nil) {
         cell = [[BookRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-//    cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    NSDictionary *bookRecord = [self.bookRecordList objectAtIndex: [indexPath row]];
     
-    NSInteger row = [indexPath row];
-    NSDictionary *recordDictionary = [self.bookRecordList objectAtIndex:row];
+    UILabel *lableHospital = (UILabel *)[cell viewWithTag:1];
+    lableHospital.text = [bookRecord objectForKey:@"HospitalName"];
     
-    cell.hospitalName.text = [recordDictionary objectForKey:@"HospitalName"];
-    cell.doctorName.text = [recordDictionary objectForKey:@"DoctorName"];
-    cell.departmentName.text =[recordDictionary objectForKey:@"DepartmentName"];
-    cell.medicalCardCode.text =[recordDictionary objectForKey:@"MedicalCardCode"];
-    cell.medicalCardOwner.text =[recordDictionary objectForKey:@"MedicalCardOwner"];
-    cell.medicalCardTypeName.text =[recordDictionary objectForKey:@"MedicalCardTypeName"];
-    cell.auscultationDate.text =[recordDictionary objectForKey:@"AuscultationDate"];
-    cell.signInStatusName.text =[recordDictionary objectForKey:@"SignInStatusName"];
-    cell.medicalCardTypeID = [recordDictionary objectForKey:@"MedicalCardTypeID"];
-    cell.bookingRecordID = [recordDictionary objectForKey:@"BookingRecordID"];
+    UILabel *lableDepartment = (UILabel *)[cell viewWithTag:2];
+    lableDepartment.text = [bookRecord objectForKey:@"DepartmentName"];
     
-    if ([[recordDictionary objectForKey:@"SignInStatusName"] isEqualToString:@"未到诊"]) {
-        cell.buttonCancel.hidden = NO;
-        cell.signInStatusName.hidden = YES;
-    }
-    else{
-        cell.buttonCancel.hidden = YES;
-        cell.signInStatusName.hidden = NO;
-    }
+    UILabel *lableDoctor = (UILabel *)[cell viewWithTag:3];
+    lableDoctor.text = [bookRecord objectForKey:@"DoctorName"];
+    
+    UILabel *lableCardCode = (UILabel *)[cell viewWithTag:4];
+    lableCardCode.text = [bookRecord objectForKey:@"MedicalCardCode"];
+    
+    UILabel *lableOwner = (UILabel *)[cell viewWithTag:5];
+    lableOwner.text = [bookRecord objectForKey:@"MedicalCardOwner"];
+    
+    UILabel *lableTime = (UILabel *)[cell viewWithTag:6];
+    lableTime.text = [bookRecord objectForKey:@"BeginTime"];
     return cell;
-
+    
 }
-
-//-(double)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 144.0;
-//}
-
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

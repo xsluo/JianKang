@@ -7,6 +7,8 @@
 //
 
 #import "BookRecordCell.h"
+#import "MBProgressHUDManager.h"
+
 #define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"CancleBookingRecord"
 #define AppKey @"JianKangEYuanIOS"
@@ -16,11 +18,10 @@
 @interface BookRecordCell()
 @property (nonatomic,retain) NSMutableArray *resultList;
 @property (nonatomic,retain) NSMutableData *responseData;
-
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation BookRecordCell
-
 
 - (void)awakeFromNib {
     // Initialization code
@@ -66,7 +67,6 @@
     [connection start];
 }
 
-
 #pragma mark NSURLConnection Delegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -102,7 +102,9 @@
         NSLog(@"json parse failed");
         return;
     }
-    NSLog(@"%@",[jsonDictionary objectForKey:@"Message"]);
+//    NSLog(@"%@",[jsonDictionary objectForKey:@"Message"]);
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.contentView];
+    [self.HUDManager showMessage:[jsonDictionary objectForKey:@"Message"] duration:3];
 }
 
 
@@ -111,7 +113,5 @@
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
 }
-
-
 
 @end

@@ -255,12 +255,12 @@
         NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
         NSKeyedUnarchiver *unarchiver =[[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         if ([unarchiver decodeObjectForKey:kDataKey]==nil){
-            [self.HUDManager showMessage:@"请设置默认健康卡" duration:3];
+            [self.HUDManager showMessage:@"请在‘个人设置’中设置默认健康卡" duration:3];
             return NO;
         }
     }
     else{
-        [self.HUDManager showMessage:@"请设置默认健康卡" duration:3];
+        [self.HUDManager showMessage:@"请在‘个人设置‘中设置默认健康卡" duration:3];
         return NO;
     }
     return YES;

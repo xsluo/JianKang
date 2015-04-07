@@ -17,12 +17,11 @@
 #define kPassWord @"password"
 
 @interface LoginningViewController ()
-@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @property (weak, nonatomic) IBOutlet UITextField *textName;
 @property (weak, nonatomic) IBOutlet UITextField *textPwd;
 @property(nonatomic,retain)   NSMutableData *responseData;
 - (IBAction)loginTapped:(id)sender;
-
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation LoginningViewController

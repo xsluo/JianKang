@@ -131,11 +131,14 @@
         return;
     }
 //    self.medicalCardList =[jsonDictionary objectForKey:@"MedicalCardList"];
-    NSMutableArray *arrayM =[[NSMutableArray alloc]initWithArray:[jsonDictionary objectForKey:@"MedicalCardList"]];
-    self.medicalCardList = arrayM;
-    
+//    NSMutableArray *arrayM =[[NSMutableArray alloc]initWithArray:[jsonDictionary objectForKey:@"MedicalCardList"]];
+    NSMutableArray *arrayM =[jsonDictionary objectForKey:@"MedicalCardList"];
+    if (arrayM !=(id)[NSNull null]) {
+        self.medicalCardList = arrayM;
+    }
+    else
+        self.medicalCardList = nil;
     [self.tableView reloadData];
-    //    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -156,7 +159,8 @@
     //#warning Incomplete method implementation.
     //    // Return the number of rows in the section.
     if(section ==0){
-     if(self.medicalCardList!=(id)[NSNull null])
+//     if(self.medicalCardList!=(id)[NSNull null])
+        if (self.medicalCardList)
             return [self.medicalCardList count];
         else
             return 0;

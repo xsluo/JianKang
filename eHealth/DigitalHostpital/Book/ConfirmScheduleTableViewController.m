@@ -138,11 +138,11 @@
     else{
         identifier = @"confirmCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-        
         UIButton *confirmButton = [[UIButton alloc] initWithFrame:cell.contentView.frame];
+        confirmButton.layer.cornerRadius = 4;
+        confirmButton.translatesAutoresizingMaskIntoConstraints = NO;
         confirmButton.backgroundColor= [UIColor colorWithRed:252.0/255 green:106.0/255 blue:8.0/255 alpha:1.0];
         [confirmButton setTitle:@"确认预约" forState:UIControlStateNormal];
-        confirmButton.titleLabel.textColor = [UIColor brownColor];
         [confirmButton addTarget:self action:@selector(confirm:) forControlEvents:UIControlEventTouchDown];
             [cell.contentView addSubview:confirmButton];
         return cell;
