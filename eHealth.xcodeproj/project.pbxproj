@@ -133,6 +133,9 @@
 		135796831ACCF05C00A6C3B2 /* FavariteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135796821ACCF05C00A6C3B2 /* FavariteTableViewController.m */; };
 		135AD7441ACAF3E200B309ED /* PatWaitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135AD7431ACAF3E200B309ED /* PatWaitTableViewController.m */; };
 		135AD7471ACBAC5800B309ED /* AddMedicalCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135AD7461ACBAC5800B309ED /* AddMedicalCardViewController.m */; };
+		136657191AE099360043D262 /* AppIcon180px.png in Resources */ = {isa = PBXBuildFile; fileRef = 136657161AE099360043D262 /* AppIcon180px.png */; };
+		1366571A1AE099360043D262 /* AppIcon80px.png in Resources */ = {isa = PBXBuildFile; fileRef = 136657171AE099360043D262 /* AppIcon80px.png */; };
+		1366571B1AE099360043D262 /* AppIcon120px.png in Resources */ = {isa = PBXBuildFile; fileRef = 136657181AE099360043D262 /* AppIcon120px.png */; };
 		137C900F1A949EB00085AF90 /* MedicalCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 137C900D1A949EB00085AF90 /* MedicalCard.m */; };
 		138F8B591AB075A300E36438 /* DigitaHospitalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 138F8B581AB075A300E36438 /* DigitaHospitalCollectionViewCell.m */; };
 		139512A51A5808870067810D /* DutyRosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139512A41A5808870067810D /* DutyRosterViewController.m */; };
@@ -191,9 +194,6 @@
 		13E092D61ACF6A46003A7F70 /* 科室分布.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C11ACF6A46003A7F70 /* 科室分布.png */; };
 		13E092D71ACF6A46003A7F70 /* ic_hospital_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C31ACF6A46003A7F70 /* ic_hospital_info.png */; };
 		13E092D81ACF6A46003A7F70 /* ic_hospital_intro.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C41ACF6A46003A7F70 /* ic_hospital_intro.png */; };
-		13E092D91ACF6A46003A7F70 /* app图标120px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C61ACF6A46003A7F70 /* app图标120px.png */; };
-		13E092DA1ACF6A46003A7F70 /* app图标180px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C71ACF6A46003A7F70 /* app图标180px.png */; };
-		13E092DB1ACF6A46003A7F70 /* app图标80px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E092C81ACF6A46003A7F70 /* app图标80px.png */; };
 		13F0333A1A7797930012BB02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F033381A7797930012BB02 /* Main.storyboard */; };
 		13F1BF4E1AC43F7E0010087D /* BookRecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F1BF4D1AC43F7E0010087D /* BookRecordTableViewController.m */; };
 		13F1BF511AC43FC90010087D /* BookRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F1BF501AC43FC90010087D /* BookRecordCell.m */; };
@@ -350,6 +350,9 @@
 		135AD7431ACAF3E200B309ED /* PatWaitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatWaitTableViewController.m; path = Wait/PatWaitTableViewController.m; sourceTree = "<group>"; };
 		135AD7451ACBAC5800B309ED /* AddMedicalCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddMedicalCardViewController.h; path = MedicalCard/AddMedicalCardViewController.h; sourceTree = "<group>"; };
 		135AD7461ACBAC5800B309ED /* AddMedicalCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddMedicalCardViewController.m; path = MedicalCard/AddMedicalCardViewController.m; sourceTree = "<group>"; };
+		136657161AE099360043D262 /* AppIcon180px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon180px.png; path = "images/应用程序图标/AppIcon180px.png"; sourceTree = SOURCE_ROOT; };
+		136657171AE099360043D262 /* AppIcon80px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon80px.png; path = "images/应用程序图标/AppIcon80px.png"; sourceTree = SOURCE_ROOT; };
+		136657181AE099360043D262 /* AppIcon120px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon120px.png; path = "images/应用程序图标/AppIcon120px.png"; sourceTree = SOURCE_ROOT; };
 		137C900D1A949EB00085AF90 /* MedicalCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MedicalCard.m; path = Object/MedicalCard.m; sourceTree = "<group>"; };
 		137C900E1A949EB00085AF90 /* MedicalCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MedicalCard.h; path = Object/MedicalCard.h; sourceTree = "<group>"; };
 		138F8B571AB075A300E36438 /* DigitaHospitalCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DigitaHospitalCollectionViewCell.h; path = KeyBoard/DigitaHospitalCollectionViewCell.h; sourceTree = "<group>"; };
@@ -444,9 +447,6 @@
 		13E092C11ACF6A46003A7F70 /* 科室分布.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "科室分布.png"; sourceTree = "<group>"; };
 		13E092C31ACF6A46003A7F70 /* ic_hospital_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_hospital_info.png; sourceTree = "<group>"; };
 		13E092C41ACF6A46003A7F70 /* ic_hospital_intro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_hospital_intro.png; sourceTree = "<group>"; };
-		13E092C61ACF6A46003A7F70 /* app图标120px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app图标120px.png"; sourceTree = "<group>"; };
-		13E092C71ACF6A46003A7F70 /* app图标180px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app图标180px.png"; sourceTree = "<group>"; };
-		13E092C81ACF6A46003A7F70 /* app图标80px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app图标80px.png"; sourceTree = "<group>"; };
 		13F033391A7797930012BB02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13F1BF4C1AC43F7E0010087D /* BookRecordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookRecordTableViewController.h; path = BookRecord/BookRecordTableViewController.h; sourceTree = "<group>"; };
 		13F1BF4D1AC43F7E0010087D /* BookRecordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookRecordTableViewController.m; path = BookRecord/BookRecordTableViewController.m; sourceTree = "<group>"; };
@@ -515,7 +515,7 @@
 				13E092B81ACF6A46003A7F70 /* 健康卡管理选择图标32px */,
 				13E092BB1ACF6A46003A7F70 /* 医院简介小标32px */,
 				13E092C21ACF6A46003A7F70 /* 医院介绍小标 */,
-				13E092C51ACF6A46003A7F70 /* app图标 */,
+				13E092C51ACF6A46003A7F70 /* 应用程序图标 */,
 				132472C71AB3255A003F0B1D /* icons */,
 				132142F11A3F1B0600290746 /* 1.png */,
 				13F901251AB9AB96009662F9 /* fsdyrm.png */,
@@ -978,14 +978,14 @@
 			path = "images/医院介绍小标";
 			sourceTree = "<group>";
 		};
-		13E092C51ACF6A46003A7F70 /* app图标 */ = {
+		13E092C51ACF6A46003A7F70 /* 应用程序图标 */ = {
 			isa = PBXGroup;
 			children = (
-				13E092C61ACF6A46003A7F70 /* app图标120px.png */,
-				13E092C71ACF6A46003A7F70 /* app图标180px.png */,
-				13E092C81ACF6A46003A7F70 /* app图标80px.png */,
+				136657161AE099360043D262 /* AppIcon180px.png */,
+				136657171AE099360043D262 /* AppIcon80px.png */,
+				136657181AE099360043D262 /* AppIcon120px.png */,
 			);
-			name = "app图标";
+			name = "应用程序图标";
 			path = "images/app图标";
 			sourceTree = "<group>";
 		};
@@ -1119,7 +1119,6 @@
 				13E092D81ACF6A46003A7F70 /* ic_hospital_intro.png in Resources */,
 				1324751B1AB3256B003F0B1D /* wifi.png in Resources */,
 				132474291AB3256B003F0B1D /* button-play.png in Resources */,
-				13E092D91ACF6A46003A7F70 /* app图标120px.png in Resources */,
 				132474CA1AB3256B003F0B1D /* race-flag.png in Resources */,
 				132474881AB3256B003F0B1D /* key.png in Resources */,
 				132474171AB3256B003F0B1D /* battery-full.png in Resources */,
@@ -1136,7 +1135,7 @@
 				132474F51AB3256B003F0B1D /* storage.png in Resources */,
 				132473F81AB3256B003F0B1D /* airplane.png in Resources */,
 				132475011AB3256B003F0B1D /* text-left.png in Resources */,
-				13E092DB1ACF6A46003A7F70 /* app图标80px.png in Resources */,
+				1366571A1AE099360043D262 /* AppIcon80px.png in Resources */,
 				1324742D1AB3256B003F0B1D /* button-stop.png in Resources */,
 				132474831AB3256B003F0B1D /* house.png in Resources */,
 				132474271AB3256B003F0B1D /* button-next.png in Resources */,
@@ -1145,9 +1144,9 @@
 				1324743F1AB3256B003F0B1D /* clock.png in Resources */,
 				132474181AB3256B003F0B1D /* bell.png in Resources */,
 				132474281AB3256B003F0B1D /* button-pause.png in Resources */,
-				13E092DA1ACF6A46003A7F70 /* app图标180px.png in Resources */,
 				132143011A3F1B0600290746 /* 8.png in Resources */,
 				132474C71AB3256B003F0B1D /* pyramid.png in Resources */,
+				136657191AE099360043D262 /* AppIcon180px.png in Resources */,
 				132474D01AB3256B003F0B1D /* rooster.png in Resources */,
 				1324744A1AB3256B003F0B1D /* crown.png in Resources */,
 				132474B21AB3256B003F0B1D /* pencil.png in Resources */,
@@ -1166,6 +1165,7 @@
 				13E092D11ACF6A46003A7F70 /* 一周排班.png in Resources */,
 				132475111AB3256B003F0B1D /* uptrend.png in Resources */,
 				1324746D1AB3256B003F0B1D /* forbidden.png in Resources */,
+				1366571B1AE099360043D262 /* AppIcon120px.png in Resources */,
 				132474FB1AB3256B003F0B1D /* sword.png in Resources */,
 				132474E01AB3256B003F0B1D /* shirt.png in Resources */,
 				132142FA1A3F1B0600290746 /* 1.png in Resources */,

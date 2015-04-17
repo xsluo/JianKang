@@ -2242,11 +2242,19 @@
             <objects>
                 <tabBarController title="首页" id="w7D-hV-qQT" customClass="HomeViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="首页" id="Wqm-ot-UJF">
-                        <barButtonItem key="rightBarButtonItem" title="个人设置" style="plain" id="gxW-ik-Bp3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sUp-fP-C4N">
+                        <barButtonItem key="rightBarButtonItem" title="个人设置" id="gxW-ik-Bp3">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="sUp-fP-C4N">
                                 <rect key="frame" x="451" y="7" width="89" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="个人设置"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="个人设置">
+                                            <attributes>
+                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="settingTapped:" destination="w7D-hV-qQT" eventType="touchUpInside" id="w47-vL-4On"/>
                                 </connections>

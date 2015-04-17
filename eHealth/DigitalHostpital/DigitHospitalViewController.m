@@ -99,7 +99,7 @@ static NSString * const reuseIdentifier = @"CollectionCell";
             }
         }
         else{
-            [self.HUDManager showMessage:@"请在登录设置默认健康卡" duration:3];
+            [self.HUDManager showMessage:@"请登录并设置默认健康卡" duration:3];
             return NO;
         }
         return YES;
