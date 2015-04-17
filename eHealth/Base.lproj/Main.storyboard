@@ -1967,7 +1967,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61o-pt-kb3">
-                                <rect key="frame" x="210" y="164" width="180" height="180"/>
+                                <rect key="frame" x="210" y="304" width="180" height="180"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6S-um-b5k">
                                         <rect key="frame" x="21" y="0.0" width="139" height="139"/>
@@ -1993,7 +1993,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4e-wT-zyl">
-                                <rect key="frame" x="16" y="164" width="180" height="180"/>
+                                <rect key="frame" x="16" y="304" width="180" height="180"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRY-Lo-7Lz">
                                         <rect key="frame" x="21" y="0.0" width="138" height="138"/>
@@ -2022,7 +2022,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Eu-gs-KoV">
-                                <rect key="frame" x="404" y="164" width="180" height="180"/>
+                                <rect key="frame" x="404" y="304" width="180" height="180"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM1-qc-amK">
                                         <rect key="frame" x="-23" y="0.0" width="227" height="138"/>
@@ -2047,18 +2047,27 @@
                                     <constraint firstAttribute="bottom" secondItem="xgX-4o-9KK" secondAttribute="bottom" id="uuF-DO-mE9"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="znjk.png" translatesAutoresizingMaskIntoConstraints="NO" id="9Ws-o3-hmU">
+                                <rect key="frame" x="0.0" y="64" width="600" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="sR8-ID-BV2"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1Eu-gs-KoV" firstAttribute="top" secondItem="Ge2-aj-9cr" secondAttribute="bottom" constant="100" id="0Hg-bq-FxZ"/>
+                            <constraint firstItem="1Eu-gs-KoV" firstAttribute="top" secondItem="Ge2-aj-9cr" secondAttribute="bottom" constant="240" id="0Hg-bq-FxZ"/>
                             <constraint firstAttribute="centerX" secondItem="61o-pt-kb3" secondAttribute="centerX" id="0dd-AL-7h0"/>
-                            <constraint firstItem="61o-pt-kb3" firstAttribute="top" secondItem="Ge2-aj-9cr" secondAttribute="bottom" constant="100" id="4A6-P7-xig"/>
-                            <constraint firstItem="D4e-wT-zyl" firstAttribute="top" secondItem="Ge2-aj-9cr" secondAttribute="bottom" constant="100" id="MP1-sf-MUB"/>
+                            <constraint firstItem="61o-pt-kb3" firstAttribute="top" secondItem="Ge2-aj-9cr" secondAttribute="bottom" constant="240" id="4A6-P7-xig"/>
+                            <constraint firstItem="9Ws-o3-hmU" firstAttribute="top" secondItem="Ge2-aj-9cr" secondAttribute="bottom" id="Fik-o5-EXK"/>
+                            <constraint firstItem="D4e-wT-zyl" firstAttribute="top" secondItem="Ge2-aj-9cr" secondAttribute="bottom" constant="240" id="MP1-sf-MUB"/>
                             <constraint firstItem="D4e-wT-zyl" firstAttribute="width" secondItem="RI2-mY-DTH" secondAttribute="width" multiplier="0.3" id="Uub-Ij-GYq"/>
                             <constraint firstAttribute="width" secondItem="61o-pt-kb3" secondAttribute="width" multiplier="3.333" id="ZKs-lt-xtg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1Eu-gs-KoV" secondAttribute="trailing" id="fhv-Fd-5pG"/>
                             <constraint firstItem="D4e-wT-zyl" firstAttribute="leading" secondItem="RI2-mY-DTH" secondAttribute="leadingMargin" id="gKc-rN-fzw"/>
                             <constraint firstItem="1Eu-gs-KoV" firstAttribute="width" secondItem="RI2-mY-DTH" secondAttribute="width" multiplier="0.3" id="iVH-HF-IMa"/>
+                            <constraint firstItem="9Ws-o3-hmU" firstAttribute="leading" secondItem="RI2-mY-DTH" secondAttribute="leading" id="pNa-0x-WKg"/>
+                            <constraint firstAttribute="trailing" secondItem="9Ws-o3-hmU" secondAttribute="trailing" id="tIg-yu-6ON"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="智能健康" id="uxU-yS-MRF"/>
@@ -3674,6 +3683,7 @@
         <image name="fsdyrm.png" width="722" height="481"/>
         <image name="ic_hospital_info.png" width="70" height="62"/>
         <image name="ic_hospital_intro.png" width="70" height="62"/>
+        <image name="znjk.png" width="720" height="480"/>
         <image name="一周排班.png" width="32" height="32"/>
         <image name="交通指引.png" width="32" height="32"/>
         <image name="医院介绍.png" width="32" height="32"/>
@@ -3682,7 +3692,7 @@
         <image name="科室分布.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ttj-NW-z32"/>
+        <segue reference="xEz-2R-tOe"/>
         <segue reference="ej1-x8-WMf"/>
     </inferredMetricsTieBreakers>
 </document>

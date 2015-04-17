@@ -124,6 +124,7 @@
 		132475201AB3256B003F0B1D /* woman-figure.png in Resources */ = {isa = PBXBuildFile; fileRef = 132473F21AB3256B003F0B1D /* woman-figure.png */; };
 		132475211AB3256B003F0B1D /* woman.png in Resources */ = {isa = PBXBuildFile; fileRef = 132473F31AB3256B003F0B1D /* woman.png */; };
 		132475231AB3256B003F0B1D /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = 132473F51AB3256B003F0B1D /* write.png */; };
+		132576371AE0D77F003993D1 /* znjk.png in Resources */ = {isa = PBXBuildFile; fileRef = 132576361AE0D77F003993D1 /* znjk.png */; };
 		1344E8D61A580FE300733189 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1344E8D51A580FE300733189 /* HomeViewController.m */; };
 		134C4FC71A3D867000CDDA3E /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 134C4FC61A3D867000CDDA3E /* IntroductionViewController.m */; };
 		135796831ACCF05C00A6C3B2 /* FavariteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135796821ACCF05C00A6C3B2 /* FavariteTableViewController.m */; };
@@ -332,6 +333,7 @@
 		132473F21AB3256B003F0B1D /* woman-figure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "woman-figure.png"; path = "icons/woman-figure.png"; sourceTree = "<group>"; };
 		132473F31AB3256B003F0B1D /* woman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = woman.png; path = icons/woman.png; sourceTree = "<group>"; };
 		132473F51AB3256B003F0B1D /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = write.png; path = icons/write.png; sourceTree = "<group>"; };
+		132576361AE0D77F003993D1 /* znjk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = znjk.png; path = images/znjk.png; sourceTree = "<group>"; };
 		1344E8D41A580FE300733189 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		1344E8D51A580FE300733189 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		134C4FC51A3D867000CDDA3E /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntroductionViewController.h; path = DigitalHostpital/Introduction/IntroductionViewController.h; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 		06D9C80F1AE0D0E700F25B07 /* 首页图标 */ = {
 			isa = PBXGroup;
 			children = (
+				132576361AE0D77F003993D1 /* znjk.png */,
 				132142F11A3F1B0600290746 /* 1.png */,
 				13F901251AB9AB96009662F9 /* fsdyrm.png */,
 				132142F21A3F1B0600290746 /* 2.png */,
@@ -1227,6 +1230,7 @@
 				13E092CD1ACF6A46003A7F70 /* 综合服务-点击效果.png in Resources */,
 				132474FF1AB3256B003F0B1D /* tea.png in Resources */,
 				132474D21AB3256B003F0B1D /* rss.png in Resources */,
+				132576371AE0D77F003993D1 /* znjk.png in Resources */,
 				132474761AB3256B003F0B1D /* guitar.png in Resources */,
 				132143021A3F1B0600290746 /* 9.png in Resources */,
 				132475081AB3256B003F0B1D /* tick.png in Resources */,
