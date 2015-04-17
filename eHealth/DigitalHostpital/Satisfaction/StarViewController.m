@@ -8,10 +8,11 @@
 
 #import "StarViewController.h"
 
+
 @interface StarViewController ()
 
-@end
 
+@end
 @implementation StarViewController
 
 - (void)viewDidLoad {

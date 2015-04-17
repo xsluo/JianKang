@@ -192,7 +192,7 @@
 
 - (IBAction)dutyChanged:(id)sender {
     NSInteger index =[(UISegmentedControl*)sender selectedSegmentIndex];
-    self.status = [NSString stringWithFormat:@"%lo",index+1];
+    self.status = [NSString stringWithFormat:@"%o",index+1];
     [self linkTheNet];
     [self.tableView reloadData];
 }

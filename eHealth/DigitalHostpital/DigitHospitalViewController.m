@@ -10,11 +10,17 @@
 #import "DigitaHospitalCollectionViewCell.h"
 #import "BookViewController.h"
 #import "Hospital.h"
+#import "MBProgressHUDManager.h"
+
+#define kDataFile @"dataCard"
+#define kDataKey  @"defaultCard"
 
 @interface DigitHospitalViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property NSArray *imageName;
 @property NSArray *labelText;
+@property (nonatomic,retain) MBProgressHUDManager *HUDManager;
+
 @end
 
 @implementation DigitHospitalViewController
@@ -36,6 +42,8 @@ static NSString * const reuseIdentifier = @"CollectionCell";
     
     self.tabBarItem.title = @"数字医院";
     // Do any additional setup after loading the view, typically from a nib.
+    self.HUDManager= [[MBProgressHUDManager alloc] initWithView:self.view];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,7 +65,7 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     DigitaHospitalCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     UIImage *img = [UIImage imageNamed:[self.imageName objectAtIndex:[indexPath row]]];
     cell.imageView.image = img;
@@ -72,15 +80,38 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    CGSize size = CGSizeMake(100, 130);
-        CGSize size = CGSizeMake(80, 90);
+    //    CGSize size = CGSizeMake(100, 130);
+    CGSize size = CGSizeMake(80, 90);
     
     return size;
 }
 
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if([indexPath row]==4){
+        NSString *filePath = [self dataFilePath];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
+            NSKeyedUnarchiver *unarchiver =[[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+            if ([unarchiver decodeObjectForKey:kDataKey]==nil){
+                [self.HUDManager showMessage:@"请登录并设置默认健康卡" duration:3];
+                return NO;
+            }
+        }
+        else{
+            [self.HUDManager showMessage:@"请在登录设置默认健康卡" duration:3];
+            return NO;
+        }
+        return YES;
+    }
     return YES;
+}
+
+-(NSString *)dataFilePath{
+    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSLog(@"%@",documentsDirectory);
+    return [documentsDirectory stringByAppendingPathComponent:kDataFile];
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -89,8 +120,6 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-
-
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *selectedCell = [collectionView cellForItemAtIndexPath:indexPath];
@@ -106,22 +135,20 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 }
 
 
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-     if ([[segue identifier] isEqual: @"4"]) {
-         BookViewController *destination = [segue destinationViewController];
-         Hospital *fsdy = [[Hospital alloc]init];
-         fsdy.hospitalID = @"440604001";
-         fsdy.hospitalName = @"佛山市区第一人民医院";
-         destination.hospital = fsdy;
-     };
-     
- }
+#pragma mark - Navigation
 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqual: @"4"]) {
+        BookViewController *destination = [segue destinationViewController];
+        Hospital *fsdy = [[Hospital alloc]init];
+        fsdy.hospitalID = @"440604001";
+        fsdy.hospitalName = @"佛山市区第一人民医院";
+        destination.hospital = fsdy;
+    }
+}
 
 
 @end

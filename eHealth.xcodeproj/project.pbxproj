@@ -161,11 +161,6 @@
 		13A8155B1A890D2A00BCCBCE /* Doctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A8155A1A890D2A00BCCBCE /* Doctor.m */; };
 		13A815611A89B3D700BCCBCE /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A815601A89B3D700BCCBCE /* Schedule.m */; };
 		13BA857A1AD2D09500F5D896 /* SatisfactionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BA85791AD2D09500F5D896 /* SatisfactionTableViewController.m */; };
-		13BA85841AD2E28300F5D896 /* EDStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BA85831AD2E28300F5D896 /* EDStarRating.m */; };
-		13BA85891AD2E2A600F5D896 /* star-highlighted-template.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA85851AD2E2A600F5D896 /* star-highlighted-template.png */; };
-		13BA858A1AD2E2A600F5D896 /* star-highlighted-template@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA85861AD2E2A600F5D896 /* star-highlighted-template@2x.png */; };
-		13BA858B1AD2E2A600F5D896 /* star-template.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA85871AD2E2A600F5D896 /* star-template.png */; };
-		13BA858C1AD2E2A600F5D896 /* star-template@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BA85881AD2E2A600F5D896 /* star-template@2x.png */; };
 		13BA858F1AD2E2F000F5D896 /* StarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BA858E1AD2E2F000F5D896 /* StarViewController.m */; };
 		13CAAE631A3C92E9009C420E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAAE621A3C92E9009C420E /* main.m */; };
 		13CAAE661A3C92E9009C420E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAAE651A3C92E9009C420E /* AppDelegate.m */; };
@@ -411,12 +406,6 @@
 		13A815601A89B3D700BCCBCE /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = Object/Schedule.m; sourceTree = "<group>"; };
 		13BA85781AD2D09500F5D896 /* SatisfactionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SatisfactionTableViewController.h; path = DigitalHostpital/Satisfaction/SatisfactionTableViewController.h; sourceTree = "<group>"; };
 		13BA85791AD2D09500F5D896 /* SatisfactionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SatisfactionTableViewController.m; path = DigitalHostpital/Satisfaction/SatisfactionTableViewController.m; sourceTree = "<group>"; };
-		13BA85821AD2E28300F5D896 /* EDStarRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDStarRating.h; sourceTree = "<group>"; };
-		13BA85831AD2E28300F5D896 /* EDStarRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDStarRating.m; sourceTree = "<group>"; };
-		13BA85851AD2E2A600F5D896 /* star-highlighted-template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-highlighted-template.png"; sourceTree = "<group>"; };
-		13BA85861AD2E2A600F5D896 /* star-highlighted-template@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-highlighted-template@2x.png"; sourceTree = "<group>"; };
-		13BA85871AD2E2A600F5D896 /* star-template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-template.png"; sourceTree = "<group>"; };
-		13BA85881AD2E2A600F5D896 /* star-template@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-template@2x.png"; sourceTree = "<group>"; };
 		13BA858D1AD2E2F000F5D896 /* StarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StarViewController.h; path = DigitalHostpital/Satisfaction/StarViewController.h; sourceTree = "<group>"; };
 		13BA858E1AD2E2F000F5D896 /* StarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StarViewController.m; path = DigitalHostpital/Satisfaction/StarViewController.m; sourceTree = "<group>"; };
 		13CAAE5D1A3C92E9009C420E /* eHealth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eHealth.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -777,7 +766,7 @@
 		13BA85771AD2D04C00F5D896 /* Satisfaction */ = {
 			isa = PBXGroup;
 			children = (
-				13BA85811AD2E28300F5D896 /* EDStarRating */,
+				13BA85811AD2E28300F5D896 /* StarRating */,
 				13BA85781AD2D09500F5D896 /* SatisfactionTableViewController.h */,
 				13BA85791AD2D09500F5D896 /* SatisfactionTableViewController.m */,
 				13BA858D1AD2E2F000F5D896 /* StarViewController.h */,
@@ -786,16 +775,11 @@
 			name = Satisfaction;
 			sourceTree = "<group>";
 		};
-		13BA85811AD2E28300F5D896 /* EDStarRating */ = {
+		13BA85811AD2E28300F5D896 /* StarRating */ = {
 			isa = PBXGroup;
 			children = (
-				13BA85851AD2E2A600F5D896 /* star-highlighted-template.png */,
-				13BA85861AD2E2A600F5D896 /* star-highlighted-template@2x.png */,
-				13BA85871AD2E2A600F5D896 /* star-template.png */,
-				13BA85881AD2E2A600F5D896 /* star-template@2x.png */,
-				13BA85821AD2E28300F5D896 /* EDStarRating.h */,
-				13BA85831AD2E28300F5D896 /* EDStarRating.m */,
 			);
+			name = StarRating;
 			path = EDStarRating;
 			sourceTree = "<group>";
 		};
@@ -1132,7 +1116,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13E092D61ACF6A46003A7F70 /* 科室分布.png in Resources */,
-				13BA85891AD2E2A600F5D896 /* star-highlighted-template.png in Resources */,
 				13E092D81ACF6A46003A7F70 /* ic_hospital_intro.png in Resources */,
 				1324751B1AB3256B003F0B1D /* wifi.png in Resources */,
 				132474291AB3256B003F0B1D /* button-play.png in Resources */,
@@ -1150,7 +1133,6 @@
 				132474EF1AB3256B003F0B1D /* speaker-on.png in Resources */,
 				132474CD1AB3256B003F0B1D /* recycle-bin.png in Resources */,
 				132474961AB3256B003F0B1D /* map-pin.png in Resources */,
-				13BA858C1AD2E2A600F5D896 /* star-template@2x.png in Resources */,
 				132474F51AB3256B003F0B1D /* storage.png in Resources */,
 				132473F81AB3256B003F0B1D /* airplane.png in Resources */,
 				132475011AB3256B003F0B1D /* text-left.png in Resources */,
@@ -1204,7 +1186,6 @@
 				13F0333A1A7797930012BB02 /* Main.storyboard in Resources */,
 				132474701AB3256B003F0B1D /* gear.png in Resources */,
 				132474911AB3256B003F0B1D /* lorry-side.png in Resources */,
-				13BA858A1AD2E2A600F5D896 /* star-highlighted-template@2x.png in Resources */,
 				132142FF1A3F1B0600290746 /* 6.png in Resources */,
 				132474ED1AB3256B003F0B1D /* spanner.png in Resources */,
 				132142FB1A3F1B0600290746 /* 2.png in Resources */,
@@ -1269,7 +1250,6 @@
 				132474241AB3256B003F0B1D /* button-fast-forward.png in Resources */,
 				132474E21AB3256B003F0B1D /* shopping-cart.png in Resources */,
 				132474381AB3256B003F0B1D /* caution.png in Resources */,
-				13BA858B1AD2E2A600F5D896 /* star-template.png in Resources */,
 				1324750D1AB3256B003F0B1D /* tree.png in Resources */,
 				13E092CF1ACF6A46003A7F70 /* 健康卡管理图标-未选中32px.png in Resources */,
 				13E092AE1ACEF095003A7F70 /* 37x-success.png in Resources */,
@@ -1328,7 +1308,6 @@
 				13A739D31AB863BA00649744 /* CardDetailViewController.m in Sources */,
 				135AD7441ACAF3E200B309ED /* PatWaitTableViewController.m in Sources */,
 				134C4FC71A3D867000CDDA3E /* IntroductionViewController.m in Sources */,
-				13BA85841AD2E28300F5D896 /* EDStarRating.m in Sources */,
 				13A815521A88D9A200BCCBCE /* Department.m in Sources */,
 				13A739D41AB863BA00649744 /* CardManageTableViewController.m in Sources */,
 				13A739A41AB85E5000649744 /* ExamListViewController.m in Sources */,
