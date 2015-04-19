@@ -8,6 +8,7 @@
 
 #import "TodayDutyViewController.h"
 #import "MBProgressHUDManager.h"
+#import "ChineseString.h"      
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetDutyRosterList"
@@ -21,6 +22,10 @@
 @property (nonatomic,retain)  NSString *status;
 @property (nonatomic,retain) NSString *weekDay;
 @property (retain,nonatomic) MBProgressHUDManager *HUDManager;
+
+@property (nonatomic, retain) NSMutableArray *dataArr;
+@property (nonatomic, retain) NSMutableArray *sortedArrForArrays;
+@property (nonatomic, retain) NSMutableArray *sectionHeadsKeys;
 @end
 
 @implementation TodayDutyViewController
@@ -31,6 +36,10 @@
     
     self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
     [self.HUDManager showIndeterminateWithMessage:@""];
+    
+    self.dataArr = [[NSMutableArray alloc]init];
+    self.sortedArrForArrays =[[NSMutableArray alloc]init];
+    self.sectionHeadsKeys = [[NSMutableArray alloc]init];
     
     //    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     //    [dateFormat setDateFormat:@"yyyy-MM-dd"];

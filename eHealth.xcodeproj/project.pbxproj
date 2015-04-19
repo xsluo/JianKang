@@ -197,6 +197,9 @@
 		13F0333A1A7797930012BB02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F033381A7797930012BB02 /* Main.storyboard */; };
 		13F1BF4E1AC43F7E0010087D /* BookRecordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F1BF4D1AC43F7E0010087D /* BookRecordTableViewController.m */; };
 		13F1BF511AC43FC90010087D /* BookRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F1BF501AC43FC90010087D /* BookRecordCell.m */; };
+		13F3CFC01AE3E66800F84577 /* ChineseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F3CFBD1AE3E66800F84577 /* ChineseString.m */; };
+		13F3CFC11AE3E66800F84577 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 13F3CFBE1AE3E66800F84577 /* pinyin.c */; };
+		13F3CFC51AE412F200F84577 /* HealthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F3CFC41AE412F200F84577 /* HealthViewController.m */; };
 		13F901241AB976A9009662F9 /* DigitHospitalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F901231AB976A9009662F9 /* DigitHospitalViewController.m */; };
 		13F901261AB9AB96009662F9 /* fsdyrm.png in Resources */ = {isa = PBXBuildFile; fileRef = 13F901251AB9AB96009662F9 /* fsdyrm.png */; };
 /* End PBXBuildFile section */
@@ -455,6 +458,12 @@
 		13F1BF4D1AC43F7E0010087D /* BookRecordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookRecordTableViewController.m; path = BookRecord/BookRecordTableViewController.m; sourceTree = "<group>"; };
 		13F1BF4F1AC43FC90010087D /* BookRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookRecordCell.h; path = BookRecord/BookRecordCell.h; sourceTree = "<group>"; };
 		13F1BF501AC43FC90010087D /* BookRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookRecordCell.m; path = BookRecord/BookRecordCell.m; sourceTree = "<group>"; };
+		13F3CFBC1AE3E66800F84577 /* ChineseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChineseString.h; path = Index/ChineseString.h; sourceTree = "<group>"; };
+		13F3CFBD1AE3E66800F84577 /* ChineseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChineseString.m; path = Index/ChineseString.m; sourceTree = "<group>"; };
+		13F3CFBE1AE3E66800F84577 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pinyin.c; path = Index/pinyin.c; sourceTree = "<group>"; };
+		13F3CFBF1AE3E66800F84577 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pinyin.h; path = Index/pinyin.h; sourceTree = "<group>"; };
+		13F3CFC31AE412F200F84577 /* HealthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthViewController.h; path = Health/HealthViewController.h; sourceTree = "<group>"; };
+		13F3CFC41AE412F200F84577 /* HealthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthViewController.m; path = Health/HealthViewController.m; sourceTree = "<group>"; };
 		13F901221AB976A9009662F9 /* DigitHospitalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DigitHospitalViewController.h; path = DigitalHostpital/DigitHospitalViewController.h; sourceTree = "<group>"; };
 		13F901231AB976A9009662F9 /* DigitHospitalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DigitHospitalViewController.m; path = DigitalHostpital/DigitHospitalViewController.m; sourceTree = "<group>"; };
 		13F901251AB9AB96009662F9 /* fsdyrm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fsdyrm.png; path = images/fsdyrm.png; sourceTree = "<group>"; };
@@ -509,6 +518,7 @@
 				13A739D11AB863BA00649744 /* CardManageTableViewController.m */,
 			);
 			name = MedicalCard;
+			path = eHealth;
 			sourceTree = "<group>";
 		};
 		06D9C80F1AE0D0E700F25B07 /* 首页图标 */ = {
@@ -692,6 +702,7 @@
 				134C4FC31A3D832C00CDDA3E /* HospitalSummary */,
 			);
 			name = DigitalHospital;
+			path = eHealth;
 			sourceTree = "<group>";
 		};
 		134C4FC31A3D832C00CDDA3E /* HospitalSummary */ = {
@@ -735,6 +746,7 @@
 				135796821ACCF05C00A6C3B2 /* FavariteTableViewController.m */,
 			);
 			name = Favarite;
+			path = eHealth;
 			sourceTree = "<group>";
 		};
 		135AD73E1ACAF2B600B309ED /* PatWait */ = {
@@ -832,6 +844,7 @@
 				13A739B51AB85F3400649744 /* ScheduleTableViewController.m */,
 			);
 			name = Book;
+			path = eHealth;
 			sourceTree = "<group>";
 		};
 		13C271521A8118E4002DAB60 /* Object */ = {
@@ -857,14 +870,22 @@
 				0610AC441ACAC9E800B1CE50 /* Consult.m */,
 			);
 			name = Object;
+			path = eHealth;
 			sourceTree = "<group>";
 		};
 		13CAAE541A3C92E9009C420E = {
 			isa = PBXGroup;
 			children = (
+				13F3CFC21AE412A800F84577 /* Health */,
+				134C4FC21A3D82D200CDDA3E /* DigitalHospital */,
+				13C271521A8118E4002DAB60 /* Object */,
+				13E0ADBE1A58390F00E09CE1 /* Login */,
+				13F3CFBB1AE3E5D500F84577 /* Index */,
+				13C271481A7E642D002DAB60 /* Book */,
+				135796841ACCF0A600A6C3B2 /* Favarite */,
+				0683B0971A638EEB00033285 /* MedicalCard */,
+				13F3CFBA1AE3E58400F84577 /* HUD */,
 				13CAAE5F1A3C92E9009C420E /* eHealth */,
-				13E0929C1ACEF07F003A7F70 /* MBProgressHUD */,
-				13E092A01ACEF095003A7F70 /* MBProgressHUDManager */,
 				132142F01A3F1AC500290746 /* Images */,
 				13CAAE791A3C92EA009C420E /* eHealthTests */,
 				13CAAE5E1A3C92E9009C420E /* Products */,
@@ -890,13 +911,6 @@
 				13CAAE651A3C92E9009C420E /* AppDelegate.m */,
 				13CAAE6D1A3C92EA009C420E /* Images.xcassets */,
 				13CAAE6F1A3C92EA009C420E /* LaunchScreen.xib */,
-				13C271521A8118E4002DAB60 /* Object */,
-				13C271481A7E642D002DAB60 /* Book */,
-				13E0ADBE1A58390F00E09CE1 /* Login */,
-				135796841ACCF0A600A6C3B2 /* Favarite */,
-				133267621A5ADC970095D462 /* Register */,
-				0683B0971A638EEB00033285 /* MedicalCard */,
-				134C4FC21A3D82D200CDDA3E /* DigitalHospital */,
 				13CAAE601A3C92E9009C420E /* Supporting Files */,
 			);
 			path = eHealth;
@@ -1022,11 +1036,13 @@
 		13E0ADBE1A58390F00E09CE1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				133267621A5ADC970095D462 /* Register */,
+				13E0ADBF1A583AFD00E09CE1 /* Login */,
 				13F1BF4B1AC43EE40010087D /* BookRecord */,
 				13E0ADC01A583B3000E09CE1 /* Personal */,
-				13E0ADBF1A583AFD00E09CE1 /* Login */,
 			);
 			name = Login;
+			path = eHealth;
 			sourceTree = "<group>";
 		};
 		13E0ADBF1A583AFD00E09CE1 /* Login */ = {
@@ -1062,6 +1078,35 @@
 				13F1BF501AC43FC90010087D /* BookRecordCell.m */,
 			);
 			name = BookRecord;
+			sourceTree = "<group>";
+		};
+		13F3CFBA1AE3E58400F84577 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				13E0929C1ACEF07F003A7F70 /* MBProgressHUD */,
+				13E092A01ACEF095003A7F70 /* MBProgressHUDManager */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
+		13F3CFBB1AE3E5D500F84577 /* Index */ = {
+			isa = PBXGroup;
+			children = (
+				13F3CFBC1AE3E66800F84577 /* ChineseString.h */,
+				13F3CFBD1AE3E66800F84577 /* ChineseString.m */,
+				13F3CFBE1AE3E66800F84577 /* pinyin.c */,
+				13F3CFBF1AE3E66800F84577 /* pinyin.h */,
+			);
+			name = Index;
+			sourceTree = "<group>";
+		};
+		13F3CFC21AE412A800F84577 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				13F3CFC31AE412F200F84577 /* HealthViewController.h */,
+				13F3CFC41AE412F200F84577 /* HealthViewController.m */,
+			);
+			name = Health;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1310,6 +1355,7 @@
 				06D9C8131AE0DF7400F25B07 /* TrafficViewController.m in Sources */,
 				131C4C461AC3AA1600365BC1 /* DepartmentIntroduction.m in Sources */,
 				13A739B71AB85F3400649744 /* ConfirmScheduleTableViewController.m in Sources */,
+				13F3CFC01AE3E66800F84577 /* ChineseString.m in Sources */,
 				13A815611A89B3D700BCCBCE /* Schedule.m in Sources */,
 				0650F38E1A51275300B26F39 /* EmptyParkTableViewController.m in Sources */,
 				13CAAE661A3C92E9009C420E /* AppDelegate.m in Sources */,
@@ -1333,6 +1379,7 @@
 				130D1D221AB6B9FF003357FF /* News.m in Sources */,
 				13A815581A88DC8200BCCBCE /* Area.m in Sources */,
 				13A739C41AB85FEE00649744 /* ChangePWDController.m in Sources */,
+				13F3CFC51AE412F200F84577 /* HealthViewController.m in Sources */,
 				13A739B61AB85F3400649744 /* BookViewController.m in Sources */,
 				13A739D31AB863BA00649744 /* CardDetailViewController.m in Sources */,
 				135AD7441ACAF3E200B309ED /* PatWaitTableViewController.m in Sources */,
@@ -1346,6 +1393,7 @@
 				13A739A11AB85E0900649744 /* GetConsultViewController.m in Sources */,
 				1344E8D61A580FE300733189 /* HomeViewController.m in Sources */,
 				13A739DA1AB8644500649744 /* NewsViewController.m in Sources */,
+				13F3CFC11AE3E66800F84577 /* pinyin.c in Sources */,
 				13BA857A1AD2D09500F5D896 /* SatisfactionTableViewController.m in Sources */,
 				06D9C81E1AE0F26900F25B07 /* DepartmentDistributionViewController.m in Sources */,
 				135AD7471ACBAC5800B309ED /* AddMedicalCardViewController.m in Sources */,

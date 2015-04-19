@@ -153,21 +153,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ptg-26-aho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7511" y="1346"/>
+            <point key="canvasLocation" x="-6859" y="1346"/>
         </scene>
         <!--科室列表-->
         <scene sceneID="8tG-d0-apt">
             <objects>
                 <tableViewController title="科室列表" id="xgp-Sf-lUG" customClass="DepartmentTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dIU-4U-QoK">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="dIU-4U-QoK">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="departmentCell" id="0TO-e5-bmz">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="departmentCell" textLabel="RDg-HG-ggh" style="IBUITableViewCellStyleDefault" id="0TO-e5-bmz">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0TO-e5-bmz" id="V5v-mm-O14">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RDg-HG-ggh">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="EsV-YA-df7" kind="show" id="ibT-Oe-UEb"/>
@@ -182,7 +190,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2vE-LU-VI9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8199" y="1346"/>
+            <point key="canvasLocation" x="-7551" y="1346"/>
         </scene>
         <!--科室介绍-->
         <scene sceneID="BPZ-jw-At0">
@@ -254,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ddi-AX-qqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8199" y="2390"/>
+            <point key="canvasLocation" x="-7551" y="2390"/>
         </scene>
         <!--交通指引-->
         <scene sceneID="bw0-KE-Vhu">
@@ -1980,7 +1988,7 @@
         <!--智能健康-->
         <scene sceneID="4Uf-ZD-eAL">
             <objects>
-                <viewController title="智能健康" id="XPF-7M-ReJ" sceneMemberID="viewController">
+                <viewController title="智能健康" id="XPF-7M-ReJ" customClass="HealthViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ge2-aj-9cr"/>
                         <viewControllerLayoutGuide type="bottom" id="P5J-zy-Gct"/>
@@ -2052,8 +2060,11 @@
                                         <state key="normal" image="6.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="Call:" destination="XPF-7M-ReJ" eventType="touchUpInside" id="qay-1X-d4V"/>
+                                        </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电子病历" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgX-4o-9KK">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一键拨号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgX-4o-9KK">
                                         <rect key="frame" x="56" y="159" width="68" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2436,10 +2447,10 @@
             </objects>
             <point key="canvasLocation" x="-13655" y="1346"/>
         </scene>
-        <!--科室列表-->
+        <!--选择科室-->
         <scene sceneID="ZFj-pU-Dyh">
             <objects>
-                <tableViewController title="科室列表" id="JNu-eR-5ej" customClass="GetDepartmentTableViewController" sceneMemberID="viewController">
+                <tableViewController title="选择科室" id="JNu-eR-5ej" customClass="GetDepartmentTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tc2-c3-Ggm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3556,7 +3567,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJi-U6-6fZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8895" y="1346"/>
+            <point key="canvasLocation" x="-8235" y="1346"/>
         </scene>
         <!--一周值班-->
         <scene sceneID="jEs-A6-9GK">
@@ -3601,11 +3612,11 @@
                                     <constraint firstItem="J5O-7h-WfC" firstAttribute="leading" secondItem="sIZ-Od-7I2" secondAttribute="leading" constant="8" id="q0i-rN-QhF"/>
                                 </constraints>
                             </scrollView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TND-kW-ugf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="TND-kW-ugf">
                                 <rect key="frame" x="0.0" y="21" width="600" height="510"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dutyCell" textLabel="Lza-DA-oLX" detailTextLabel="c1S-Dt-yJx" style="IBUITableViewCellStyleValue1" id="PZh-H7-d1Z">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dutyCell" textLabel="Lza-DA-oLX" detailTextLabel="ssb-2X-fl5" style="IBUITableViewCellStyleValue1" id="PZh-H7-d1Z">
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PZh-H7-d1Z" id="V43-eO-1rP">
@@ -3614,10 +3625,10 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lza-DA-oLX">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c1S-Dt-yJx">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ssb-2X-fl5">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -3657,7 +3668,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LdP-6U-cZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6826" y="1346"/>
+            <point key="canvasLocation" x="-8914" y="1346"/>
         </scene>
         <!--佛山健康E园-->
         <scene sceneID="Yso-uv-fZi">
@@ -3694,7 +3705,7 @@
         <image name="科室分布.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uLZ-gh-Qas"/>
         <segue reference="xEz-2R-tOe"/>
+        <segue reference="uLZ-gh-Qas"/>
     </inferredMetricsTieBreakers>
 </document>

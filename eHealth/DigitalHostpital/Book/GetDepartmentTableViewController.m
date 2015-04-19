@@ -10,6 +10,7 @@
 #import "Hospital.h"
 #import "Department.h"
 #import "MBProgressHUDManager.h"
+#import "ChineseString.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetDepartmentList"
@@ -19,7 +20,9 @@
 @interface GetDepartmentTableViewController ()
 @property (nonatomic,retain) NSMutableData * responseData;
 @property (retain,nonatomic) MBProgressHUDManager *HUDManager;
-
+@property (nonatomic, retain) NSMutableArray *dataArr;
+@property (nonatomic, retain) NSMutableArray *sortedArrForArrays;
+@property (nonatomic, retain) NSMutableArray *sectionHeadsKeys;
 @end
 
 @implementation GetDepartmentTableViewController
@@ -29,20 +32,23 @@
     
     self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
     [self.HUDManager showIndeterminateWithMessage:@""];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.dataArr = [[NSMutableArray alloc]init];
+    self.sortedArrForArrays =[[NSMutableArray alloc]init];
+    self.sectionHeadsKeys = [[NSMutableArray alloc]init];
     self.departmentList = [[NSMutableArray alloc]init];
     self.department = [[Department alloc]init];
+    
     [self getDepartmentList];
 }
 
 -(void)getDepartmentList{
-   
+    
     NSString *hsptid =[self.hospital hospitalID];
     
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:4];
@@ -107,7 +113,7 @@
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
-//    return nil;
+    //    return nil;
     return cachedResponse;
 }
 
@@ -126,6 +132,12 @@
     }
     [self.HUDManager hide];
     self.departmentList =[jsonDictionary objectForKey:@"DepartmentList"];
+    for ( NSDictionary *d in self.departmentList ) {
+        if (![d isEqual:nil]) {
+            [self.dataArr addObject:[d objectForKey:@"DepartmentName"]];
+        }
+    }
+    self.sortedArrForArrays = [self getChineseStringArr:self.dataArr];
     [self.tableView reloadData];
 }
 
@@ -139,40 +151,46 @@
 #pragma mark
 #pragma mark - Table view data source
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.sectionHeadsKeys objectAtIndex:section];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return self.sectionHeadsKeys;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    //#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 1;
+    //    return 1;
+    return [self.sortedArrForArrays count];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    //    return 0;
-    if(self.departmentList!=(id)[NSNull null])
-        return [self.departmentList count];
-    else
+    if(self.sortedArrForArrays == (id)[NSNull null])
         return 0;
+    else
+        return  [[self.sortedArrForArrays objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *reuseIdentifier = @"department";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    if (cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    NSString *cellId = @"department";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    NSInteger row = [indexPath row];
+    if ([self.sortedArrForArrays count] > indexPath.section) {
+        NSArray *arr = [self.sortedArrForArrays objectAtIndex:indexPath.section];
+        if ([arr count] > indexPath.row) {
+            ChineseString *str = (ChineseString *) [arr objectAtIndex:indexPath.row];
+            cell.textLabel.text = str.string;
+        } else {
+            NSLog(@"arr out of range");
+        }
+    } else {
+        NSLog(@"sortedArrForArrays out of range");
+    }
     
-    NSDictionary *departmentDictionary = [self.departmentList objectAtIndex:row];
-    NSString *name = [departmentDictionary objectForKey:@"DepartmentName"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",name];
-//    NSString *introduction = [departmentDictionary objectForKey:@"Introduction"];
-//    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",introduction];
-    
-    cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
 }
 
@@ -180,18 +198,89 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-    NSDictionary *aDepartment = [self.departmentList objectAtIndex:[indexPath row]];
-    Department *dptmnt = [[Department alloc]init];
+    NSString *departmentName = [[cell textLabel] text] ;
+    NSDictionary *departmentInfo ;  //= [self.departmentList objectAtIndex:indexPath.row];
     
-    dptmnt.departmentID =[aDepartment objectForKey:@"DepartmentID"];
-    dptmnt.departmentName = [aDepartment objectForKey:@"DepartmentName"];
-    self.department = dptmnt;
+    for(NSDictionary *dct in self.departmentList){
+        if([[dct objectForKey:@"DepartmentName"]  isEqualToString:departmentName])
+            departmentInfo = dct;
+    }
+    self.department.departmentID = [departmentInfo objectForKey:@"DepartmentID"];
+    self.department.departmentName = [departmentInfo objectForKey:@"DepartmentName"];
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryNone;
 }
+
+#pragma mark
+#pragma mark - getChineseString
+
+- (NSMutableArray *)getChineseStringArr:(NSMutableArray *)arrToSort {
+    NSMutableArray *chineseStringsArray = [NSMutableArray array];
+    for(int i = 0; i < [arrToSort count]; i++) {
+        ChineseString *chineseString=[[ChineseString alloc]init];
+        chineseString.string=[NSString stringWithString:[arrToSort objectAtIndex:i]];
+        
+        if(chineseString.string==nil){
+            chineseString.string=@"";
+        }
+        
+        if(![chineseString.string isEqualToString:@""]){
+            //join the pinYin
+            NSString *pinYinResult = [NSString string];
+            for(int j = 0;j < chineseString.string.length; j++) {
+                NSString *singlePinyinLetter = [[NSString stringWithFormat:@"%c",
+                                                 pinyinFirstLetter([chineseString.string characterAtIndex:j])]uppercaseString];
+                
+                pinYinResult = [pinYinResult stringByAppendingString:singlePinyinLetter];
+            }
+            chineseString.pinYin = pinYinResult;
+        } else {
+            chineseString.pinYin = @"";
+        }
+        [chineseStringsArray addObject:chineseString];
+        //        [chineseString release];
+    }
+    
+    //sort the ChineseStringArr by pinYin
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"pinYin" ascending:YES]];
+    [chineseStringsArray sortUsingDescriptors:sortDescriptors];
+    
+    
+    NSMutableArray *arrayForArrays = [NSMutableArray array];
+    BOOL checkValueAtIndex= NO;  //flag to check
+    NSMutableArray *TempArrForGrouping = nil;
+    
+    for(int index = 0; index < [chineseStringsArray count]; index++)
+    {
+        ChineseString *chineseStr = (ChineseString *)[chineseStringsArray objectAtIndex:index];
+        NSMutableString *strchar= [NSMutableString stringWithString:chineseStr.pinYin];
+        NSString *sr= [strchar substringToIndex:1];
+        NSLog(@"%@",sr);        //sr containing here the first character of each string
+        if(![_sectionHeadsKeys containsObject:[sr uppercaseString]])//here I'm checking whether the character already in the selection header keys or not
+        {
+            [_sectionHeadsKeys addObject:[sr uppercaseString]];
+            //            TempArrForGrouping = [[[NSMutableArray alloc] initWithObjects:nil] autorelease];
+            TempArrForGrouping = [[NSMutableArray alloc]init];
+            checkValueAtIndex = NO;
+        }
+        if([_sectionHeadsKeys containsObject:[sr uppercaseString]])
+        {
+            [TempArrForGrouping addObject:[chineseStringsArray objectAtIndex:index]];
+            if(checkValueAtIndex == NO)
+            {
+                [arrayForArrays addObject:TempArrForGrouping];
+                checkValueAtIndex = YES;
+            }
+        }
+    }
+    return arrayForArrays;
+}
+
+#pragma mark
+#pragma mark - cancel
 
 - (IBAction)cancel:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

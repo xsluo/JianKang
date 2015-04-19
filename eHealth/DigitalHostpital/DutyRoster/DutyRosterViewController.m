@@ -7,11 +7,13 @@
 //
 
 #import "DutyRosterViewController.h"
-#import "ScheduleTableViewController.h"
+//#import "ScheduleTableViewController.h"
 #import "Doctor.h"
 #import "MBProgressHUDManager.h"
+#import "ChineseString.h"       
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
+//#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
 #define Method @"GetDutyRosterList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -21,6 +23,10 @@
 @interface DutyRosterViewController ()
 @property (nonatomic,retain) NSString *weekDay;
 @property (retain,nonatomic) MBProgressHUDManager *HUDManager;
+
+@property (nonatomic, retain) NSMutableArray *dataArr;
+@property (nonatomic, retain) NSMutableArray *sortedArrForArrays;
+@property (nonatomic, retain) NSMutableArray *sectionHeadsKeys;
 @end
 
 @implementation DutyRosterViewController
@@ -33,9 +39,12 @@
     
     self.weekDay = @"1";
     self.dutyRosterList = [[NSMutableArray alloc]init];
+    self.dataArr = [[NSMutableArray alloc]init];
+    self.sortedArrForArrays =[[NSMutableArray alloc]init];
+    self.sectionHeadsKeys = [[NSMutableArray alloc]init];
+    
     [self linkTheNet];
 }
-
 
 - (void)linkTheNet{
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:4];
@@ -69,9 +78,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark
 #pragma mark NSURLConnection Delegate Methods
-
-
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     // A response has been received, this is where we initialize the instance var you created
     // so that we can append data to it in the didReceiveData method
@@ -106,6 +115,13 @@
     }
     [self.HUDManager hide];
     self.dutyRosterList =[jsonDictionary objectForKey:@"DutyRosterList"];
+    //    self.dataArr = [[NSMutableArray alloc]init];
+    for ( NSDictionary *d in self.dutyRosterList ) {
+        if (![d isEqual:nil]) {
+            [self.dataArr addObject:[d objectForKey:@"DoctorName"]];
+        }
+    }
+    self.sortedArrForArrays = [self getChineseStringArr:self.dataArr];    //---------------
     [self.tableView reloadData];
 }
 
@@ -116,37 +132,119 @@
     [self.HUDManager showErrorWithMessage:@"网络连接错误"  duration:2];
 }
 
+//[5]	(null)	@"RegisteredTypeName" : @"专家"
+#pragma mark
 #pragma mark - Table view data source
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.sectionHeadsKeys objectAtIndex:section];
+}
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return self.sectionHeadsKeys;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    //    return 1;
+    return [self.sortedArrForArrays count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.dutyRosterList == (id)[NSNull null])
+    if(self.sortedArrForArrays == (id)[NSNull null])
         return 0;
     else
-        return [self.dutyRosterList count];
+        return  [[self.sortedArrForArrays objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString* reuseIndentifier =@"dutyCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
-    
-    if (cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
+    NSString *cellId = @"dutyCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    NSInteger row = [indexPath row];
+    if ([self.sortedArrForArrays count] > indexPath.section) {
+        NSArray *arr = [self.sortedArrForArrays objectAtIndex:indexPath.section];
+        if ([arr count] > indexPath.row) {
+            ChineseString *str = (ChineseString *) [arr objectAtIndex:indexPath.row];
+            cell.textLabel.text = str.string;
+            for (NSDictionary *dc in self.dutyRosterList) {
+                if ([[dc objectForKey:@"DoctorName"] isEqualToString:str.string]) {
+                    cell.detailTextLabel.text = [dc objectForKey:@"SubjectName"];
+                }
+            }
+        } else {
+            NSLog(@"arr out of range");
+        }
+    } else {
+        NSLog(@"sortedArrForArrays out of range");
+    }
     
-    NSDictionary *dutyRoster = [self.dutyRosterList objectAtIndex:row];
-    
-    NSString *doctorName = [dutyRoster objectForKey:@"DoctorName"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",doctorName];
-    
-    //    NSString *auscultationDate = [dutyRoster objectForKey:@"AuscultationDate"];
-    NSString *subjectName = [dutyRoster objectForKey:@"SubjectName"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",subjectName];
     return cell;
+}
+
+#pragma mark 
+#pragma mark - GetchineseString
+
+- (NSMutableArray *)getChineseStringArr:(NSMutableArray *)arrToSort {
+    NSMutableArray *chineseStringsArray = [NSMutableArray array];
+    for(int i = 0; i < [arrToSort count]; i++) {
+        ChineseString *chineseString=[[ChineseString alloc]init];
+        chineseString.string=[NSString stringWithString:[arrToSort objectAtIndex:i]];
+        
+        if(chineseString.string==nil){
+            chineseString.string=@"";
+        }
+        
+        if(![chineseString.string isEqualToString:@""]){
+            //join the pinYin
+            NSString *pinYinResult = [NSString string];
+            for(int j = 0;j < chineseString.string.length; j++) {
+                NSString *singlePinyinLetter = [[NSString stringWithFormat:@"%c",
+                                                 pinyinFirstLetter([chineseString.string characterAtIndex:j])]uppercaseString];
+                
+                pinYinResult = [pinYinResult stringByAppendingString:singlePinyinLetter];
+            }
+            chineseString.pinYin = pinYinResult;
+        } else {
+            chineseString.pinYin = @"";
+        }
+        [chineseStringsArray addObject:chineseString];
+        //        [chineseString release];
+    }
+    
+    //sort the ChineseStringArr by pinYin
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"pinYin" ascending:YES]];
+    [chineseStringsArray sortUsingDescriptors:sortDescriptors];
+    
+    
+    NSMutableArray *arrayForArrays = [NSMutableArray array];
+    BOOL checkValueAtIndex= NO;  //flag to check
+    NSMutableArray *TempArrForGrouping = nil;
+    
+    for(int index = 0; index < [chineseStringsArray count]; index++)
+    {
+        ChineseString *chineseStr = (ChineseString *)[chineseStringsArray objectAtIndex:index];
+        NSMutableString *strchar= [NSMutableString stringWithString:chineseStr.pinYin];
+        NSString *sr= [strchar substringToIndex:1];
+//        NSLog(@"%@",sr);        //sr containing here the first character of each string
+        if(![_sectionHeadsKeys containsObject:[sr uppercaseString]]) //here I'm checking whether the character already in the selection header keys or not
+        {
+            [_sectionHeadsKeys addObject:[sr uppercaseString]];
+            //            TempArrForGrouping = [[[NSMutableArray alloc] initWithObjects:nil] autorelease];
+            TempArrForGrouping = [[NSMutableArray alloc]init];
+            checkValueAtIndex = NO;
+        }
+        if([_sectionHeadsKeys containsObject:[sr uppercaseString]])
+        {
+            [TempArrForGrouping addObject:[chineseStringsArray objectAtIndex:index]];
+            if(checkValueAtIndex == NO)
+            {
+                [arrayForArrays addObject:TempArrForGrouping];
+                checkValueAtIndex = YES;
+            }
+        }
+    }
+    return arrayForArrays;
 }
 
 
@@ -155,8 +253,32 @@
 - (IBAction)weedayChanged:(id)sender {
     NSInteger day =[(UISegmentedControl*)sender selectedSegmentIndex]+1;
     self.weekDay = [NSString stringWithFormat:@"%ld",(long)day];
+    [self.sectionHeadsKeys removeAllObjects];
+    [self.sortedArrForArrays removeAllObjects];
+    [self.dataArr removeAllObjects];
+    
     [self linkTheNet];
     [self.HUDManager showIndeterminateWithMessage:@""];
     [self.tableView reloadData];
 }
+//
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    if ([[segue identifier] isEqualToString:@"shedule"]) {
+//        UITableViewCell *cell = (UITableViewCell *)sender;
+//        NSString *doctorName = [[cell textLabel]text];
+//        Doctor *doctor = [[Doctor alloc]init];
+//        
+//        for (NSDictionary *dc in self.dutyRosterList) {
+//            if ([[dc objectForKey:@"DoctorName"] isEqualToString:doctorName]) {
+//                doctor.doctorName = [dc objectForKey:@"DoctorName"];
+//                doctor.doctorID = [dc objectForKey:@"DoctorID"];
+//                doctor.hospitalID = [dc objectForKey:@"HospitalID"];
+//                doctor.hospitalName = [dc objectForKey:@"HospitalName"];
+//                doctor.departmentName = [dc objectForKey:@"DepartmentName"];
+//            }
+//        }
+//        ScheduleTableViewController *destination= [segue destinationViewController];
+//        destination.doctor = doctor;        
+//    }
+//}
 @end

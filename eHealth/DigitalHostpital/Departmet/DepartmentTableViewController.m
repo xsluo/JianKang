@@ -10,6 +10,7 @@
 #import "DepartmentIntroduction.h"
 #import "Department.h"
 #import "MBProgressHUDManager.h"
+#import "ChineseString.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetDepartmentList"
@@ -20,6 +21,9 @@
 
 @interface DepartmentTableViewController ()
 @property (retain,nonatomic) MBProgressHUDManager *HUDManager;
+@property (nonatomic, retain) NSMutableArray *dataArr;
+@property (nonatomic, retain) NSMutableArray *sortedArrForArrays;
+@property (nonatomic, retain) NSMutableArray *sectionHeadsKeys;
 @end
 
 @implementation DepartmentTableViewController
@@ -29,6 +33,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.dataArr = [[NSMutableArray alloc]init];
+    self.sortedArrForArrays =[[NSMutableArray alloc]init];
+    self.sectionHeadsKeys = [[NSMutableArray alloc]init];
     
     self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
     
@@ -69,6 +77,7 @@
     [self.HUDManager showIndeterminateWithMessage:@""];
 }
 
+#pragma mark
 #pragma mark NSURLConnection Delegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -106,6 +115,13 @@
     self.departmentList =[jsonDictionary objectForKey:@"DepartmentList"];
     
     [self.HUDManager hide];
+    
+    for ( NSDictionary *d in self.departmentList ) {
+        if (![d isEqual:nil]) {
+            [self.dataArr addObject:[d objectForKey:@"DepartmentName"]];
+        }
+    }
+    self.sortedArrForArrays = [self getChineseStringArr:self.dataArr];
     [self.tableView reloadData];
 }
 
@@ -115,55 +131,142 @@
     NSLog(@"%@",[error localizedDescription]);
     [self.HUDManager showErrorWithMessage:@"无法连接网络" duration:2];
 }
+
+#pragma mark
 #pragma mark - Table view data source
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.sectionHeadsKeys objectAtIndex:section];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return self.sectionHeadsKeys;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    //    return 1;
+    return [self.sortedArrForArrays count];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.departmentList!=(id)[NSNull null])
-        return [self.departmentList count];
-    else
+    if(self.sortedArrForArrays == (id)[NSNull null])
         return 0;
+    else
+        return  [[self.sortedArrForArrays objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString* reuseIndentifier =@"departmentCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
-    
-    if (cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
+    NSString *cellId = @"departmentCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    NSInteger row = [indexPath row];
-    
-    NSDictionary *department = [self.departmentList objectAtIndex:row];
-    
-    NSString *departmentName = [department objectForKey:@"DepartmentName"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",departmentName];
+    if ([self.sortedArrForArrays count] > indexPath.section) {
+        NSArray *arr = [self.sortedArrForArrays objectAtIndex:indexPath.section];
+        if ([arr count] > indexPath.row) {
+            ChineseString *str = (ChineseString *) [arr objectAtIndex:indexPath.row];
+            cell.textLabel.text = str.string;
+        } else {
+            NSLog(@"arr out of range");
+        }
+    } else {
+        NSLog(@"sortedArrForArrays out of range");
+    }
     
     return cell;
 }
 
+#pragma mark
+#pragma getChineseString
+
+- (NSMutableArray *)getChineseStringArr:(NSMutableArray *)arrToSort {
+    NSMutableArray *chineseStringsArray = [NSMutableArray array];
+    for(int i = 0; i < [arrToSort count]; i++) {
+        ChineseString *chineseString=[[ChineseString alloc]init];
+        chineseString.string=[NSString stringWithString:[arrToSort objectAtIndex:i]];
+        
+        if(chineseString.string==nil){
+            chineseString.string=@"";
+        }
+        
+        if(![chineseString.string isEqualToString:@""]){
+            //join the pinYin
+            NSString *pinYinResult = [NSString string];
+            for(int j = 0;j < chineseString.string.length; j++) {
+                NSString *singlePinyinLetter = [[NSString stringWithFormat:@"%c",
+                                                 pinyinFirstLetter([chineseString.string characterAtIndex:j])]uppercaseString];
+                
+                pinYinResult = [pinYinResult stringByAppendingString:singlePinyinLetter];
+            }
+            chineseString.pinYin = pinYinResult;
+        } else {
+            chineseString.pinYin = @"";
+        }
+        [chineseStringsArray addObject:chineseString];
+        //        [chineseString release];
+    }
+    
+    //sort the ChineseStringArr by pinYin
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"pinYin" ascending:YES]];
+    [chineseStringsArray sortUsingDescriptors:sortDescriptors];
+    
+    
+    NSMutableArray *arrayForArrays = [NSMutableArray array];
+    BOOL checkValueAtIndex= NO;  //flag to check
+    NSMutableArray *TempArrForGrouping = nil;
+    
+    for(int index = 0; index < [chineseStringsArray count]; index++)
+    {
+        ChineseString *chineseStr = (ChineseString *)[chineseStringsArray objectAtIndex:index];
+        NSMutableString *strchar= [NSMutableString stringWithString:chineseStr.pinYin];
+        NSString *sr= [strchar substringToIndex:1];
+        NSLog(@"%@",sr);        //sr containing here the first character of each string
+        if(![_sectionHeadsKeys containsObject:[sr uppercaseString]])//here I'm checking whether the character already in the selection header keys or not
+        {
+            [_sectionHeadsKeys addObject:[sr uppercaseString]];
+            //            TempArrForGrouping = [[[NSMutableArray alloc] initWithObjects:nil] autorelease];
+            TempArrForGrouping = [[NSMutableArray alloc]init];
+            checkValueAtIndex = NO;
+        }
+        if([_sectionHeadsKeys containsObject:[sr uppercaseString]])
+        {
+            [TempArrForGrouping addObject:[chineseStringsArray objectAtIndex:index]];
+            if(checkValueAtIndex == NO)
+            {
+                [arrayForArrays addObject:TempArrForGrouping];
+                checkValueAtIndex = YES;
+            }
+        }
+    }
+    return arrayForArrays;
+}
 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    NSDictionary *departmentInfo = [self.departmentList objectAtIndex:indexPath.row];
+//     Pass the selected object to the new view controller.
+    
+    NSString *departmentName = [[(UITableViewCell *)sender textLabel] text] ;
+    NSDictionary *departmentInfo;
+    for(NSDictionary *dct in self.departmentList){
+        if([[dct objectForKey:@"DepartmentName"]  isEqualToString:departmentName])
+            departmentInfo = dct;
+    }
     
     Department *dpt = [[Department alloc] init];
-    DepartmentIntroduction *DepartmentDetail = segue.destinationViewController;
     if (![[departmentInfo objectForKey:@"DepartmentName"] isEqual:[NSNull null]]) {
         dpt.departmentName = [departmentInfo objectForKey:@"DepartmentName"];
     }
     if (![[departmentInfo objectForKey:@"Introduction"] isEqual:[NSNull null]]) {
         dpt.introduction = [departmentInfo objectForKey:@"Introduction"];
     }
-    DepartmentDetail.department = dpt;
+    
+    DepartmentIntroduction *departmentDetail = segue.destinationViewController;
+    departmentDetail.department = dpt;
 }
 
 @end
