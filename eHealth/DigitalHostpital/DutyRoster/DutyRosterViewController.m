@@ -121,7 +121,7 @@
             [self.dataArr addObject:[d objectForKey:@"DoctorName"]];
         }
     }
-    self.sortedArrForArrays = [self getChineseStringArr:self.dataArr];    //---------------
+    self.sortedArrForArrays = [self getChineseStringArr:self.dataArr];
     [self.tableView reloadData];
 }
 
@@ -132,7 +132,6 @@
     [self.HUDManager showErrorWithMessage:@"网络连接错误"  duration:2];
 }
 
-//[5]	(null)	@"RegisteredTypeName" : @"专家"
 #pragma mark
 #pragma mark - Table view data source
 
@@ -169,7 +168,10 @@
             cell.textLabel.text = str.string;
             for (NSDictionary *dc in self.dutyRosterList) {
                 if ([[dc objectForKey:@"DoctorName"] isEqualToString:str.string]) {
-                    cell.detailTextLabel.text = [dc objectForKey:@"SubjectName"];
+//                    cell.detailTextLabel.text = [dc objectForKey:@"SubjectName"];
+                    NSString *phaseName = [dc objectForKey:@"PhaseName"];  //"上午"or“下午”
+                    NSString *subjectName = [dc objectForKey:@"SubjectName"];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@(%@)",subjectName,phaseName];
                 }
             }
         } else {

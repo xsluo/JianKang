@@ -19,7 +19,7 @@
 
 @interface TodayDutyViewController ()
 @property(nonatomic,retain)  NSMutableData *responseData;
-@property (nonatomic,retain)  NSString *status;
+@property (nonatomic,retain) NSString *status;
 @property (nonatomic,retain) NSString *weekDay;
 @property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 
@@ -127,10 +127,14 @@
     }
     [self.HUDManager hide];
     self.todayDutyList =[jsonDictionary objectForKey:@"DutyRosterList"];
+    for ( NSDictionary *d in self.todayDutyList ) {
+        if (![d isEqual:nil]) {
+            [self.dataArr addObject:[d objectForKey:@"DoctorName"]];
+        }
+    }
+    self.sortedArrForArrays = [self getChineseStringArr:self.dataArr];
     [self.tableView reloadData];
-    
-    UIApplication* app = [ UIApplication  sharedApplication ];
-    app.networkActivityIndicatorVisible = NO;
+
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -140,53 +144,133 @@
     [self.HUDManager showErrorWithMessage:@"网络无法连接"  duration:2];
 }
 
+
+#pragma mark
 #pragma mark - Table view data source
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.sectionHeadsKeys objectAtIndex:section];
+}
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return self.sectionHeadsKeys;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    //    return 1;
+    return [self.sortedArrForArrays count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.todayDutyList == (id)[NSNull null])
+    if(self.sortedArrForArrays == (id)[NSNull null])
         return 0;
     else
-        return [self.todayDutyList count];
+        return  [[self.sortedArrForArrays objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString* reuseIndentifier =@"todayDutyCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
-    
-    if (cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
+    NSString *cellId = @"todayDutyCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    NSInteger row = [indexPath row];
-    
-    NSDictionary *todayDuty = [self.todayDutyList objectAtIndex:row];
-    
-    //    NSString *phaseName = [todayDuty objectForKey:@"PhaseName"];
-    
-    NSString *doctorName = [todayDuty objectForKey:@"DoctorName"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",doctorName];
-    
-    NSString *subjectName = [todayDuty objectForKey:@"SubjectName"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",subjectName];
+    if ([self.sortedArrForArrays count] > indexPath.section) {
+        NSArray *arr = [self.sortedArrForArrays objectAtIndex:indexPath.section];
+        if ([arr count] > indexPath.row) {
+            ChineseString *str = (ChineseString *) [arr objectAtIndex:indexPath.row];
+            cell.textLabel.text = str.string;
+            for (NSDictionary *dc in self.todayDutyList) {
+                if ([[dc objectForKey:@"DoctorName"] isEqualToString:str.string]) {
+                    NSString *phaseName = [dc objectForKey:@"PhaseName"];  //"上午"or“下午”
+                    NSString *subjectName = [dc objectForKey:@"SubjectName"];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@(%@)",subjectName,phaseName];
+                }
+            }
+        } else {
+            NSLog(@"arr out of range");
+        }
+    } else {
+        NSLog(@"sortedArrForArrays out of range");
+    }
     return cell;
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark
+#pragma mark - GetchineseString
+
+- (NSMutableArray *)getChineseStringArr:(NSMutableArray *)arrToSort {
+    NSMutableArray *chineseStringsArray = [NSMutableArray array];
+    for(int i = 0; i < [arrToSort count]; i++) {
+        ChineseString *chineseString=[[ChineseString alloc]init];
+        chineseString.string=[NSString stringWithString:[arrToSort objectAtIndex:i]];
+        
+        if(chineseString.string==nil){
+            chineseString.string=@"";
+        }
+        
+        if(![chineseString.string isEqualToString:@""]){
+            //join the pinYin
+            NSString *pinYinResult = [NSString string];
+            for(int j = 0;j < chineseString.string.length; j++) {
+                NSString *singlePinyinLetter = [[NSString stringWithFormat:@"%c",
+                                                 pinyinFirstLetter([chineseString.string characterAtIndex:j])]uppercaseString];
+                
+                pinYinResult = [pinYinResult stringByAppendingString:singlePinyinLetter];
+            }
+            chineseString.pinYin = pinYinResult;
+        } else {
+            chineseString.pinYin = @"";
+        }
+        [chineseStringsArray addObject:chineseString];
+        //        [chineseString release];
+    }
+    
+    //sort the ChineseStringArr by pinYin
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"pinYin" ascending:YES]];
+    [chineseStringsArray sortUsingDescriptors:sortDescriptors];
+    
+    
+    NSMutableArray *arrayForArrays = [NSMutableArray array];
+    BOOL checkValueAtIndex= NO;  //flag to check
+    NSMutableArray *TempArrForGrouping = nil;
+    
+    for(int index = 0; index < [chineseStringsArray count]; index++)
+    {
+        ChineseString *chineseStr = (ChineseString *)[chineseStringsArray objectAtIndex:index];
+        NSMutableString *strchar= [NSMutableString stringWithString:chineseStr.pinYin];
+        NSString *sr= [strchar substringToIndex:1];
+        //        NSLog(@"%@",sr);        //sr containing here the first character of each string
+        if(![_sectionHeadsKeys containsObject:[sr uppercaseString]]) //here I'm checking whether the character already in the selection header keys or not
+        {
+            [_sectionHeadsKeys addObject:[sr uppercaseString]];
+            //            TempArrForGrouping = [[[NSMutableArray alloc] initWithObjects:nil] autorelease];
+            TempArrForGrouping = [[NSMutableArray alloc]init];
+            checkValueAtIndex = NO;
+        }
+        if([_sectionHeadsKeys containsObject:[sr uppercaseString]])
+        {
+            [TempArrForGrouping addObject:[chineseStringsArray objectAtIndex:index]];
+            if(checkValueAtIndex == NO)
+            {
+                [arrayForArrays addObject:TempArrForGrouping];
+                checkValueAtIndex = YES;
+            }
+        }
+    }
+    return arrayForArrays;
+}
+
+
+#pragma mark
+#pragma mark - dutyChanged
 
 - (IBAction)dutyChanged:(id)sender {
     NSInteger index =[(UISegmentedControl*)sender selectedSegmentIndex];
     self.status = [NSString stringWithFormat:@"%lo",(long)index+1];
+    [self.sectionHeadsKeys removeAllObjects];
+    [self.sortedArrForArrays removeAllObjects];
+    [self.dataArr removeAllObjects];
+
     [self linkTheNet];
     [self.HUDManager showIndeterminateWithMessage:@""];
     [self.tableView reloadData];
