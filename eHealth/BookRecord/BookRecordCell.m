@@ -9,7 +9,7 @@
 #import "BookRecordCell.h"
 #import "MBProgressHUDManager.h"
 
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"CancleBookingRecord"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -103,8 +103,10 @@
         return;
     }
 //    NSLog(@"%@",[jsonDictionary objectForKey:@"Message"]);
-    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.contentView];
-    [self.HUDManager showMessage:[jsonDictionary objectForKey:@"Message"] duration:3];
+//    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.contentView];
+//    [self.HUDManager showMessage:[jsonDictionary objectForKey:@"Message"] duration:3];
+    [self.HUDManager hide];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setRequest" object:nil];
 }
 
 

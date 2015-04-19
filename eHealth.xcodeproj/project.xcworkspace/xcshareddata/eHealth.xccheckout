@@ -10,8 +10,6 @@
 	<string>eHealth</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>3C37CD2253F5CC562EAFB2159760271AD4DD60B4</key>
-		<string>https://github.com/xsluo/Ehealth.git</string>
 		<key>78350F76A3FFA1C33F2B9107C3D4D3247E9AD441</key>
 		<string>https://github.com/xsluo/JianKang.git</string>
 	</dict>
@@ -19,8 +17,6 @@
 	<string>eHealth.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>3C37CD2253F5CC562EAFB2159760271AD4DD60B4</key>
-		<string>../../../Ehealth</string>
 		<key>78350F76A3FFA1C33F2B9107C3D4D3247E9AD441</key>
 		<string>../..</string>
 	</dict>
@@ -32,14 +28,6 @@
 	<string>78350F76A3FFA1C33F2B9107C3D4D3247E9AD441</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3C37CD2253F5CC562EAFB2159760271AD4DD60B4</string>
-			<key>IDESourceControlWCCName</key>
-			<string>Ehealth</string>
-		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

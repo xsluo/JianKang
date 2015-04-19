@@ -9,14 +9,17 @@
 #import "GetDepartmentTableViewController.h"
 #import "Hospital.h"
 #import "Department.h"
+#import "MBProgressHUDManager.h"
 
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetDepartmentList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
 
 @interface GetDepartmentTableViewController ()
 @property (nonatomic,retain) NSMutableData * responseData;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
+
 @end
 
 @implementation GetDepartmentTableViewController
@@ -24,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -101,7 +107,8 @@
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
-    return nil;
+//    return nil;
+    return cachedResponse;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -117,6 +124,7 @@
         NSLog(@"json parse failed");
         return;
     }
+    [self.HUDManager hide];
     self.departmentList =[jsonDictionary objectForKey:@"DepartmentList"];
     [self.tableView reloadData];
 }
@@ -125,6 +133,7 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"无法连接网络，请检查网络"  duration:2];
 }
 
 #pragma mark

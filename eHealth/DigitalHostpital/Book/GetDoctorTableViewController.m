@@ -10,15 +10,16 @@
 #import "Hospital.h"
 #import "Department.h"
 #import "Doctor.h"
+#import "MBProgressHUDManager.h"
 
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetDoctorList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
 
 @interface GetDoctorTableViewController ()
 @property (nonatomic,retain) NSMutableData * responseData;
-
+@property (nonatomic,retain) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation GetDoctorTableViewController
@@ -26,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.HUDManager= [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -64,17 +68,17 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
-    //------------------------------
-    NSURLCache *urlCache = [NSURLCache sharedURLCache];
-    /* 设置缓存的大小为1M*/
-    [urlCache setMemoryCapacity:1*1024*1024];
-    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
-    //判断是否有缓存
-    if (response != nil){
-        NSLog(@"如果有缓存输出，从缓存中获取数据");
-        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
-    }
-    //-----------------------------
+//    //------------------------------
+//    NSURLCache *urlCache = [NSURLCache sharedURLCache];
+//    /* 设置缓存的大小为1M*/
+//    [urlCache setMemoryCapacity:1*1024*1024];
+//    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
+//    //判断是否有缓存
+//    if (response != nil){
+//        NSLog(@"如果有缓存输出，从缓存中获取数据");
+//        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+//    }
+//    //-----------------------------
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
@@ -120,6 +124,7 @@
         NSLog(@"json parse failed");
         return;
     }
+    [self.HUDManager hide];
     self.doctorList =[jsonDictionary objectForKey:@"DoctorList"];
     [self.tableView reloadData];
 }
@@ -128,8 +133,9 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+//    [self.HUDManager showMessage:@"无法连接网络，请检查网络"];
+    [self.HUDManager showErrorWithMessage:@"@无法连接网络，请检查网络" duration:2.5];
 }
-
 
 #pragma mark
 #pragma mark - Table view data source

@@ -8,7 +8,9 @@
 
 #import "IntroductionViewController.h"
 #import "Hospital.h"
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#import "MBProgressHUDManager.h"
+
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetHospitalInfo"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -17,6 +19,7 @@
 @interface IntroductionViewController ()
 @property(nonatomic,retain)  NSMutableData *responseData;
 @property(nonatomic,retain) NSDictionary *hospitalInfo;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation IntroductionViewController
@@ -24,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
     [self beginConnet];
     
 }
@@ -50,22 +55,19 @@
     
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
-    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    //    [request setURL:[NSURL URLWithString:URL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
-    //------------------------------
     NSURLCache *urlCache = [NSURLCache sharedURLCache];
-    // 设置缓存的大小为1M
+    //设置缓存的大小为1M
     [urlCache setMemoryCapacity:1*1024*1024];
     NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
     //判断是否有缓存
     if (response != nil){
         [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
     }
-    //-----------------------------
+    //结束
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
@@ -83,6 +85,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     // Append the new data to the instance variable you declared
+    [self.HUDManager hide];
     [_responseData appendData:data];
 }
 
@@ -113,6 +116,7 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"网络连接错误"  duration:2];
 }
 
 

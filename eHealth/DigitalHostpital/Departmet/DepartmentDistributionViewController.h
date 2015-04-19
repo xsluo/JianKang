@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DepartmentDistributionViewController : UIViewController
+@interface DepartmentDistributionViewController : UIViewController<UIWebViewDelegate>
 
 @end

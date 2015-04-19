@@ -9,18 +9,21 @@
 #import "NewsTableViewController.h"
 #import "News.h"
 #import "NewsViewController.h"
+#import "MBProgressHUDManager.h"
 
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetNews"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
 #define Type @"0"
 #define HospitalID @"440604001"
 #define NewsCategoryID @“1”
+
 @interface NewsTableViewController ()
 
 @property (nonatomic,retain) NSMutableData * responseData;
 @property(nonatomic,retain) NSDictionary *selectedNews;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 
 @end
 
@@ -28,6 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+
     
     NSDictionary *dictionary=[[NSDictionary alloc]initWithObjectsAndKeys:AppKey,@"AppKey",AppSecret,@"AppSecret",Type,@"Type", nil];
     NSError *error=nil;
@@ -48,15 +54,15 @@
     [request setHTTPBody:postData];
     
     //------------------------------
-    NSURLCache *urlCache = [NSURLCache sharedURLCache];
-    // 设置缓存的大小为1M
-    [urlCache setMemoryCapacity:1*1024*1024];
-    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
-    //判断是否有缓存
-    if (response != nil){
-        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
-    }
-    //-----------------------------
+//    NSURLCache *urlCache = [NSURLCache sharedURLCache];
+//    // 设置缓存的大小为1M
+//    [urlCache setMemoryCapacity:1*1024*1024];
+//    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
+//    //判断是否有缓存
+//    if (response != nil){
+//        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+//    }
+//    //-----------------------------
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
@@ -102,6 +108,8 @@
         NSLog(@"json parse failed");
         return;
         }
+    
+    [self.HUDManager hide];
     self.newsList =[jsonDictionary objectForKey:@"NewsList"];
 
     [self.tableView reloadData];
@@ -111,6 +119,7 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"无法连接网络"  duration:2];
 }
 
 
@@ -172,40 +181,6 @@
     [self performSegueWithIdentifier:@"showNews" sender:self];
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Navigation
 

@@ -7,7 +7,9 @@
 //
 
 #import "TodayDutyViewController.h"
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#import "MBProgressHUDManager.h"
+
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetDutyRosterList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -18,6 +20,7 @@
 @property(nonatomic,retain)  NSMutableData *responseData;
 @property (nonatomic,retain)  NSString *status;
 @property (nonatomic,retain) NSString *weekDay;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation TodayDutyViewController
@@ -26,21 +29,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
     
-//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-//    [dateFormat setDateFormat:@"yyyy-MM-dd"];
-//    NSDate *now = [[NSDate alloc] init];
-   
+    //    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    //    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    //    NSDate *now = [[NSDate alloc] init];
+    
     NSDate *now = [NSDate date];
     NSDateFormatter *nowDateFormatter = [[NSDateFormatter alloc] init];
     NSArray *daysOfWeek = @[@"",@"7",@"1",@"2",@"3",@"4",@"5",@"6"];
     [nowDateFormatter setDateFormat:@"e"];
     NSInteger weekdayNumber = (NSInteger)[[nowDateFormatter stringFromDate:now] integerValue];
-//    NSLog(@"Day of Week: %@",[daysOfWeek objectAtIndex:weekdayNumber]);
+    //    NSLog(@"Day of Week: %@",[daysOfWeek objectAtIndex:weekdayNumber]);
     self.weekDay =[NSString stringWithFormat:@"%@",[daysOfWeek objectAtIndex:weekdayNumber]];
-    
-    UIApplication* app = [ UIApplication  sharedApplication ];
-    app.networkActivityIndicatorVisible = YES;
     
     self.status = @"1";
     self.todayDutyList= [[NSMutableArray alloc]init];
@@ -76,18 +78,6 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
-    //------------------------------
-//    NSURLCache *urlCache = [NSURLCache sharedURLCache];
-//    /* 设置缓存的大小为1M*/
-//    [urlCache setMemoryCapacity:1*1024*1024];
-//    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
-//    //判断是否有缓存
-//    if (response != nil){
-//        NSLog(@"如果有缓存输出，从缓存中获取数据");
-//        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
-//    }
-    //-----------------------------
-    
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
 }
@@ -111,8 +101,7 @@
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
-    //    return nil;
-    return cachedResponse;
+    return nil;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -127,6 +116,7 @@
         NSLog(@"json parse failed \r\n");
         return;
     }
+    [self.HUDManager hide];
     self.todayDutyList =[jsonDictionary objectForKey:@"DutyRosterList"];
     [self.tableView reloadData];
     
@@ -138,12 +128,7 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
-    
-    UIApplication* app = [ UIApplication  sharedApplication ];
-    app.networkActivityIndicatorVisible = NO;
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"网络无法连接" delegate:self cancelButtonTitle:@"确定"otherButtonTitles:nil, nil];
-    [alert show];
-    
+    [self.HUDManager showErrorWithMessage:@"网络无法连接"  duration:2];
 }
 
 #pragma mark - Table view data source
@@ -170,7 +155,7 @@
     
     NSDictionary *todayDuty = [self.todayDutyList objectAtIndex:row];
     
-//    NSString *phaseName = [todayDuty objectForKey:@"PhaseName"];
+    //    NSString *phaseName = [todayDuty objectForKey:@"PhaseName"];
     
     NSString *doctorName = [todayDuty objectForKey:@"DoctorName"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",doctorName];
@@ -192,8 +177,9 @@
 
 - (IBAction)dutyChanged:(id)sender {
     NSInteger index =[(UISegmentedControl*)sender selectedSegmentIndex];
-    self.status = [NSString stringWithFormat:@"%lo",index+1];
+    self.status = [NSString stringWithFormat:@"%lo",(long)index+1];
     [self linkTheNet];
+    [self.HUDManager showIndeterminateWithMessage:@""];
     [self.tableView reloadData];
 }
 @end

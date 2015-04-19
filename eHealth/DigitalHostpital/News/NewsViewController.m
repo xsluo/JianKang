@@ -8,8 +8,11 @@
 
 #import "NewsViewController.h"
 #import "News.h"
+#import "MBProgressHUDManager.h"
+
 
 @interface NewsViewController ()
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 
 @end
 
@@ -18,10 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+
     
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    
+    [self.HUDManager hide];
     
     NSString *newsTitle = [self.aNews newsTitle];
     UILabel *labelTitle = (UILabel *)[self.view viewWithTag:1];
@@ -56,14 +64,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

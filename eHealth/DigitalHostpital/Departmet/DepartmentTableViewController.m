@@ -9,8 +9,9 @@
 #import "DepartmentTableViewController.h"
 #import "DepartmentIntroduction.h"
 #import "Department.h"
+#import "MBProgressHUDManager.h"
 
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetDepartmentList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -18,9 +19,7 @@
 #define HospitalID @"440604001"
 
 @interface DepartmentTableViewController ()
-{
-
-}
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation DepartmentTableViewController
@@ -31,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    
     self.departmentList = [[NSMutableArray alloc]init];
     
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:4];
@@ -38,7 +39,7 @@
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
     [dictionary setObject:Type forKey:@"Type"];
     [dictionary setObject:HospitalID forKey:@"HospitalID"];
-
+    
     NSError *error=nil;
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
@@ -50,13 +51,10 @@
     
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-//    [request setURL:[NSURL URLWithString:URL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
-    //------------------------------
     NSURLCache *urlCache = [NSURLCache sharedURLCache];
     // 设置缓存的大小为1M
     [urlCache setMemoryCapacity:1*1024*1024];
@@ -66,8 +64,9 @@
         [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
     }
     
-     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
+    [self.HUDManager showIndeterminateWithMessage:@""];
 }
 
 #pragma mark NSURLConnection Delegate Methods
@@ -83,18 +82,19 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     // Append the new data to the instance variable you declared
     [_responseData appendData:data];
+    [self.HUDManager hide];
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
-    return nil;
+    return cachedResponse;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     // The request is complete and data has been received
     // You can parse the stuff in your instance variable now
-
+    
     if([self.responseData length]==0)
         return;
     NSError *error = nil;
@@ -104,7 +104,8 @@
         return;
     }
     self.departmentList =[jsonDictionary objectForKey:@"DepartmentList"];
-
+    
+    [self.HUDManager hide];
     [self.tableView reloadData];
 }
 
@@ -112,8 +113,8 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"无法连接网络" duration:2];
 }
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -127,26 +128,26 @@
         return 0;
 }
 
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     static NSString* reuseIndentifier =@"departmentCell";
-     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
-     
-     if (cell==nil) {
-         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
-     }
-     NSInteger row = [indexPath row];
-     
-     NSDictionary *department = [self.departmentList objectAtIndex:row];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString* reuseIndentifier =@"departmentCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
+    
+    if (cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIndentifier];
+    }
+    NSInteger row = [indexPath row];
+    
+    NSDictionary *department = [self.departmentList objectAtIndex:row];
+    
+    NSString *departmentName = [department objectForKey:@"DepartmentName"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",departmentName];
+    
+    return cell;
+}
 
-     NSString *departmentName = [department objectForKey:@"DepartmentName"];
-     cell.textLabel.text = [NSString stringWithFormat:@"%@",departmentName];
- 
- return cell;
- }
 
+#pragma mark - Navigation
 
- #pragma mark - Navigation
- 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

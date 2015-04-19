@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TrafficViewController : UIViewController
+@interface TrafficViewController : UIViewController<UIWebViewDelegate>
 
 @end

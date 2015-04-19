@@ -8,7 +8,9 @@
 
 #import "DepartmentDistributionViewController.h"
 #import "Hospital.h"
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#import "MBProgressHUDManager.h"
+
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetHospitalInfo"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -18,6 +20,7 @@
 @property(nonatomic,retain)  NSMutableData *responseData;
 @property(nonatomic,retain) NSDictionary *hospitalInfo;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation DepartmentDistributionViewController
@@ -25,6 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.;
+    self.webView.delegate = self;
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+    
     [self beginConnet];
 }
 
@@ -105,6 +112,7 @@
         NSLog(@"json parse failed \r\n");
         return;
     }
+    [self.HUDManager hide];
     self.hospitalInfo =[jsonDictionary objectForKey:@"Hospital"];
     [self updateView];
 }
@@ -113,6 +121,7 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"无法连接网络" duration:2];
 }
 
 
@@ -126,4 +135,19 @@
         [self.webView loadRequest:request];
     }
 }
+
+#pragma mark Webview delegate methods
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self.HUDManager showIndeterminateWithMessage:@""] ;
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self.HUDManager hide];
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [self.HUDManager showErrorWithMessage:@"网络连接错误" duration:2];
+}
+
 @end

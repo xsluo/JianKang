@@ -9,7 +9,7 @@
 #import "BookRecordTableViewController.h"
 #import "BookRecordCell.h"
 
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetBookingRecordList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -20,7 +20,6 @@
 @interface BookRecordTableViewController ()
 @property (nonatomic,retain) NSMutableArray *bookRecordList;
 @property (nonatomic,retain) NSMutableData *responseData;
-
 
 @end
 
@@ -34,6 +33,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(setRequest:) name:@"setRequest" object:nil];
     [self setRequest];
 }
 
@@ -41,6 +41,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 -(void)setRequest{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -176,7 +177,6 @@
         cell.signInStatusName.hidden = NO;
     }
     return cell;
-
 }
 
 //-(double)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

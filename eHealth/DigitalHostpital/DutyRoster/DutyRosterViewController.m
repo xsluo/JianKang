@@ -9,8 +9,9 @@
 #import "DutyRosterViewController.h"
 #import "ScheduleTableViewController.h"
 #import "Doctor.h"
+#import "MBProgressHUDManager.h"
 
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetDutyRosterList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -19,6 +20,7 @@
 
 @interface DutyRosterViewController ()
 @property (nonatomic,retain) NSString *weekDay;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation DutyRosterViewController
@@ -26,11 +28,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
     
     self.weekDay = @"1";
     self.dutyRosterList = [[NSMutableArray alloc]init];
     [self linkTheNet];
-    }
+}
 
 
 - (void)linkTheNet{
@@ -52,23 +56,10 @@
     
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
-    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    //    [request setURL:[NSURL URLWithString:URL]];
+    
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
-    
-    //------------------------------
-    NSURLCache *urlCache = [NSURLCache sharedURLCache];
-    /* 设置缓存的大小为1M*/
-    [urlCache setMemoryCapacity:1*1024*1024];
-    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
-    //判断是否有缓存
-    if (response != nil){
-        NSLog(@"如果有缓存输出，从缓存中获取数据");
-        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
-    }
-    //-----------------------------
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
@@ -97,8 +88,8 @@
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
-//    return nil;
-    return cachedResponse;
+    return nil;
+    //    return cachedResponse;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -113,6 +104,7 @@
         NSLog(@"json parse failed \r\n");
         return;
     }
+    [self.HUDManager hide];
     self.dutyRosterList =[jsonDictionary objectForKey:@"DutyRosterList"];
     [self.tableView reloadData];
 }
@@ -121,6 +113,7 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"网络连接错误"  duration:2];
 }
 
 #pragma mark - Table view data source
@@ -150,7 +143,7 @@
     NSString *doctorName = [dutyRoster objectForKey:@"DoctorName"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",doctorName];
     
-//    NSString *auscultationDate = [dutyRoster objectForKey:@"AuscultationDate"];
+    //    NSString *auscultationDate = [dutyRoster objectForKey:@"AuscultationDate"];
     NSString *subjectName = [dutyRoster objectForKey:@"SubjectName"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",subjectName];
     return cell;
@@ -159,27 +152,11 @@
 
 #pragma mark - Navigation
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//   
-//    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-//    NSDictionary *dicDoctor = [self.dutyRosterList objectAtIndex:[indexPath row]];
-//    Doctor *selectedDoctor = [[Doctor alloc] init];
-//    
-//    selectedDoctor.hospitalName = [dicDoctor objectForKey:@"HospitalName"];
-//    selectedDoctor.departmentName = [dicDoctor objectForKey:@"DepartmentName"];
-//    selectedDoctor.doctorName = [dicDoctor objectForKey:@"DoctorName"];
-//    selectedDoctor.avatarUrl = [dicDoctor objectForKey:@"AvantarUrl"];
-//    selectedDoctor.scheduleList = [dicDoctor objectForKey:@"ScheduleList"];
-//    
-//    ScheduleTableViewController *scheduleController = (ScheduleTableViewController *)segue.destinationViewController;
-//    scheduleController.doctor = selectedDoctor;
-//}
-
-
 - (IBAction)weedayChanged:(id)sender {
     NSInteger day =[(UISegmentedControl*)sender selectedSegmentIndex]+1;
     self.weekDay = [NSString stringWithFormat:@"%ld",(long)day];
     [self linkTheNet];
+    [self.HUDManager showIndeterminateWithMessage:@""];
     [self.tableView reloadData];
 }
 @end

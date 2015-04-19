@@ -7,7 +7,9 @@
 //
 
 #import "GetAreaTableViewController.h"
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#import "MBProgressHUDManager.h"
+
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetAreaList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -17,7 +19,7 @@
 
 @interface GetAreaTableViewController ()
 @property (nonatomic,retain) NSMutableData * responseData;
-
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation GetAreaTableViewController
@@ -25,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -68,6 +73,15 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
+    NSURLCache *urlCache = [NSURLCache sharedURLCache];
+    //设置缓存的大小为1M
+    [urlCache setMemoryCapacity:1*1024*1024];
+    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
+    //判断是否有缓存
+    if (response != nil){
+        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+    }
+    
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
 }
@@ -91,7 +105,8 @@
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
-    return nil;
+//    return nil;
+    return cachedResponse;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -107,6 +122,7 @@
         NSLog(@"json parse failed");
         return;
     }
+    [self.HUDManager hide];
     self.areaList =[jsonDictionary objectForKey:@"AreaList"];
     [self.tableView reloadData];
 }
@@ -115,6 +131,7 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"网络无法连接，请检查网络"  duration:2];
 }
 
 
@@ -144,74 +161,31 @@
     
     // Configure the cell...
     if (cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     NSInteger row = [indexPath row];
     
-    NSDictionary *newsDictionary = [self.areaList objectAtIndex:row];
-    NSString *areaName = [newsDictionary objectForKey:@"AreaName"];
+    NSDictionary *areaDictionary = [self.areaList objectAtIndex:row];
+    NSString *areaName = [areaDictionary objectForKey:@"AreaName"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",areaName];
-    NSString *areaID = [newsDictionary objectForKey:@"AreaID"];
-    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",areaID];
+//    NSString *areaID = [newsDictionary objectForKey:@"AreaID"];
+//    cell.detailTextLabel.text =[NSString stringWithFormat:@"%@",areaID];
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
+    NSInteger row = [indexPath row];
+    NSDictionary *areaDictionary = [self.areaList objectAtIndex:row];
     NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    
-    [userDefaults setObject:[cell.textLabel text] forKey:kAreaName];
-    [userDefaults setObject:[cell.detailTextLabel text] forKey:kAreaID];
-    [userDefaults synchronize];
+    [userDefaults setObject:[areaDictionary objectForKey:@"AreaName"] forKey:kAreaName];
+    [userDefaults setObject:[areaDictionary objectForKey:@"AreaID"] forKey:kAreaID];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

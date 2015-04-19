@@ -8,7 +8,9 @@
 
 #import "TrafficViewController.h"
 #import "Hospital.h"
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#import "MBProgressHUDManager.h"
+
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetHospitalInfo"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -18,6 +20,7 @@
 @property(nonatomic,retain)  NSMutableData *responseData;
 @property(nonatomic,retain) NSDictionary *hospitalInfo;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation TrafficViewController
@@ -25,8 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.;
-    UILabel *labelTraffic = (UILabel *)[self.view viewWithTag:1];
-    labelTraffic.text = @"经过市一医院的线路有132路，805路，桂30路，103路，105路，107路，110路，113路，116路，122路，123路，126路，127路，129路，131路，133路，135路，138路，139路，154路，157路，158路，161路上午班，161路下午班，163路，164A路，165路，182路，184路，255B路，259路，803路，806路，K1路，K3路，广12路，桂27路。";
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+    
+    self.webView.delegate = self;
     [self beginConnet];
 }
 
@@ -58,7 +63,7 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
-    //------------------------------
+    
     NSURLCache *urlCache = [NSURLCache sharedURLCache];
     // 设置缓存的大小为1M
     [urlCache setMemoryCapacity:1*1024*1024];
@@ -67,7 +72,6 @@
     if (response != nil){
         [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
     }
-    //-----------------------------
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
@@ -107,6 +111,11 @@
         NSLog(@"json parse failed \r\n");
         return;
     }
+    
+    [self.HUDManager hide];
+    UILabel *labelTraffic = (UILabel *)[self.view viewWithTag:1];
+    labelTraffic.text = @"经过市一医院的线路有132路，805路，桂30路，103路，105路，107路，110路，113路，116路，122路，123路，126路，127路，129路，131路，133路，135路，138路，139路，154路，157路，158路，161路上午班，161路下午班，163路，164A路，165路，182路，184路，255B路，259路，803路，806路，K1路，K3路，广12路，桂27路。";
+    
     self.hospitalInfo =[jsonDictionary objectForKey:@"Hospital"];
     [self updateView];
 }
@@ -115,6 +124,7 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"网络连接错误"  duration:2];
 }
 
 
@@ -127,5 +137,17 @@
     }
 }
 
+#pragma mark Webview delegate methods
 
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self.HUDManager showIndeterminateWithMessage:@""] ;
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self.HUDManager hide];
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [self.HUDManager showErrorWithMessage:@"网络连接错误"  duration:2];
+}
 @end

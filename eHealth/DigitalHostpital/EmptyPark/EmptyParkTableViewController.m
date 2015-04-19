@@ -7,7 +7,9 @@
 //
 
 #import "EmptyParkTableViewController.h"
-#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
+#import "MBProgressHUDManager.h"
+
+#define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetEmptyPark"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -16,6 +18,7 @@
 @interface EmptyParkTableViewController ()
 @property (nonatomic,retain)NSMutableArray *parkFieldList;
 @property(nonatomic,retain)   NSMutableData *responseData;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation EmptyParkTableViewController
@@ -23,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -85,6 +91,8 @@
     // The request is complete and data has been received
     // You can parse the stuff in your instance variable now
     
+    [self.HUDManager hide];
+    
     if([_responseData length]==0)
         return;
     
@@ -95,7 +103,6 @@
         return;
     }
     self.parkFieldList =[jsonDictionary objectForKey:@"ParkList"];
-
     [self.tableView reloadData];
 }
 
@@ -103,6 +110,7 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"网络连接错误"  duration:2];
 }
 
 #pragma mark - Table view data source
