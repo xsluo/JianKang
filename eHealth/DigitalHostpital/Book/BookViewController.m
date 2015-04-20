@@ -73,7 +73,12 @@
 
 -(IBAction)unwindSelectDepartment:(UIStoryboardSegue *)segue{
     Department *dpt= [segue.sourceViewController department];
-    self.department = dpt;
+    if ([dpt departmentID]!=nil) {
+        self.department = dpt;
+    }
+    else{
+        self.department = nil;
+    }
     self.doctor = nil;
     [self.panelView setHidden:YES];
     [self.tableView reloadData];
@@ -134,7 +139,7 @@
             if(!self.hospital){
                 cell.textLabel.text = @"请选择医院";
 //                UIImage *img0 = [UIImage imageNamed:@"house.png"];
-//                cell.imageView.image = img0;
+
                 cell.textLabel.textColor = [UIColor blueColor];
             }
             else{

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HealthViewController : UIViewController
+@interface HealthViewController : UIViewController<UIAlertViewDelegate>
 
 @end

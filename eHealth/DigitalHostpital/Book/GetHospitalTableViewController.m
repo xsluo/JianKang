@@ -66,15 +66,15 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
-    NSURLCache *urlCache = [NSURLCache sharedURLCache];
-    /* 设置缓存的大小为1M*/
-    [urlCache setMemoryCapacity:1*1024*1024];
-    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
-    //判断是否有缓存
-    if (response != nil){
-        NSLog(@"如果有缓存输出，从缓存中获取数据");
-        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
-    }
+//    NSURLCache *urlCache = [NSURLCache sharedURLCache];
+//    /* 设置缓存的大小为1M*/
+//    [urlCache setMemoryCapacity:1*1024*1024];
+//    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
+//    //判断是否有缓存
+//    if (response != nil){
+//        NSLog(@"如果有缓存输出，从缓存中获取数据");
+//        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+//    }
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
@@ -103,8 +103,8 @@
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
-//    return nil;
-    return cachedResponse;
+    return nil;
+//    return cachedResponse;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {

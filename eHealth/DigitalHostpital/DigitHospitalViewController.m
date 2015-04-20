@@ -14,6 +14,8 @@
 
 #define kDataFile @"dataCard"
 #define kDataKey  @"defaultCard"
+#define kAreaName @"AreaName"
+#define kAreaID  @"AreaID"
 
 @interface DigitHospitalViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -147,6 +149,9 @@ static NSString * const reuseIdentifier = @"CollectionCell";
         fsdy.hospitalID = @"440604001";
         fsdy.hospitalName = @"佛山市区第一人民医院";
         destination.hospital = fsdy;
+        NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:@"禅城区" forKey:kAreaName];
+        [userDefaults setObject:@"440604" forKey:kAreaID];
     }
 }
 

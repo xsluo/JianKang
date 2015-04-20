@@ -36,9 +36,19 @@
 */
 
 - (IBAction)Call:(id)sender {
-    NSString *telNumber = [NSString stringWithFormat:@"tel:%@",@"10000"];
-    NSURL *aURL = [NSURL URLWithString: telNumber];
-    if ([[UIApplication sharedApplication] canOpenURL:aURL])
-    [[UIApplication sharedApplication] openURL:aURL];
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"拨打热线" message:@"即将拨打电话118114" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"同意", nil];
+    [alert show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        NSString *telNumber = [NSString stringWithFormat:@"tel:%@",@"10000"];
+        NSURL *aURL = [NSURL URLWithString: telNumber];
+        if ([[UIApplication sharedApplication] canOpenURL:aURL])
+            [[UIApplication sharedApplication] openURL:aURL];
+    }
 }
 @end

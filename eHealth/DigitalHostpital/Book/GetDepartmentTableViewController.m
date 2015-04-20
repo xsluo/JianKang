@@ -72,18 +72,15 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
-    
-    //------------------------------
-    NSURLCache *urlCache = [NSURLCache sharedURLCache];
-    /* 设置缓存的大小为1M*/
-    [urlCache setMemoryCapacity:1*1024*1024];
-    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
-    //判断是否有缓存
-    if (response != nil){
-        NSLog(@"如果有缓存输出，从缓存中获取数据");
-        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
-    }
-    //-----------------------------
+    //    NSURLCache *urlCache = [NSURLCache sharedURLCache];
+    //    /* 设置缓存的大小为1M*/
+    //    [urlCache setMemoryCapacity:1*1024*1024];
+    //    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
+    //    //判断是否有缓存
+    //    if (response != nil){
+    //        NSLog(@"如果有缓存输出，从缓存中获取数据");
+    //        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+    //    }
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
@@ -113,8 +110,8 @@
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
-    //    return nil;
-    return cachedResponse;
+    return nil;
+    //    return cachedResponse;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -132,10 +129,15 @@
     }
     [self.HUDManager hide];
     self.departmentList =[jsonDictionary objectForKey:@"DepartmentList"];
-    for ( NSDictionary *d in self.departmentList ) {
-        if (![d isEqual:nil]) {
-            [self.dataArr addObject:[d objectForKey:@"DepartmentName"]];
+    if (![[self departmentList]isEqual:[NSNull null]]) {
+        for ( NSDictionary *d in self.departmentList ) {
+            if (![d isEqual:nil]) {
+                [self.dataArr addObject:[d objectForKey:@"DepartmentName"]];
+            }
         }
+    }
+    else{
+        self.dataArr =nil;
     }
     self.sortedArrForArrays = [self getChineseStringArr:self.dataArr];
     [self.tableView reloadData];
@@ -162,8 +164,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //    return 1;
-    return [self.sortedArrForArrays count];
-    
+    //    return [self.sortedArrForArrays count];
+    if(self.sortedArrForArrays == (id)[NSNull null])
+        return 0;
+    else
+        return [self.sortedArrForArrays count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -10,7 +10,7 @@
 //#import "ScheduleTableViewController.h"
 #import "Doctor.h"
 #import "MBProgressHUDManager.h"
-#import "ChineseString.h"       
+#import "ChineseString.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 //#define URL @"http://202.103.160.154:1210/WebAPI.ashx"
@@ -115,12 +115,15 @@
     }
     [self.HUDManager hide];
     self.dutyRosterList =[jsonDictionary objectForKey:@"DutyRosterList"];
-    //    self.dataArr = [[NSMutableArray alloc]init];
-    for ( NSDictionary *d in self.dutyRosterList ) {
-        if (![d isEqual:nil]) {
-            [self.dataArr addObject:[d objectForKey:@"DoctorName"]];
+    
+    if (![[self dutyRosterList]isEqual:[NSNull null]]) {
+        for ( NSDictionary *d in self.dutyRosterList ) {
+            if (![d isEqual:nil]) {
+                [self.dataArr addObject:[d objectForKey:@"DoctorName"]];
+            }
         }
     }
+
     self.sortedArrForArrays = [self getChineseStringArr:self.dataArr];
     [self.tableView reloadData];
 }
@@ -144,8 +147,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    //    return 1;
-    return [self.sortedArrForArrays count];
+    return  [self.sortedArrForArrays count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -168,7 +170,7 @@
             cell.textLabel.text = str.string;
             for (NSDictionary *dc in self.dutyRosterList) {
                 if ([[dc objectForKey:@"DoctorName"] isEqualToString:str.string]) {
-//                    cell.detailTextLabel.text = [dc objectForKey:@"SubjectName"];
+                    //                    cell.detailTextLabel.text = [dc objectForKey:@"SubjectName"];
                     NSString *phaseName = [dc objectForKey:@"PhaseName"];  //"上午"or“下午”
                     NSString *subjectName = [dc objectForKey:@"SubjectName"];
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@(%@)",subjectName,phaseName];
@@ -184,7 +186,7 @@
     return cell;
 }
 
-#pragma mark 
+#pragma mark
 #pragma mark - GetchineseString
 
 - (NSMutableArray *)getChineseStringArr:(NSMutableArray *)arrToSort {
@@ -228,7 +230,7 @@
         ChineseString *chineseStr = (ChineseString *)[chineseStringsArray objectAtIndex:index];
         NSMutableString *strchar= [NSMutableString stringWithString:chineseStr.pinYin];
         NSString *sr= [strchar substringToIndex:1];
-//        NSLog(@"%@",sr);        //sr containing here the first character of each string
+        //        NSLog(@"%@",sr);        //sr containing here the first character of each string
         if(![_sectionHeadsKeys containsObject:[sr uppercaseString]]) //here I'm checking whether the character already in the selection header keys or not
         {
             [_sectionHeadsKeys addObject:[sr uppercaseString]];
@@ -249,7 +251,7 @@
     return arrayForArrays;
 }
 
-
+#pragma mark
 #pragma mark - Navigation
 
 - (IBAction)weedayChanged:(id)sender {
@@ -263,24 +265,4 @@
     [self.HUDManager showIndeterminateWithMessage:@""];
     [self.tableView reloadData];
 }
-//
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    if ([[segue identifier] isEqualToString:@"shedule"]) {
-//        UITableViewCell *cell = (UITableViewCell *)sender;
-//        NSString *doctorName = [[cell textLabel]text];
-//        Doctor *doctor = [[Doctor alloc]init];
-//        
-//        for (NSDictionary *dc in self.dutyRosterList) {
-//            if ([[dc objectForKey:@"DoctorName"] isEqualToString:doctorName]) {
-//                doctor.doctorName = [dc objectForKey:@"DoctorName"];
-//                doctor.doctorID = [dc objectForKey:@"DoctorID"];
-//                doctor.hospitalID = [dc objectForKey:@"HospitalID"];
-//                doctor.hospitalName = [dc objectForKey:@"HospitalName"];
-//                doctor.departmentName = [dc objectForKey:@"DepartmentName"];
-//            }
-//        }
-//        ScheduleTableViewController *destination= [segue destinationViewController];
-//        destination.doctor = doctor;        
-//    }
-//}
 @end

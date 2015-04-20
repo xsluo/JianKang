@@ -8,7 +8,7 @@
 
 #import "TodayDutyViewController.h"
 #import "MBProgressHUDManager.h"
-#import "ChineseString.h"      
+#import "ChineseString.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetDutyRosterList"
@@ -127,14 +127,20 @@
     }
     [self.HUDManager hide];
     self.todayDutyList =[jsonDictionary objectForKey:@"DutyRosterList"];
-    for ( NSDictionary *d in self.todayDutyList ) {
-        if (![d isEqual:nil]) {
-            [self.dataArr addObject:[d objectForKey:@"DoctorName"]];
+    if (![[self todayDutyList]isEqual:[NSNull null]]) {
+        for ( NSDictionary *d in self.todayDutyList ) {
+            if (![d isEqual:nil]) {
+                [self.dataArr addObject:[d objectForKey:@"DoctorName"]];
+            }
         }
     }
+    else{
+        self.dataArr =nil;
+    }
+    
     self.sortedArrForArrays = [self getChineseStringArr:self.dataArr];
     [self.tableView reloadData];
-
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -270,7 +276,7 @@
     [self.sectionHeadsKeys removeAllObjects];
     [self.sortedArrForArrays removeAllObjects];
     [self.dataArr removeAllObjects];
-
+    
     [self linkTheNet];
     [self.HUDManager showIndeterminateWithMessage:@""];
     [self.tableView reloadData];
