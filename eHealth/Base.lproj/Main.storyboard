@@ -2550,22 +2550,22 @@
                                 <rect key="frame" x="16" y="257" width="568" height="333"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olH-2B-Zwa">
-                                        <rect key="frame" x="108" y="0.0" width="5" height="18"/>
+                                        <rect key="frame" x="123" y="0.0" width="5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yX6-wi-4WC">
-                                        <rect key="frame" x="108" y="26" width="5" height="18"/>
+                                        <rect key="frame" x="123" y="26" width="5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bQ6-9a-rcD">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="130"/>
+                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="男医生.png" translatesAutoresizingMaskIntoConstraints="NO" id="bQ6-9a-rcD">
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="150"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="EpN-2h-fNf"/>
-                                            <constraint firstAttribute="height" constant="130" id="HC8-bg-w3N"/>
+                                            <constraint firstAttribute="width" constant="115" id="EpN-2h-fNf"/>
+                                            <constraint firstAttribute="height" constant="150" id="HC8-bg-w3N"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qN6-lk-RPq">
@@ -2585,7 +2585,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fma-pt-Udf">
-                                        <rect key="frame" x="108" y="52" width="460" height="18"/>
+                                        <rect key="frame" x="123" y="52" width="445" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -3701,6 +3701,7 @@
         <image name="交通指引.png" width="32" height="32"/>
         <image name="医院介绍.png" width="32" height="32"/>
         <image name="楼群分布.png" width="32" height="32"/>
+        <image name="男医生.png" width="231" height="300"/>
         <image name="科室介绍.png" width="32" height="32"/>
         <image name="科室分布.png" width="32" height="32"/>
     </resources>

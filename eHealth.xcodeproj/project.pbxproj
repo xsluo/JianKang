@@ -202,6 +202,11 @@
 		13F3CFC51AE412F200F84577 /* HealthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F3CFC41AE412F200F84577 /* HealthViewController.m */; };
 		13F901241AB976A9009662F9 /* DigitHospitalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F901231AB976A9009662F9 /* DigitHospitalViewController.m */; };
 		13F901261AB9AB96009662F9 /* fsdyrm.png in Resources */ = {isa = PBXBuildFile; fileRef = 13F901251AB9AB96009662F9 /* fsdyrm.png */; };
+		13F9FF7E1AE7E54B0019CEAD /* 医生32px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13F9FF791AE7E54B0019CEAD /* 医生32px.png */; };
+		13F9FF7F1AE7E54B0019CEAD /* 医院32px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13F9FF7A1AE7E54B0019CEAD /* 医院32px.png */; };
+		13F9FF801AE7E54B0019CEAD /* 女医生.png in Resources */ = {isa = PBXBuildFile; fileRef = 13F9FF7B1AE7E54B0019CEAD /* 女医生.png */; };
+		13F9FF811AE7E54B0019CEAD /* 男医生.png in Resources */ = {isa = PBXBuildFile; fileRef = 13F9FF7C1AE7E54B0019CEAD /* 男医生.png */; };
+		13F9FF821AE7E54B0019CEAD /* 科室32px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13F9FF7D1AE7E54B0019CEAD /* 科室32px.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -467,6 +472,11 @@
 		13F901221AB976A9009662F9 /* DigitHospitalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DigitHospitalViewController.h; path = DigitalHostpital/DigitHospitalViewController.h; sourceTree = "<group>"; };
 		13F901231AB976A9009662F9 /* DigitHospitalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DigitHospitalViewController.m; path = DigitalHostpital/DigitHospitalViewController.m; sourceTree = "<group>"; };
 		13F901251AB9AB96009662F9 /* fsdyrm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fsdyrm.png; path = images/fsdyrm.png; sourceTree = "<group>"; };
+		13F9FF791AE7E54B0019CEAD /* 医生32px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "医生32px.png"; sourceTree = "<group>"; };
+		13F9FF7A1AE7E54B0019CEAD /* 医院32px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "医院32px.png"; sourceTree = "<group>"; };
+		13F9FF7B1AE7E54B0019CEAD /* 女医生.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "女医生.png"; sourceTree = "<group>"; };
+		13F9FF7C1AE7E54B0019CEAD /* 男医生.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "男医生.png"; sourceTree = "<group>"; };
+		13F9FF7D1AE7E54B0019CEAD /* 科室32px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "科室32px.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,6 +570,7 @@
 		132142F01A3F1AC500290746 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				13F9FF781AE7E54B0019CEAD /* 预约挂号-小图标 */,
 				06D9C80F1AE0D0E700F25B07 /* 首页图标 */,
 				13E092B11ACF6A46003A7F70 /* 导航图标44px */,
 				13E092B81ACF6A46003A7F70 /* 健康卡管理选择图标32px */,
@@ -876,7 +887,7 @@
 		13CAAE541A3C92E9009C420E = {
 			isa = PBXGroup;
 			children = (
-				13F3CFC21AE412A800F84577 /* Health */,
+				13F3CFC21AE412A800F84577 /* InteligentHealth */,
 				134C4FC21A3D82D200CDDA3E /* DigitalHospital */,
 				13C271521A8118E4002DAB60 /* Object */,
 				13E0ADBE1A58390F00E09CE1 /* Login */,
@@ -1100,13 +1111,26 @@
 			name = Index;
 			sourceTree = "<group>";
 		};
-		13F3CFC21AE412A800F84577 /* Health */ = {
+		13F3CFC21AE412A800F84577 /* InteligentHealth */ = {
 			isa = PBXGroup;
 			children = (
 				13F3CFC31AE412F200F84577 /* HealthViewController.h */,
 				13F3CFC41AE412F200F84577 /* HealthViewController.m */,
 			);
-			name = Health;
+			name = InteligentHealth;
+			sourceTree = "<group>";
+		};
+		13F9FF781AE7E54B0019CEAD /* 预约挂号-小图标 */ = {
+			isa = PBXGroup;
+			children = (
+				13F9FF791AE7E54B0019CEAD /* 医生32px.png */,
+				13F9FF7A1AE7E54B0019CEAD /* 医院32px.png */,
+				13F9FF7B1AE7E54B0019CEAD /* 女医生.png */,
+				13F9FF7C1AE7E54B0019CEAD /* 男医生.png */,
+				13F9FF7D1AE7E54B0019CEAD /* 科室32px.png */,
+			);
+			name = "预约挂号-小图标";
+			path = "images/预约挂号-小图标";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1227,6 +1251,7 @@
 				132474871AB3256B003F0B1D /* iphone.png in Resources */,
 				132474941AB3256B003F0B1D /* man-figure.png in Resources */,
 				132474F61AB3256B003F0B1D /* sun.png in Resources */,
+				13F9FF7F1AE7E54B0019CEAD /* 医院32px.png in Resources */,
 				132474341AB3256B003F0B1D /* car-side.png in Resources */,
 				13E092D01ACF6A46003A7F70 /* 健康卡管理图标-选中32px.png in Resources */,
 				132474A31AB3256B003F0B1D /* music.png in Resources */,
@@ -1264,6 +1289,7 @@
 				132474ED1AB3256B003F0B1D /* spanner.png in Resources */,
 				132142FB1A3F1B0600290746 /* 2.png in Resources */,
 				132474801AB3256B003F0B1D /* home-7.png in Resources */,
+				13F9FF811AE7E54B0019CEAD /* 男医生.png in Resources */,
 				132474951AB3256B003F0B1D /* man.png in Resources */,
 				132474541AB3256B003F0B1D /* drawer.png in Resources */,
 				13F901261AB9AB96009662F9 /* fsdyrm.png in Resources */,
@@ -1297,10 +1323,12 @@
 				132474F41AB3256B003F0B1D /* stopwatch.png in Resources */,
 				13E092AF1ACEF095003A7F70 /* 37x-success@2x.png in Resources */,
 				132474E81AB3256B003F0B1D /* snow-flake.png in Resources */,
+				13F9FF801AE7E54B0019CEAD /* 女医生.png in Resources */,
 				1324747D1AB3256B003F0B1D /* heart-7.png in Resources */,
 				132474E61AB3256B003F0B1D /* smiley-smile.png in Resources */,
 				13E092D51ACF6A46003A7F70 /* 科室介绍.png in Resources */,
 				132474FC1AB3256B003F0B1D /* table-lamp.png in Resources */,
+				13F9FF821AE7E54B0019CEAD /* 科室32px.png in Resources */,
 				132475231AB3256B003F0B1D /* write.png in Resources */,
 				13E092CE1ACF6A46003A7F70 /* 综合服务.png in Resources */,
 				13E092CD1ACF6A46003A7F70 /* 综合服务-点击效果.png in Resources */,
@@ -1319,6 +1347,7 @@
 				13CAAE711A3C92EA009C420E /* LaunchScreen.xib in Resources */,
 				13E092CB1ACF6A46003A7F70 /* 智能健康-点击效果.png in Resources */,
 				132474821AB3256B003F0B1D /* horse.png in Resources */,
+				13F9FF7E1AE7E54B0019CEAD /* 医生32px.png in Resources */,
 				132474241AB3256B003F0B1D /* button-fast-forward.png in Resources */,
 				132474E21AB3256B003F0B1D /* shopping-cart.png in Resources */,
 				132474381AB3256B003F0B1D /* caution.png in Resources */,
