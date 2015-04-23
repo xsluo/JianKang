@@ -16,6 +16,7 @@
 #define kDataKey  @"defaultCard"
 #define kAreaName @"AreaName"
 #define kAreaID  @"AreaID"
+#define kUserName @"username"
 
 @interface DigitHospitalViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -90,23 +91,29 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if([indexPath row]==4){
-        NSString *filePath = [self dataFilePath];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-            NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
-            NSKeyedUnarchiver *unarchiver =[[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-            if ([unarchiver decodeObjectForKey:kDataKey]==nil){
-                [self.HUDManager showMessage:@"请登录并设置默认健康卡" duration:3];
-                return NO;
-            }
-        }
-        else{
-            [self.HUDManager showMessage:@"请登录并设置默认健康卡" duration:3];
-            return NO;
-        }
+    if([indexPath row]!=4 && [indexPath row]!=8)
+        return YES;
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if([userDefaults objectForKey:kUserName]==nil){
+        [self.HUDManager showMessage:@"请先登录帐号" duration:3];
+        return NO;
+    }
+    
+    NSString *filePath = [self dataFilePath];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [self.HUDManager showMessage:@"请添加健康卡" duration:3];
+        return NO;
+    }
+    
+    NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
+    NSKeyedUnarchiver *unarchiver =[[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    if ([unarchiver decodeObjectForKey:kDataKey]==nil){
+        [self.HUDManager showMessage:@"请设置默认健康卡" duration:3];
+        return NO;
+    }else {
         return YES;
     }
-    return YES;
 }
 
 -(NSString *)dataFilePath{

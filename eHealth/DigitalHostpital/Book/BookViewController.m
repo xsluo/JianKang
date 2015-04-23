@@ -99,7 +99,7 @@
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[dct avatarUrl]]];
         UIImage *img= [UIImage imageWithData:data];
         if(!img)
-            img = [UIImage imageNamed:@"man.png"];
+            img = [UIImage imageNamed:@"男医生.png"];
         imageAvatar.image = img;
         
         labelDoctorName.text = dct.doctorName;
@@ -146,14 +146,14 @@
                 cell.textLabel.text = [self.hospital hospitalName];
                 cell.textLabel.textColor = [UIColor blackColor];
             }
-            UIImage *img0 = [UIImage imageNamed:@"house.png"];
+            UIImage *img0 = [UIImage imageNamed:@"医院32px.png"];
             cell.imageView.image = img0;
             break;
         }
         case 1:{
             if(!self.department){
                 cell.textLabel.text = @"请选择科室";
-                UIImage *img1 = [UIImage imageNamed:@"layer.png"];
+                UIImage *img1 = [UIImage imageNamed:@"科室32px.png"];
                 cell.imageView.image = img1;
                 cell.textLabel.textColor = [UIColor blueColor];
             }
@@ -166,7 +166,7 @@
         case 2:{
             if(!self.doctor){
                 cell.textLabel.text = @"请选择医生";
-                UIImage *img2 = [UIImage imageNamed:@"man.png"];
+                UIImage *img2 = [UIImage imageNamed:@"医生32px.png"];
                 cell.imageView.image = img2;
                 cell.textLabel.textColor = [UIColor blueColor];
             }

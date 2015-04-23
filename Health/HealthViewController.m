@@ -37,7 +37,7 @@
 
 - (IBAction)Call:(id)sender {
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"拨打热线" message:@"即将拨打电话118114" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"同意", nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"拨打热线" message:@"即将拨打电话12580" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"同意", nil];
     [alert show];
     
 }
@@ -45,7 +45,7 @@
 - (void)alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        NSString *telNumber = [NSString stringWithFormat:@"tel:%@",@"10000"];
+        NSString *telNumber = [NSString stringWithFormat:@"tel:%@",@"12580"];
         NSURL *aURL = [NSURL URLWithString: telNumber];
         if ([[UIApplication sharedApplication] canOpenURL:aURL])
             [[UIApplication sharedApplication] openURL:aURL];

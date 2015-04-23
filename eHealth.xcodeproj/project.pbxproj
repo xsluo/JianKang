@@ -11,6 +11,9 @@
 		0610AC451ACAC9E800B1CE50 /* Consult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0610AC441ACAC9E800B1CE50 /* Consult.m */; };
 		0610AC481ACACB5500B1CE50 /* ConsultReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 0610AC471ACACB5500B1CE50 /* ConsultReply.m */; };
 		0650F38E1A51275300B26F39 /* EmptyParkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650F38D1A51275300B26F39 /* EmptyParkTableViewController.m */; };
+		068533581AE883BB00D10896 /* HealthNewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 068533551AE883BB00D10896 /* HealthNewsTableViewController.m */; };
+		068533591AE883BB00D10896 /* HealthNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 068533571AE883BB00D10896 /* HealthNewsViewController.m */; };
+		0698495F1AE89CB100511884 /* fsdyPark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0698495E1AE89CB100511884 /* fsdyPark.png */; };
 		06D9C8131AE0DF7400F25B07 /* TrafficViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D9C8121AE0DF7400F25B07 /* TrafficViewController.m */; };
 		06D9C8171AE0EF1400F25B07 /* BuildingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D9C8161AE0EF1400F25B07 /* BuildingViewController.m */; };
 		06D9C81E1AE0F26900F25B07 /* DepartmentDistributionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D9C81D1AE0F26900F25B07 /* DepartmentDistributionViewController.m */; };
@@ -228,6 +231,11 @@
 		0610AC471ACACB5500B1CE50 /* ConsultReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsultReply.m; path = Object/ConsultReply.m; sourceTree = "<group>"; };
 		0650F38C1A51275300B26F39 /* EmptyParkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyParkTableViewController.h; path = DigitalHostpital/EmptyPark/EmptyParkTableViewController.h; sourceTree = "<group>"; };
 		0650F38D1A51275300B26F39 /* EmptyParkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyParkTableViewController.m; path = DigitalHostpital/EmptyPark/EmptyParkTableViewController.m; sourceTree = "<group>"; };
+		068533541AE883BB00D10896 /* HealthNewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthNewsTableViewController.h; path = InteligentHealth/HealthNews/HealthNewsTableViewController.h; sourceTree = "<group>"; };
+		068533551AE883BB00D10896 /* HealthNewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthNewsTableViewController.m; path = InteligentHealth/HealthNews/HealthNewsTableViewController.m; sourceTree = "<group>"; };
+		068533561AE883BB00D10896 /* HealthNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthNewsViewController.h; path = InteligentHealth/HealthNews/HealthNewsViewController.h; sourceTree = "<group>"; };
+		068533571AE883BB00D10896 /* HealthNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthNewsViewController.m; path = InteligentHealth/HealthNews/HealthNewsViewController.m; sourceTree = "<group>"; };
+		0698495E1AE89CB100511884 /* fsdyPark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fsdyPark.png; path = images/fsdyPark.png; sourceTree = "<group>"; };
 		06D9C8111AE0DF7400F25B07 /* TrafficViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrafficViewController.h; path = DigitalHostpital/Traffic/TrafficViewController.h; sourceTree = "<group>"; };
 		06D9C8121AE0DF7400F25B07 /* TrafficViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrafficViewController.m; path = DigitalHostpital/Traffic/TrafficViewController.m; sourceTree = "<group>"; };
 		06D9C8151AE0EF1400F25B07 /* BuildingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuildingViewController.h; path = DigitalHostpital/Building/BuildingViewController.h; sourceTree = "<group>"; };
@@ -531,6 +539,25 @@
 			path = eHealth;
 			sourceTree = "<group>";
 		};
+		0685335A1AE883C300D10896 /* HealthNews */ = {
+			isa = PBXGroup;
+			children = (
+				068533541AE883BB00D10896 /* HealthNewsTableViewController.h */,
+				068533551AE883BB00D10896 /* HealthNewsTableViewController.m */,
+				068533561AE883BB00D10896 /* HealthNewsViewController.h */,
+				068533571AE883BB00D10896 /* HealthNewsViewController.m */,
+			);
+			name = HealthNews;
+			sourceTree = "<group>";
+		};
+		0698495D1AE89C5C00511884 /* 停车场图标 */ = {
+			isa = PBXGroup;
+			children = (
+				0698495E1AE89CB100511884 /* fsdyPark.png */,
+			);
+			name = "停车场图标";
+			sourceTree = "<group>";
+		};
 		06D9C80F1AE0D0E700F25B07 /* 首页图标 */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +597,7 @@
 		132142F01A3F1AC500290746 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0698495D1AE89C5C00511884 /* 停车场图标 */,
 				13F9FF781AE7E54B0019CEAD /* 预约挂号-小图标 */,
 				06D9C80F1AE0D0E700F25B07 /* 首页图标 */,
 				13E092B11ACF6A46003A7F70 /* 导航图标44px */,
@@ -1116,6 +1144,7 @@
 			children = (
 				13F3CFC31AE412F200F84577 /* HealthViewController.h */,
 				13F3CFC41AE412F200F84577 /* HealthViewController.m */,
+				0685335A1AE883C300D10896 /* HealthNews */,
 			);
 			name = InteligentHealth;
 			sourceTree = "<group>";
@@ -1243,6 +1272,7 @@
 				1324743F1AB3256B003F0B1D /* clock.png in Resources */,
 				132474181AB3256B003F0B1D /* bell.png in Resources */,
 				132474281AB3256B003F0B1D /* button-pause.png in Resources */,
+				0698495F1AE89CB100511884 /* fsdyPark.png in Resources */,
 				132143011A3F1B0600290746 /* 8.png in Resources */,
 				132474C71AB3256B003F0B1D /* pyramid.png in Resources */,
 				136657191AE099360043D262 /* AppIcon180px.png in Resources */,
@@ -1413,7 +1443,9 @@
 				13A739D31AB863BA00649744 /* CardDetailViewController.m in Sources */,
 				135AD7441ACAF3E200B309ED /* PatWaitTableViewController.m in Sources */,
 				134C4FC71A3D867000CDDA3E /* IntroductionViewController.m in Sources */,
+				068533581AE883BB00D10896 /* HealthNewsTableViewController.m in Sources */,
 				13A815521A88D9A200BCCBCE /* Department.m in Sources */,
+				068533591AE883BB00D10896 /* HealthNewsViewController.m in Sources */,
 				13A739D41AB863BA00649744 /* CardManageTableViewController.m in Sources */,
 				13A739A41AB85E5000649744 /* ExamListViewController.m in Sources */,
 				13BA858F1AD2E2F000F5D896 /* StarViewController.m in Sources */,

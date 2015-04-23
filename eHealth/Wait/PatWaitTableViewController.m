@@ -8,6 +8,8 @@
 
 #import "PatWaitTableViewController.h"
 #import "MedicalCard.h"
+#import "MBProgressHUDManager.h"
+
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetPatWaitNum"
 #define AppKey @"JianKangEYuanIOS"
@@ -21,6 +23,7 @@
 @property (retain,nonatomic) NSArray *waitNum;
 @property (retain,nonatomic) NSDictionary *waitInfo;
 @property (strong,nonatomic) MedicalCard *defaultCard;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 
 @end
 
@@ -29,12 +32,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.waitNum = [NSArray arrayWithObjects:@"排在前面的有",@"姓名", @"性别", @"年龄", @"就诊医生", @"就诊科室", @"就诊日期", @"就诊时间", @"就诊序号",nil];
+    self.waitNum = [NSArray arrayWithObjects:@"",@"姓名", @"性别", @"年龄", @"就诊医生", @"就诊科室", @"就诊日期", @"就诊时间", @"就诊序号",nil];
     
     NSString *filePath = [self dataFilePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -77,17 +83,6 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
-    //------------------------------
-    //    NSURLCache *urlCache = [NSURLCache sharedURLCache];
-    //    /* 设置缓存的大小为1M*/
-    //    [urlCache setMemoryCapacity:1*1024*1024];
-    //    NSCachedURLResponse *response = [urlCache cachedResponseForRequest:request];
-    //    //判断是否有缓存
-    //    if (response != nil){
-    //        NSLog(@"如果有缓存输出，从缓存中获取数据");
-    //        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
-    //    }
-    //-----------------------------
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
@@ -117,8 +112,8 @@
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
-    //    return nil;
-    return cachedResponse;
+    return nil;
+    //    return cachedResponse;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -134,21 +129,17 @@
         return;
     }
     self.waitInfo =[jsonDictionary objectForKey:@"PatWaitNum"];
+    if ([self.waitInfo isEqual:[NSNull null]]) {
+        [self.HUDManager showErrorWithMessage:@"目前没有候诊信息" duration:3];
+    }
     [self.tableView reloadData];
-    
-    UIApplication* app = [ UIApplication  sharedApplication ];
-    app.networkActivityIndicatorVisible = NO;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
-    
-    UIApplication* app = [ UIApplication  sharedApplication ];
-    app.networkActivityIndicatorVisible = NO;
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"网络无法连接" delegate:self cancelButtonTitle:@"确定"otherButtonTitles:nil, nil];
-    [alert show];
+    [self.HUDManager showErrorWithMessage:@"网络无法连接" duration:2];
 }
 
 #pragma mark - Table view data source
@@ -180,12 +171,15 @@
     NSString *clause = [self.waitNum objectAtIndex:[indexPath row]];
     UILabel *labelTitle =(UILabel *) [cell viewWithTag:1];
     labelTitle.text = clause;
-    
     UILabel *labelInfo = (UILabel *)[cell viewWithTag:2];
-    if (![self.waitInfo isEqual:[NSNull null]] ) {
+    if (![self.waitInfo isEqual:[NSNull null]]) {
         switch ([indexPath row]) {
-            case 0:
-                labelInfo.text = [self.waitInfo objectForKey:@"WaitNum"];
+            case 0:{
+                NSString *num = [self.waitInfo objectForKey:@"WaitNum"];
+                if (num!=nil ) {
+                    labelInfo.text = [NSString stringWithFormat:@"排在前面的还有%@位",num];
+                }
+            }
                 break;
             case 1:
                 labelInfo.text = [self.defaultCard owner];
@@ -223,51 +217,5 @@
     
     return cell;
 }
-
-
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

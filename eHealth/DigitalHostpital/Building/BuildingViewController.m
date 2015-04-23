@@ -114,7 +114,7 @@
         return;
     }
     
-    [self.HUDManager hide];
+//    [self.HUDManager hide];
     self.hospitalInfo =[jsonDictionary objectForKey:@"Hospital"];
     [self updateView];
 
