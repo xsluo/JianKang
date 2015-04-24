@@ -33,7 +33,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(setRequest:) name:@"setRequest" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(setRequest) name:@"delRecord" object:nil];
     [self setRequest];
 }
 
@@ -74,6 +74,7 @@
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
 }
+
 
 #pragma mark NSURLConnection Delegate Methods
 

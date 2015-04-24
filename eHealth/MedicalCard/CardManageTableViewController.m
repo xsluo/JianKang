@@ -10,6 +10,7 @@
 #import "MedicalCard.h"
 #import "CardDetailViewController.h"
 #import "AddMedicalCardViewController.h"
+#import "MBProgressHUDManager.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetMedicalCardList"
@@ -27,6 +28,7 @@
 @property (nonatomic,retain) NSMutableArray *cards;
 @property (nonatomic,retain) MedicalCard *detailCard;
 @property (strong,nonatomic) MedicalCard *defaultCard;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation CardManageTableViewController
@@ -34,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -233,7 +236,8 @@
             [archiver encodeObject:[self defaultCard] forKey:kDataKey];
             [archiver finishEncoding];
             NSString *filePath = [self dataFilePath];
-            [data writeToFile:filePath atomically:YES];
+            if([data writeToFile:filePath atomically:YES])
+                [self.HUDManager showMessage:@"默认健康卡设置成功！" duration:2];
             
             UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:self.lastIndexPath];
 //            oldCell.detailTextLabel.text = nil;

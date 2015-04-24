@@ -103,10 +103,10 @@
         return;
     }
 //    NSLog(@"%@",[jsonDictionary objectForKey:@"Message"]);
-//    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.contentView];
-//    [self.HUDManager showMessage:[jsonDictionary objectForKey:@"Message"] duration:3];
-    [self.HUDManager hide];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"setRequest" object:nil];
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.contentView];
+    [self.HUDManager showMessage:[jsonDictionary objectForKey:@"Message"] duration:3];
+//    [self.HUDManager hide];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"delRecord" object:nil];
 }
 
 
