@@ -2401,10 +2401,10 @@
             </objects>
             <point key="canvasLocation" x="-11021" y="-78"/>
         </scene>
-        <!--Health News View Controller-->
+        <!--健康大全详细-->
         <scene sceneID="z2F-Oi-uiS">
             <objects>
-                <viewController id="Jxh-J5-eHu" customClass="HealthNewsViewController" sceneMemberID="viewController">
+                <viewController title="健康大全详细" id="Jxh-J5-eHu" customClass="HealthNewsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vEQ-aM-lwX"/>
                         <viewControllerLayoutGuide type="bottom" id="UY3-l4-Y2S"/>
@@ -2532,10 +2532,10 @@
             </objects>
             <point key="canvasLocation" x="-12964" y="1346"/>
         </scene>
-        <!--Health News Table View Controller-->
+        <!--健康大全-->
         <scene sceneID="as5-RR-lAx">
             <objects>
-                <tableViewController id="phO-iI-kMI" customClass="HealthNewsTableViewController" sceneMemberID="viewController">
+                <tableViewController title="健康大全" id="phO-iI-kMI" customClass="HealthNewsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="xuf-1Y-8uw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -21,7 +21,6 @@
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
 
 @interface ScheduleTableViewController ()
-//@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,retain) NSMutableData * responseData;
 @property (nonatomic,retain) MBProgressHUDManager *HUDManager;
 @end

@@ -238,11 +238,9 @@
     }
     
     NSString *resultMsg = [jsonDictionary objectForKey:@"Message"];
+//    NSString *resultCode = [jsonDictionary objectForKey:@"ResultCode"];
     NSLog(@"%@",resultMsg);
-    
-    [self.HUDManager showMessage:@"预约成功！在'个人设置'-'我的预约'中可取消" duration:3 complection:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
+    [self.HUDManager showMessage:resultMsg duration:3];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
