@@ -10,6 +10,7 @@
 #import "BookRecordCell.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
+#import "MBProgressHUDManager.h"
 #define Method @"GetBookingRecordList"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
@@ -20,6 +21,8 @@
 @interface BookRecordTableViewController ()
 @property (nonatomic,retain) NSMutableArray *bookRecordList;
 @property (nonatomic,retain) NSMutableData *responseData;
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
+
 
 @end
 
@@ -27,7 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -44,6 +48,8 @@
 
 
 -(void)setRequest{
+    [self.HUDManager showIndeterminateWithMessage:@""];
+
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *userName =[userDefaults objectForKey:kUserName];
     
@@ -118,6 +124,9 @@
         self.bookRecordList = nil;
     else
         self.bookRecordList = arrayM;
+    NSString *msg = [jsonDictionary objectForKey:@"Message"];
+    [self.HUDManager showMessage:msg  duration:2];
+//    [self.HUDManager hide];
     [self.tableView reloadData];
 
 }
@@ -126,6 +135,8 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"网络连接错误"  duration:2];
+
 }
 
 

@@ -195,6 +195,8 @@
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];
     
+    [self.HUDManager showIndeterminateWithMessage:@""];
+    
 //    [self.HUDManager showMessage:@"预约成功！如需取消，请到'个人设置'-'我的预约'中取消" duration:3];
   
 //    [self.navigationController popViewControllerAnimated:YES];
@@ -241,12 +243,18 @@
 //    NSString *resultCode = [jsonDictionary objectForKey:@"ResultCode"];
     NSLog(@"%@",resultMsg);
     [self.HUDManager showMessage:resultMsg duration:3];
+    [self.HUDManager showErrorWithMessage:resultMsg duration:2 complection:^{
+        [self.navigationController popViewControllerAnimated:YES];
+   
+    }];
+
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"网络连接失败"];
 }
 
 /*

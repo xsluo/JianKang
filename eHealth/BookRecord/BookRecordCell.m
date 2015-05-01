@@ -25,6 +25,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
+//    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.contentView];
+//    [self.HUDManager showIndeterminateWithMessage:@""];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -102,9 +105,9 @@
         NSLog(@"json parse failed");
         return;
     }
-//    NSLog(@"%@",[jsonDictionary objectForKey:@"Message"]);
-    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.contentView];
-    [self.HUDManager showMessage:[jsonDictionary objectForKey:@"Message"] duration:3];
+    NSLog(@"%@",[jsonDictionary objectForKey:@"Message"]);
+//    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.contentView];
+//    [self.HUDManager showMessage:[jsonDictionary objectForKey:@"Message"] duration:3];
 //    [self.HUDManager hide];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"delRecord" object:nil];
 }
@@ -114,6 +117,7 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"网络无法连接" duration:2];
 }
 
 @end

@@ -181,9 +181,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellId = @"department";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    cell.accessoryType = UITableViewCellAccessoryNone;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
+    
     if ([self.sortedArrForArrays count] > indexPath.section) {
         NSArray *arr = [self.sortedArrForArrays objectAtIndex:indexPath.section];
         if ([arr count] > indexPath.row) {
@@ -195,7 +197,6 @@
     } else {
         NSLog(@"sortedArrForArrays out of range");
     }
-    
     return cell;
 }
 

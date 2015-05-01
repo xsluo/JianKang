@@ -142,6 +142,7 @@
 		137C900F1A949EB00085AF90 /* MedicalCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 137C900D1A949EB00085AF90 /* MedicalCard.m */; };
 		138F8B591AB075A300E36438 /* DigitaHospitalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 138F8B581AB075A300E36438 /* DigitaHospitalCollectionViewCell.m */; };
 		139512A51A5808870067810D /* DutyRosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139512A41A5808870067810D /* DutyRosterViewController.m */; };
+		1399806F1AEF6FA000319D80 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = 1399806E1AEF6FA000319D80 /* face.png */; };
 		13A739A11AB85E0900649744 /* GetConsultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739A01AB85E0900649744 /* GetConsultViewController.m */; };
 		13A739A41AB85E5000649744 /* ExamListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739A31AB85E5000649744 /* ExamListViewController.m */; };
 		13A739A71AB85E9C00649744 /* TodayDutyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A739A61AB85E9C00649744 /* TodayDutyViewController.m */; };
@@ -378,6 +379,7 @@
 		138F8B581AB075A300E36438 /* DigitaHospitalCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DigitaHospitalCollectionViewCell.m; path = KeyBoard/DigitaHospitalCollectionViewCell.m; sourceTree = "<group>"; };
 		139512A31A5808870067810D /* DutyRosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DutyRosterViewController.h; path = DigitalHostpital/DutyRoster/DutyRosterViewController.h; sourceTree = "<group>"; };
 		139512A41A5808870067810D /* DutyRosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DutyRosterViewController.m; path = DigitalHostpital/DutyRoster/DutyRosterViewController.m; sourceTree = "<group>"; };
+		1399806E1AEF6FA000319D80 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
 		13A7399F1AB85E0900649744 /* GetConsultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetConsultViewController.h; path = DigitalHostpital/Consult/GetConsultViewController.h; sourceTree = "<group>"; };
 		13A739A01AB85E0900649744 /* GetConsultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetConsultViewController.m; path = DigitalHostpital/Consult/GetConsultViewController.m; sourceTree = "<group>"; };
 		13A739A21AB85E5000649744 /* ExamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExamListViewController.h; path = DigitalHostpital/Exam/ExamListViewController.h; sourceTree = "<group>"; };
@@ -597,6 +599,7 @@
 		132142F01A3F1AC500290746 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1399806E1AEF6FA000319D80 /* face.png */,
 				0698495D1AE89C5C00511884 /* 停车场图标 */,
 				13F9FF781AE7E54B0019CEAD /* 预约挂号-小图标 */,
 				06D9C80F1AE0D0E700F25B07 /* 首页图标 */,
@@ -1270,6 +1273,7 @@
 				132474391AB3256B003F0B1D /* cctv.png in Resources */,
 				132474691AB3256B003F0B1D /* flag.png in Resources */,
 				1324743F1AB3256B003F0B1D /* clock.png in Resources */,
+				1399806F1AEF6FA000319D80 /* face.png in Resources */,
 				132474181AB3256B003F0B1D /* bell.png in Resources */,
 				132474281AB3256B003F0B1D /* button-pause.png in Resources */,
 				0698495F1AE89CB100511884 /* fsdyPark.png in Resources */,
