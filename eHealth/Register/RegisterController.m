@@ -7,6 +7,7 @@
 //
 
 #import "RegisterController.h"
+#import "MBProgressHUDManager.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"RegisterMember"
@@ -23,19 +24,22 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellMale;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellFamale;
 @property (nonatomic,retain) NSString *gender;
-
+@property (nonatomic,retain) MBProgressHUDManager *HUDManager;
 @property NSInteger connectionType;
-- (IBAction)getCAPTCHA:(id)sender;
-- (IBAction)regiter:(id)sender;
-
 @property(nonatomic,retain)   NSMutableData *responseData;
 
+- (IBAction)getCAPTCHA:(id)sender;
+- (IBAction)Register:(id)sender;
 @end
 
 @implementation RegisterController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.HUDManager= [[MBProgressHUDManager alloc] initWithView:self.view];
+    
+    //    [self.HUDManager showIndeterminateWithMessage:@""];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -66,14 +70,14 @@
 //}
 
 /*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
+ - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+ UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+ 
+ // Configure the cell...
+ 
+ return cell;
+ }
+ */
 
 //-(double) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    return 48;
@@ -95,50 +99,15 @@
     
 }
 
-
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark NSURLConnection Delegate Methods
 
@@ -175,10 +144,19 @@
     }
     NSString *resultCode = [jsonDictionary objectForKeyedSubscript:@"ResultCode"];
     if([resultCode isEqualToString:@"0000"]){
-        if(self.connectionType ==0)
-            NSLog(@"Regist successfully");
+        if(self.connectionType ==0){
+            //            NSLog(@"Regist successfully");
+            [self.HUDManager showMessage:@"注册成功" duration:3 complection:^{
+                [self.navigationController popoverPresentationController];
+            }];
+        }
         else if(self.connectionType ==1)
-            NSLog(@"Get CAPTCHA successfully!");
+            //            NSLog(@"Get CAPTCHA successfully!");
+            [self.HUDManager showMessage:@"请查收短信" duration:2];
+    }
+    else{
+        NSString *msg = [jsonDictionary objectForKey:@"Message"];
+        [self.HUDManager showMessage:msg duration:2];
     }
 }
 
@@ -186,14 +164,38 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:[error localizedDescription] duration:2];
 }
 
 
 - (IBAction)getCAPTCHA:(id)sender {
     self.connectionType = 1;
+    
+    NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:3];
+    [dictionary setObject:AppKey forKey:@"AppKey"];
+    [dictionary setObject:AppSecret forKey:@"AppSecret"];
+    [dictionary setObject:[self.textPhone text] forKey:@"PhoneNumber"];
+    NSError *error=nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
+    if(error){
+        NSLog(@"error:%@",error);
+    }
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *postString = [NSString stringWithFormat:@"method=GetCAPTCHA&jsonBody=%@",jsonString];
+    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+    [connection start];
 }
 
-- (IBAction)regiter:(id)sender {
+- (IBAction)Register:(id)sender {
+    self.connectionType = 0;
+    
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:8];
     [dictionary setObject:AppKey forKey:@"AppKey"];
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
@@ -212,19 +214,16 @@
     }
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSString *postString = [NSString stringWithFormat:@"method=%@&jsonBody=%@",Method,jsonString];
-    
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
-    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    //    [request setURL:[NSURL URLWithString:URL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+
     [connection start];
     
-    self.connectionType = 0;
-
 }
 @end

@@ -103,9 +103,6 @@
 }
 
 - (IBAction)loginTapped:(id)sender {
-    //    if([self.textName.text isEqual:@"1"])
-    //        [self.navigationController popToRootViewControllerAnimated:self];
-    //self.departmentList = [[NSMutableArray alloc]init];
     
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:4];
     [dictionary setObject:AppKey forKey:@"AppKey"];

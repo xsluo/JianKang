@@ -204,6 +204,8 @@
 		13F3CFC01AE3E66800F84577 /* ChineseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F3CFBD1AE3E66800F84577 /* ChineseString.m */; };
 		13F3CFC11AE3E66800F84577 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 13F3CFBE1AE3E66800F84577 /* pinyin.c */; };
 		13F3CFC51AE412F200F84577 /* HealthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F3CFC41AE412F200F84577 /* HealthViewController.m */; };
+		13F403141AF3C3E50002C672 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F403131AF3C3E50002C672 /* InstructionViewController.m */; };
+		13F403171AF3D3830002C672 /* ResetPWDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F403161AF3D3830002C672 /* ResetPWDTableViewController.m */; };
 		13F901241AB976A9009662F9 /* DigitHospitalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F901231AB976A9009662F9 /* DigitHospitalViewController.m */; };
 		13F901261AB9AB96009662F9 /* fsdyrm.png in Resources */ = {isa = PBXBuildFile; fileRef = 13F901251AB9AB96009662F9 /* fsdyrm.png */; };
 		13F9FF7E1AE7E54B0019CEAD /* 医生32px.png in Resources */ = {isa = PBXBuildFile; fileRef = 13F9FF791AE7E54B0019CEAD /* 医生32px.png */; };
@@ -479,6 +481,10 @@
 		13F3CFBF1AE3E66800F84577 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pinyin.h; path = Index/pinyin.h; sourceTree = "<group>"; };
 		13F3CFC31AE412F200F84577 /* HealthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthViewController.h; path = Health/HealthViewController.h; sourceTree = "<group>"; };
 		13F3CFC41AE412F200F84577 /* HealthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthViewController.m; path = Health/HealthViewController.m; sourceTree = "<group>"; };
+		13F403121AF3C3E50002C672 /* InstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstructionViewController.h; path = DigitalHostpital/Book/InstructionViewController.h; sourceTree = "<group>"; };
+		13F403131AF3C3E50002C672 /* InstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstructionViewController.m; path = DigitalHostpital/Book/InstructionViewController.m; sourceTree = "<group>"; };
+		13F403151AF3D3830002C672 /* ResetPWDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResetPWDTableViewController.h; path = Login/ResetPWDTableViewController.h; sourceTree = "<group>"; };
+		13F403161AF3D3830002C672 /* ResetPWDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResetPWDTableViewController.m; path = Login/ResetPWDTableViewController.m; sourceTree = "<group>"; };
 		13F901221AB976A9009662F9 /* DigitHospitalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DigitHospitalViewController.h; path = DigitalHostpital/DigitHospitalViewController.h; sourceTree = "<group>"; };
 		13F901231AB976A9009662F9 /* DigitHospitalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DigitHospitalViewController.m; path = DigitalHostpital/DigitHospitalViewController.m; sourceTree = "<group>"; };
 		13F901251AB9AB96009662F9 /* fsdyrm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fsdyrm.png; path = images/fsdyrm.png; sourceTree = "<group>"; };
@@ -884,6 +890,8 @@
 				13A739B31AB85F3400649744 /* GetHospitalTableViewController.m */,
 				13A739B41AB85F3400649744 /* ScheduleTableViewController.h */,
 				13A739B51AB85F3400649744 /* ScheduleTableViewController.m */,
+				13F403121AF3C3E50002C672 /* InstructionViewController.h */,
+				13F403131AF3C3E50002C672 /* InstructionViewController.m */,
 			);
 			name = Book;
 			path = eHealth;
@@ -1107,6 +1115,8 @@
 				13A739C01AB85FEE00649744 /* ChangePWDController.m */,
 				13A739C11AB85FEE00649744 /* ChangeUsernameController.h */,
 				13A739C21AB85FEE00649744 /* ChangeUsernameController.m */,
+				13F403151AF3D3830002C672 /* ResetPWDTableViewController.h */,
+				13F403161AF3D3830002C672 /* ResetPWDTableViewController.m */,
 			);
 			name = Personal;
 			sourceTree = "<group>";
@@ -1411,6 +1421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13A739D71AB8640500649744 /* RegisterController.m in Sources */,
+				13F403171AF3D3830002C672 /* ResetPWDTableViewController.m in Sources */,
 				135796831ACCF05C00A6C3B2 /* FavariteTableViewController.m in Sources */,
 				138F8B591AB075A300E36438 /* DigitaHospitalCollectionViewCell.m in Sources */,
 				060D11431A4C049E00EB201C /* NewsTableViewController.m in Sources */,
@@ -1420,6 +1431,7 @@
 				13A739B71AB85F3400649744 /* ConfirmScheduleTableViewController.m in Sources */,
 				13F3CFC01AE3E66800F84577 /* ChineseString.m in Sources */,
 				13A815611A89B3D700BCCBCE /* Schedule.m in Sources */,
+				13F403141AF3C3E50002C672 /* InstructionViewController.m in Sources */,
 				0650F38E1A51275300B26F39 /* EmptyParkTableViewController.m in Sources */,
 				13CAAE661A3C92E9009C420E /* AppDelegate.m in Sources */,
 				13A8155B1A890D2A00BCCBCE /* Doctor.m in Sources */,
@@ -1578,6 +1590,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1587,13 +1600,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: maodao zeng (7SWVSNYXMN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: maodao zeng (7SWVSNYXMN)";
 				INFOPLIST_FILE = eHealth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "66a3a638-68a5-4be9-95aa-78f3fcaf5934";
 			};
 			name = Debug;
 		};
@@ -1601,13 +1614,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: maodao zeng (7SWVSNYXMN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: maodao zeng (7SWVSNYXMN)";
 				INFOPLIST_FILE = eHealth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "66a3a638-68a5-4be9-95aa-78f3fcaf5934";
 			};
 			name = Release;
 		};

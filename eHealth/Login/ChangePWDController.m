@@ -7,6 +7,7 @@
 //
 
 #import "ChangePWDController.h"
+#import "MBProgressHUDManager.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"ModifyMemberPassword"
@@ -20,9 +21,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *textCAPTCHA;
 @property (weak, nonatomic) IBOutlet UITextField *textNewPWD;
 @property (weak, nonatomic) IBOutlet UITextField *textConfirmPWD;
-
+@property (nonatomic,retain) MBProgressHUDManager *HUDManager;
 @property(nonatomic,retain)   NSMutableData *responseData;
 - (IBAction)changePassword:(id)sender;
+- (IBAction)getCAPTCHA:(id)sender;
+@property NSInteger connectionType;
 @end
 
 @implementation ChangePWDController
@@ -30,13 +33,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.HUDManager= [[MBProgressHUDManager alloc] initWithView:self.view];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.responseData = nil;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     self.labelName.text = [userDefaults objectForKey:kUserName];
 }
@@ -46,76 +49,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-//-(double)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 42;
-//}
 
 #pragma mark NSURLConnection Delegate Methods
 
@@ -153,24 +86,36 @@
     NSString *resultCode = [jsonDictionary objectForKeyedSubscript:@"ResultCode"];
     
     if([resultCode isEqualToString:@"0000"]){
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//        [userDefaults setObject:self.textName.text forKey:kUserName];
-        [userDefaults setObject:self.textNewPWD.text forKey:kPassWord] ;
-        [userDefaults synchronize];
-        
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-        NSLog(@"Successful!");
-        [self.navigationController popViewControllerAnimated:YES];
+        if (self.connectionType ==1) {
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:self.textNewPWD.text forKey:kPassWord] ;
+            [userDefaults synchronize];
+            [self.HUDManager showMessage:@"密码修改成功！" duration:2 complection:^
+             {
+                 [self.navigationController popViewControllerAnimated:YES];
+             }];
+        }
+        else{
+            [self.HUDManager showMessage:@"请查收短信" duration:2];
+        }
+    }
+    else{
+        NSString *msg = [jsonDictionary objectForKey:@"Message"];
+        [self.HUDManager showErrorWithMessage:msg duration:2];
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
-    NSLog(@"%@",[error localizedDescription]);
+    //    NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:[error localizedDescription]];
 }
 
 - (IBAction)changePassword:(id)sender {
+    [self.HUDManager showIndeterminateWithMessage:@""];
+    self.connectionType = 1;
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *userName = [userDefaults objectForKey:kUserName];
     NSString *oldPassword = [userDefaults objectForKey:kPassWord];
@@ -204,10 +149,39 @@
     [connection start];
     
 }
+
+- (IBAction)getCAPTCHA:(id)sender {
+    self.connectionType = 0;
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *phoneNumber = [userDefaults objectForKey:kUserName];
+    
+    NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:3];
+    [dictionary setObject:AppKey forKey:@"AppKey"];
+    [dictionary setObject:AppSecret forKey:@"AppSecret"];
+    [dictionary setObject:phoneNumber forKey:@"PhoneNumber"];
+    NSError *error=nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
+    if(error){
+        NSLog(@"error:%@",error);
+    }
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *postString = [NSString stringWithFormat:@"method=GetCAPTCHA&jsonBody=%@",jsonString];
+    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [self.HUDManager showIndeterminateWithMessage:@""];
+    [connection start];
+}
+
 @end
-                          
-                          
-                          
-                          
-                          
-                          
+
+
+
+
+
+

@@ -130,7 +130,7 @@
     }
     self.waitInfo =[jsonDictionary objectForKey:@"PatWaitNum"];
     if ([self.waitInfo isEqual:[NSNull null]]) {
-        [self.HUDManager showErrorWithMessage:@"目前没有候诊信息" duration:3];
+        [self.HUDManager showErrorWithMessage:@"目前该卡没有候诊信息" duration:3];
     }
     [self.tableView reloadData];
 }

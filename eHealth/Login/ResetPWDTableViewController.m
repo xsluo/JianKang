@@ -1,37 +1,34 @@
 //
-//  ChangeUsernameController.m
+//  ResetPWDTableViewController.m
 //  eHealth
 //
-//  Created by Bagu on 15/1/6.
+//  Created by Bagu on 15/5/1.
 //  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
-#import "ChangeUsernameController.h"
+#import "ResetPWDTableViewController.h"
 #import "MBProgressHUDManager.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
-#define Method @"ModifyMemberUserName"
+#define Method @"ResetPassword"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
-#define kUserName @"username"
-#define kPassWord @"password"
 
-@interface ChangeUsernameController ()
-
-@property (weak, nonatomic) IBOutlet UILabel *labelUserName;
-@property (weak, nonatomic) IBOutlet UITextField *textNewName;
+@interface ResetPWDTableViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *textUserName;
+@property (weak, nonatomic) IBOutlet UITextField *textNewPassword;
+@property (weak, nonatomic) IBOutlet UITextField *textConfirmPassword;
 @property (weak, nonatomic) IBOutlet UITextField *textCAPTCHA;
 @property NSInteger connectionType;
 
-- (IBAction)changeName:(id)sender;
+- (IBAction)ressetPassword:(id)sender;
 - (IBAction)getCAPTCHA:(id)sender;
 @property (nonatomic,retain) MBProgressHUDManager *HUDManager;
-
 @property(nonatomic,retain)   NSMutableData *responseData;
-
 @end
 
-@implementation ChangeUsernameController
+@implementation ResetPWDTableViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -42,11 +39,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    //    self.responseData = nil;
-    //    self.requestType = 0;
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.labelUserName.text = [userDefaults objectForKey:kUserName];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,10 +83,7 @@
     
     if([resultCode isEqualToString:@"0000"]){
         if(self.connectionType ==0){
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:self.textNewName.text forKey:kUserName] ;
-            [userDefaults synchronize];
-            [self.HUDManager showMessage:@"注册成功" duration:3 complection:^{
+            [self.HUDManager showMessage:@"重设密码成功" duration:3 complection:^{
                 [self.navigationController popoverPresentationController];
             }];
         }
@@ -114,18 +103,15 @@
     [self.HUDManager showErrorWithMessage:[error localizedDescription] duration:2];
 }
 
-- (IBAction)changeName:(id)sender {
+- (IBAction)ressetPassword:(id)sender {
     self.connectionType = 0;
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *userName = [userDefaults objectForKey:kUserName];
-    NSString *password = [userDefaults objectForKey:kPassWord];
     
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:6];
     [dictionary setObject:AppKey forKey:@"AppKey"];
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
-    [dictionary setObject:userName forKey:@"UserName"];
-    [dictionary setObject:password forKey:@"Password"];
-    [dictionary setObject:self.textNewName.text forKey:@"NewPhoneNumber"];
+    [dictionary setObject:self.textUserName.text forKey:@"UserName"];
+    [dictionary setObject:self.textNewPassword.text forKey:@"NewPassword"];
+    [dictionary setObject:self.textConfirmPassword.text forKey:@"ConfirmPassword"];
     [dictionary setObject:self.textCAPTCHA.text forKey:@"CAPTCHA"];
     
     NSError *error=nil;
@@ -145,19 +131,17 @@
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [self.HUDManager showIndeterminateWithMessage:@""];
-
+    
     [connection start];
 }
 
 - (IBAction)getCAPTCHA:(id)sender {
     self.connectionType = 1;
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *userName = [userDefaults objectForKey:kUserName];
     
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc] initWithCapacity:3];
     [dictionary setObject:AppKey forKey:@"AppKey"];
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
-    [dictionary setObject:userName forKey:@"PhoneNumber"];
+    [dictionary setObject:self.textUserName.text forKey:@"PhoneNumber"];
     
     NSError *error=nil;
     
@@ -178,7 +162,8 @@
     
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [self.HUDManager showIndeterminateWithMessage:@""];
-
+    
     [connection start];
 }
+
 @end
