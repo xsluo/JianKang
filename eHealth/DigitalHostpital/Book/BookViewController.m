@@ -203,7 +203,7 @@
             if(self.department)
                 [self performSegueWithIdentifier:@"selectDoctor" sender:self];
             else
-                [self.HUDManager showMessage:@"请先选择医生所在科室" duration:3];
+                  [self.HUDManager showMessage:@"请先选择医生所在科室" duration:3];
             break;
         }
         default:

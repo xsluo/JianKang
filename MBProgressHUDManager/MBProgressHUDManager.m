@@ -139,7 +139,8 @@
 {
     [self createHUD];
     self.HUD.mode = mode;
-    self.HUD.labelText = message;
+//    self.HUD.labelText = message;
+    self.HUD.detailsLabelText = message;
     [self.HUD show:YES];
     if (completion)
     {

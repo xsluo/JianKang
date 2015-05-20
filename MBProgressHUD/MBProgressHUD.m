@@ -43,7 +43,8 @@
 
 static const CGFloat kPadding = 4.f;
 static const CGFloat kLabelFontSize = 16.f;
-static const CGFloat kDetailsLabelFontSize = 12.f;
+//static const CGFloat kDetailsLabelFontSize = 12.f;
+static const CGFloat kDetailsLabelFontSize = 16.f;
 
 
 @interface MBProgressHUD ()
@@ -474,7 +475,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	detailsLabel.numberOfLines = 0;
 	detailsLabel.font = self.detailsLabelFont;
 	detailsLabel.text = self.detailsLabelText;
-	[self addSubview:detailsLabel];
+ 	[self addSubview:detailsLabel];
 }
 
 - (void)updateIndicators {
