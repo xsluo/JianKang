@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -2788,7 +2788,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="top" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x35-Yh-4T7">
-                                <rect key="frame" x="16" y="75" width="568" height="180"/>
+                                <rect key="frame" x="16" y="57" width="568" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bookCell" id="S0e-Q3-57g">
@@ -2896,7 +2896,7 @@
                             <constraint firstItem="9rY-Nt-gNR" firstAttribute="trailing" secondItem="Pb4-U3-Wah" secondAttribute="trailingMargin" id="Aac-7e-RHI"/>
                             <constraint firstAttribute="centerX" secondItem="x35-Yh-4T7" secondAttribute="centerX" id="Hom-R1-7mx"/>
                             <constraint firstAttribute="height" secondItem="9rY-Nt-gNR" secondAttribute="height" multiplier="1.8" id="OTK-DR-0z4"/>
-                            <constraint firstItem="9rY-Nt-gNR" firstAttribute="top" secondItem="x35-Yh-4T7" secondAttribute="bottom" constant="2" id="PPZ-XP-pNd"/>
+                            <constraint firstItem="9rY-Nt-gNR" firstAttribute="top" secondItem="x35-Yh-4T7" secondAttribute="bottom" constant="20" id="PPZ-XP-pNd"/>
                             <constraint firstItem="x35-Yh-4T7" firstAttribute="trailing" secondItem="Pb4-U3-Wah" secondAttribute="trailingMargin" id="Yo4-Tr-UDC"/>
                             <constraint firstItem="9rY-Nt-gNR" firstAttribute="leading" secondItem="Pb4-U3-Wah" secondAttribute="leadingMargin" id="iQS-y4-hek"/>
                             <constraint firstItem="x35-Yh-4T7" firstAttribute="height" secondItem="Pb4-U3-Wah" secondAttribute="height" multiplier="0.3" id="k33-S5-lK9"/>
