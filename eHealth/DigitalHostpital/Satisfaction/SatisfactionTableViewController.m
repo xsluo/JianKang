@@ -10,6 +10,8 @@
 #import "SatisfactionTableViewController.h"
 #import "BookRecordTableViewController.h"
 #import "BookRecordCell.h"
+#import "StarTabTableViewController.h"
+#import "MBProgressHUDManager.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetBookingRecordList"
@@ -22,14 +24,16 @@
 
 @property (nonatomic,retain) NSMutableArray *bookRecordList;
 @property (nonatomic,retain) NSMutableData *responseData;
-
+@property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
 @implementation SatisfactionTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.HUDManager showIndeterminateWithMessage:@""];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -104,6 +108,7 @@
         return;
     
     //    if([connection.currentRequest.URL.  isEqualToString:URL]){
+    [self.HUDManager hide];
     NSError *error = nil;
     NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:_responseData options:kNilOptions error:&error];
     if (jsonDictionary == nil) {
@@ -124,7 +129,8 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
-    NSLog(@"%@",[error localizedDescription]);
+//    NSLog(@"%@",[error localizedDescription]);
+    [self.HUDManager showErrorWithMessage:@"无法连接网络，请检查网络"  duration:2];
 }
 
 
@@ -174,14 +180,20 @@
     
 }
 
-/*
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
+     
+     StarTabTableViewController *viewController = [segue destinationViewController];
+     NSIndexPath *index = [self.tableView indexPathForSelectedRow];
+     NSDictionary *bookRecord = [[NSDictionary alloc] init];
+     bookRecord = [self.bookRecordList objectAtIndex: [index row]];
+     viewController.record = bookRecord;
  }
- */
+
 
 @end

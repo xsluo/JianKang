@@ -168,7 +168,7 @@
     NSString *newsCategory = [newsDictionary objectForKey:@"NewsCategoryName"];
     UILabel *labelCategory = (UILabel *)[cell.contentView viewWithTag:3];
   
-    labelCategory.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
+//    labelCategory.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
     labelCategory.textColor = [UIColor whiteColor];
     labelCategory.text = newsCategory;
     

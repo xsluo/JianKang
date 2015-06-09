@@ -67,7 +67,7 @@
 -(NSString *)dataFilePath{
     NSArray *paths= NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSLog(@"%@",documentsDirectory);
+//    NSLog(@"%@",documentsDirectory);
     return [documentsDirectory stringByAppendingPathComponent:kDataFile];
 }
 

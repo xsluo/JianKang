@@ -1,32 +1,30 @@
 //
-//  CardInfoTableViewController.m
+//  HealthTrendTableViewController.m
 //  eHealth
 //
-//  Created by Bagu on 15/4/20.
+//  Created by Bagu on 15/6/4.
 //  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
-#import "HealthNewsTableViewController.h"
-#import "HealthNewsViewController.h"
+#import "HealthTrendTableViewController.h"
+#import "HealthTrendViewController.h"
 #import "News.h"
-//#import "NewsViewController.h"
 #import "MBProgressHUDManager.h"
 
 #define URL @"http://202.103.160.153:2001/WebAPI.ashx"
 #define Method @"GetHealthNews"
 #define AppKey @"JianKangEYuanIOS"
 #define AppSecret @"8D994823EBD9F13F34892BB192AB9D85"
-#define Type @"0"
-//#define NewsCategoryID @“1”
+#define Type @"2"
+#define NewsCategoryID @"999"
 
-@interface HealthNewsTableViewController()
+@interface HealthTrendTableViewController ()
 @property (nonatomic,retain) NSMutableData * responseData;
 @property(nonatomic,retain) NSMutableArray *newsList;
-//@property(nonatomic,retain) NSDictionary *selectedNews;
 @property (retain,nonatomic) MBProgressHUDManager *HUDManager;
 @end
 
-@implementation HealthNewsTableViewController
+@implementation HealthTrendTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +33,7 @@
     self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
     [self.HUDManager showIndeterminateWithMessage:@""];
     
-    NSDictionary *dictionary=[[NSDictionary alloc]initWithObjectsAndKeys:AppKey,@"AppKey",AppSecret,@"AppSecret",Type,@"Type", nil];
+    NSDictionary *dictionary=[[NSDictionary alloc]initWithObjectsAndKeys:AppKey,@"AppKey",AppSecret,@"AppSecret",Type,@"Type", NewsCategoryID,@"NewsCategoryID",nil];
     NSError *error=nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
     if(error){
@@ -68,7 +66,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark NSURLConnection Delegate Methods
 
@@ -113,8 +110,6 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    // The request has failed for some reason!
-    // Check the error var
     NSLog(@"%@",[error localizedDescription]);
     [self.HUDManager showErrorWithMessage:@"无法连接网络"  duration:2];
 }
@@ -135,7 +130,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Configure the cell...
-    static NSString* reuseIndentifier =@"HealthNews";
+    static NSString* reuseIndentifier =@"trendCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIndentifier forIndexPath:indexPath];
     
     if (cell==nil) {
@@ -144,7 +139,7 @@
     NSInteger row = [indexPath row];
     
     NSDictionary *newsDictionary = [self.newsList objectAtIndex:row];
-//    self.selectedNews = newsDictionary;
+    //    self.selectedNews = newsDictionary;
     
     NSString *url = [newsDictionary objectForKey:@"ThumbnailUrl"];
     UIImageView *imgv = (UIImageView *)[cell.contentView viewWithTag:4];
@@ -167,13 +162,12 @@
     NSString *newsSummary = [newsDictionary objectForKey:@"Summary"];
     UILabel *labelSummary = (UILabel *)[cell.contentView viewWithTag:3];
     labelSummary.text = newsSummary;
-    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    self.selectedNews = [self.newsList objectAtIndex:[indexPath row]];
-//    [self performSegueWithIdentifier:@"showNews" sender:self];
+    //    self.selectedNews = [self.newsList objectAtIndex:[indexPath row]];
+    //    [self performSegueWithIdentifier:@"showNews" sender:self];
 }
 
 
@@ -183,7 +177,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     NSDictionary *newsDictionary = [self.newsList objectAtIndex:[indexPath row]];
     NSString *str = [newsDictionary objectForKey:@"NewsContent"];
-    HealthNewsViewController *viewController = [segue destinationViewController];
+    HealthTrendViewController *viewController = [segue destinationViewController];
     viewController.txtNewsContent = str;
 }
 

@@ -42,24 +42,30 @@
     NSArray *array = [[NSArray alloc]initWithObjects:@"姓名",@"健康卡号", @"预约医院",@"预约科室",@"预约医生",@"预约日期",@"预约时间",@"取号地点",@"支付方式",nil];
     self.fieldLabels = array;
     self.fieldValues = [[NSMutableArray alloc]init];
+//    NSString *filePath = [self dataFilePath];
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+//        NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
+//        NSKeyedUnarchiver *unarchiver =[[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+//        self.defaultCard = [unarchiver decodeObjectForKey:kDataKey];
+//    }
+    self.HUDManager= [[MBProgressHUDManager alloc] initWithView:self.view];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
     NSString *filePath = [self dataFilePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
         NSKeyedUnarchiver *unarchiver =[[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         self.defaultCard = [unarchiver decodeObjectForKey:kDataKey];
     }
-    self.HUDManager= [[MBProgressHUDManager alloc] initWithView:self.view];
+    [self.tableView reloadData];
 }
 
 -(NSString *)dataFilePath{
     NSArray *paths= NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSLog(@"%@",documentsDirectory);
+//    NSLog(@"%@",documentsDirectory);
     return [documentsDirectory stringByAppendingPathComponent:kDataFile];
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,43 +97,42 @@
 
     if (section==0) {
         identifier = @"scheduleCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-        UILabel *labelTitle = (UILabel *)[cell viewWithTag:1];
+           UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
         if ([indexPath row]<9) {
-        labelTitle.text = [self.fieldLabels objectAtIndex:[indexPath row]];
+            cell.textLabel.text =[self.fieldLabels objectAtIndex:[indexPath row]];
         }
-        UILabel *labelValue = (UILabel *)[cell viewWithTag:2];
         
         if (![self.schedule isEqual:[NSNull null]] ) {
             switch ([indexPath row]) {
                 case 0:
-                    labelValue.text = [self.defaultCard owner];
+                    cell.detailTextLabel.text = [self.defaultCard owner];
                     break;
                 case 1:
-                    labelValue.text = [self.defaultCard medicalCardCode];
+                    cell.detailTextLabel.text = [self.defaultCard medicalCardCode];
+                    cell.accessoryType =UITableViewCellAccessoryDetailButton;
                     break;
                 case 2:
-                    labelValue.text = [[self schedule] objectForKey:@"HospitalName"];
+                     cell.detailTextLabel.text = [[self schedule] objectForKey:@"HospitalName"];
                     break;
                 case 3:
-                    labelValue.text = [[self schedule] objectForKey:@"DepartmentName"];
+                    cell.detailTextLabel.text = [[self schedule] objectForKey:@"DepartmentName"];
                     break;
                 case 4:
-                    labelValue.text = [[self schedule] objectForKey:@"DoctorName"];
+                    cell.detailTextLabel.text = [[self schedule] objectForKey:@"DoctorName"];
                     break;
                 case 5:
-                    labelValue.text = [[self schedule] objectForKey:@"AuscultationDate"];
+                    cell.detailTextLabel.text = [[self schedule] objectForKey:@"AuscultationDate"];
                     break;
                 case 6:{
                     NSString *tmFromTo = [NSString stringWithFormat:@"%@ - %@",[[self schedule] objectForKey:@"BeginTime"],[[self schedule] objectForKey:@"EndTime"]];
-                    labelValue.text = tmFromTo;
+                    cell.detailTextLabel.text = tmFromTo;
                 }
                     break;
                 case 7:
-                    labelValue.text = @"医院挂号处";
+                    cell.detailTextLabel.text = @"医院挂号处";
                     break;
                 case 8:
-                    labelValue.text = @"在线支付";
+                    cell.detailTextLabel.text = @"在线支付";
                     break;
                 default:
                     break;
@@ -137,8 +142,14 @@
     }
     else{
         identifier = @"confirmCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-        UIButton *confirmButton = [[UIButton alloc] initWithFrame:cell.contentView.frame];
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        CGRect rect = cell.contentView.frame;
+        rect.size.height = rect.size.height*0.9;
+        rect.origin.x = rect.origin.x + rect.size.width *0.1;
+        rect.size.width =rect.size.width*0.8;
+        
+        UIButton *confirmButton = [[UIButton alloc] initWithFrame:rect];
         confirmButton.layer.cornerRadius = 4;
         confirmButton.translatesAutoresizingMaskIntoConstraints = NO;
         confirmButton.backgroundColor= [UIColor colorWithRed:252.0/255 green:106.0/255 blue:8.0/255 alpha:1.0];
@@ -257,58 +268,8 @@
     [self.HUDManager showErrorWithMessage:@"网络连接失败"];
 }
 
-/*
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
- 
- // Configure the cell...
- 
- return cell;
- }
- */
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+-(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"changCard" sender:self];
+}
 
 @end

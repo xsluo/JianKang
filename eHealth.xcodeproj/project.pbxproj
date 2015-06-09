@@ -140,6 +140,16 @@
 		1366571A1AE099360043D262 /* AppIcon80px.png in Resources */ = {isa = PBXBuildFile; fileRef = 136657171AE099360043D262 /* AppIcon80px.png */; };
 		1366571B1AE099360043D262 /* AppIcon120px.png in Resources */ = {isa = PBXBuildFile; fileRef = 136657181AE099360043D262 /* AppIcon120px.png */; };
 		137C900F1A949EB00085AF90 /* MedicalCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 137C900D1A949EB00085AF90 /* MedicalCard.m */; };
+		13844FB51B1FCB9F00C17312 /* product.png in Resources */ = {isa = PBXBuildFile; fileRef = 13844FB41B1FCB9F00C17312 /* product.png */; };
+		13844FC11B20394400C17312 /* HealthTrendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13844FBD1B20394400C17312 /* HealthTrendTableViewController.m */; };
+		13844FC21B20394400C17312 /* HealthTrendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13844FBF1B20394400C17312 /* HealthTrendViewController.m */; };
+		13844FC41B205AEB00C17312 /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13844FC31B205AEB00C17312 /* default.jpg */; };
+		1384B60E1B1EC5820024FE58 /* bt_star_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 1384B6081B1EC5820024FE58 /* bt_star_a.png */; };
+		1384B60F1B1EC5820024FE58 /* bt_star_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1384B6091B1EC5820024FE58 /* bt_star_a@2x.png */; };
+		1384B6101B1EC5820024FE58 /* bt_star_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 1384B60A1B1EC5820024FE58 /* bt_star_b.png */; };
+		1384B6111B1EC5820024FE58 /* bt_star_b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1384B60B1B1EC5820024FE58 /* bt_star_b@2x.png */; };
+		1384B6121B1EC5820024FE58 /* RatingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1384B60D1B1EC5820024FE58 /* RatingBar.m */; };
+		1384B6151B1EC84D0024FE58 /* StarTabTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1384B6141B1EC84D0024FE58 /* StarTabTableViewController.m */; };
 		138F8B591AB075A300E36438 /* DigitaHospitalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 138F8B581AB075A300E36438 /* DigitaHospitalCollectionViewCell.m */; };
 		139512A51A5808870067810D /* DutyRosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139512A41A5808870067810D /* DutyRosterViewController.m */; };
 		1399806F1AEF6FA000319D80 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = 1399806E1AEF6FA000319D80 /* face.png */; };
@@ -168,7 +178,6 @@
 		13A8155B1A890D2A00BCCBCE /* Doctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A8155A1A890D2A00BCCBCE /* Doctor.m */; };
 		13A815611A89B3D700BCCBCE /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A815601A89B3D700BCCBCE /* Schedule.m */; };
 		13BA857A1AD2D09500F5D896 /* SatisfactionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BA85791AD2D09500F5D896 /* SatisfactionTableViewController.m */; };
-		13BA858F1AD2E2F000F5D896 /* StarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BA858E1AD2E2F000F5D896 /* StarViewController.m */; };
 		13CAAE631A3C92E9009C420E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAAE621A3C92E9009C420E /* main.m */; };
 		13CAAE661A3C92E9009C420E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAAE651A3C92E9009C420E /* AppDelegate.m */; };
 		13CAAE6E1A3C92EA009C420E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13CAAE6D1A3C92EA009C420E /* Images.xcassets */; };
@@ -377,6 +386,20 @@
 		136657181AE099360043D262 /* AppIcon120px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon120px.png; path = "images/应用程序图标/AppIcon120px.png"; sourceTree = SOURCE_ROOT; };
 		137C900D1A949EB00085AF90 /* MedicalCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MedicalCard.m; path = Object/MedicalCard.m; sourceTree = "<group>"; };
 		137C900E1A949EB00085AF90 /* MedicalCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MedicalCard.h; path = Object/MedicalCard.h; sourceTree = "<group>"; };
+		13844FB41B1FCB9F00C17312 /* product.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = product.png; sourceTree = "<group>"; };
+		13844FBD1B20394400C17312 /* HealthTrendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthTrendTableViewController.m; path = InteligentHealth/HealthTrend/HealthTrendTableViewController.m; sourceTree = "<group>"; };
+		13844FBE1B20394400C17312 /* HealthTrendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthTrendViewController.h; path = InteligentHealth/HealthTrend/HealthTrendViewController.h; sourceTree = "<group>"; };
+		13844FBF1B20394400C17312 /* HealthTrendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthTrendViewController.m; path = InteligentHealth/HealthTrend/HealthTrendViewController.m; sourceTree = "<group>"; };
+		13844FC01B20394400C17312 /* HealthTrendTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthTrendTableViewController.h; path = InteligentHealth/HealthTrend/HealthTrendTableViewController.h; sourceTree = "<group>"; };
+		13844FC31B205AEB00C17312 /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = default.jpg; path = images/default.jpg; sourceTree = "<group>"; };
+		1384B6081B1EC5820024FE58 /* bt_star_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_star_a.png; sourceTree = "<group>"; };
+		1384B6091B1EC5820024FE58 /* bt_star_a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_star_a@2x.png"; sourceTree = "<group>"; };
+		1384B60A1B1EC5820024FE58 /* bt_star_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_star_b.png; sourceTree = "<group>"; };
+		1384B60B1B1EC5820024FE58 /* bt_star_b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_star_b@2x.png"; sourceTree = "<group>"; };
+		1384B60C1B1EC5820024FE58 /* RatingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingBar.h; sourceTree = "<group>"; };
+		1384B60D1B1EC5820024FE58 /* RatingBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingBar.m; sourceTree = "<group>"; };
+		1384B6131B1EC84D0024FE58 /* StarTabTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StarTabTableViewController.h; path = eHealth/DigitalHostpital/Satisfaction/StarTabTableViewController.h; sourceTree = SOURCE_ROOT; };
+		1384B6141B1EC84D0024FE58 /* StarTabTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StarTabTableViewController.m; path = eHealth/DigitalHostpital/Satisfaction/StarTabTableViewController.m; sourceTree = SOURCE_ROOT; };
 		138F8B571AB075A300E36438 /* DigitaHospitalCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DigitaHospitalCollectionViewCell.h; path = KeyBoard/DigitaHospitalCollectionViewCell.h; sourceTree = "<group>"; };
 		138F8B581AB075A300E36438 /* DigitaHospitalCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DigitaHospitalCollectionViewCell.m; path = KeyBoard/DigitaHospitalCollectionViewCell.m; sourceTree = "<group>"; };
 		139512A31A5808870067810D /* DutyRosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DutyRosterViewController.h; path = DigitalHostpital/DutyRoster/DutyRosterViewController.h; sourceTree = "<group>"; };
@@ -432,8 +455,6 @@
 		13A815601A89B3D700BCCBCE /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = Object/Schedule.m; sourceTree = "<group>"; };
 		13BA85781AD2D09500F5D896 /* SatisfactionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SatisfactionTableViewController.h; path = DigitalHostpital/Satisfaction/SatisfactionTableViewController.h; sourceTree = "<group>"; };
 		13BA85791AD2D09500F5D896 /* SatisfactionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SatisfactionTableViewController.m; path = DigitalHostpital/Satisfaction/SatisfactionTableViewController.m; sourceTree = "<group>"; };
-		13BA858D1AD2E2F000F5D896 /* StarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StarViewController.h; path = DigitalHostpital/Satisfaction/StarViewController.h; sourceTree = "<group>"; };
-		13BA858E1AD2E2F000F5D896 /* StarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StarViewController.m; path = DigitalHostpital/Satisfaction/StarViewController.m; sourceTree = "<group>"; };
 		13CAAE5D1A3C92E9009C420E /* eHealth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eHealth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CAAE611A3C92E9009C420E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13CAAE621A3C92E9009C420E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -605,6 +626,7 @@
 		132142F01A3F1AC500290746 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				13844FC31B205AEB00C17312 /* default.jpg */,
 				1399806E1AEF6FA000319D80 /* face.png */,
 				0698495D1AE89C5C00511884 /* 停车场图标 */,
 				13F9FF781AE7E54B0019CEAD /* 预约挂号-小图标 */,
@@ -806,6 +828,30 @@
 			name = PatWait;
 			sourceTree = "<group>";
 		};
+		13844FB61B20357200C17312 /* HealthTrend */ = {
+			isa = PBXGroup;
+			children = (
+				13844FBE1B20394400C17312 /* HealthTrendViewController.h */,
+				13844FBF1B20394400C17312 /* HealthTrendViewController.m */,
+				13844FC01B20394400C17312 /* HealthTrendTableViewController.h */,
+				13844FBD1B20394400C17312 /* HealthTrendTableViewController.m */,
+			);
+			name = HealthTrend;
+			sourceTree = "<group>";
+		};
+		1384B6071B1EC5820024FE58 /* RatingBar */ = {
+			isa = PBXGroup;
+			children = (
+				1384B6081B1EC5820024FE58 /* bt_star_a.png */,
+				1384B6091B1EC5820024FE58 /* bt_star_a@2x.png */,
+				1384B60A1B1EC5820024FE58 /* bt_star_b.png */,
+				1384B60B1B1EC5820024FE58 /* bt_star_b@2x.png */,
+				1384B60C1B1EC5820024FE58 /* RatingBar.h */,
+				1384B60D1B1EC5820024FE58 /* RatingBar.m */,
+			);
+			path = RatingBar;
+			sourceTree = "<group>";
+		};
 		138C29441A52549900CDB267 /* DutyRoster */ = {
 			isa = PBXGroup;
 			children = (
@@ -856,21 +902,12 @@
 		13BA85771AD2D04C00F5D896 /* Satisfaction */ = {
 			isa = PBXGroup;
 			children = (
-				13BA85811AD2E28300F5D896 /* StarRating */,
 				13BA85781AD2D09500F5D896 /* SatisfactionTableViewController.h */,
 				13BA85791AD2D09500F5D896 /* SatisfactionTableViewController.m */,
-				13BA858D1AD2E2F000F5D896 /* StarViewController.h */,
-				13BA858E1AD2E2F000F5D896 /* StarViewController.m */,
+				1384B6131B1EC84D0024FE58 /* StarTabTableViewController.h */,
+				1384B6141B1EC84D0024FE58 /* StarTabTableViewController.m */,
 			);
 			name = Satisfaction;
-			sourceTree = "<group>";
-		};
-		13BA85811AD2E28300F5D896 /* StarRating */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = StarRating;
-			path = EDStarRating;
 			sourceTree = "<group>";
 		};
 		13C271481A7E642D002DAB60 /* Book */ = {
@@ -935,6 +972,7 @@
 				135796841ACCF0A600A6C3B2 /* Favarite */,
 				0683B0971A638EEB00033285 /* MedicalCard */,
 				13F3CFBA1AE3E58400F84577 /* HUD */,
+				1384B6071B1EC5820024FE58 /* RatingBar */,
 				13CAAE5F1A3C92E9009C420E /* eHealth */,
 				132142F01A3F1AC500290746 /* Images */,
 				13CAAE791A3C92EA009C420E /* eHealthTests */,
@@ -957,6 +995,7 @@
 				1344E8D41A580FE300733189 /* HomeViewController.h */,
 				1344E8D51A580FE300733189 /* HomeViewController.m */,
 				13F033381A7797930012BB02 /* Main.storyboard */,
+				13844FB41B1FCB9F00C17312 /* product.png */,
 				13CAAE641A3C92E9009C420E /* AppDelegate.h */,
 				13CAAE651A3C92E9009C420E /* AppDelegate.m */,
 				13CAAE6D1A3C92EA009C420E /* Images.xcassets */,
@@ -1157,6 +1196,7 @@
 			children = (
 				13F3CFC31AE412F200F84577 /* HealthViewController.h */,
 				13F3CFC41AE412F200F84577 /* HealthViewController.m */,
+				13844FB61B20357200C17312 /* HealthTrend */,
 				0685335A1AE883C300D10896 /* HealthNews */,
 			);
 			name = InteligentHealth;
@@ -1271,6 +1311,7 @@
 				132474901AB3256B003F0B1D /* lock.png in Resources */,
 				132474811AB3256B003F0B1D /* home.png in Resources */,
 				132474EF1AB3256B003F0B1D /* speaker-on.png in Resources */,
+				13844FB51B1FCB9F00C17312 /* product.png in Resources */,
 				132474CD1AB3256B003F0B1D /* recycle-bin.png in Resources */,
 				132474961AB3256B003F0B1D /* map-pin.png in Resources */,
 				132474F51AB3256B003F0B1D /* storage.png in Resources */,
@@ -1295,6 +1336,7 @@
 				132474871AB3256B003F0B1D /* iphone.png in Resources */,
 				132474941AB3256B003F0B1D /* man-figure.png in Resources */,
 				132474F61AB3256B003F0B1D /* sun.png in Resources */,
+				1384B6111B1EC5820024FE58 /* bt_star_b@2x.png in Resources */,
 				13F9FF7F1AE7E54B0019CEAD /* 医院32px.png in Resources */,
 				132474341AB3256B003F0B1D /* car-side.png in Resources */,
 				13E092D01ACF6A46003A7F70 /* 健康卡管理图标-选中32px.png in Resources */,
@@ -1354,6 +1396,7 @@
 				13E092C91ACF6A46003A7F70 /* 数字医院-点击效果.png in Resources */,
 				132474F21AB3256B003F0B1D /* star.png in Resources */,
 				132143001A3F1B0600290746 /* 7.png in Resources */,
+				1384B60F1B1EC5820024FE58 /* bt_star_a@2x.png in Resources */,
 				132475211AB3256B003F0B1D /* woman.png in Resources */,
 				132474921AB3256B003F0B1D /* love.png in Resources */,
 				132475001AB3256B003F0B1D /* tennis.png in Resources */,
@@ -1383,6 +1426,7 @@
 				132143021A3F1B0600290746 /* 9.png in Resources */,
 				132475081AB3256B003F0B1D /* tick.png in Resources */,
 				1324750A1AB3256B003F0B1D /* torch-light.png in Resources */,
+				1384B6101B1EC5820024FE58 /* bt_star_b.png in Resources */,
 				1324750E1AB3256B003F0B1D /* trophy.png in Resources */,
 				132474211AB3256B003F0B1D /* brightness.png in Resources */,
 				132474FE1AB3256B003F0B1D /* target.png in Resources */,
@@ -1392,9 +1436,11 @@
 				13E092CB1ACF6A46003A7F70 /* 智能健康-点击效果.png in Resources */,
 				132474821AB3256B003F0B1D /* horse.png in Resources */,
 				13F9FF7E1AE7E54B0019CEAD /* 医生32px.png in Resources */,
+				13844FC41B205AEB00C17312 /* default.jpg in Resources */,
 				132474241AB3256B003F0B1D /* button-fast-forward.png in Resources */,
 				132474E21AB3256B003F0B1D /* shopping-cart.png in Resources */,
 				132474381AB3256B003F0B1D /* caution.png in Resources */,
+				1384B60E1B1EC5820024FE58 /* bt_star_a.png in Resources */,
 				1324750D1AB3256B003F0B1D /* tree.png in Resources */,
 				13E092CF1ACF6A46003A7F70 /* 健康卡管理图标-未选中32px.png in Resources */,
 				13E092AE1ACEF095003A7F70 /* 37x-success.png in Resources */,
@@ -1437,6 +1483,8 @@
 				13A8155B1A890D2A00BCCBCE /* Doctor.m in Sources */,
 				13A739A71AB85E9C00649744 /* TodayDutyViewController.m in Sources */,
 				13064BCC1A400EBA001E9263 /* DepartmentTableViewController.m in Sources */,
+				1384B6151B1EC84D0024FE58 /* StarTabTableViewController.m in Sources */,
+				1384B6121B1EC5820024FE58 /* RatingBar.m in Sources */,
 				13A739B91AB85F3400649744 /* GetDepartmentTableViewController.m in Sources */,
 				0610AC481ACACB5500B1CE50 /* ConsultReply.m in Sources */,
 				13A739B81AB85F3400649744 /* GetAreaTableViewController.m in Sources */,
@@ -1459,17 +1507,18 @@
 				13A739D31AB863BA00649744 /* CardDetailViewController.m in Sources */,
 				135AD7441ACAF3E200B309ED /* PatWaitTableViewController.m in Sources */,
 				134C4FC71A3D867000CDDA3E /* IntroductionViewController.m in Sources */,
+				13844FC11B20394400C17312 /* HealthTrendTableViewController.m in Sources */,
 				068533581AE883BB00D10896 /* HealthNewsTableViewController.m in Sources */,
 				13A815521A88D9A200BCCBCE /* Department.m in Sources */,
 				068533591AE883BB00D10896 /* HealthNewsViewController.m in Sources */,
 				13A739D41AB863BA00649744 /* CardManageTableViewController.m in Sources */,
 				13A739A41AB85E5000649744 /* ExamListViewController.m in Sources */,
-				13BA858F1AD2E2F000F5D896 /* StarViewController.m in Sources */,
 				13A739BC1AB85F3400649744 /* ScheduleTableViewController.m in Sources */,
 				13A739C31AB85FEE00649744 /* SettingTableViewController.m in Sources */,
 				13A739A11AB85E0900649744 /* GetConsultViewController.m in Sources */,
 				1344E8D61A580FE300733189 /* HomeViewController.m in Sources */,
 				13A739DA1AB8644500649744 /* NewsViewController.m in Sources */,
+				13844FC21B20394400C17312 /* HealthTrendViewController.m in Sources */,
 				13F3CFC11AE3E66800F84577 /* pinyin.c in Sources */,
 				13BA857A1AD2D09500F5D896 /* SatisfactionTableViewController.m in Sources */,
 				06D9C81E1AE0F26900F25B07 /* DepartmentDistributionViewController.m in Sources */,

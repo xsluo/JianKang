@@ -1,23 +1,24 @@
 //
-//  StarViewController.m
+//  HealthTrendViewController.m
 //  eHealth
 //
-//  Created by Bagu on 15/4/6.
+//  Created by Bagu on 15/6/4.
 //  Copyright (c) 2015年 PanGu. All rights reserved.
 //
 
-#import "StarViewController.h"
+#import "HealthTrendViewController.h"
 
-
-@interface StarViewController ()
-
+@interface HealthTrendViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
-@implementation StarViewController
+
+@implementation HealthTrendViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.webView loadHTMLString:self.txtNewsContent baseURL:nil];
 }
 
 - (void)didReceiveMemoryWarning {

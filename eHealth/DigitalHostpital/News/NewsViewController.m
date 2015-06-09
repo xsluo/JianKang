@@ -39,8 +39,8 @@
     NSString *newsCategoryName = [self.aNews newsCategoryName];
     UILabel *labelCategory = (UILabel *)[self.view viewWithTag:2];
     labelCategory.text = newsCategoryName;
-    labelCategory.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
-    labelCategory.textColor = [UIColor whiteColor];
+//    labelCategory.backgroundColor = [UIColor colorWithRed:28.0/255 green:140.0/255 blue:189.0/255 alpha:1.0];
+//    labelCategory.textColor = [UIColor whiteColor];
     
     NSString *createTime = [self.aNews creatTime];
     UILabel *labelCreate = (UILabel *)[self.view viewWithTag:3];
