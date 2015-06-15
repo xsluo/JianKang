@@ -112,9 +112,9 @@
         return;
     }
     
-    [self.HUDManager hide];
-    UILabel *labelTraffic = (UILabel *)[self.view viewWithTag:1];
-    labelTraffic.text = @"经过市一医院的线路有132路，805路，桂30路，103路，105路，107路，110路，113路，116路，122路，123路，126路，127路，129路，131路，133路，135路，138路，139路，154路，157路，158路，161路上午班，161路下午班，163路，164A路，165路，182路，184路，255B路，259路，803路，806路，K1路，K3路，广12路，桂27路。";
+//    [self.HUDManager hide];
+//    UILabel *labelTraffic = (UILabel *)[self.view viewWithTag:1];
+//    labelTraffic.text = @"经过市一医院的线路有132路，805路，桂30路，103路，105路，107路，110路，113路，116路，122路，123路，126路，127路，129路，131路，133路，135路，138路，139路，154路，157路，158路，161路上午班，161路下午班，163路，164A路，165路，182路，184路，255B路，259路，803路，806路，K1路，K3路，广12路，桂27路。";
     
     self.hospitalInfo =[jsonDictionary objectForKey:@"Hospital"];
     [self updateView];
@@ -133,9 +133,11 @@
         NSString *trafficUrl = [self.hospitalInfo objectForKey:@"TrafficUrl"];
         NSURL *url =[NSURL URLWithString:trafficUrl];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        self.webView.delegate = self;
         [self.webView loadRequest:request];
     }
 }
+
 
 #pragma mark Webview delegate methods
 
@@ -145,6 +147,9 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    UILabel *labelTraffic = (UILabel *)[self.view viewWithTag:1];
+    labelTraffic.text = @"经过市一医院的线路有132路，805路，桂30路，103路，105路，107路，110路，113路，116路，122路，123路，126路，127路，129路，131路，133路，135路，138路，139路，154路，157路，158路，161路上午班，161路下午班，163路，164A路，165路，182路，184路，255B路，259路，803路，806路，K1路，K3路，广12路，桂27路。";
+
     [self.HUDManager hide];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{

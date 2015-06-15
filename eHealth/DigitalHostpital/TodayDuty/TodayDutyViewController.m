@@ -125,7 +125,7 @@
         NSLog(@"json parse failed \r\n");
         return;
     }
-    [self.HUDManager hide];
+    
     self.todayDutyList =[jsonDictionary objectForKey:@"DutyRosterList"];
     if (![[self todayDutyList]isEqual:[NSNull null]]) {
         for ( NSDictionary *d in self.todayDutyList ) {
@@ -133,9 +133,11 @@
                 [self.dataArr addObject:[d objectForKey:@"DoctorName"]];
             }
         }
+        [self.HUDManager hide];
     }
     else{
         self.dataArr =nil;
+        [self.HUDManager showSuccessWithMessage:@"当前没有数据" duration:2];
     }
     
     self.sortedArrForArrays = [self getChineseStringArr:self.dataArr];

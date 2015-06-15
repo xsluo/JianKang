@@ -136,6 +136,7 @@
 		135796831ACCF05C00A6C3B2 /* FavariteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135796821ACCF05C00A6C3B2 /* FavariteTableViewController.m */; };
 		135AD7441ACAF3E200B309ED /* PatWaitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135AD7431ACAF3E200B309ED /* PatWaitTableViewController.m */; };
 		135AD7471ACBAC5800B309ED /* AddMedicalCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 135AD7461ACBAC5800B309ED /* AddMedicalCardViewController.m */; };
+		135D23E51B2EE05700FDABFD /* 4s.png in Resources */ = {isa = PBXBuildFile; fileRef = 135D23E41B2EE05700FDABFD /* 4s.png */; };
 		136657191AE099360043D262 /* AppIcon180px.png in Resources */ = {isa = PBXBuildFile; fileRef = 136657161AE099360043D262 /* AppIcon180px.png */; };
 		1366571A1AE099360043D262 /* AppIcon80px.png in Resources */ = {isa = PBXBuildFile; fileRef = 136657171AE099360043D262 /* AppIcon80px.png */; };
 		1366571B1AE099360043D262 /* AppIcon120px.png in Resources */ = {isa = PBXBuildFile; fileRef = 136657181AE099360043D262 /* AppIcon120px.png */; };
@@ -381,6 +382,7 @@
 		135AD7431ACAF3E200B309ED /* PatWaitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatWaitTableViewController.m; path = Wait/PatWaitTableViewController.m; sourceTree = "<group>"; };
 		135AD7451ACBAC5800B309ED /* AddMedicalCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddMedicalCardViewController.h; path = MedicalCard/AddMedicalCardViewController.h; sourceTree = "<group>"; };
 		135AD7461ACBAC5800B309ED /* AddMedicalCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddMedicalCardViewController.m; path = MedicalCard/AddMedicalCardViewController.m; sourceTree = "<group>"; };
+		135D23E41B2EE05700FDABFD /* 4s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 4s.png; path = images/4s.png; sourceTree = "<group>"; };
 		136657161AE099360043D262 /* AppIcon180px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon180px.png; path = "images/应用程序图标/AppIcon180px.png"; sourceTree = SOURCE_ROOT; };
 		136657171AE099360043D262 /* AppIcon80px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon80px.png; path = "images/应用程序图标/AppIcon80px.png"; sourceTree = SOURCE_ROOT; };
 		136657181AE099360043D262 /* AppIcon120px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon120px.png; path = "images/应用程序图标/AppIcon120px.png"; sourceTree = SOURCE_ROOT; };
@@ -596,6 +598,7 @@
 				132142F21A3F1B0600290746 /* 2.png */,
 				132142F31A3F1B0600290746 /* 3.png */,
 				132142F41A3F1B0600290746 /* 4.png */,
+				135D23E41B2EE05700FDABFD /* 4s.png */,
 				132142F51A3F1B0600290746 /* 5.png */,
 				132142F61A3F1B0600290746 /* 6.png */,
 				132142F71A3F1B0600290746 /* 7.png */,
@@ -1436,6 +1439,7 @@
 				13E092CB1ACF6A46003A7F70 /* 智能健康-点击效果.png in Resources */,
 				132474821AB3256B003F0B1D /* horse.png in Resources */,
 				13F9FF7E1AE7E54B0019CEAD /* 医生32px.png in Resources */,
+				135D23E51B2EE05700FDABFD /* 4s.png in Resources */,
 				13844FC41B205AEB00C17312 /* default.jpg in Resources */,
 				132474241AB3256B003F0B1D /* button-fast-forward.png in Resources */,
 				132474E21AB3256B003F0B1D /* shopping-cart.png in Resources */,

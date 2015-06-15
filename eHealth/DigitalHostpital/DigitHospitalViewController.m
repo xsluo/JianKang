@@ -84,7 +84,7 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     //    CGSize size = CGSizeMake(100, 130);
-    CGSize size = CGSizeMake(80, 90);
+    CGSize size = CGSizeMake(72, 81);
     
     return size;
 }

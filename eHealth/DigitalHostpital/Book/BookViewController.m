@@ -25,7 +25,9 @@
 @interface BookViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong,nonatomic) UIView *panelView;
+//@property (strong,nonatomic) UIView *panelView;
+@property (weak, nonatomic) IBOutlet UIScrollView *panelView;
+//@property (strong,nonatomic) UIScrollView *panelView;
 
 -(IBAction)unwindSelectHospital:(UIStoryboardSegue *)segue;
 -(IBAction)unwindSelectDepartment:(UIStoryboardSegue *)segue;
@@ -42,7 +44,7 @@
 //    self.hospital = nil;
     self.department = nil;
     self.doctor = nil;
-    self.panelView = [self.view viewWithTag:999];
+//    self.panelView = [self.view viewWithTag:999];
     [self.panelView setHidden:YES];
     self.HUDManager = [[MBProgressHUDManager alloc] initWithView:self.view];
 }
@@ -218,8 +220,8 @@
         self.department = nil;
         self.doctor=nil;
         
-        UIView *panelView = [self.view viewWithTag:999];
-        [panelView setHidden:YES];
+//        UIView *panelView = [self.view viewWithTag:999];
+        [self.panelView setHidden:YES];
         
         [self.tableView reloadData];
     }

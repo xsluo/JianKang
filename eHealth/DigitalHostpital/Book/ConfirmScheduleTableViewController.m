@@ -145,15 +145,17 @@
 //        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
         UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         CGRect rect = cell.contentView.frame;
-        rect.size.height = rect.size.height*0.9;
-        rect.origin.x = rect.origin.x + rect.size.width *0.1;
-        rect.size.width =rect.size.width*0.8;
+        rect.origin.x = rect.origin.x + rect.size.width *0.05;
+        rect.origin.y = rect.origin.y + rect.size.height*0.15;
+        rect.size.height = rect.size.height*0.7;
+        rect.size.width =rect.size.width*0.9;
         
         UIButton *confirmButton = [[UIButton alloc] initWithFrame:rect];
         confirmButton.layer.cornerRadius = 4;
         confirmButton.translatesAutoresizingMaskIntoConstraints = NO;
         confirmButton.backgroundColor= [UIColor colorWithRed:252.0/255 green:106.0/255 blue:8.0/255 alpha:1.0];
         [confirmButton setTitle:@"确认预约" forState:UIControlStateNormal];
+        confirmButton.layer.cornerRadius = 4;
         [confirmButton addTarget:self action:@selector(confirm:) forControlEvents:UIControlEventTouchDown];
             [cell.contentView addSubview:confirmButton];
         return cell;

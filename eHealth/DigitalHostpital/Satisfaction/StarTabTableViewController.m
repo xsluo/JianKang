@@ -114,8 +114,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         CGRect rect = cell.contentView.frame;
         
-        rect.origin.x = rect.origin.x + rect.size.width *0.1;
-        rect.size.width =rect.size.width*0.8;
+        rect.origin.x = rect.origin.x + rect.size.width *0.05;
+        rect.size.width =rect.size.width*0.9;
         
         rect.origin.y = rect.origin.y + rect.size.height *0.4;
         rect.size.height = rect.size.height*0.6;
