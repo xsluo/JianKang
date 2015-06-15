@@ -81,6 +81,7 @@
     [dictionary setObject:AppSecret forKey:@"AppSecret"];
     [dictionary setObject:userName forKey:@"UserName"];
     NSError *error=nil;
+    
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&error];
     if(error){
         NSLog(@"error:%@",error);

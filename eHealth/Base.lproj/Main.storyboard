@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JbK-Gb-Ioi">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -620,7 +620,8 @@ DQ
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">2.</string>
+                                        <string key="content">
+2.</string>
                                         <attributes>
                                             <font key="NSFont" size="14" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -669,7 +670,8 @@ DQ
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">3.</string>
+                                        <string key="content">
+3.</string>
                                         <attributes>
                                             <font key="NSFont" size="14" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -694,7 +696,8 @@ DQ
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">4.</string>
+                                        <string key="content">
+4.</string>
                                         <attributes>
                                             <font key="NSFont" size="14" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -707,7 +710,8 @@ DQ
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">5</string>
+                                        <string key="content">
+5</string>
                                         <attributes>
                                             <font key="NSFont" size="14" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -744,7 +748,8 @@ DQ
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">*</string>
+                                        <string key="content">
+*</string>
                                         <attributes>
                                             <font key="NSFont" size="14" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -793,7 +798,8 @@ DQ
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">*“</string>
+                                        <string key="content">
+*“</string>
                                         <attributes>
                                             <font key="NSFont" size="14" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -1802,7 +1808,35 @@ DQ
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgn-RT-fiA">
                                 <rect key="frame" x="16" y="0.0" width="568" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">1、关于居民健康卡、佛山健康卡。居民健康卡是基于区域卫生信息平台、居民电子健康档案和医疗机构电子病历，可用于居民身份识别、个人基本健康信息存储、实现跨区域跨机构就医数据交换和费用结算的电子信息卡。佛山健康卡是我市为方便市民看病就医，打通区域医院信息系统，实现诊疗信息互通共享而免费发放的有效介质，该卡兼容身份证、市民卡，具有自助挂号、诊疗、体检、取药等服务功能。2佛山健康e园”客户端包含什么内容？佛山健康e园包括“健康服务”和“数字e院”两大模块。“健康服务”包括预约挂号、医问医答、健康大全等功能；“数字e院”是提供更多的医院信息服务，包括：智能叫号、医院动态、医院服务等。3、“佛山健康e园”是否收费？“佛山健康e园”注册会员，可凭居民健康卡或佛山健康卡免费享有预约挂号服务。（患者就诊挂号费，由医院按物价部门核实收取。）4、如何预约挂号？答：用户需注册登录，填写居民健康卡或佛山健康卡信息，然后选择地区→选择医院→选择科室→选择医生→选择就诊时间，最后点击“预约挂号”即可成功预约。答：用户点击“个人中心”→“我的预约”，会出现用户历史预约详细信息，点击“取消预约”按钮。请务必在就诊日前一个工作日凌晨12点前取消；如需在就诊当天取消，市民可按各医院相关规定进行操作。5、预约成功的订单可以修改吗？答：预约成功的订单不能进行修改，但可以选择取消，然后重新预约挂号。6、如何取消预约挂号？答：用户点击“个人中心”→“我的预约”，会出现用户历史预约详细信息，点击“取消预约”按钮。请务必在就诊日前一个工作日凌晨12点前取消；如需在就诊当天取消，市民可按各医院相关规定进行操作。8如何支付预约单？答：佛山健康e园手机客户端暂时只支持现场支付，市民需到医院现场支付挂号单。9关于就诊时间。答：预约成功后，市民需在预约时段开始前15分钟到达医院确认，然后按“预约优先、先到先诊”安排就诊。11、预约挂号有次数限制吗？答：同一健康卡号每天最多只可预约同一医院或同一医生2次。</mutableString>
+                                <string key="text">1、关于居民健康卡、佛山健康卡。
+居民健康卡是基于区域卫生信息平台、居民电子健康档案和医疗机构电子病历，可用于居民身份识别、个人基本健康信息存储、实现跨区域跨机构就医数据交换和费用结算的电子信息卡。
+佛山健康卡是我市为方便市民看病就医，打通区域医院信息系统，实现诊疗信息互通共享而免费发放的有效介质，该卡兼容身份证、市民卡，具有自助挂号、诊疗、体检、取药等服务功能。
+
+2佛山健康e园”客户端包含什么内容？
+佛山健康e园包括“健康服务”和“数字e院”两大模块。“健康服务”包括预约挂号、医问医答、健康大全等功能；“数字e院”是提供更多的医院信息服务，包括：智能叫号、医院动态、医院服务等。
+
+3、“佛山健康e园”是否收费？
+“佛山健康e园”注册会员，可凭居民健康卡或佛山健康卡免费享有预约挂号服务。（患者就诊挂号费，由医院按物价部门核实收取。）
+
+4、如何预约挂号？
+答：用户需注册登录，填写居民健康卡或佛山健康卡信息，然后选择地区→选择医院→选择科室→选择医生→选择就诊时间，最后点击“预约挂号”即可成功预约。答：用户点击“个人中心”→“我的预约”，会出现用户历史预约详细信息，点击“取消预约”按钮。请务必在就诊日前一个工作日凌晨12点前取消；如需在就诊当天取消，市民可按各医院相关规定进行操作。
+
+5、预约成功的订单可以修改吗？
+答：预约成功的订单不能进行修改，但可以选择取消，然后重新预约挂号。
+
+6、如何取消预约挂号？
+答：用户点击“个人中心”→“我的预约”，会出现用户历史预约详细信息，点击“取消预约”按钮。请务必在就诊日前一个工作日凌晨12点前取消；如需在就诊当天取消，市民可按各医院相关规定进行操作。
+
+
+8如何支付预约单？
+答：佛山健康e园手机客户端暂时只支持现场支付，市民需到医院现场支付挂号单。
+
+9关于就诊时间。
+答：预约成功后，市民需在预约时段开始前15分钟到达医院确认，然后按“预约优先、先到先诊”安排就诊。
+
+11、预约挂号有次数限制吗？
+答：同一健康卡号每天最多只可预约同一医院或同一医生2次。
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -2783,6 +2817,55 @@ DQ
             </objects>
             <point key="canvasLocation" x="-13541" y="-1285"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="Emi-b8-Guj">
+            <objects>
+                <viewController id="lbH-9o-cRv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bWi-jN-ZYx"/>
+                        <viewControllerLayoutGuide type="bottom" id="aF4-Mz-2FZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wZ1-Rl-3qP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53O-nr-iMo">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="46P-7t-j66">
+                                        <rect key="frame" x="0.0" y="-8" width="600" height="600"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="46P-7t-j66" secondAttribute="height" multiplier="1:1" id="aXR-XW-1A9"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="46P-7t-j66" firstAttribute="top" secondItem="53O-nr-iMo" secondAttribute="top" constant="-8" id="39r-P4-am0"/>
+                                    <constraint firstItem="46P-7t-j66" firstAttribute="leading" secondItem="53O-nr-iMo" secondAttribute="leading" id="7Ya-MJ-mtT"/>
+                                    <constraint firstAttribute="bottom" secondItem="46P-7t-j66" secondAttribute="bottom" constant="200" id="IoO-Kk-5xM"/>
+                                    <constraint firstAttribute="trailing" secondItem="46P-7t-j66" secondAttribute="trailing" id="raz-eo-IYH"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
+                                        <size key="value" width="320" height="800"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="53O-nr-iMo" firstAttribute="bottom" secondItem="wZ1-Rl-3qP" secondAttribute="bottomMargin" id="13r-7C-S6N"/>
+                            <constraint firstItem="53O-nr-iMo" firstAttribute="leading" secondItem="wZ1-Rl-3qP" secondAttribute="leadingMargin" constant="-16" id="2Xp-9x-SpI"/>
+                            <constraint firstItem="53O-nr-iMo" firstAttribute="top" secondItem="wZ1-Rl-3qP" secondAttribute="topMargin" id="Eax-sP-DFa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="53O-nr-iMo" secondAttribute="trailing" constant="-16" id="SjF-rf-9aF"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Coz-ZZ-6N8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xYa-ja-Kln" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-11760" y="-2769"/>
+        </scene>
         <!--智能健康-->
         <scene sceneID="4Uf-ZD-eAL">
             <objects>
@@ -2941,7 +3024,7 @@ DQ
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lug-cn-R6M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12136" y="-1894"/>
+            <point key="canvasLocation" x="-12080" y="-2030"/>
         </scene>
         <!--佛山第一人民医院-->
         <scene sceneID="GaE-XJ-H9D">
@@ -3141,6 +3224,7 @@ DQ
                         <segue destination="Bs1-xJ-X2k" kind="show" identifier="personal" id="dZd-8u-RvG"/>
                         <segue destination="9nF-5K-3PQ" kind="relationship" relationship="viewControllers" id="rUi-Tr-6m0"/>
                         <segue destination="XPF-7M-ReJ" kind="relationship" relationship="viewControllers" id="1kC-0P-bjq"/>
+                        <segue destination="lbH-9o-cRv" kind="relationship" relationship="viewControllers" id="vTK-3B-ach"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ugd-Mj-Qmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
